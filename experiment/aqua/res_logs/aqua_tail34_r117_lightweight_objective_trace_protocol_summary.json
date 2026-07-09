@@ -1,0 +1,39 @@
+{
+  "rule": "r117_lightweight_objective_trace_protocol",
+  "protocol_only": true,
+  "no_api_run": true,
+  "llm_name": "gpt-4o-2024-08-06",
+  "candidate_protocols": [
+    "two_view_objective_probe",
+    "graph_policy_topk_probe"
+  ],
+  "regression_tasks": [
+    "task_8",
+    "task_108",
+    "task_188",
+    "task_250"
+  ],
+  "required_suppressed_harm_tasks": [
+    "task_8"
+  ],
+  "required_clean_recovery_tasks": [
+    "task_250"
+  ],
+  "required_no_clean_harm": true,
+  "minimum_regression_guarded_solved": "4/4",
+  "baseline_only_trigger_allowed": false,
+  "tail34_training_allowed": false,
+  "broad_api_allowed_before_smoke": false,
+  "max_promptnode_views_per_triggered_task": 2,
+  "full_multiview_cost_reference": 5.050805,
+  "measured_cost_target_upper_bound": 1.828715,
+  "cost_gate": "measured total cost must be below R074 measured cost and far below full multi-view before an efficiency claim is allowed",
+  "accuracy_gate": "four-task smoke must preserve R114 behavior: suppress task_8 harm, recover task_250, and introduce no clean harm",
+  "forbidden_shortcuts": [
+    "baseline_only_direct_vote_trigger",
+    "single_rank5_template_guard",
+    "tail34_training_or_threshold_tuning",
+    "broad_api_before_regression_smoke"
+  ],
+  "claim_boundary": "protocol only; no new accuracy, cost, or API result"
+}

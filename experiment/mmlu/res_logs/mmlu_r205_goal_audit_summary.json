@@ -1,0 +1,56 @@
+{
+  "run_id": "R205",
+  "title": "Five-iteration SCI-Q2 goal audit after R201-R204",
+  "claim_boundary": "Audit only. No API evaluation, no new accuracy claim, and no claim that PromptNode/PromptEdge exceeds ARG-Designer.",
+  "audited_runs": [
+    "R201",
+    "R202",
+    "R203",
+    "R204"
+  ],
+  "no_api": true,
+  "broad_api": false,
+  "drift_from_goal": false,
+  "goal_status_seen_by_tool": "blocked",
+  "evidence_since_last_audit": {
+    "r201_random12_dry_run": {
+      "projected_contract_ready": "12/12",
+      "cost": 0
+    },
+    "r202_random12_api": {
+      "baseline": "11/12",
+      "projected_promptedge": "11/12",
+      "fixes": 0,
+      "harms": 0,
+      "cost": 0.697925
+    },
+    "r203_analysis": {
+      "random_improvement_signal": false,
+      "harm_signal": false,
+      "mmlu_paper_claim_supported": false
+    },
+    "r204_claim_update": {
+      "mmlu_accuracy_improvement": "not_supported_by_random12",
+      "mmlu_main_result_readiness": "not_supported"
+    }
+  },
+  "audit_decision": {
+    "status": "aligned_stop_mmlu_api_scale_return_to_method_and_paper",
+    "sci_q2_ready": false,
+    "reason": "MMLU now has useful robustness and negative evidence, but no random improvement. More MMLU API is unlikely to move the SCI-Q2 claim without method redesign.",
+    "next_audit": "R210"
+  },
+  "authorized_next_steps": [
+    "R206: write a method-redesign memo focused on learned edge ordering, router-final design, and projection ablations without API.",
+    "R207: consolidate AQuA R065 and MMLU R181-R204 into a paper claim/evidence table.",
+    "R208: design required negative controls: no projection, random PN, dense PN, no routing, raw learned graph vs projected graph.",
+    "R209: prepare paper outline centered on AQuA R065 as main accuracy signal and MMLU as transfer/robustness evidence.",
+    "R210: mandatory goal audit before any new API or paper drafting scale-up."
+  ],
+  "forbidden_next_steps": [
+    "Do not run more MMLU API before method redesign or R210 audit.",
+    "Do not claim MMLU transfer improvement from R202.",
+    "Do not present hybrid projection as fully learned edge-linking.",
+    "Do not use sync20 as the main result."
+  ]
+}

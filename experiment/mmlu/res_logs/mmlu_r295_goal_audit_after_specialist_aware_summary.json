@@ -1,0 +1,33 @@
+{
+  "run_id": "R295",
+  "title": "Goal audit after specialist-aware decoding revision",
+  "claim_boundary": "Goal audit only. No API is executed here; R294 is a no-label/no-API reselection result over saved R287 graph candidates.",
+  "no_api": true,
+  "broad_api": false,
+  "goal_alignment": "aligned_revision_ready_for_api",
+  "previous_negative_result": {
+    "r291_vs_arg_transfer_superiority": false,
+    "r291_correct": 20,
+    "r292_arg_correct": 22
+  },
+  "failure_mechanism": "The constrained decoder optimizes for PN chain completeness but not task-specialist coverage. On harms, selected graphs can replace Mathematician/Programmer/Knowlegable Expert evidence with Historian-heavy PN chains, causing the router to preserve a well-structured but wrong contract.",
+  "r294_contract_ready_rate": 0.8333333333333334,
+  "r294_selected_with_specialist": 19,
+  "r294_changed_from_r287": 14,
+  "api_eval_allowed_next": true,
+  "transfer_superiority_claim_supported": false,
+  "sci_q2_ready": false,
+  "main_decision": "R294 addresses the diagnosed selector flaw at graph-selection level, but it still needs matched API replay against R292 before any transfer claim.",
+  "next_runs": [
+    "R296_specialist_aware_api_replay",
+    "R297_compare_r296_vs_r292",
+    "R298_failure_analysis_if_negative",
+    "R299_claim_matrix_update",
+    "R300_goal_audit"
+  ],
+  "source_files": {
+    "r290": "experiment/mmlu/res_logs/mmlu_r290_goal_audit_after_r289_summary.json",
+    "r293": "experiment/mmlu/res_logs/mmlu_r293_failure_analysis_terminal_router_harms_summary.json",
+    "r294": "experiment/mmlu/res_logs/mmlu_r294_specialist_aware_decoding_summary.json"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "run_id": "R337",
+  "title": "Prospective selector eval expand24",
+  "claim_boundary": "R337 expands the R335 smoke to 24 held-out tasks. It remains a bounded prospective diagnostic, not a final paper claim.",
+  "no_api": false,
+  "broad_api": false,
+  "tasks": 24,
+  "records": 72,
+  "api_calls_planned": 72,
+  "api_executed": true,
+  "api_errors": 0,
+  "api_cost": 0.216315,
+  "prompt_tokens": 13866,
+  "completion_tokens": 9799,
+  "variant_counts": {
+    "arg_baseline_direct": 24,
+    "cost_matched_plain_requery": 24,
+    "selector_promptnode_promptedge_policy": 24
+  },
+  "by_variant": {
+    "arg_baseline_direct": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 20,
+      "accuracy": 0.8333333333333334,
+      "fixes": 0,
+      "harms": 0
+    },
+    "cost_matched_plain_requery": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 17,
+      "accuracy": 0.7083333333333334,
+      "fixes": 0,
+      "harms": 3
+    },
+    "selector_promptnode_promptedge_policy": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 20,
+      "accuracy": 0.8333333333333334,
+      "fixes": 0,
+      "harms": 0
+    }
+  },
+  "sci_q2_ready": false,
+  "next_required_run": "R338_goal_audit_after_prospective_eval",
+  "source_smoke_no_harm": true,
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r337_prospective_selector_eval_expand24_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r337_prospective_selector_eval_expand24_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r337_prospective_selector_eval_expand24_report.md"
+}

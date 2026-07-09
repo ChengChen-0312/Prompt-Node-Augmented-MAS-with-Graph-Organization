@@ -1,0 +1,28 @@
+{
+  "run_id": "R347",
+  "title": "Tool-backed PromptNode prospective replay on R337 24-task split",
+  "claim_boundary": "R347 replays the frozen R345/R346 tool-backed PromptNode policy over all 24 tasks from R337. Because the tool families were designed after inspecting R337 errors, this is positive mechanism evidence, not a main paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 24,
+  "arg_correct": 20,
+  "tool_promptnode_correct": 24,
+  "tool_promptnode_delta_correct": 4,
+  "accuracy": 1.0,
+  "arg_accuracy": 0.833333,
+  "forwarded_candidate_count": 4,
+  "fixes": 4,
+  "harms": 0,
+  "uses_true_answers_in_tool": false,
+  "uses_task_ids_or_known_wrong_items": false,
+  "claim_permissions": {
+    "replay_mechanism_evidence_allowed": true,
+    "main_paper_claim_allowed": false,
+    "fresh_eval_required_before_claim": true,
+    "sci_q2_ready": false
+  },
+  "next_required_run": "R348_fresh_tool_promptnode_eval_design",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r347_tool_backed_promptnode_prospective_replay24_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r347_tool_backed_promptnode_prospective_replay24_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r347_tool_backed_promptnode_prospective_replay24_report.md"
+}

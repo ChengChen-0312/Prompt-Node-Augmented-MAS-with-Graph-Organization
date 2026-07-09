@@ -1,0 +1,44 @@
+{
+  "run_id": "R456",
+  "title": "Next goal audit or external review decision",
+  "claim_boundary": "R456 records the next execution decision after R452-R455. It does not transmit local unpublished material, execute external audits, or certify submission readiness.",
+  "no_api": true,
+  "broad_api": false,
+  "audited_runs": [
+    "R452",
+    "R453",
+    "R454",
+    "R455",
+    "R456"
+  ],
+  "audited_summary_paths": {
+    "R452": "experiment/mmlu/res_logs/mmlu_r452_five_run_goal_audit_and_compile_probe_summary.json",
+    "R453": "experiment/mmlu/res_logs/mmlu_r453_appendix_noise_audit_pack_summary.json",
+    "R454": "experiment/mmlu/res_logs/mmlu_r454_reproducibility_artifact_index_summary.json",
+    "R455": "experiment/mmlu/res_logs/mmlu_r455_full_local_smoke_after_appendix_artifact_summary.json"
+  },
+  "goal_alignment_tags": [
+    "sci_q2_submission",
+    "promptnode_graph_organization",
+    "audit_clean_integrity",
+    "reproducibility_artifacts",
+    "external_review_safety"
+  ],
+  "unauthorized_claim_runs": [],
+  "deviation_detected": false,
+  "external_review_execution_decision": "defer_until_user_confirms_transmission",
+  "external_transmission_allowed_now": false,
+  "requires_confirmation_before_transmission": true,
+  "can_continue_local_work": true,
+  "decision_rationale": [
+    "External experiment, paper-claim, and citation audits remain P0 before final claim authorization.",
+    "R445 payloads contain unpublished manuscript/result material, so they should not be sent without fresh explicit confirmation.",
+    "Local work can continue on static manuscript integrity, reproducibility, and formatting gaps.",
+    "Recent runs preserve the core SCI-Q2 goal and keep PromptNode positioned as graph organization rather than a dataset patch."
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R457_static_manuscript_audit_after_appendix",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r456_next_goal_audit_or_external_review_decision_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r456_next_goal_audit_or_external_review_decision_report.md"
+}

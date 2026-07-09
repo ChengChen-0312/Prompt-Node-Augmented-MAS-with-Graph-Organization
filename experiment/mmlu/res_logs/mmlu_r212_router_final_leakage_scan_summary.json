@@ -1,0 +1,23 @@
+{
+  "rows": 403,
+  "manifest": "experiment/mmlu/promptedge_targets/mmlu_r211_router_final_targets.jsonl",
+  "missing_schema": 0,
+  "schema_versions": {
+    "r211_router_final_v1": 403
+  },
+  "router_actions": {
+    "abstain": 403
+  },
+  "target_option_labels": {
+    "NONE": 403
+  },
+  "abstain_only": true,
+  "schema_pass": true,
+  "leakage_violations": 0,
+  "leakage_pass": true,
+  "violations": [],
+  "run_id": "R212",
+  "title": "Router-final PromptEdge leakage scan",
+  "no_api": true,
+  "claim_boundary": "Leakage scan only; no accuracy claim."
+}

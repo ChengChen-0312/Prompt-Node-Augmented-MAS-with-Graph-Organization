@@ -1,0 +1,63 @@
+{
+  "run_id": "R207",
+  "title": "Consolidated AQuA and MMLU claim-evidence matrix",
+  "date": "2026-07-09",
+  "no_api": true,
+  "external_result_to_claim_review": "pending; Codex MCP reviewer unavailable in current toolset",
+  "deterministic_precheck": {
+    "method": "source-report text match",
+    "status": "passed_for_key_numbers",
+    "checked_numbers": [
+      "AQuA sync20 ARG 17/20",
+      "AQuA tail34 ARG 28/34",
+      "AQuA tail34 objective selector 31/34",
+      "AQuA tail34 clean 28/28",
+      "AQuA tail34 fix/harm 3/0",
+      "MMLU R188 raw contract-ready 2/50",
+      "MMLU R189 projected contract-ready 50/50",
+      "MMLU R202 random12 baseline/projected 11/12 vs 11/12"
+    ]
+  },
+  "claims": [
+    {
+      "claim": "ARG-Designer baseline on AQuA sync20 was reproduced with the same LLM setting.",
+      "status": "supported",
+      "evidence": "R001 breakdown: gpt-4o-2024-08-06, 17/20"
+    },
+    {
+      "claim": "Objective-guided PromptNode multi-view selection can exceed ARG-Designer on AQuA tail34.",
+      "status": "supported_but_scope_limited",
+      "evidence": "R065 tail34: 31/34 vs 28/34, fix/harm 3/0, clean 28/28",
+      "limitations": "replay over multi-view traces; high cost; no explicit PN graph markers"
+    },
+    {
+      "claim": "First-class PromptNode and PromptEdge graph primitives can be made executable before inference.",
+      "status": "supported",
+      "evidence": "R181-R184 code/tests and R189 projection audit 50/50 contract-ready"
+    },
+    {
+      "claim": "The learned PN/PE generator independently learns robust edge topology.",
+      "status": "not_supported",
+      "evidence": "R188 raw contract-ready only 2/50"
+    },
+    {
+      "claim": "Projected PromptEdge improves MMLU transfer accuracy.",
+      "status": "not_supported",
+      "evidence": "R202 random12: 11/12 vs 11/12, fixes/harms 0/0"
+    },
+    {
+      "claim": "The current method is ready for an SCI-Q2 submission.",
+      "status": "not_yet_supported",
+      "evidence": "accuracy signal and first-class graph mechanism are not yet unified"
+    }
+  ],
+  "recommended_paper_claim": "A constrained PromptNode/PromptEdge graph policy is a promising augmentation to ARG-Designer: AQuA tail34 shows label-free objective-guided gains, while MMLU confirms executable first-class PN/PE structure but also exposes the need for learned router-final activation and projection ablations.",
+  "forbidden_paper_claims": [
+    "Do not claim broad MAS superiority.",
+    "Do not claim MMLU transfer improvement.",
+    "Do not claim fully learned edge-linking without projection.",
+    "Do not claim R065 is already full update2 compliance.",
+    "Do not hide the multi-view cost."
+  ],
+  "next": "R208 negative controls and ablation design"
+}

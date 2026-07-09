@@ -1,0 +1,76 @@
+{
+  "run_id": "R180",
+  "title": "Five-iteration SCI-Q2 goal audit after R176-R179",
+  "claim_boundary": "Audit only. No new API evaluation, no new accuracy claim, and no claim that PromptNode/PromptEdge exceeds ARG-Designer.",
+  "audited_runs": [
+    "R176",
+    "R177",
+    "R178",
+    "R179"
+  ],
+  "no_api": true,
+  "broad_api": false,
+  "drift_from_goal": false,
+  "goal_status_seen_by_tool": "blocked",
+  "goal_used_for_audit": "SCI-Q2 paper with ARG-Designer baseline, same-model evaluation, first-class PromptNode/PromptEdge graph organization, held-out or transfer improvement, auditability, fix/harm, cost, ablations, and robustness.",
+  "alignment_checks": {
+    "arg_designer_as_baseline": true,
+    "same_model_target_preserved": true,
+    "first_class_promptnode_not_posthoc_patch": true,
+    "prompt_can_be_edge_form": true,
+    "avoid_sync20_training_leakage": true,
+    "avoid_tail34_training_leakage": true,
+    "robustness_transfer_route_considered": true,
+    "sci_q2_claim_not_overstated": true
+  },
+  "evidence_since_last_audit": {
+    "r176_switch_critical_pool": {
+      "confirmed_switch_critical": 4,
+      "weak_high_margin_tie": 2,
+      "still_insufficient": true
+    },
+    "r177_data_inventory": {
+      "additional_non_test_override_source_beyond_first200": false,
+      "tail34_training_allowed": false,
+      "sync20_training_allowed": false
+    },
+    "r178_route_preflight": {
+      "aqua_extra_local_train_rows": 0,
+      "aqua_target_generation_route_allowed": false,
+      "mmlu_arg_transfer_baseline_available": true,
+      "mmlu_pnpe_ready": false
+    },
+    "r179_mmlu_engineering_preflight": {
+      "mmlu_arg_transfer_accuracy": "88/100",
+      "mmlu_constructor_with_pn_role": "KeyError PN_Memory",
+      "mmlu_checkpoint_pn_roles": 0,
+      "mmlu_transfer_route_ready": false
+    }
+  },
+  "current_best_supported_result": {
+    "aqua_sync20_arg_baseline": "17/20",
+    "aqua_sync20_clean_baseline": "17/17",
+    "aqua_tail34_best_prior_result": "R065 objective-guided multi-view selector 31/34 vs ARG 28/34, clean 28/28, clean fix/harm 1/0",
+    "mmlu_arg_transfer_baseline": "R162 88/100",
+    "promptedge_learned_override_supported": false,
+    "promptnode_insertion_head_supported": true
+  },
+  "audit_decision": {
+    "status": "aligned_but_not_ready_for_broad_api",
+    "sci_q2_ready": false,
+    "reason": "The work remains aligned with the paper goal, but AQuA local non-test data is exhausted for new switch-critical labels, and MMLU needs PN/PE engineering closure before transfer accuracy claims.",
+    "next_audit": "R185"
+  },
+  "authorized_next_steps": [
+    "R181: add MMLU PN role descriptions and constructor tests without API",
+    "R182: add a MMLU PN/PE topology adapter or export path for first-class virtual nodes",
+    "R183: build non-leaky MMLU PN/PE target export manifest",
+    "R184: retrain or dry-run train a PN-capable MMLU graph generator",
+    "R185: goal audit before any MMLU transfer API smoke"
+  ],
+  "forbidden_next_steps": [
+    "Do not train on AQuA tail34 or sync20.",
+    "Do not claim learned override robustness from the four confirmed AQuA switch-critical labels.",
+    "Do not run broad MMLU API evaluation until PN/PE roles, target export, and checkpoint role mapping are closed."
+  ]
+}

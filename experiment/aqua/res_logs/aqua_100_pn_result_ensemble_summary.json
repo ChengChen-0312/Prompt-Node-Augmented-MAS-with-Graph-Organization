@@ -1,0 +1,14 @@
+{
+  "total_tasks": 100,
+  "solved_tasks": 85,
+  "pass_at_1": 85.0,
+  "method_order": [
+    "baseline",
+    "router",
+    "candidate",
+    "conservative",
+    "calibrated"
+  ],
+  "tie_breaker": "baseline",
+  "detail_file": "aqua_100_pn_result_ensemble_results.jsonl"
+}

@@ -1,0 +1,61 @@
+{
+  "rule": "r166_expanded_selective_promptedge_targets",
+  "source_r077_rows": 800,
+  "source_r112_rows": 200,
+  "matched_r112_rows": 800,
+  "exported_rows": 800,
+  "positive_graph_rows": 76,
+  "switch_critical_insert_rows": 4,
+  "preserve_safe_insert_rows": 72,
+  "suppress_or_fallback_rows": 724,
+  "prompt_edge_type_counts": {
+    "agent_flow": 100,
+    "forward_verified": 76,
+    "verify_contract": 76,
+    "write_memory": 176
+  },
+  "selector_input_forbidden_field_violations": 0,
+  "forbidden_selector_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "direct_majority",
+    "is_solved",
+    "predicted_answer",
+    "router_option",
+    "source_task_id",
+    "task_id",
+    "true_answer"
+  ],
+  "claim_boundary": "Offline expanded target export only; no API calls and no answer-accuracy claim.",
+  "pt_summary": {
+    "source_policy_rows": 76,
+    "exported_pt_files": 76,
+    "skipped_non_positive_rows": 0,
+    "promptnode_pt_files": 76,
+    "promptnode_spec_pt_files": 76,
+    "promptnode_edge_permission_pt_files": 76,
+    "positive_prompt_node_role_counts": {
+      "PN_Memory": 76,
+      "PN_Router": 76,
+      "PN_Verifier": 76
+    },
+    "unique_positive_graph_signatures": 17,
+    "output_dir": "experiment/FinetuneData_AQuA_R166_expanded_selective_promptedge",
+    "outcome_field_violations": 0,
+    "excluded_pt_fields": [
+      "audit_label",
+      "baseline_is_solved",
+      "clean_label",
+      "direct_majority",
+      "is_solved",
+      "predicted_answer",
+      "router_option",
+      "true_answer"
+    ],
+    "claim_boundary": "ARGDesigner-compatible PyG finetune files generated from positive label-free PromptNode graph-policy targets. Files contain graph roles/edges and task text, not gold answers, predictions, router options, audit labels, or correctness fields."
+  },
+  "output_jsonl": "experiment/aqua/aqua_first200_r166_expanded_selective_promptedge_rows.jsonl",
+  "manifest_jsonl": "experiment/aqua/aqua_first200_r166_expanded_selective_promptedge_pt_manifest.jsonl",
+  "report_md": "experiment/aqua/run_logs/aqua_first200_r166_expanded_selective_promptedge_report.md"
+}

@@ -1,0 +1,49 @@
+{
+  "rule": "r127_clean_fix_graph_policy_selector_presmoke",
+  "presmoke_only": true,
+  "no_api_run": true,
+  "requested_tasks": [
+    "task_8",
+    "task_108",
+    "task_188",
+    "task_250"
+  ],
+  "allowed_training_sources": [
+    "experiment/aqua/aqua_first200_r077_clean_fix_graph_policy_distill_rows.jsonl",
+    "experiment/aqua/aqua_first200_r082_clean_fix_graph_templates.jsonl",
+    "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl"
+  ],
+  "forbidden_training_sources": [
+    "tail34_r096_policy_targets",
+    "tail34_r109_rule_distillation",
+    "tail34_r113_eval_targets",
+    "tail34_r114_regression_replay",
+    "tail34_r124_outputs",
+    "tail34_true_answers_or_clean_labels"
+  ],
+  "uses_tail34_training_source": false,
+  "uses_tail34_outputs_for_rank_selection": false,
+  "action_rule_train_source": "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl",
+  "action_rule_eval_source": "experiment/aqua/res_logs/aqua_tail34_r109_objective_safety_rule_distillation_summary.json",
+  "learned_action_rule": "diff_and_top_score_ge_3_or_split",
+  "candidate_source": "experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl",
+  "switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "fallback_tasks": [
+    "task_8",
+    "task_188"
+  ],
+  "selected_template_ranks": {
+    "task_108": 5,
+    "task_250": 5
+  },
+  "switches_with_update2_metadata": 2,
+  "switches_with_high_fanin_memory_bridge": 2,
+  "selector_input_field_violations": 0,
+  "broad_api_allowed_before_smoke": false,
+  "same_four_task_smoke_allowed_next": true,
+  "output_jsonl": "experiment/aqua/aqua_tail34_r127_clean_fix_graph_policy_selector_presmoke.jsonl",
+  "claim_boundary": "pre-smoke selector plan only; no API, accuracy, cost, or prospective result"
+}

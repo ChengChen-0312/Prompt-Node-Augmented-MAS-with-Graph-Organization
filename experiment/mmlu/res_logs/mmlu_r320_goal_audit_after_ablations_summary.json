@@ -1,0 +1,50 @@
+{
+  "run_id": "R320",
+  "title": "Goal audit after completed ablation controls",
+  "claim_boundary": "R320 is the required five-iteration goal audit after R315-R319. The work stayed aligned with the SCI-Q2 PromptNode goal by completing reviewer-facing ablations, but it still does not justify a broad general-improvement claim or training a selector from warning-only non-STEM nodes.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R315",
+    "R316",
+    "R317",
+    "R318",
+    "R319"
+  ],
+  "ablation_status": {
+    "completed_count": 10,
+    "pending": [],
+    "priority_pending": [],
+    "all_priority_completed": true
+  },
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_designer_baseline_preserved": true,
+    "promptnode_as_first_class_graph_node_preserved": true,
+    "promptedge_as_first_class_constraint_preserved": true,
+    "priority_ablations_completed": true,
+    "promptedge_text_validated": true,
+    "cost_matched_requery_checked": true,
+    "symbolic_and_nonmath_contributions_separated": true,
+    "nonstem_negative_transfer_not_hidden": true,
+    "claim_boundary_narrowed_correctly": true
+  },
+  "claim_permissions": {
+    "aqua_clean_improvement_allowed": true,
+    "mmlu_stem_improvement_allowed": true,
+    "mmlu_nonstem_no_harm_allowed": true,
+    "mmlu_nonstem_improvement_allowed": false,
+    "broad_general_promptnode_claim_allowed": false,
+    "training_authorized": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Treat non-STEM semantic/warning PromptNodes as lifecycle and safety signals unless a future prospective run shows answer-bearing gains.",
+    "Do not claim generic transfer improvement: current positive evidence is AQuA audit-clean and MMLU STEM, while non-STEM supports no-harm only.",
+    "Use the completed ablations to write the method boundary: PromptNode identity, PromptEdge text, SafetyGate, and lifecycle pruning are all necessary controls.",
+    "Before training, build a paper evidence table and a selector-training gate that forbids learning from label-audited or warning-only override failures."
+  ],
+  "next_required_run": "R321_paper_evidence_table_and_training_gate",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r320_goal_audit_after_ablations_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r320_goal_audit_after_ablations_report.md"
+}

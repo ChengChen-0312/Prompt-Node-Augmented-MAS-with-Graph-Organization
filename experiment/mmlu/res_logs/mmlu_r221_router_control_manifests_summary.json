@@ -1,0 +1,52 @@
+{
+  "variants": 4,
+  "variant_rows": {
+    "abstain_only_router": 67,
+    "always_switch_to_objective": 67,
+    "node_only_no_promptedge_text": 67,
+    "random_switch_labels_same_rate": 67
+  },
+  "variant_switches": {
+    "abstain_only_router": 0,
+    "always_switch_to_objective": 67,
+    "node_only_no_promptedge_text": 13,
+    "random_switch_labels_same_rate": 13
+  },
+  "variant_split_counts": {
+    "abstain_only_router": {
+      "frozen_eval": 34,
+      "train": 33
+    },
+    "always_switch_to_objective": {
+      "frozen_eval": 34,
+      "train": 33
+    },
+    "node_only_no_promptedge_text": {
+      "frozen_eval": 34,
+      "train": 33
+    },
+    "random_switch_labels_same_rate": {
+      "frozen_eval": 34,
+      "train": 33
+    }
+  },
+  "total_rows": 268,
+  "run_id": "R221",
+  "title": "Router-final negative-control manifest materialization",
+  "claim_boundary": "Control manifest materialization only; no API and no accuracy claim.",
+  "no_api": true,
+  "input_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r218_router_final_mini_manifest.jsonl",
+  "output_dir": "experiment/mmlu/promptedge_targets/r221_controls",
+  "output_files": {
+    "abstain_only_router": "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_abstain_only_router.jsonl",
+    "random_switch_labels_same_rate": "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_random_switch_labels_same_rate.jsonl",
+    "always_switch_to_objective": "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_always_switch_to_objective.jsonl",
+    "node_only_no_promptedge_text": "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_node_only_no_promptedge_text.jsonl"
+  },
+  "seed": 20260709,
+  "tests": {
+    "tests.test_r221_router_control_manifests": "5/5 passed",
+    "tests.test_r218_router_mini_manifest": "2/2 passed",
+    "tests.test_r217_non_abstain_router_targets": "4/4 passed"
+  }
+}

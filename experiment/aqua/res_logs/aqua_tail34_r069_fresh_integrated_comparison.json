@@ -1,0 +1,115 @@
+{
+  "r069_summary": {
+    "overall": "29/34",
+    "internal_baseline": "26/34",
+    "delta_vs_internal_baseline": 3,
+    "fix_harm_vs_internal_baseline": "3/0",
+    "clean": "27/28",
+    "clean_fix_harm_vs_internal_baseline": "3/0",
+    "multiview_run": "25/34",
+    "cost": 3.908995000000001
+  },
+  "vs_r059_historical_arg": {
+    "fixes": [
+      "task_108"
+    ],
+    "harms": [],
+    "same_count": 32,
+    "diff_tasks": [
+      "task_108",
+      "task_250"
+    ],
+    "delta": 1
+  },
+  "vs_r065_replay_objective": {
+    "fixes": [],
+    "harms": [
+      "task_114",
+      "task_250"
+    ],
+    "same_count": 31,
+    "diff_tasks": [
+      "task_114",
+      "task_59",
+      "task_250"
+    ],
+    "delta": -2
+  },
+  "r069_internal_baseline_differs_from_r059": [
+    {
+      "task_id": "task_56",
+      "r069_internal_baseline": null,
+      "r059_baseline": "A",
+      "true_answer": "A"
+    },
+    {
+      "task_id": "task_59",
+      "r069_internal_baseline": null,
+      "r059_baseline": "B",
+      "true_answer": "C"
+    },
+    {
+      "task_id": "task_8",
+      "r069_internal_baseline": null,
+      "r059_baseline": "E",
+      "true_answer": "E"
+    },
+    {
+      "task_id": "task_108",
+      "r069_internal_baseline": "D",
+      "r059_baseline": "B",
+      "true_answer": "D"
+    },
+    {
+      "task_id": "task_250",
+      "r069_internal_baseline": null,
+      "r059_baseline": "A",
+      "true_answer": "E"
+    },
+    {
+      "task_id": "task_188",
+      "r069_internal_baseline": "C",
+      "r059_baseline": "D",
+      "true_answer": "D"
+    }
+  ],
+  "r069_switches": [
+    {
+      "task_id": "task_56",
+      "r069_internal_baseline": null,
+      "selected": "A",
+      "true_answer": "A",
+      "selected_method": "router",
+      "top_score": 2,
+      "is_solved": true
+    },
+    {
+      "task_id": "task_59",
+      "r069_internal_baseline": null,
+      "selected": "B",
+      "true_answer": "C",
+      "selected_method": "router",
+      "top_score": 2,
+      "is_solved": false
+    },
+    {
+      "task_id": "task_8",
+      "r069_internal_baseline": null,
+      "selected": "E",
+      "true_answer": "E",
+      "selected_method": "router",
+      "top_score": 2,
+      "is_solved": true
+    },
+    {
+      "task_id": "task_188",
+      "r069_internal_baseline": "C",
+      "selected": "D",
+      "true_answer": "D",
+      "selected_method": "candidate",
+      "top_score": 2,
+      "is_solved": true
+    }
+  ],
+  "interpretation": "R069 is a fresh integrated run. It improves over its own fresh internal baseline, but the internal baseline differs from the historical R059 trace; therefore R069 should be claimed as fresh integrated evidence with stochastic-baseline caveat, not as a direct reproduction of R065 replay."
+}

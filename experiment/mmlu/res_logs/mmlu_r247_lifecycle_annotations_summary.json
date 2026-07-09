@@ -1,0 +1,30 @@
+{
+  "annotations": 75,
+  "annotation_type_counts": {
+    "source_metadata": 8,
+    "task_decision": 67
+  },
+  "lifecycle_action_counts": {
+    "compress": 1,
+    "merge": 4,
+    "prune": 51,
+    "update": 6,
+    "upgrade": 6
+  },
+  "edge_action_counts": {
+    "forward": 6,
+    "read": 67,
+    "write": 1
+  },
+  "run_id": "R247",
+  "title": "PromptNode lifecycle annotations",
+  "claim_boundary": "Lifecycle annotation only; no API, no accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "decision_records_jsonl": "experiment/mmlu/run_logs/mmlu_r237_conservative_policy_application_records.jsonl",
+  "source_metadata_jsonl": "experiment/aqua/aqua_tail34_r081_promptnode_metadata_audit_rows.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r247_lifecycle_annotations.jsonl",
+  "tests": {
+    "tests.test_r247_lifecycle_annotations": "5/5 passed",
+    "tests.test_r244_case_study_extraction": "1/1 passed"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "rule": "r086_forced_template_smoke_gate",
+  "timestamp": "2026-07-08T17:32:41.562342",
+  "clean_positive_rows": 3,
+  "clean_positive_accepted": 3,
+  "clean_positive_suppressed": 0,
+  "boundary_rows": 1,
+  "boundary_accepted": 0,
+  "boundary_suppressed": 1,
+  "accepted_rows": 3,
+  "suppressed_rows": 1,
+  "gate_action_counts": {
+    "accept_template": 3,
+    "fallback_to_arg": 1
+  },
+  "gate_reason_counts": {
+    "weak_non_none_terminal_option": 1,
+    "router_exact_final_agreement": 2,
+    "weak_none_of_these_boundary": 1
+  },
+  "decision_field_violations": 0,
+  "accepted_smoke_cost": 0.114505,
+  "suppressed_smoke_cost": 0.052125,
+  "total_smoke_cost": 0.16663,
+  "rows": [
+    {
+      "task_id": "task_56",
+      "run_group": "clean_positive",
+      "run_name": "task56_clean_positive",
+      "predicted_answer": "A",
+      "true_answer": "A",
+      "is_solved": true,
+      "router_supported_option": "NONE",
+      "router_binding_status": "NO_EXACT_OPTION",
+      "selected_rank": 1,
+      "cost": 0.042030000000000005,
+      "decision_features": {
+        "router_supported_option": "",
+        "router_binding_status": "NO_EXACT_OPTION",
+        "predicted_answer": "A",
+        "predicted_option_text": "438",
+        "predicted_option_is_none_of_these": false,
+        "selected_rank": 1,
+        "has_promptnode_graph": true,
+        "num_nodes": 5,
+        "num_edges": 5
+      },
+      "gate_action": "accept_template",
+      "gate_reason": "weak_non_none_terminal_option",
+      "decision_field_violation_count": 0
+    },
+    {
+      "task_id": "task_188",
+      "run_group": "clean_positive",
+      "run_name": "task188_clean_positive",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "is_solved": true,
+      "router_supported_option": "D",
+      "router_binding_status": "EXACT_MATCH",
+      "selected_rank": 1,
+      "cost": 0.033405000000000004,
+      "decision_features": {
+        "router_supported_option": "D",
+        "router_binding_status": "EXACT_MATCH",
+        "predicted_answer": "D",
+        "predicted_option_text": "252",
+        "predicted_option_is_none_of_these": false,
+        "selected_rank": 1,
+        "has_promptnode_graph": true,
+        "num_nodes": 5,
+        "num_edges": 5
+      },
+      "gate_action": "accept_template",
+      "gate_reason": "router_exact_final_agreement",
+      "decision_field_violation_count": 0
+    },
+    {
+      "task_id": "task_8",
+      "run_group": "clean_positive",
+      "run_name": "task8_clean_positive",
+      "predicted_answer": "E",
+      "true_answer": "E",
+      "is_solved": true,
+      "router_supported_option": "E",
+      "router_binding_status": "EXACT_MATCH",
+      "selected_rank": 1,
+      "cost": 0.039069999999999994,
+      "decision_features": {
+        "router_supported_option": "E",
+        "router_binding_status": "EXACT_MATCH",
+        "predicted_answer": "E",
+        "predicted_option_text": "110",
+        "predicted_option_is_none_of_these": false,
+        "selected_rank": 1,
+        "has_promptnode_graph": true,
+        "num_nodes": 5,
+        "num_edges": 5
+      },
+      "gate_action": "accept_template",
+      "gate_reason": "router_exact_final_agreement",
+      "decision_field_violation_count": 0
+    },
+    {
+      "task_id": "task_114",
+      "run_group": "boundary",
+      "run_name": "task114_noisy_boundary_router_hardened",
+      "predicted_answer": "E",
+      "true_answer": "D",
+      "is_solved": false,
+      "router_supported_option": "NONE",
+      "router_binding_status": "NO_EXACT_OPTION",
+      "selected_rank": 1,
+      "cost": 0.052125,
+      "decision_features": {
+        "router_supported_option": "",
+        "router_binding_status": "NO_EXACT_OPTION",
+        "predicted_answer": "E",
+        "predicted_option_text": "None of these",
+        "predicted_option_is_none_of_these": true,
+        "selected_rank": 1,
+        "has_promptnode_graph": true,
+        "num_nodes": 5,
+        "num_edges": 5
+      },
+      "gate_action": "fallback_to_arg",
+      "gate_reason": "weak_none_of_these_boundary",
+      "decision_field_violation_count": 0
+    }
+  ],
+  "claim_boundary": "smoke-gate replay only, not tail34 accuracy"
+}

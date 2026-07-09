@@ -1,0 +1,30 @@
+{
+  "run_id": "R354",
+  "title": "Fresh eval after coverage expansion preflight",
+  "claim_boundary": "R354 builds a new fresh split after R352 coverage expansion. The expanded local policy still forwards zero candidates, so API execution is blocked to avoid a no-op comparison.",
+  "no_api": true,
+  "broad_api": false,
+  "policy_frozen_after_run": "R352",
+  "tasks": 48,
+  "task_family_counts": {
+    "mmlu_nonstem": 24,
+    "mmlu_stem": 24
+  },
+  "api_manifest_records": 48,
+  "local_tool_records": 48,
+  "api_calls_planned": 48,
+  "local_tool_forwarded_candidate_count": 0,
+  "local_tool_candidate_correct_count": 0,
+  "overlap_with_excluded_task_count": 0,
+  "overlap_with_excluded_task_ids": [],
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R355_goal_audit_after_second_fresh_preflight",
+  "api_manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r354_fresh_eval_after_coverage_expansion_api_manifest.jsonl",
+  "local_tool_jsonl": "experiment/mmlu/run_logs/mmlu_r354_fresh_eval_after_coverage_expansion_local_tool_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r354_fresh_eval_after_coverage_expansion_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r354_fresh_eval_after_coverage_expansion_preflight_report.md"
+}

@@ -1,0 +1,30 @@
+{
+  "rule": "r083_tail34_clean_fix_template_candidate_materialize",
+  "timestamp": "2026-07-08T17:09:46.016964",
+  "template_source_count": 17,
+  "num_tasks": 34,
+  "top_k": 5,
+  "total_candidates": 170,
+  "unique_candidate_templates": 5,
+  "templates_with_full_promptnode_specs": 5,
+  "templates_with_full_edge_permissions": 5,
+  "forbidden_field_violations": 0,
+  "forbidden_runtime_fields": [
+    "answer",
+    "answers",
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "direct_majority",
+    "is_solved",
+    "predicted_answer",
+    "question",
+    "raw_response",
+    "router_option",
+    "task_text",
+    "true_answer"
+  ],
+  "claim_boundary": "R083 materializes R082 clean-fix PromptNode templates on AQuA tail34. It validates graph metadata coverage only; accuracy requires a subsequent forced-execution run.",
+  "template_jsonl": "experiment/aqua/aqua_first200_r082_clean_fix_graph_templates.jsonl",
+  "task_split_json": "experiment/aqua/task_split_aqua_tail34.json"
+}

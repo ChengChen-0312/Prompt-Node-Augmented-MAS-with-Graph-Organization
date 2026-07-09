@@ -1,0 +1,290 @@
+{
+  "run_id": "R254",
+  "title": "MMLU tiny transfer result analysis",
+  "claim_boundary": "Result analysis only; R253 is a tiny diagnostic and does not support SCI-Q2 readiness or transfer superiority.",
+  "no_api": true,
+  "broad_api": false,
+  "results_jsonl": "experiment/mmlu/run_logs/mmlu_r253_mmlu_transfer_api_results.jsonl",
+  "api_summary_json": "experiment/mmlu/res_logs/mmlu_r253_mmlu_transfer_api_summary.json",
+  "api_cost": 0.10905,
+  "prompt_tokens": 12738,
+  "completion_tokens": 3024,
+  "rows": 80,
+  "by_variant": {
+    "abstain_keep_arg": {
+      "records": 16,
+      "evaluated_records": 16,
+      "correct": 8,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0
+    },
+    "arg_baseline_fixed": {
+      "records": 16,
+      "evaluated_records": 16,
+      "correct": 8,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0
+    },
+    "node_only_no_promptedge_text": {
+      "records": 16,
+      "evaluated_records": 16,
+      "correct": 11,
+      "accuracy": 0.6875,
+      "fixes": 4,
+      "harms": 1
+    },
+    "plain_requery": {
+      "records": 16,
+      "evaluated_records": 16,
+      "correct": 12,
+      "accuracy": 0.75,
+      "fixes": 4,
+      "harms": 0
+    },
+    "proposed_promptnode_promptedge": {
+      "records": 16,
+      "evaluated_records": 16,
+      "correct": 10,
+      "accuracy": 0.625,
+      "fixes": 3,
+      "harms": 1
+    }
+  },
+  "by_variant_role": {
+    "abstain_keep_arg": {
+      "arg_error": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 0,
+        "accuracy": 0.0,
+        "fixes": 0,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 8,
+        "accuracy": 1.0,
+        "fixes": 0,
+        "harms": 0
+      }
+    },
+    "arg_baseline_fixed": {
+      "arg_error": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 0,
+        "accuracy": 0.0,
+        "fixes": 0,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 8,
+        "accuracy": 1.0,
+        "fixes": 0,
+        "harms": 0
+      }
+    },
+    "node_only_no_promptedge_text": {
+      "arg_error": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 4,
+        "accuracy": 0.5,
+        "fixes": 4,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 7,
+        "accuracy": 0.875,
+        "fixes": 0,
+        "harms": 1
+      }
+    },
+    "plain_requery": {
+      "arg_error": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 4,
+        "accuracy": 0.5,
+        "fixes": 4,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 8,
+        "accuracy": 1.0,
+        "fixes": 0,
+        "harms": 0
+      }
+    },
+    "proposed_promptnode_promptedge": {
+      "arg_error": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 3,
+        "accuracy": 0.375,
+        "fixes": 3,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 8,
+        "evaluated_records": 8,
+        "correct": 7,
+        "accuracy": 0.875,
+        "fixes": 0,
+        "harms": 1
+      }
+    }
+  },
+  "variant_counts": {
+    "abstain_keep_arg": 16,
+    "arg_baseline_fixed": 16,
+    "node_only_no_promptedge_text": 16,
+    "plain_requery": 16,
+    "proposed_promptnode_promptedge": 16
+  },
+  "assessment": {
+    "proposed_correct": 10,
+    "arg_baseline_correct": 8,
+    "plain_requery_correct": 12,
+    "node_only_correct": 11,
+    "proposed_net_correct_vs_arg": 2,
+    "proposed_beats_arg_baseline": true,
+    "proposed_beats_plain_requery": false,
+    "proposed_beats_node_only": false,
+    "promptedge_text_gain_supported": false,
+    "transfer_superiority_supported": false,
+    "recommended_claim": "negative_transfer_diagnostic"
+  },
+  "proposed_changed_cases": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "C",
+      "true_answer": "C",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_chemistry_test-62",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "B",
+      "true_answer": "B",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-elementary_mathematics_test-222",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-17",
+      "selection_role": "matched_control",
+      "arg_prediction": "C",
+      "predicted_answer": "A",
+      "true_answer": "C",
+      "fix": false,
+      "harm": true
+    }
+  ],
+  "plain_changed_cases": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "C",
+      "true_answer": "C",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_chemistry_test-62",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "B",
+      "true_answer": "B",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-26",
+      "selection_role": "arg_error",
+      "arg_prediction": "C",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-conceptual_physics_test-41",
+      "selection_role": "arg_error",
+      "arg_prediction": "B",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    }
+  ],
+  "node_only_changed_cases": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "C",
+      "true_answer": "C",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_chemistry_test-62",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "B",
+      "true_answer": "B",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-26",
+      "selection_role": "arg_error",
+      "arg_prediction": "C",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-elementary_mathematics_test-222",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-17",
+      "selection_role": "matched_control",
+      "arg_prediction": "C",
+      "predicted_answer": "B",
+      "true_answer": "C",
+      "fix": false,
+      "harm": true
+    }
+  ]
+}

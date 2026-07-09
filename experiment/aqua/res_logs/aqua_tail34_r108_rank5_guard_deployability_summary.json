@@ -1,0 +1,99 @@
+{
+  "rule": "r108_rank5_guard_deployability_audit",
+  "num_tasks": 4,
+  "ambiguous_single_template_groups": 1,
+  "ambiguous_no_exact_diff_tasks": [
+    "task_8",
+    "task_250"
+  ],
+  "objective_features_separate_ambiguous_tasks": true,
+  "single_template_guard_sufficient": false,
+  "selector_input_field_violations": 0,
+  "rows": [
+    {
+      "task_id": "task_8",
+      "rank5_prediction": "C",
+      "baseline_prediction": "E",
+      "r107_action": "fallback_to_arg",
+      "single_template_features": {
+        "selected_rank": 5,
+        "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+        "router_binding_status": "NO_EXACT_OPTION",
+        "router_supported_option_kind": "none",
+        "rank5_prediction_differs_from_baseline": true
+      },
+      "objective_features": {
+        "baseline_direct_votes_split": false,
+        "objective_prediction_differs_from_baseline": false,
+        "objective_top_score": 2
+      },
+      "true_answer": "E",
+      "rank5_is_solved": false,
+      "clean_label": "clean"
+    },
+    {
+      "task_id": "task_108",
+      "rank5_prediction": "D",
+      "baseline_prediction": "B",
+      "r107_action": "accept_rank5",
+      "single_template_features": {
+        "selected_rank": 5,
+        "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+        "router_binding_status": "EXACT_MATCH",
+        "router_supported_option_kind": "specific",
+        "rank5_prediction_differs_from_baseline": true
+      },
+      "objective_features": {
+        "baseline_direct_votes_split": true,
+        "objective_prediction_differs_from_baseline": true,
+        "objective_top_score": 2
+      },
+      "true_answer": "D",
+      "rank5_is_solved": true,
+      "clean_label": "noisy"
+    },
+    {
+      "task_id": "task_188",
+      "rank5_prediction": "D",
+      "baseline_prediction": "D",
+      "r107_action": "fallback_to_arg",
+      "single_template_features": {
+        "selected_rank": 5,
+        "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+        "router_binding_status": "EXACT_MATCH",
+        "router_supported_option_kind": "specific",
+        "rank5_prediction_differs_from_baseline": false
+      },
+      "objective_features": {
+        "baseline_direct_votes_split": false,
+        "objective_prediction_differs_from_baseline": false,
+        "objective_top_score": 1
+      },
+      "true_answer": "D",
+      "rank5_is_solved": true,
+      "clean_label": "clean"
+    },
+    {
+      "task_id": "task_250",
+      "rank5_prediction": "E",
+      "baseline_prediction": "A",
+      "r107_action": "accept_rank5",
+      "single_template_features": {
+        "selected_rank": 5,
+        "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+        "router_binding_status": "NO_EXACT_OPTION",
+        "router_supported_option_kind": "none",
+        "rank5_prediction_differs_from_baseline": true
+      },
+      "objective_features": {
+        "baseline_direct_votes_split": false,
+        "objective_prediction_differs_from_baseline": true,
+        "objective_top_score": 3
+      },
+      "true_answer": "E",
+      "rank5_is_solved": true,
+      "clean_label": "clean"
+    }
+  ],
+  "claim_boundary": "feature audit only; no accuracy or new selector claim"
+}

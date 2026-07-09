@@ -1,0 +1,62 @@
+{
+  "run_id": "R449",
+  "title": "Next local improvement or external audit",
+  "claim_boundary": "R449 records the SCI-Q2 target-journal orientation and next execution priority. It does not change experimental claims, execute external audits, or certify submission readiness.",
+  "no_api": true,
+  "broad_api": false,
+  "recommended_q2_targets": [
+    {
+      "short_name": "JAIR",
+      "journal": "Journal of Artificial Intelligence Research",
+      "fit": "best_scope_fit_for_agents_and_mas",
+      "q_evidence": "JournalMetrics 2026 page reports JCR Q2; verify in official JCR before submission.",
+      "scope_evidence": "Official JAIR scope lists agents and multi-agent systems.",
+      "risk": "High quality bar; needs external audits, stronger framing, and polished case evidence."
+    },
+    {
+      "short_name": "KAIS",
+      "journal": "Knowledge and Information Systems",
+      "fit": "backup_fit_for_ai_knowledge_systems_and_evaluation",
+      "q_evidence": "JournalMetrics 2026 page reports JCR Q2; verify in official JCR before submission.",
+      "scope_evidence": "Potentially fits if framed as knowledge-guided MAS graph organization and reliable evaluation.",
+      "risk": "May prefer data mining or knowledge-systems framing over pure LLM-agent engineering."
+    }
+  ],
+  "not_preferred_targets": [
+    {
+      "short_name": "EAAI",
+      "journal": "Engineering Applications of Artificial Intelligence",
+      "reason": "Strong AI application outlet, but current evidence points to Q1 rather than conservative SCI-Q2 targeting."
+    },
+    {
+      "short_name": "ASOC",
+      "journal": "Applied Soft Computing",
+      "reason": "Strong related outlet, but current evidence points to Q1 rather than conservative SCI-Q2 targeting."
+    },
+    {
+      "short_name": "IJMLC",
+      "journal": "International Journal of Machine Learning and Cybernetics",
+      "reason": "Scope may fit, but current public ranking evidence is ambiguous or Q3; not a primary SCI-Q2 target yet."
+    }
+  ],
+  "next_priority_order": [
+    "external_audits_before_claim_authorization",
+    "submission_gap_backlog_and_journal_scope_mapping",
+    "journal_template_and_format_probe",
+    "caption_and_contribution_polish_after_audit",
+    "latex_compile_after_engine_available"
+  ],
+  "sources_used": [
+    "https://www.journalmetrics.org/journal/journal-of-artificial-intelligence-research",
+    "https://www.jair.org/",
+    "https://www.journalmetrics.org/journal/knowledge-and-information-systems",
+    "https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-workflow-solutions/webofscience-platform/science-citation-index-expanded/",
+    "https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-workflow-solutions/journal-citation-reports/"
+  ],
+  "source_caveat": "Public journal-metric pages are planning evidence only; final quartile must be verified in official JCR or the user's institutional Web of Science access immediately before submission.",
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R450_submission_gap_backlog",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r449_next_local_improvement_or_external_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r449_next_local_improvement_or_external_audit_report.md"
+}

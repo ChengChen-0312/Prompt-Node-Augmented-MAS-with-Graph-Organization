@@ -1,0 +1,35 @@
+{
+  "rule": "r105_rank5_regression_smoke_protocol",
+  "selected_rank": 5,
+  "comparison_rank": 2,
+  "task_split_path": "experiment/aqua/task_split_aqua_tail34_r105_rank5_regression_smoke.json",
+  "task_split_indices": [
+    8,
+    108,
+    188,
+    250
+  ],
+  "num_tasks": 4,
+  "is_full_tail34": false,
+  "clean_harm_guard_tasks": [
+    "task_8",
+    "task_188"
+  ],
+  "clean_recovery_targets": [
+    "task_250"
+  ],
+  "noisy_optional_targets": [
+    "task_108"
+  ],
+  "model": "gpt-4o-2024-08-06",
+  "forced_template_candidate_jsonl": "experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl",
+  "output_file": "experiment/aqua/aqua_tail34_r106_rank5_regression_smoke_results.jsonl",
+  "summary_log_file": "experiment/aqua/res_logs/aqua_tail34_r106_rank5_regression_smoke_summary.jsonl",
+  "success_gate": {
+    "clean_harm_guard_harms": 0,
+    "rank2_rank5_consensus_on_clean_recovery": true,
+    "no_full_tail34_claim": true
+  },
+  "claim_boundary": "pre-registered four-task rank5 regression smoke for consensus check; no held-out accuracy claim",
+  "command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_r105_rank5_regression_smoke.json --llm_name gpt-4o-2024-08-06 --decision_method RouterContractFinalRefer --output_file experiment/aqua/aqua_tail34_r106_rank5_regression_smoke_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r106_rank5_regression_smoke_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 5"
+}

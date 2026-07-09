@@ -1,0 +1,23 @@
+{
+  "run_id": "R436",
+  "title": "Citation metadata fetch and BibTeX skeleton",
+  "claim_boundary": "R436 fetches BibTeX skeleton entries from official or canonical metadata sources. These entries remain unaudited until citation contexts exist.",
+  "no_api": true,
+  "broad_api": false,
+  "candidate_papers_json": ".aris/verify-papers/candidate_papers.json",
+  "references_bib": "paper/references.bib",
+  "metadata_json": ".aris/verify-papers/r436_citation_metadata.json",
+  "fetched_bib_count": 8,
+  "bib_entry_count": 8,
+  "fetch_failures": [],
+  "all_entries_have_source_url": true,
+  "citation_audit_required_before_use": true,
+  "final_bib_authorized": false,
+  "related_work_draft_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "backup_created": "paper/references.bib.r436-backup-20260709-203201-929986",
+  "next_required_run": "R437_related_work_initial_draft",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r436_citation_metadata_fetch_and_bib_skeleton_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r436_citation_metadata_fetch_and_bib_skeleton_report.md"
+}

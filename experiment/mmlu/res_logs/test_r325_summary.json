@@ -1,0 +1,27 @@
+{
+  "run_id": "R325",
+  "title": "Hard negative augmentation protocol",
+  "claim_boundary": "R325 augments the selector manifest with answer-bearing false-forward cases mined from R316 controls. It prepares a harder offline retraining set but does not authorize API execution or paper claims.",
+  "no_api": true,
+  "broad_api": false,
+  "base_manifest_records": 234,
+  "hard_negative_records": 4,
+  "augmented_manifest_records": 238,
+  "hard_negative_target_forward_counts": {
+    "false": 4
+  },
+  "hard_negative_source_variants": [
+    "node_only_no_promptedge_text",
+    "plain_requery"
+  ],
+  "feature_leakage_pass": true,
+  "feature_leakage_violations": [],
+  "paper_claim_authorized": false,
+  "api_execution_authorized_next": false,
+  "offline_selector_retraining_authorized_next": true,
+  "sci_q2_ready": false,
+  "next_required_run": "R326_goal_audit_after_selector_pretraining",
+  "augmented_manifest_jsonl": "experiment/mmlu/run_logs/test_r325_augmented_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/test_r325_summary.json",
+  "report_md": "experiment/mmlu/run_logs/test_r325_report.md"
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": "R271",
+  "title": "Tail34 final official/audit-clean claim table",
+  "claim_boundary": "paper_table_generation_only_no_new_api",
+  "variants": {
+    "ARG": {
+      "official": "28/34",
+      "audit_clean_exclude_59_139_228": "28/31",
+      "correct_task114": "29/31",
+      "exclude_task114": "28/30",
+      "cost": 0.93285,
+      "claim_role": "baseline"
+    },
+    "R065": {
+      "official": "31/34",
+      "audit_clean_exclude_59_139_228": "31/31",
+      "correct_task114": "30/31",
+      "exclude_task114": "30/30",
+      "cost": 5.050805,
+      "claim_role": "highest official replay score, noisy task114 risk"
+    },
+    "R068": {
+      "official": "31/34",
+      "audit_clean_exclude_59_139_228": "31/31",
+      "correct_task114": "30/31",
+      "exclude_task114": "30/30",
+      "cost": 3.597409,
+      "claim_role": "cost-reduced replay retaining R065 score"
+    },
+    "R095": {
+      "official": "30/34",
+      "audit_clean_exclude_59_139_228": "30/31",
+      "correct_task114": "31/31",
+      "exclude_task114": "30/30",
+      "cost": 5.050805,
+      "claim_role": "safety-gated replay, not cost-reduced"
+    },
+    "R267": {
+      "official": "30/34",
+      "audit_clean_exclude_59_139_228": "30/31",
+      "correct_task114": "31/31",
+      "exclude_task114": "30/30",
+      "cost": 3.597409,
+      "claim_role": "cost-reduced plus safety-gated replay"
+    }
+  },
+  "recommended_main_text_claim": "official_plus_audit_clean_scope_limited",
+  "recommended_wording": "Report official and audit-clean columns side by side. Use R065/R068 for the official improvement signal and R095/R267 for the safety/audit-clean interpretation. Do not claim broad transfer superiority."
+}

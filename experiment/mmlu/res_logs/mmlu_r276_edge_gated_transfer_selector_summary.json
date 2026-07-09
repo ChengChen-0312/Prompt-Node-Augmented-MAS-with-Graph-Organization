@@ -1,0 +1,33 @@
+{
+  "run_id": "R276",
+  "title": "Edge-gated transfer selector replay",
+  "claim_boundary": "Offline selector replay over existing full24 API views; supports redesign only until prospectively validated.",
+  "records": 24,
+  "correct": 13,
+  "accuracy": 0.5416666666666666,
+  "fixes": 1,
+  "harms": 0,
+  "fix_harm": "1/0",
+  "arg_baseline_correct": 12,
+  "plain_requery_correct": 15,
+  "node_only_correct": 13,
+  "proposed_promptnode_promptedge_correct": 13,
+  "beats_arg": true,
+  "beats_plain_requery": false,
+  "beats_node_only": false,
+  "beats_proposed": false,
+  "no_harm": true,
+  "decision_rule_counts": {
+    "keep_arg_no_safe_switch": 18,
+    "keep_arg_unresolved_view_conflict": 5,
+    "switch_unanimous_api_views": 1
+  },
+  "lifecycle_action_counts": {
+    "compress": 23,
+    "forward": 1,
+    "merge": 1,
+    "prune": 5,
+    "upgrade": 1
+  },
+  "model_visible_features_only": true
+}

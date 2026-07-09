@@ -1,0 +1,20 @@
+{
+  "run_id": "R352",
+  "title": "Fresh coverage PromptNode expansion preflight on R349 dev set",
+  "claim_boundary": "R352 evaluates expanded PromptNode coverage on the R349 coverage-development set only. It is not a main paper result because R349 was inspected to design the expansion.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 48,
+  "dev_set_only": true,
+  "forwarded_candidate_count": 13,
+  "candidate_correct_count": 13,
+  "candidate_error_count": 0,
+  "paper_claim_authorized": false,
+  "api_execution_authorized_next": false,
+  "new_fresh_eval_required": true,
+  "sci_q2_ready": false,
+  "next_required_run": "R353_fresh_eval_after_coverage_expansion_design",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r352_fresh_coverage_promptnode_expansion_preflight_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r352_fresh_coverage_promptnode_expansion_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r352_fresh_coverage_promptnode_expansion_preflight_report.md"
+}

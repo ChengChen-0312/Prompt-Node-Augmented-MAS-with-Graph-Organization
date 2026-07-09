@@ -1,0 +1,21 @@
+{
+  "run": "R074",
+  "boundary": "fresh_integrated_surgical_cascade_promptnode_run",
+  "accuracy": "29/34",
+  "internal_arg_baseline": "28/34",
+  "historical_r059_arg_baseline": "28/34",
+  "r059_arg_baseline_cost": 0.93285,
+  "r069_fresh_integrated_cost": 3.908995,
+  "r072_fresh_cascade_cost": 2.82604,
+  "r073_replay_estimated_cost": 1.618315,
+  "r074_measured_cost": 1.828715,
+  "r074_saving_vs_r069": 2.08028,
+  "r074_saving_vs_r072": 0.997325,
+  "r074_cost_delta_vs_r073_estimate": 0.2104,
+  "r074_relative_cost_vs_r059_arg": 1.96,
+  "r074_view_calls": "28/52",
+  "r074_multiview_run": "13/34",
+  "r074_fix_harm": "1/0",
+  "r074_clean_fix_harm": "0/0",
+  "claim_boundary": "R074 is a measured fresh surgical cascade run that keeps 29/34 accuracy at lower cost than R072, but its gain is only +1 over its internal baseline and the only fix is noisy/ambiguous."
+}

@@ -1,0 +1,70 @@
+{
+  "run_id": "R313",
+  "title": "Claim-evidence matrix after non-STEM transfer",
+  "claim_boundary": "R313 consolidates evidence only. It does not start training and does not convert diagnostic results into a final SCI-Q2 claim without ablations and prospective held-out validation.",
+  "no_api": true,
+  "broad_api": false,
+  "evidence": {
+    "aqua_audit_clean": {
+      "baseline": "28/31",
+      "proposed": "31/31",
+      "delta_correct": 3,
+      "claim": "positive_clean_improvement"
+    },
+    "aqua_conservative_remove_114": {
+      "baseline": "28/30",
+      "proposed": "30/30",
+      "delta_correct": 2,
+      "claim": "positive_under_boundary_label_removal"
+    },
+    "mmlu_stem_main97": {
+      "baseline": "88/97",
+      "r304_symbolic": "93/97",
+      "proposed": "95/97",
+      "delta_correct": 7,
+      "fix_harm": "7/0",
+      "cheap_control_threat": false,
+      "equal_accuracy_more_cost_controls": [
+        "always_forward_candidate_nodes",
+        "no_lifecycle_prune_disabled"
+      ],
+      "claim": "positive_diagnostic_with_controls"
+    },
+    "mmlu_nonstem_raw": {
+      "baseline": "37/40",
+      "proposed": "34/40",
+      "delta_correct": -3,
+      "fix_harm": "0/3",
+      "claim": "negative_transfer_without_warning_only_gate"
+    },
+    "mmlu_nonstem_safety_replay": {
+      "baseline": "37/40",
+      "proposed": "37/40",
+      "delta_correct": 0,
+      "fix_harm": "0/0",
+      "claim": "no_harm_boundary_only"
+    }
+  },
+  "paper_claim_draft": "PromptNode/PromptEdge graph organization improves audited AQuA tail and MMLU STEM transfer, while non-STEM transfer currently supports only a warning-node no-harm boundary after lifecycle safety replay.",
+  "claim_permissions": {
+    "aqua_clean_improvement_allowed": true,
+    "mmlu_stem_improvement_allowed": true,
+    "mmlu_nonstem_no_harm_allowed": true,
+    "mmlu_nonstem_improvement_allowed": false,
+    "broad_general_promptnode_claim_allowed": false,
+    "training_authorized": false,
+    "sci_q2_ready": false
+  },
+  "required_ablations": [
+    "remove_safety_gate",
+    "remove_lifecycle_prune",
+    "remove_promptedge_text",
+    "remove_nonmath_promptnodes",
+    "remove_symbolic_verifier_family",
+    "answer_bearing_vs_warning_only_promptnodes",
+    "cost_matched_plain_requery"
+  ],
+  "next_required_run": "R314_goal_audit_after_r309_r313",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r313_claim_matrix_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r313_claim_matrix_report.md"
+}

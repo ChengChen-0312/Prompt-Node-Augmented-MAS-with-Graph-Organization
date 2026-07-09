@@ -1,0 +1,57 @@
+{
+  "rule": "r140_goal_audit_r136_r140",
+  "status": "aligned_continue_with_calibration_protocol",
+  "goal_window": [
+    "R136",
+    "R137",
+    "R138",
+    "R139",
+    "R140"
+  ],
+  "goal_reference": "SCI-Q2 PromptNode first-class node+edge graph organization with robustness and transfer boundaries",
+  "drift_detected": false,
+  "drift_type": "none_forwarding_fixed_but_threshold_overfit_blocked",
+  "maintained_update2_alignment": true,
+  "maintained_edge_prompt_alignment": true,
+  "maintained_robustness_alignment": true,
+  "forwarding_gap_fixed": true,
+  "clean_gate_still_not_met": true,
+  "confidence_calibration_needed": true,
+  "threshold_lowering_without_protocol_allowed": false,
+  "best_current_tail34_signal": "R065 objective-guided replay 31/34 versus ARG 28/34",
+  "best_current_fresh_integrated_signal": "R074 fresh surgical cascade 29/34 versus internal ARG 28/34",
+  "current_edge_prompt_signal": "R139 fixes repair forwarding but remains 3/4 on the four-task gate",
+  "r136_repair_prompting_ready": true,
+  "r137_forwarding_gap": true,
+  "r138_forwarding_prompt_hardened": true,
+  "r139_selected_accuracy": "3/4",
+  "r139_clean_fix_harm": "0/0",
+  "r139_noisy_fix_harm": "1/0",
+  "r139_task250_router_repair_option": "E",
+  "r139_task250_router_repair_confidence": 0.5,
+  "r139_repair_min_confidence": 0.8,
+  "r139_task250_repair_confidence_gate_passed": false,
+  "r139_smoke_gate_passed": false,
+  "correction": "do not lower the repair confidence threshold directly on task250; first design a leakage-safe calibration protocol using non-tail34 evidence and then retest only the same four-task gate",
+  "calibration_protocol_requirements": [
+    "no tail34 labels or task ids as threshold-training features",
+    "calibrate confidence mapping on first200/non-tail34 or synthetic format controls",
+    "keep task_8 and task_188 as clean harm guards",
+    "require task_250 clean recovery before broad tail34",
+    "run transfer validation before robustness or SCI-Q2 readiness claims"
+  ],
+  "required_clean_harm_guards": [
+    "task_8",
+    "task_188"
+  ],
+  "required_clean_recovery_targets": [
+    "task_250"
+  ],
+  "noisy_optional_targets": [
+    "task_108"
+  ],
+  "broad_api_allowed_next": false,
+  "next_protocol": "repair_confidence_calibration_protocol_before_api",
+  "next_goal_audit_due": "R145",
+  "claim_boundary": "five-iteration goal audit and correction, not an accuracy result"
+}

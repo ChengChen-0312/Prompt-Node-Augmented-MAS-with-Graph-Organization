@@ -1,0 +1,143 @@
+{
+  "run_id": "R351",
+  "title": "Fresh coverage PromptNode expansion design",
+  "claim_boundary": "R351 expands PromptNode coverage after R349 showed zero fresh coverage. The R349 split is now treated as a coverage-development set, not as a main-claim evaluation set.",
+  "no_api": true,
+  "broad_api": false,
+  "r349_reclassified_as_coverage_dev_set": true,
+  "uses_r349_for_main_claim": false,
+  "expanded_promptnodes": [
+    {
+      "id": "PN_NumericWordProblemSolver",
+      "identity": "Tool-Resource PromptNode",
+      "trigger": "Arithmetic, counting, probability, combinatorics, divisibility, and simple equation word problems.",
+      "evidence_contract": "Build a small symbolic/numeric model from visible quantities and match exactly one option.",
+      "answer_bearing_allowed": true,
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "structured_evidence_and_candidate_when_contract_passes",
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "merge",
+        "upgrade"
+      ]
+    },
+    {
+      "id": "PN_PhysicsFormulaEvaluator",
+      "identity": "Tool-Resource PromptNode",
+      "trigger": "Capacitor energy, friction stopping distance, idealized kinematics, mole/pressure ratios, and common formula substitution tasks.",
+      "evidence_contract": "Select and execute a named formula only when all variables are visible and exactly one option matches.",
+      "answer_bearing_allowed": true,
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "structured_evidence_and_candidate_when_contract_passes",
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "merge",
+        "upgrade"
+      ]
+    },
+    {
+      "id": "PN_ChemistryConceptAndStoichiometryTool",
+      "identity": "Tool-Resource PromptNode",
+      "trigger": "Element symbols, mole fractions, periodic-table facts, reaction balancing, and electron-configuration concepts.",
+      "evidence_contract": "Forward only when a deterministic lookup, mole computation, or conservation equation verifies one option.",
+      "answer_bearing_allowed": true,
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "structured_evidence_and_candidate_when_contract_passes",
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "merge",
+        "upgrade"
+      ]
+    },
+    {
+      "id": "PN_PassageEntailmentVerifier",
+      "identity": "Verifier PromptNode",
+      "trigger": "History, law, or ethics items with an explicit quoted passage or case facts.",
+      "evidence_contract": "Use only passage/fact entailment; forward only if the option is directly supported and alternatives contradict the visible text.",
+      "answer_bearing_allowed": true,
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "structured_evidence_and_candidate_when_contract_passes",
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "merge",
+        "upgrade"
+      ]
+    },
+    {
+      "id": "PN_DefinitionFallacyVerifier",
+      "identity": "Memory/Verifier PromptNode",
+      "trigger": "Definition-heavy items about fallacies, named theories, rules, or canonical terms.",
+      "evidence_contract": "Use a compact curated definition table; forward only on exact definition match, otherwise write warning-only evidence.",
+      "answer_bearing_allowed": true,
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "structured_evidence_and_candidate_when_contract_passes",
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "merge",
+        "upgrade"
+      ]
+    },
+    {
+      "id": "PN_ClozeSemanticConsistencyVerifier",
+      "identity": "Verifier PromptNode",
+      "trigger": "Fill-in-the-blank and option semantic consistency tasks.",
+      "evidence_contract": "Check grammatical and semantic consistency across all blanks; forward only when one option satisfies every slot.",
+      "answer_bearing_allowed": true,
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "structured_evidence_and_candidate_when_contract_passes",
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "merge",
+        "upgrade"
+      ]
+    },
+    {
+      "id": "PN_ConsensusConflictResolver",
+      "identity": "Agent-like PromptNode",
+      "trigger": "Any item where tool and ARG disagree or several PromptNodes produce competing candidates.",
+      "evidence_contract": "Default to KEEP_ARG unless a candidate has machine/textual evidence and no unresolved contradiction.",
+      "answer_bearing_allowed": false,
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "structured_evidence_and_candidate_when_contract_passes",
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "merge",
+        "upgrade"
+      ]
+    }
+  ],
+  "promptedge_contracts": [
+    "read_visible_problem_only",
+    "write_structured_evidence",
+    "forward_exact_single_option_match_only",
+    "reject_if_no_machine_or_textual_evidence",
+    "reject_if_multiple_or_conflicting_candidates",
+    "record_lifecycle_action_and_evidence_source"
+  ],
+  "coverage_targets": {
+    "stem_numeric_or_formula": "increase deterministic local coverage",
+    "nonstem_semantic": "add evidence-writing and guarded answer-bearing coverage",
+    "fresh_formal_eval": "must use a later split excluding R349/R352 development tasks"
+  },
+  "target_min_forwarded_candidates_next": 8,
+  "api_execution_authorized_next": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R352_fresh_coverage_promptnode_expansion_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r351_fresh_coverage_promptnode_expansion_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r351_fresh_coverage_promptnode_expansion_design_report.md"
+}

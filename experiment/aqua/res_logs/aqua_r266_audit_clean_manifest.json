@@ -1,0 +1,65 @@
+{
+  "run_id": "R266",
+  "title": "AQuA tail34 audit-clean manifest",
+  "do_not_modify_original_dataset": true,
+  "exclude_from_clean_eval": {
+    "task_59": {
+      "category": "question_rationale_mismatch",
+      "reason": "Question says 5 consecutive odd numbers; official rationale solves a 4-number condition."
+    },
+    "task_139": {
+      "category": "no_exact_option_official_arithmetic_error",
+      "reason": "Equation x/10+x/5=1 gives x=10/3; official rationale rounds/solves to E=2."
+    },
+    "task_228": {
+      "category": "option_label_mismatch",
+      "reason": "Official rationale and external GMAT source support II only; released options map II only to C while official label is B."
+    }
+  },
+  "task114_audit": {
+    "task_id": "task_114",
+    "official_label": "D",
+    "deterministic_label": "C",
+    "official_label_supported_strict": false,
+    "deterministic_label_supported_strict": true,
+    "error_category": "official_label_boundary_error",
+    "literal_formula": "(n^2 + 2*sqrt(n)*(n+4) + 16) / (n + 4*sqrt(n) + 4)",
+    "n_range": "36 <= n <= 72",
+    "min": {
+      "n": 36.0,
+      "x": 28.0
+    },
+    "max": {
+      "n": 72.0,
+      "x": 59.029437251523
+    },
+    "option_support": {
+      "A": {
+        "strict_supported": false,
+        "lower_ok": true,
+        "upper_ok": false
+      },
+      "B": {
+        "strict_supported": false,
+        "lower_ok": true,
+        "upper_ok": false
+      },
+      "C": {
+        "strict_supported": true,
+        "lower_ok": true,
+        "upper_ok": true
+      },
+      "D": {
+        "strict_supported": false,
+        "lower_ok": false,
+        "upper_ok": true
+      }
+    },
+    "reason": "At n=36, x=28 exactly, so strict option D (28 < x < 60) is false; option C contains the full sampled range."
+  },
+  "recommended_reporting": [
+    "Main text may report audit-clean results with this manifest.",
+    "Appendix should list excluded/corrected items and deterministic checks.",
+    "Original official AQuA scores must remain available for baseline comparability."
+  ]
+}

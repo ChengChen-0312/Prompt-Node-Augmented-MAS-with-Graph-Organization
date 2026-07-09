@@ -1,0 +1,19 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+2026-07-08 21:11:58.692 | INFO     | mas_framework.tools.reader.readers:parse_file:106 - Reading JSON Lines file from datasets/AQuA/AQuA.jsonl.
+Using forced template candidate pool: experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl rank=5
+Loaded 2 Aqua test samples for evaluation.
+Evaluating model:   0%|          | 0/2 [00:00<?, ?it/s]Evaluating model:   0%|          | 0/2 [00:23<?, ?it/s, Accuracy=100.00% (1/1), Token=$3388.0000]Evaluating model:  50%|█████     | 1/2 [00:23<00:23, 23.81s/it, Accuracy=100.00% (1/1), Token=$3388.0000]Evaluating model:  50%|█████     | 1/2 [00:52<00:23, 23.81s/it, Accuracy=50.00% (1/2), Token=$6628.0000] Evaluating model: 100%|██████████| 2/2 [00:52<00:00, 26.69s/it, Accuracy=50.00% (1/2), Token=$6628.0000]Evaluating model: 100%|██████████| 2/2 [00:52<00:00, 26.26s/it, Accuracy=50.00% (1/2), Token=$6628.0000]
+
+==================================================
+Evaluation Summary
+Model path: output/xxxx
+Total tasks: 2, Solved: 1, Pass@1: 50.00%
+--------------------------------------------------
+Total cost: $0.069920
+Total Prompt Tokens: 6628
+Total Completion Tokens: 2452
+--------------------------------------------------
+Detailed results saved to: experiment/aqua/aqua_tail34_r132_deterministic_router_none_switch_results.jsonl
+Summary appended to: experiment/aqua/res_logs/aqua_tail34_r132_deterministic_router_none_switch_summary.jsonl
+==================================================

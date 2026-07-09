@@ -1,0 +1,74 @@
+{
+  "run": "R175",
+  "rule": "five_iteration_sci_q2_goal_audit",
+  "window": "R171-R175",
+  "status": "aligned_but_override_learning_blocked",
+  "drift": false,
+  "sci_q2_ready": false,
+  "broad_api_allowed": false,
+  "bounded_accuracy_api_allowed": false,
+  "next_audit": "R180",
+  "goal_checks": {
+    "r001_training_paradigm_preserved": true,
+    "promptnode_first_class_graph_semantics_preserved": true,
+    "promptedge_alignment_preserved": true,
+    "sync20_noise_overclaim_avoided": true,
+    "r171_negative_harm_diagnosed": true,
+    "r172_abstention_guard_fixed_clean_harm": true,
+    "r173_preserve_safe_vs_switch_critical_split": true,
+    "r174_insertion_head_supported": true,
+    "r174_learned_override_head_supported": false,
+    "heldout_or_transfer_improvement_proven": false,
+    "broad_api_blocked": true
+  },
+  "window_evidence": {
+    "R171": {
+      "type": "bounded smoke",
+      "selected": "2/4",
+      "baseline": "4/4",
+      "fix_harm": "0/2",
+      "clean_fix_harm": "0/2",
+      "selector_violations": 0,
+      "lesson": "selector+contract alone can switch to PN_Router abstention and harm clean rows"
+    },
+    "R172": {
+      "type": "abstention fallback replay",
+      "no_new_api": true,
+      "selected": "4/4",
+      "baseline": "4/4",
+      "fix_harm": "0/0",
+      "clean_fix_harm": "0/0",
+      "lesson": "label-free abstention guard removes harm but gives no gain"
+    },
+    "R173": {
+      "type": "action-aware selector replay",
+      "no_new_api": true,
+      "selected": "4/4",
+      "baseline": "4/4",
+      "switch_tasks": [],
+      "lesson": "preserve-safe insertion must not be treated as switch permission"
+    },
+    "R174": {
+      "type": "two-head target audit",
+      "insertion_positive_rows": 76,
+      "override_positive_rows": 4,
+      "insertion_eval_f1": 0.9714285714285714,
+      "learned_override_eval_recall": 0.0,
+      "override_data_insufficient": true,
+      "lesson": "insertion head is supported, learned override head is not"
+    }
+  },
+  "allowed_next_run": {
+    "run": "R176",
+    "type": "non-api switch-critical target expansion or mining",
+    "requirements": [
+      "do not use gold answers, is_solved, clean/noisy labels, or task ids as selector inputs",
+      "separate insertion targets from override targets",
+      "report source of every switch-critical target",
+      "keep AQuA sync20 diagnostic only",
+      "do not run broad API before override target evidence improves"
+    ]
+  },
+  "claim_boundary": "Goal audit only. Direction is aligned with SCI-Q2 method development, but answer-accuracy superiority over ARG is not proven and broad API remains blocked.",
+  "timestamp": "2026-07-09T02:42:36.554552"
+}

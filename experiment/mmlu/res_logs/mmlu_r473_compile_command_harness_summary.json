@@ -1,0 +1,20 @@
+{
+  "run_id": "R473",
+  "title": "Compile command harness",
+  "claim_boundary": "R473 provides a reusable compile harness. It only verifies a PDF if a TeX engine exists and compilation succeeds.",
+  "no_api": true,
+  "broad_api": false,
+  "selected_command": [],
+  "engine_available": false,
+  "compile_attempted": false,
+  "compile_result": null,
+  "compile_status": "blocked_no_latex_engine",
+  "pdf_path": "paper/main.pdf",
+  "pdf_exists": false,
+  "pdf_verified": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R474_local_smoke_after_latex_harness",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r473_compile_command_harness_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r473_compile_command_harness_report.md"
+}

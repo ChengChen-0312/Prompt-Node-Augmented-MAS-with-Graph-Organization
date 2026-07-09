@@ -1,0 +1,49 @@
+{
+  "run_id": "R364",
+  "title": "Source-invariant fresh eval analysis",
+  "claim_boundary": "R364 analyzes the executed R363 fresh eval. It supports a small positive no-harm delta, but not an SCI-Q2-ready main claim because the gain is only one item and one wrong forward remains.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 48,
+  "arg_correct": 36,
+  "hybrid_correct": 37,
+  "delta_correct": 1,
+  "arg_accuracy": 0.75,
+  "hybrid_accuracy": 0.770833,
+  "gate_forward_count": 8,
+  "fixes": 1,
+  "harms": 0,
+  "wrong_forward_count": 1,
+  "missed_fix_count": 10,
+  "fix_task_ids": [
+    "MMLU-high_school_mathematics_test-13"
+  ],
+  "wrong_forward_task_ids": [
+    "MMLU-college_mathematics_test-15"
+  ],
+  "missed_fix_task_ids": [
+    "MMLU-college_mathematics_test-13",
+    "MMLU-high_school_physics_test-15",
+    "MMLU-high_school_physics_test-16",
+    "MMLU-high_school_chemistry_test-13",
+    "MMLU-college_chemistry_test-12",
+    "MMLU-college_chemistry_test-13",
+    "MMLU-college_chemistry_test-14",
+    "MMLU-college_chemistry_test-15",
+    "MMLU-nonstem-high_school_us_history_test-15",
+    "MMLU-nonstem-high_school_us_history_test-16"
+  ],
+  "api_cost": 0.28514,
+  "prompt_tokens": 20548,
+  "completion_tokens": 12160,
+  "claim_permissions": {
+    "fresh_positive_delta_no_harm_claim_allowed": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R365_wrong_forward_and_missed_fix_analysis",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r364_source_invariant_fresh_eval_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r364_source_invariant_fresh_eval_analysis_report.md"
+}

@@ -1,0 +1,130 @@
+{
+  "rule": "r085_forced_template_clean_positive_smoke",
+  "timestamp": "2026-07-08T17:28:48.254712",
+  "clean_positive_runs": 3,
+  "clean_positive_solved": 3,
+  "boundary_runs": 1,
+  "boundary_solved": 0,
+  "promptnode_graph_runs": 4,
+  "router_status_counts": {
+    "NO_EXACT_OPTION": 2,
+    "EXACT_MATCH": 2
+  },
+  "router_supported_option_counts": {
+    "NONE": 2,
+    "D": 1,
+    "E": 1
+  },
+  "clean_positive_cost": 0.114505,
+  "boundary_cost": 0.052125,
+  "total_cost": 0.16663,
+  "total_prompt_tokens": 14981,
+  "total_completion_tokens": 6115,
+  "rows": [
+    {
+      "run_group": "clean_positive",
+      "run_name": "task56_clean_positive",
+      "task_id": "task_56",
+      "true_answer": "A",
+      "predicted_answer": "A",
+      "is_solved": true,
+      "selected_rank": 1,
+      "roles": [
+        "Math Solver",
+        "Programming Expert",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 5,
+      "num_edges": 5,
+      "has_promptnode_graph": true,
+      "router_supported_option": "NONE",
+      "router_binding_status": "NO_EXACT_OPTION",
+      "cost": 0.042030000000000005,
+      "prompt_tokens": 3630,
+      "completion_tokens": 1592,
+      "result_path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_task56_smoke_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r084_forced_template_rank1_task56_smoke_summary.jsonl"
+    },
+    {
+      "run_group": "clean_positive",
+      "run_name": "task188_clean_positive",
+      "task_id": "task_188",
+      "true_answer": "D",
+      "predicted_answer": "D",
+      "is_solved": true,
+      "selected_rank": 1,
+      "roles": [
+        "Math Solver",
+        "Programming Expert",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 5,
+      "num_edges": 5,
+      "has_promptnode_graph": true,
+      "router_supported_option": "D",
+      "router_binding_status": "EXACT_MATCH",
+      "cost": 0.033405000000000004,
+      "prompt_tokens": 3360,
+      "completion_tokens": 1107,
+      "result_path": "experiment/aqua/aqua_tail34_r085_forced_template_rank1_task188_smoke_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r085_forced_template_rank1_task188_smoke_summary.jsonl"
+    },
+    {
+      "run_group": "clean_positive",
+      "run_name": "task8_clean_positive",
+      "task_id": "task_8",
+      "true_answer": "E",
+      "predicted_answer": "E",
+      "is_solved": true,
+      "selected_rank": 1,
+      "roles": [
+        "Math Solver",
+        "Programming Expert",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 5,
+      "num_edges": 5,
+      "has_promptnode_graph": true,
+      "router_supported_option": "E",
+      "router_binding_status": "EXACT_MATCH",
+      "cost": 0.039069999999999994,
+      "prompt_tokens": 3626,
+      "completion_tokens": 1396,
+      "result_path": "experiment/aqua/aqua_tail34_r085_forced_template_rank1_task8_smoke_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r085_forced_template_rank1_task8_smoke_summary.jsonl"
+    },
+    {
+      "run_group": "boundary",
+      "run_name": "task114_noisy_boundary_router_hardened",
+      "task_id": "task_114",
+      "true_answer": "D",
+      "predicted_answer": "E",
+      "is_solved": false,
+      "selected_rank": 1,
+      "roles": [
+        "Math Solver",
+        "Programming Expert",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 5,
+      "num_edges": 5,
+      "has_promptnode_graph": true,
+      "router_supported_option": "NONE",
+      "router_binding_status": "NO_EXACT_OPTION",
+      "cost": 0.052125,
+      "prompt_tokens": 4365,
+      "completion_tokens": 2020,
+      "result_path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_router_hardened_smoke1_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r084_forced_template_rank1_router_hardened_smoke1_summary.jsonl"
+    }
+  ],
+  "claim_boundary": "clean-positive smoke only, not tail34 accuracy"
+}

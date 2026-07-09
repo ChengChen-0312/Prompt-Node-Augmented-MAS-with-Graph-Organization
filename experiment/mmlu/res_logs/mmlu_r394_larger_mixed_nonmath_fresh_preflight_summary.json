@@ -1,0 +1,36 @@
+{
+  "run_id": "R394",
+  "title": "Larger mixed nonmath fresh preflight",
+  "claim_boundary": "R394 builds a larger fresh mixed-nonmath manifest for the R392 retrained gate. It does not execute API or support a paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "subjects": 8,
+  "subject_counts": {
+    "business_ethics": 6,
+    "high_school_government_and_politics": 6,
+    "high_school_world_history": 6,
+    "logical_fallacies": 6,
+    "moral_disputes": 6,
+    "philosophy": 6,
+    "sociology": 6,
+    "world_religions": 6
+  },
+  "tasks_per_subject": 6,
+  "tasks": 48,
+  "api_records": 96,
+  "planned_arg_baseline_calls": 48,
+  "planned_semantic_option_binding_calls": 48,
+  "variant_counts": {
+    "arg_baseline_direct_api": 48,
+    "semantic_option_binding_candidate_api": 48
+  },
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R395_larger_mixed_nonmath_fresh_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r394_larger_mixed_nonmath_fresh_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r394_larger_mixed_nonmath_fresh_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r394_larger_mixed_nonmath_fresh_preflight_report.md"
+}

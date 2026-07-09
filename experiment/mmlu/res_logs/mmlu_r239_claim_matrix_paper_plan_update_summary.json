@@ -1,0 +1,40 @@
+{
+  "run_id": "R239",
+  "title": "Claim matrix and paper plan update after conservative abstention policy",
+  "claim_boundary": "Planning and claim-boundary update only; no API, no new accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "inputs": {
+    "r233_tiny_api": {
+      "proposed_accuracy": "1/4",
+      "proposed_fix_harm": "1/1",
+      "claim_status": "negative_diagnostic"
+    },
+    "r236_first200_policy": {
+      "selected_policy": "baseline_consensus_guard_top3",
+      "accuracy": "170/200",
+      "baseline": "165/200",
+      "fix_harm": "5/0",
+      "clean_fix_harm": "1/0"
+    },
+    "r237_manifest_replay": {
+      "all": "57/67 vs baseline 51/67, fix/harm 6/0",
+      "frozen_eval": "29/34 vs baseline 28/34, fix/harm 1/0",
+      "r233_subset": "2/4 vs baseline 1/4, fix/harm 1/0"
+    },
+    "r238_manifest_export": {
+      "proposed_rows": 67,
+      "proposed_switches": 10,
+      "matched_node_only_switches": 10,
+      "matched_random_switches": 10
+    }
+  },
+  "claim_updates": {
+    "prompt_level_router_beats_controls": "not_supported",
+    "conservative_abstention_policy_removes_r233_clean_harm": "supported_offline",
+    "conservative_policy_has_small_frozen_eval_replay_gain": "supported_offline_replay",
+    "conservative_policy_beats_controls_in_live_api": "not_supported",
+    "sci_q2_ready": false
+  },
+  "paper_plan_update": "Frame the next method as train-time or explicit conservative PromptNode/PromptEdge graph-policy selection with abstention, not prompt-only router prompting.",
+  "next_audit": "R240"
+}

@@ -1,0 +1,44 @@
+{
+  "run_id": "R355",
+  "title": "Goal audit after second fresh preflight",
+  "claim_boundary": "R355 is an early goal audit after R354 showed a second fresh split with zero local-template coverage. It redirects the work toward a learned graph policy instead of more hand-written templates.",
+  "no_api": true,
+  "broad_api": false,
+  "early_goal_audit_reason": "second_fresh_zero_coverage",
+  "iterations_since_last_goal_check": [
+    "R351",
+    "R352",
+    "R353",
+    "R354"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "r352_dev_coverage_positive": true,
+    "r354_fresh_coverage_zero": true,
+    "local_template_path_failed_as_general_strategy": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "hand_template_expansion_allowed_as_primary_path": false,
+    "learned_graph_policy_design_required": true,
+    "api_execution_allowed_now": false,
+    "r352_dev_coverage_claim_allowed": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Stop hand-expanding deterministic templates as the primary path.",
+    "Train or fit a graph-policy selector that predicts when to instantiate PromptNodes/PromptEdges from task features and candidate evidence.",
+    "Use LLM verifier nodes only behind learned safety gates and evidence contracts.",
+    "Treat local tools as one PromptNode family, not the whole method."
+  ],
+  "evidence_snapshot": {
+    "r352_dev_forwarded": 13,
+    "r352_dev_candidate_errors": 0,
+    "r354_fresh_forwarded": 0,
+    "r354_tasks": 48
+  },
+  "next_required_run": "R356_learned_graph_policy_promptnode_design",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r355_goal_audit_after_second_fresh_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r355_goal_audit_after_second_fresh_preflight_report.md"
+}

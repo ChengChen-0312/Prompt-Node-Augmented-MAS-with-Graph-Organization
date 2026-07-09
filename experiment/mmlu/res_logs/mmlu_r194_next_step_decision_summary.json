@@ -1,0 +1,43 @@
+{
+  "run_id": "R194",
+  "title": "Next-step decision after projected PromptEdge first4 smoke",
+  "claim_boundary": "Decision memo only. No API evaluation and no accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "r192_result": {
+    "selection": "first_n_no_answer_filter",
+    "baseline": "4/4",
+    "projected_promptedge": "4/4",
+    "fixes": 0,
+    "harms": 0,
+    "cost": 0.40109
+  },
+  "r162_baseline_wrong_pool": {
+    "wrong_count": 12,
+    "candidate_task_ids": [
+      "MMLU-high_school_statistics_test-32",
+      "MMLU-high_school_physics_test-67",
+      "MMLU-abstract_algebra_test-53",
+      "MMLU-college_mathematics_test-26",
+      "MMLU-high_school_statistics_test-127",
+      "MMLU-machine_learning_test-81",
+      "MMLU-conceptual_physics_test-41",
+      "MMLU-college_chemistry_test-62",
+      "MMLU-college_mathematics_test-67",
+      "MMLU-college_chemistry_test-97",
+      "MMLU-elementary_mathematics_test-222",
+      "MMLU-college_mathematics_test-92"
+    ]
+  },
+  "decision": {
+    "recommended_next": "baseline_wrong_mechanism_diagnostic_after_R195_audit",
+    "why": "The first4 smoke only proved no harm on already-correct tasks. To understand whether PromptEdge can fix ARG errors, the next diagnostic should target a few known R162 wrong rows, while marking the result as non-claim evidence.",
+    "paper_main_result_path": "A later random or full transfer evaluation is required for any paper-level accuracy claim."
+  },
+  "guardrails": [
+    "Do not call a baseline-wrong diagnostic an unbiased accuracy result.",
+    "Do not expand API before R195 goal audit.",
+    "Report raw vs projected graph audits with every diagnostic result.",
+    "Keep same llm_name gpt-4o-2024-08-06 and R162 baseline lookup."
+  ]
+}

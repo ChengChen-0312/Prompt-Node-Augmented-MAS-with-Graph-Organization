@@ -1,0 +1,58 @@
+{
+  "run_id": "R406",
+  "title": "External integrity review package and five-run goal checkpoint",
+  "claim_boundary": "R406 packages evidence for independent audit and checks goal alignment after R402-R406. It does not execute the external review and does not authorize paper claims.",
+  "no_api": true,
+  "broad_api": false,
+  "artifact_counts": {
+    "evaluation_scripts": 400,
+    "result_files": 400,
+    "experiment_tracker": 0,
+    "paper_claims": 1,
+    "config_files": 7
+  },
+  "critical_evaluation_scripts": [
+    "experiment/mmlu/r321_paper_evidence_table_and_training_gate.py",
+    "experiment/mmlu/r381_option_binding_fresh_eval_analysis.py",
+    "experiment/mmlu/r396_larger_mixed_nonmath_fresh_analysis.py",
+    "experiment/mmlu/r401_contrastive_verifier_targeted_analysis_and_goal_audit.py",
+    "experiment/mmlu/r402_result_to_claim_synthesis_for_paper.py",
+    "experiment/mmlu/r405_experiment_integrity_local_precheck.py"
+  ],
+  "critical_result_files": [
+    "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+    "experiment/mmlu/res_logs/mmlu_r381_option_binding_fresh_eval_analysis_summary.json",
+    "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+    "experiment/mmlu/res_logs/mmlu_r401_contrastive_verifier_targeted_analysis_and_goal_audit_summary.json",
+    "experiment/mmlu/res_logs/mmlu_r402_result_to_claim_synthesis_for_paper_summary.json",
+    "experiment/mmlu/res_logs/mmlu_r405_experiment_integrity_local_precheck_summary.json"
+  ],
+  "r405_local_precheck_status": "pass_external_pending",
+  "review_prompt": "You are an experiment integrity auditor. Start from the assumption that the\nevaluation is compromised somewhere - your job is to find where. Be adversarial.\nTrust nothing the author tells you - verify everything yourself.\n\nFiles to read:\n- Critical evaluation scripts:\n    - experiment/mmlu/r321_paper_evidence_table_and_training_gate.py\n    - experiment/mmlu/r381_option_binding_fresh_eval_analysis.py\n    - experiment/mmlu/r396_larger_mixed_nonmath_fresh_analysis.py\n    - experiment/mmlu/r401_contrastive_verifier_targeted_analysis_and_goal_audit.py\n    - experiment/mmlu/r402_result_to_claim_synthesis_for_paper.py\n    - experiment/mmlu/r405_experiment_integrity_local_precheck.py\n- Critical result files:\n    - experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json\n    - experiment/mmlu/res_logs/mmlu_r381_option_binding_fresh_eval_analysis_summary.json\n    - experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json\n    - experiment/mmlu/res_logs/mmlu_r401_contrastive_verifier_targeted_analysis_and_goal_audit_summary.json\n    - experiment/mmlu/res_logs/mmlu_r402_result_to_claim_synthesis_for_paper_summary.json\n    - experiment/mmlu/res_logs/mmlu_r405_experiment_integrity_local_precheck_summary.json\n- Local precheck:\n    - experiment/mmlu/res_logs/mmlu_r405_experiment_integrity_local_precheck_summary.json\n- Paper claims:\n    - PAPER_PLAN.md\n- Config files:\n    - .venv/lib/python3.12/site-packages/markdown_it/port.yaml\n    - .venv/lib/python3.12/site-packages/pandas/pyproject.toml\n    - .venv/lib/python3.12/site-packages/torch/_export/serde/schema.yaml\n    - .venv/lib/python3.12/site-packages/torchgen/packaged/ATen/native/native_functions.yaml\n    - .venv/lib/python3.12/site-packages/torchgen/packaged/ATen/native/tags.yaml\n    - .venv/lib/python3.12/site-packages/torchgen/packaged/autograd/deprecated.yaml\n    - .venv/lib/python3.12/site-packages/torchgen/packaged/autograd/derivatives.yaml\n\nThe full artifact manifest is in:\n    - experiment/mmlu/run_logs/mmlu_r404_integrity_audit_artifact_manifest.json\n\n## Audit Checklist\n\n### A. Ground Truth Provenance\nFor each evaluation script:\n1. Where does \"ground truth\" / \"reference\" / \"target\" come from?\n2. Is it loaded from the dataset, or generated/derived from model outputs?\n3. If derived, is it explicitly labeled as proxy evaluation?\n4. Are official eval scripts used when available for this benchmark?\nFAIL if GT is derived from model outputs without explicit proxy labeling.\n\n### B. Score Normalization\nFor each metric computation:\n1. Is any metric divided by max/min/mean of the model's own output?\n2. Are raw scores reported alongside any normalized scores?\n3. Are any scores suspiciously close to 1.0 or 100%?\nFAIL if normalization denominator comes from prediction statistics.\n\n### C. Result File Existence\nFor each claim in the paper/narrative:\n1. Does the referenced result file actually exist?\n2. Does the claimed metric key exist in that file?\n3. Does the claimed number match what is in the file?\n4. Is the experiment status complete rather than TODO or IN_PROGRESS?\nFAIL if claimed results reference nonexistent files or mismatched numbers.\n\n### D. Dead Code Detection\nFor each metric function defined in eval scripts:\n1. Is it actually called in any evaluation pipeline?\n2. Does its output appear in any result file?\nWARN if metric functions exist but are never called.\n\n### E. Scope Assessment\n1. How many datasets, subjects, and configurations were actually tested?\n2. How many seeds/runs per configuration?\n3. Does the paper use words like \"comprehensive\", \"extensive\", \"robust\", or \"general\"?\n4. Is the actual scope sufficient for those claims?\nWARN if scope language exceeds actual evidence.\n\n### F. Evaluation Type Classification\nClassify each evaluation as:\n- real_gt\n- synthetic_proxy\n- self_supervised_proxy\n- simulation_only\n- human_eval\n\n## Output Format\n\nFor each check (A-F), report:\n- Status: PASS | WARN | FAIL\n- Evidence: exact file:line references\n- Details: what specifically was found\n\nOverall verdict: PASS | WARN | FAIL\n",
+  "external_review_required": true,
+  "external_review_executed": false,
+  "integrity_audit_complete": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "iterations_since_last_goal_check": [
+    "R402",
+    "R403",
+    "R404",
+    "R405",
+    "R406"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_designer_remains_main_baseline": true,
+    "promptnode_first_class_boundary_preserved": true,
+    "transfer_and_no_harm_evidence_recorded": true,
+    "broad_general_improvement_not_claimed": true,
+    "overclaiming_blocked": true,
+    "next_gap": "Either obtain independent audit or add stronger positive nonmath transfer evidence."
+  },
+  "next_required_run": "R407_external_audit_or_nonmath_positive_evidence",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r406_external_integrity_review_package_summary.json",
+  "package_json": "experiment/mmlu/run_logs/mmlu_r406_external_integrity_review_package.json",
+  "prompt_md": "experiment/mmlu/run_logs/mmlu_r406_external_integrity_review_prompt.md",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r406_external_integrity_review_package_report.md"
+}

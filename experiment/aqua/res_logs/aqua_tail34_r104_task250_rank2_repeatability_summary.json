@@ -1,0 +1,40 @@
+{
+  "rule": "r104_task250_rank2_repeatability_audit",
+  "task_id": "task_250",
+  "rank": 2,
+  "num_repeats": 2,
+  "predictions": [
+    "E",
+    "A"
+  ],
+  "unique_predictions": [
+    "A",
+    "E"
+  ],
+  "stable_prediction": false,
+  "solved_pattern": [
+    true,
+    false
+  ],
+  "rows": [
+    {
+      "run": "R100",
+      "task_id": "task_250",
+      "rank": 2,
+      "predicted_answer": "E",
+      "true_answer": "E",
+      "is_solved": true,
+      "source_path": "experiment/aqua/aqua_tail34_r100_forced_template_rank2_task250_results.jsonl"
+    },
+    {
+      "run": "R103",
+      "task_id": "task_250",
+      "rank": 2,
+      "predicted_answer": "A",
+      "true_answer": "E",
+      "is_solved": false,
+      "source_path": "experiment/aqua/aqua_tail34_r103_rank2_regression_smoke_results.jsonl"
+    }
+  ],
+  "claim_boundary": "task250 rank2 repeatability audit; no new API"
+}

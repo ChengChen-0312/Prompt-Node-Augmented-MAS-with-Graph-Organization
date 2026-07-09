@@ -1,0 +1,70 @@
+{
+  "rule": "r133_edge_prompt_policy_protocol",
+  "protocol_only": true,
+  "no_api_run": true,
+  "prompt_as_edge_first_class": true,
+  "node_only_promptnode_sufficient": false,
+  "allowed_training_sources": [
+    "experiment/aqua/aqua_first200_r077_clean_fix_graph_policy_distill_rows.jsonl",
+    "experiment/aqua/aqua_first200_r082_clean_fix_graph_templates.jsonl",
+    "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl"
+  ],
+  "forbidden_training_sources": [
+    "tail34_r096_policy_targets",
+    "tail34_r109_rule_distillation",
+    "tail34_r113_eval_targets",
+    "tail34_r114_regression_replay",
+    "tail34_r124_outputs",
+    "tail34_true_answers_or_clean_labels",
+    "tail34_r132_switch_outputs",
+    "tail34_r132_router_contracts",
+    "tail34_r132_task250_prediction_or_truth"
+  ],
+  "uses_tail34_training_source": false,
+  "r132_smoke_gate_passed": false,
+  "r132_exact_option_repair_required": true,
+  "switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "fallback_tasks": [
+    "task_8",
+    "task_188"
+  ],
+  "edge_prompt_schema_fields": [
+    "budget",
+    "edge_prompt_type",
+    "lifecycle_actions",
+    "option_binding_policy",
+    "permissions",
+    "prompt_contract",
+    "robustness_scope",
+    "source_role",
+    "target_role"
+  ],
+  "edge_prompt_types": [
+    "evidence_write",
+    "memory_to_verifier_read",
+    "mismatch_repair_escalation",
+    "router_to_final_answer_contract",
+    "verifier_to_router_forward"
+  ],
+  "switches_with_edge_prompt_specs": "2/2",
+  "switches_with_repair_edge_prompt": "2/2",
+  "edge_prompt_selector_input_violations": 0,
+  "required_clean_harm_guards": [
+    "task_8",
+    "task_188"
+  ],
+  "required_clean_recovery_targets": [
+    "task_250"
+  ],
+  "noisy_optional_targets": [
+    "task_108"
+  ],
+  "multi_dataset_transfer_required": true,
+  "no_task_id_routing": true,
+  "broad_api_allowed_next": false,
+  "next_protocol": "edge_prompt_exact_option_repair_protocol_before_api",
+  "claim_boundary": "protocol only; prompt-as-edge design and repair boundary, no API, accuracy, or cost result"
+}

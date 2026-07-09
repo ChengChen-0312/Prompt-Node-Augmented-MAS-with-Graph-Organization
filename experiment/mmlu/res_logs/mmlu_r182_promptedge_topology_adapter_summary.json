@@ -1,0 +1,39 @@
+{
+  "run_id": "R182",
+  "title": "MMLU PromptEdge topology adapter and option-label-aware PromptNode contracts",
+  "claim_boundary": "Engineering and test coverage only. No API evaluation, no MMLU accuracy claim, and no graph-policy training claim.",
+  "no_api": true,
+  "broad_api": false,
+  "changes": [
+    "Added experiment/mmlu/promptedge_topology.py.",
+    "Implemented inject_promptedge_topology for first-class PN_Memory -> PN_Verifier -> PN_Router insertion.",
+    "Stored PromptEdge metadata including read/write/forward permissions and promptedge text.",
+    "Implemented promptedge_topology_to_pyg to preserve decision_exposure_policy='terminal' and promptedge_meta.",
+    "Extended PromptNode option parsing to support MMLU 'Option A:' format.",
+    "Made PromptNode router contracts option-label aware so MMLU emits A/B/C/D/NONE instead of A/B/C/D/E/NONE."
+  ],
+  "tests": {
+    "tests.test_r182_mmlu_promptedge_topology": "3/3 passed",
+    "r181_plus_adjacent_aqua_policy_tests": "11/11 passed"
+  },
+  "engineering_result": {
+    "mmlu_option_prefix_parsing": true,
+    "dynamic_router_option_labels": true,
+    "promptedge_read_write_forward_metadata": true,
+    "promptedge_topology_is_dag": true,
+    "mmlu_testgraph_constructs_adapter_output": true,
+    "decision_exposure_policy_terminal_supported": true
+  },
+  "scientific_relevance": {
+    "first_class_virtual_nodes_before_execution": true,
+    "prompt_as_edge_metadata": true,
+    "posthoc_patch": false,
+    "supports_update2_design": true
+  },
+  "remaining_blockers": [
+    "No non-leaky MMLU PN/PE target export manifest exists yet.",
+    "No PN-capable MMLU graph generator checkpoint has been trained.",
+    "No MMLU transfer PromptNode/PromptEdge API smoke has been authorized."
+  ],
+  "next_action": "R183 should export a non-leaky MMLU PN/PE target manifest using transfer-safe source separation before training."
+}

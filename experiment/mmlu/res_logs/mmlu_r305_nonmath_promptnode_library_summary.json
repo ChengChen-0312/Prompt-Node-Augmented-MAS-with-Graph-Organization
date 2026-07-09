@@ -1,0 +1,33 @@
+{
+  "run_id": "R305",
+  "title": "Non-math PromptNode candidate library",
+  "claim_boundary": "Type-library and candidate audit only; this run does not train or claim accuracy improvement.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 100,
+  "main_records": 97,
+  "candidate_records": 15,
+  "main_candidate_records": 15,
+  "candidate_type_counts": {
+    "conceptual_all_of_these_consistency": 1,
+    "instruction_ambiguity_verifier": 12,
+    "memory_bridge_required": 1,
+    "none": 85,
+    "option_semantic_consistency": 1
+  },
+  "nonmath_node_types": [
+    "instruction_ambiguity_verifier",
+    "option_semantic_consistency_verifier",
+    "contradiction_detector",
+    "memory_bridge",
+    "adversarial_verifier",
+    "consensus_conflict_resolver"
+  ],
+  "training_authorized_next": false,
+  "next_run": "R306 nonmath stack eval with no-nonmath negative control",
+  "sci_q2_ready": false,
+  "input_jsonl": "experiment/mmlu/run_logs/mmlu_r304_multi_trigger_safety_gate_results.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r305_nonmath_promptnode_candidates.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r305_nonmath_promptnode_library_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r305_nonmath_promptnode_library_report.md"
+}

@@ -1,0 +1,65 @@
+{
+  "rule": "r103_rank2_regression_smoke_report",
+  "num_tasks": 4,
+  "baseline_solved": 2,
+  "rank2_solved": 2,
+  "fix_harm": "1/1",
+  "clean_fix_harm": "0/1",
+  "noisy_fix_harm": "1/0",
+  "clean_harm_guard_harms": [
+    "task_188"
+  ],
+  "clean_recovery_targets_solved": [],
+  "total_cost": 0.1602,
+  "rows": [
+    {
+      "task_id": "task_8",
+      "baseline_prediction": "E",
+      "rank2_prediction": "E",
+      "true_answer": "E",
+      "baseline_is_solved": true,
+      "rank2_is_solved": true,
+      "fix": false,
+      "harm": false,
+      "clean_label": "clean",
+      "role": "clean_harm_guard"
+    },
+    {
+      "task_id": "task_108",
+      "baseline_prediction": "B",
+      "rank2_prediction": "D",
+      "true_answer": "D",
+      "baseline_is_solved": false,
+      "rank2_is_solved": true,
+      "fix": true,
+      "harm": false,
+      "clean_label": "noisy",
+      "role": "noisy_optional_target"
+    },
+    {
+      "task_id": "task_188",
+      "baseline_prediction": "D",
+      "rank2_prediction": "C",
+      "true_answer": "D",
+      "baseline_is_solved": true,
+      "rank2_is_solved": false,
+      "fix": false,
+      "harm": true,
+      "clean_label": "clean",
+      "role": "clean_harm_guard"
+    },
+    {
+      "task_id": "task_250",
+      "baseline_prediction": "A",
+      "rank2_prediction": "A",
+      "true_answer": "E",
+      "baseline_is_solved": false,
+      "rank2_is_solved": false,
+      "fix": false,
+      "harm": false,
+      "clean_label": "clean",
+      "role": "clean_recovery_target"
+    }
+  ],
+  "claim_boundary": "four-task rank2 regression smoke; rejects R101 heuristic as deployable selector"
+}

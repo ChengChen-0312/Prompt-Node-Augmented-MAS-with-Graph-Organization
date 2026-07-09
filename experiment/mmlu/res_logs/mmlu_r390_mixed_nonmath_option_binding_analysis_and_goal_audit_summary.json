@@ -1,0 +1,124 @@
+{
+  "run_id": "R390",
+  "title": "Mixed nonmath OptionBinding analysis and goal audit",
+  "claim_boundary": "R390 analyzes R389 and performs the five-iteration goal audit for R385-R389. Mixed nonmath transfer is positive no-harm but small, and wrong-forward hard negatives must be added before scaling.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 24,
+  "arg_correct": 19,
+  "hybrid_correct": 20,
+  "delta_correct": 1,
+  "arg_accuracy": 0.791667,
+  "hybrid_accuracy": 0.833333,
+  "candidate_label_count": 20,
+  "gate_forward_count": 20,
+  "fixes": 1,
+  "harms": 0,
+  "wrong_forward_count": 2,
+  "missed_fix_count": 2,
+  "fix_task_ids": [
+    "MMLU-nonstem-high_school_government_and_politics_test-1"
+  ],
+  "harm_task_ids": [],
+  "wrong_forward_task_ids": [
+    "MMLU-nonstem-sociology_test-18",
+    "MMLU-nonstem-world_religions_test-18"
+  ],
+  "missed_fix_task_ids": [
+    "MMLU-nonstem-high_school_world_history_test-3",
+    "MMLU-nonstem-moral_disputes_test-19"
+  ],
+  "subject_breakdown": {
+    "high_school_government_and_politics": {
+      "records": 4,
+      "arg_correct": 3,
+      "hybrid_correct": 4,
+      "fixes": 1,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 1
+    },
+    "high_school_world_history": {
+      "records": 4,
+      "arg_correct": 3,
+      "hybrid_correct": 3,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "moral_disputes": {
+      "records": 4,
+      "arg_correct": 3,
+      "hybrid_correct": 3,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "philosophy": {
+      "records": 4,
+      "arg_correct": 4,
+      "hybrid_correct": 4,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "sociology": {
+      "records": 4,
+      "arg_correct": 3,
+      "hybrid_correct": 3,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 1,
+      "delta": 0
+    },
+    "world_religions": {
+      "records": 4,
+      "arg_correct": 3,
+      "hybrid_correct": 3,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 1,
+      "delta": 0
+    }
+  },
+  "candidate_type_counts": {
+    "Option": 8,
+    "multiple-choice": 2,
+    "option": 3,
+    "option_binding_promptedge": 5,
+    "single": 2,
+    "single-choice": 4
+  },
+  "iterations_since_last_goal_check": [
+    "R385",
+    "R386",
+    "R387",
+    "R388",
+    "R389"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "mixed_nonmath_positive_no_harm": true,
+    "gain_insufficient_for_sci_q2": true,
+    "hard_negative_update_required": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "mixed_nonmath_small_positive_no_harm_claim_allowed": true,
+    "hard_negative_update_allowed_next": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "api_cost": 0.129415,
+  "prompt_tokens": 10664,
+  "completion_tokens": 5073,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R391_mixed_nonmath_hard_negative_update",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r390_mixed_nonmath_option_binding_analysis_and_goal_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r390_mixed_nonmath_option_binding_analysis_and_goal_audit_report.md"
+}

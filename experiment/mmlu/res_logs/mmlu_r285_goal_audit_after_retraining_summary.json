@@ -1,0 +1,36 @@
+{
+  "run_id": "R285",
+  "title": "Goal audit after MMLU ARG/PromptNode retraining",
+  "claim_boundary": "Goal audit only. It checks whether R281-R284 stayed aligned with the SCI-Q2 research goal and whether checkpoint-level API evaluation is justified.",
+  "no_api": true,
+  "broad_api": false,
+  "goal_alignment": "aligned_but_blocked_on_structure",
+  "protocol_followed": true,
+  "clean_arg_retrained": true,
+  "promptnode_retrained_with_required_roles": true,
+  "promptnode_generates_pn": true,
+  "promptnode_contract_ready_rate": 0.041666666666666664,
+  "promptnode_all_pn_roles_rate": 0.125,
+  "structural_claim_supported": false,
+  "api_eval_allowed_next": false,
+  "sci_q2_ready": false,
+  "main_decision": "Do not run costly checkpoint-level API evaluation yet; first improve the train-time graph policy or decoding so generated PromptNode graphs contain the complete Memory -> Verifier -> Router contract path reliably.",
+  "blockers": [
+    "R284 shows PromptNode generation exists but full PN/PE contract structure is unstable."
+  ],
+  "next_runs": [
+    "R286_constrained_promptnode_decoding",
+    "R287_promptnode_chain_retrain",
+    "R288_no_api_graph_audit",
+    "R289_checkpoint_level_api_eval_if_R288_passes",
+    "R290_goal_audit"
+  ],
+  "source_summaries": {
+    "r281": "experiment/mmlu/res_logs/mmlu_r281_training_protocol_freeze_summary.json",
+    "r282": "experiment/mmlu/res_logs/mmlu_r282_arg_retrain_e5_observed_summary.json",
+    "r283": "experiment/mmlu/res_logs/mmlu_r283_promptnode_retrain_e5_observed_summary.json",
+    "r284": "experiment/mmlu/res_logs/mmlu_r284_retrained_graph_audit_compare_summary.json"
+  },
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r285_goal_audit_after_retraining_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r285_goal_audit_after_retraining_report.md"
+}

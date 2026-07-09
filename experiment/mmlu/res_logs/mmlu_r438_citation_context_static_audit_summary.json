@@ -1,0 +1,54 @@
+{
+  "run_id": "R438",
+  "title": "Citation context static audit",
+  "claim_boundary": "R438 performs deterministic citation coverage checks and exports citation contexts. It is not the final external citation audit.",
+  "no_api": true,
+  "broad_api": false,
+  "context_json": "paper/.aris/citation-audit/r438_static_contexts.json",
+  "citation_site_count": 8,
+  "cited_keys": [
+    "chen2026goagent",
+    "li2026argdesigner",
+    "shen2025eiblearner",
+    "wang2025agentdropout",
+    "wang2026mas2",
+    "yun2026goa",
+    "zhang2025agentprune",
+    "zi2024prog"
+  ],
+  "bib_keys": [
+    "chen2026goagent",
+    "li2026argdesigner",
+    "shen2025eiblearner",
+    "wang2025agentdropout",
+    "wang2026mas2",
+    "yun2026goa",
+    "zhang2025agentprune",
+    "zi2024prog"
+  ],
+  "missing_bib_keys": [],
+  "uncited_bib_keys": [],
+  "static_citation_pass": true,
+  "external_citation_audit_required": true,
+  "iterations_since_last_goal_check": [
+    "R432",
+    "R433",
+    "R434",
+    "R435",
+    "R436"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_designer_remains_main_baseline": true,
+    "promptnode_first_class_graph_element_boundary_preserved": true,
+    "related_work_now_supports_mas_graph_positioning": true,
+    "no_universal_claim_added": true,
+    "external_audits_still_required": true
+  },
+  "final_bib_authorized": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R439_paper_static_integrity_precompile_audit",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r438_citation_context_static_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r438_citation_context_static_audit_report.md"
+}

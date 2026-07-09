@@ -1,0 +1,137 @@
+{
+  "rule": "r123_explicit_promptnode_template_preflight",
+  "timestamp": "2026-07-08T20:17:07.646605",
+  "preflight_only": true,
+  "no_api_run": true,
+  "candidate_jsonl": "experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl",
+  "r097_plan_jsonl": "experiment/aqua/aqua_tail34_r097_objective_safety_template_plan.jsonl",
+  "regression_tasks": [
+    "task_8",
+    "task_108",
+    "task_188",
+    "task_250"
+  ],
+  "candidate_source_tasks": "4/4",
+  "candidate_tasks_with_update2_metadata": "4/4",
+  "candidate_tasks_with_forbidden_field_violations": "0/4",
+  "top_candidate_promptnode_roles": [
+    "PN_Memory",
+    "PN_Router",
+    "PN_Verifier"
+  ],
+  "r097_api_required_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "r097_fallback_tasks_in_regression_set": [
+    "task_8",
+    "task_188"
+  ],
+  "broad_api_allowed_next": false,
+  "same_four_task_smoke_allowed_next": true,
+  "next_protocol": "same_four_task_explicit_template_guarded_smoke",
+  "rows": [
+    {
+      "task_id": "task_8",
+      "candidate_available": true,
+      "candidate_count": 5,
+      "top_candidate_rank": 1,
+      "top_candidate_support_count": 35,
+      "top_candidate_graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+      "top_candidate_promptnode_roles": [
+        "PN_Memory",
+        "PN_Router",
+        "PN_Verifier"
+      ],
+      "top_candidate_promptnode_spec_count": 3,
+      "top_candidate_edge_permission_count": 4,
+      "top_candidate_lifecycle_action_count": 10,
+      "top_candidate_has_update2_metadata": true,
+      "candidate_forbidden_field_violation": false,
+      "r097_target_action": "fallback_to_arg",
+      "r097_materialization_status": "arg_fallback_no_template_needed",
+      "r097_requires_api_execution": false,
+      "r097_has_update2_metadata": false,
+      "r097_target_reason": "same_prediction_as_arg",
+      "preflight_verdict": "explicit_template_candidate_ready_for_guarded_smoke",
+      "claim_boundary": "preflight over explicit PromptNode template candidates; no API, accuracy, or cost result"
+    },
+    {
+      "task_id": "task_108",
+      "candidate_available": true,
+      "candidate_count": 5,
+      "top_candidate_rank": 1,
+      "top_candidate_support_count": 35,
+      "top_candidate_graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+      "top_candidate_promptnode_roles": [
+        "PN_Memory",
+        "PN_Router",
+        "PN_Verifier"
+      ],
+      "top_candidate_promptnode_spec_count": 3,
+      "top_candidate_edge_permission_count": 4,
+      "top_candidate_lifecycle_action_count": 10,
+      "top_candidate_has_update2_metadata": true,
+      "candidate_forbidden_field_violation": false,
+      "r097_target_action": "switch_to_objective",
+      "r097_materialization_status": "template_attached",
+      "r097_requires_api_execution": true,
+      "r097_has_update2_metadata": true,
+      "r097_target_reason": "baseline_direct_split_allows_switch",
+      "preflight_verdict": "explicit_template_candidate_ready_for_guarded_smoke",
+      "claim_boundary": "preflight over explicit PromptNode template candidates; no API, accuracy, or cost result"
+    },
+    {
+      "task_id": "task_188",
+      "candidate_available": true,
+      "candidate_count": 5,
+      "top_candidate_rank": 1,
+      "top_candidate_support_count": 35,
+      "top_candidate_graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+      "top_candidate_promptnode_roles": [
+        "PN_Memory",
+        "PN_Router",
+        "PN_Verifier"
+      ],
+      "top_candidate_promptnode_spec_count": 3,
+      "top_candidate_edge_permission_count": 4,
+      "top_candidate_lifecycle_action_count": 10,
+      "top_candidate_has_update2_metadata": true,
+      "candidate_forbidden_field_violation": false,
+      "r097_target_action": "fallback_to_arg",
+      "r097_materialization_status": "arg_fallback_no_template_needed",
+      "r097_requires_api_execution": false,
+      "r097_has_update2_metadata": false,
+      "r097_target_reason": "same_prediction_as_arg",
+      "preflight_verdict": "explicit_template_candidate_ready_for_guarded_smoke",
+      "claim_boundary": "preflight over explicit PromptNode template candidates; no API, accuracy, or cost result"
+    },
+    {
+      "task_id": "task_250",
+      "candidate_available": true,
+      "candidate_count": 5,
+      "top_candidate_rank": 1,
+      "top_candidate_support_count": 35,
+      "top_candidate_graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+      "top_candidate_promptnode_roles": [
+        "PN_Memory",
+        "PN_Router",
+        "PN_Verifier"
+      ],
+      "top_candidate_promptnode_spec_count": 3,
+      "top_candidate_edge_permission_count": 4,
+      "top_candidate_lifecycle_action_count": 10,
+      "top_candidate_has_update2_metadata": true,
+      "candidate_forbidden_field_violation": false,
+      "r097_target_action": "switch_to_objective",
+      "r097_materialization_status": "template_attached",
+      "r097_requires_api_execution": true,
+      "r097_has_update2_metadata": true,
+      "r097_target_reason": "objective_top_score_ge3",
+      "preflight_verdict": "explicit_template_candidate_ready_for_guarded_smoke",
+      "claim_boundary": "preflight over explicit PromptNode template candidates; no API, accuracy, or cost result"
+    }
+  ],
+  "claim_boundary": "preflight over explicit PromptNode template candidates; no API, accuracy, or cost result",
+  "output_jsonl": "experiment/aqua/aqua_tail34_r123_explicit_promptnode_template_preflight.jsonl"
+}

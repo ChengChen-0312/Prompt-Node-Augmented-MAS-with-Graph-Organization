@@ -1,0 +1,113 @@
+{
+  "rule": "r124_explicit_template_guarded_smoke",
+  "timestamp": "2026-07-08T20:25:06.751580",
+  "total_tasks": 4,
+  "baseline_accuracy": "2/4",
+  "selected_accuracy": "3/4",
+  "switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "fallback_tasks": [
+    "task_8",
+    "task_188"
+  ],
+  "promptnode_graph_evidence_on_switches": "2/2",
+  "switch_update2_metadata": "2/2",
+  "fix_harm": "1/0",
+  "clean_fix_harm": "0/0",
+  "noisy_fix_harm": "1/0",
+  "selector_input_field_violations": 0,
+  "forced_cost": 0.065015,
+  "forced_prompt_tokens": 6481,
+  "forced_completion_tokens": 2174,
+  "smoke_gate_passed": false,
+  "broad_api_allowed_next": false,
+  "rows": [
+    {
+      "task_id": "task_8",
+      "clean_label": "clean",
+      "baseline_prediction": "E",
+      "selected_prediction": "E",
+      "forced_template_prediction": null,
+      "true_answer": "E",
+      "selected_source": "baseline",
+      "requires_api_execution": false,
+      "selected_template_rank": null,
+      "baseline_is_solved": true,
+      "selected_is_solved": true,
+      "fix": false,
+      "harm": false,
+      "has_promptnode_graph": false,
+      "has_update2_metadata": false,
+      "prompt_node_roles": [],
+      "claim_boundary": "same-four-task explicit-template guarded smoke; broader claims require the smoke gate to pass"
+    },
+    {
+      "task_id": "task_108",
+      "clean_label": "noisy",
+      "baseline_prediction": "B",
+      "selected_prediction": "D",
+      "forced_template_prediction": "D",
+      "true_answer": "D",
+      "selected_source": "explicit_template_rank1",
+      "requires_api_execution": true,
+      "selected_template_rank": 1,
+      "baseline_is_solved": false,
+      "selected_is_solved": true,
+      "fix": true,
+      "harm": false,
+      "has_promptnode_graph": true,
+      "has_update2_metadata": true,
+      "prompt_node_roles": [
+        "PN_Memory",
+        "PN_Router",
+        "PN_Verifier"
+      ],
+      "claim_boundary": "same-four-task explicit-template guarded smoke; broader claims require the smoke gate to pass"
+    },
+    {
+      "task_id": "task_188",
+      "clean_label": "clean",
+      "baseline_prediction": "D",
+      "selected_prediction": "D",
+      "forced_template_prediction": null,
+      "true_answer": "D",
+      "selected_source": "baseline",
+      "requires_api_execution": false,
+      "selected_template_rank": null,
+      "baseline_is_solved": true,
+      "selected_is_solved": true,
+      "fix": false,
+      "harm": false,
+      "has_promptnode_graph": false,
+      "has_update2_metadata": false,
+      "prompt_node_roles": [],
+      "claim_boundary": "same-four-task explicit-template guarded smoke; broader claims require the smoke gate to pass"
+    },
+    {
+      "task_id": "task_250",
+      "clean_label": "clean",
+      "baseline_prediction": "A",
+      "selected_prediction": "A",
+      "forced_template_prediction": "A",
+      "true_answer": "E",
+      "selected_source": "explicit_template_rank1",
+      "requires_api_execution": true,
+      "selected_template_rank": 1,
+      "baseline_is_solved": false,
+      "selected_is_solved": false,
+      "fix": false,
+      "harm": false,
+      "has_promptnode_graph": true,
+      "has_update2_metadata": true,
+      "prompt_node_roles": [
+        "PN_Memory",
+        "PN_Router",
+        "PN_Verifier"
+      ],
+      "claim_boundary": "same-four-task explicit-template guarded smoke; broader claims require the smoke gate to pass"
+    }
+  ],
+  "claim_boundary": "same-four-task explicit-template guarded smoke; broader claims require the smoke gate to pass"
+}

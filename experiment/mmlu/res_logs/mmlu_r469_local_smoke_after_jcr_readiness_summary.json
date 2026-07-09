@@ -1,0 +1,32 @@
+{
+  "run_id": "R469",
+  "title": "Local smoke after JCR readiness artifacts",
+  "claim_boundary": "R469 runs local tests for JCR verification planning and submission readiness matrix. It does not verify official JCR status or execute blocked steps.",
+  "no_api": true,
+  "broad_api": false,
+  "tested_modules": [
+    "tests.test_r467_jcr_quartile_verification_plan",
+    "tests.test_r468_submission_readiness_matrix"
+  ],
+  "test_results": [
+    {
+      "module": "tests.test_r467_jcr_quartile_verification_plan",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r468_submission_readiness_matrix",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    }
+  ],
+  "failed_modules": [],
+  "local_smoke_pass": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R470_current_status_digest",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r469_local_smoke_after_jcr_readiness_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r469_local_smoke_after_jcr_readiness_report.md"
+}

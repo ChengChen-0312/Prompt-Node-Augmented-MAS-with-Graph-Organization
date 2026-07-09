@@ -1,0 +1,70 @@
+{
+  "run_id": "R384",
+  "title": "Plain requery control analysis and goal audit",
+  "claim_boundary": "R384 analyzes R383 and performs the five-iteration goal audit for R379-R383. The current plain control is informative but not decisive because strict scoring penalizes empty selected_label fields even when the rationale sometimes names the option.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 24,
+  "arg_correct": 21,
+  "plain_strict_correct": 14,
+  "plain_explicit_fallback_correct": 17,
+  "option_binding_correct": 24,
+  "plain_empty_label_count": 10,
+  "option_binding_delta_vs_plain_strict": 10,
+  "option_binding_delta_vs_plain_fallback": 7,
+  "plain_strict_fix_task_ids": [],
+  "plain_empty_label_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-30",
+    "MMLU-nonstem-high_school_us_history_test-34",
+    "MMLU-nonstem-high_school_us_history_test-39",
+    "MMLU-nonstem-high_school_us_history_test-43",
+    "MMLU-nonstem-high_school_us_history_test-44",
+    "MMLU-nonstem-high_school_us_history_test-45",
+    "MMLU-nonstem-high_school_us_history_test-46",
+    "MMLU-nonstem-high_school_us_history_test-47",
+    "MMLU-nonstem-high_school_us_history_test-48",
+    "MMLU-nonstem-high_school_us_history_test-52"
+  ],
+  "option_binding_only_vs_fallback_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-30",
+    "MMLU-nonstem-high_school_us_history_test-34",
+    "MMLU-nonstem-high_school_us_history_test-44",
+    "MMLU-nonstem-high_school_us_history_test-46",
+    "MMLU-nonstem-high_school_us_history_test-47",
+    "MMLU-nonstem-high_school_us_history_test-48",
+    "MMLU-nonstem-high_school_us_history_test-52"
+  ],
+  "control_validity": {
+    "strict_control_underestimates_plain": true,
+    "explicit_fallback_still_below_option_binding": true,
+    "equal_contract_control_required": true
+  },
+  "iterations_since_last_goal_check": [
+    "R379",
+    "R380",
+    "R381",
+    "R382",
+    "R383"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "fresh_option_binding_positive_no_harm": true,
+    "plain_control_incomplete": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "fresh_positive_delta_no_harm_claim_allowed": true,
+    "equal_contract_control_preflight_allowed_next": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "api_cost": 0.081985,
+  "prompt_tokens": 8663,
+  "completion_tokens": 2578,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R385_equal_contract_plain_control_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r384_plain_requery_control_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r384_plain_requery_control_analysis_report.md"
+}

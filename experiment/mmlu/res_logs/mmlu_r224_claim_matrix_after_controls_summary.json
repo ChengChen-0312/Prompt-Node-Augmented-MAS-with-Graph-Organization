@@ -1,0 +1,36 @@
+{
+  "run_id": "R224",
+  "title": "Claim-evidence update after router-final control materialization",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "Claim matrix update only; no API and no accuracy claim.",
+  "updated_claims": [
+    {
+      "claim": "Negative controls are now executable as artifacts.",
+      "status": "supported_as_data_artifacts",
+      "evidence": "R221 four control manifests, 268 rows total"
+    },
+    {
+      "claim": "Control manifests pass field-level leakage checks.",
+      "status": "supported",
+      "evidence": "R222: 4 files, 268 records, 0 leakage violations"
+    },
+    {
+      "claim": "Router-final adapter surface can dry-run proposed and control manifests locally.",
+      "status": "supported_as_pre_api_infrastructure",
+      "evidence": "R223: 5 variants, 335 records, 106 would-switch, 0 leakage violations"
+    },
+    {
+      "claim": "Router-final method beats controls or ARG.",
+      "status": "not_supported",
+      "evidence": "No API/model evaluation and no cost-matched ARG re-query"
+    },
+    {
+      "claim": "SCI-Q2 readiness.",
+      "status": "not_supported",
+      "evidence": "Controls are materialized but not evaluated; lifecycle/Tool-Resource evidence still missing"
+    }
+  ],
+  "api_status": "blocked_pending_R225_audit",
+  "next": "R225 goal audit"
+}

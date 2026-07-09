@@ -1,0 +1,15 @@
+{
+  "total_tasks": 200,
+  "solved_tasks": 173,
+  "baseline_solved_tasks": 165,
+  "ensemble_solved_tasks": 170,
+  "fixes_vs_baseline": 8,
+  "harms_vs_baseline": 0,
+  "non_baseline_switches": 13,
+  "router_contract_switches": 2,
+  "ensemble_invalid_switches": 11,
+  "detail_file": "experiment/aqua/aqua_first200_contract_consensus_selector_results.jsonl",
+  "pass_at_1": 86.5,
+  "baseline_pass_at_1": 82.5,
+  "delta_vs_baseline": 8
+}

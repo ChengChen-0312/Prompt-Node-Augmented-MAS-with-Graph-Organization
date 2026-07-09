@@ -1,0 +1,55 @@
+{
+  "rule": "r126_clean_fix_graph_policy_selector_protocol",
+  "protocol_only": true,
+  "no_api_run": true,
+  "r125_next_protocol": "train_or_select_clean_fix_graph_policy_before_smoke",
+  "allowed_training_sources": [
+    "experiment/aqua/aqua_first200_r077_clean_fix_graph_policy_distill_rows.jsonl",
+    "experiment/aqua/aqua_first200_r082_clean_fix_graph_templates.jsonl",
+    "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl"
+  ],
+  "forbidden_training_sources": [
+    "tail34_r096_policy_targets",
+    "tail34_r109_rule_distillation",
+    "tail34_r113_eval_targets",
+    "tail34_r114_regression_replay",
+    "tail34_r124_outputs",
+    "tail34_true_answers_or_clean_labels"
+  ],
+  "uses_tail34_training_source": false,
+  "first200_template_count": 17,
+  "first200_clean_fix_positive_rows": 76,
+  "first200_objective_safety_rows": 200,
+  "first200_objective_safety_switch_targets": 11,
+  "candidate_selector_families": [
+    "graph_policy_selector",
+    "template_rank_policy",
+    "guarded_multiview_distillation"
+  ],
+  "required_clean_harm_guards": [
+    "task_8",
+    "task_188"
+  ],
+  "required_clean_recovery_targets": [
+    "task_250"
+  ],
+  "noisy_optional_targets": [
+    "task_108"
+  ],
+  "required_switch_evidence": [
+    "explicit_promptnode_graph",
+    "update2_metadata",
+    "selector_input_violations_0",
+    "no_tail34_training_source"
+  ],
+  "success_gate": {
+    "selected_accuracy_at_least_baseline": true,
+    "clean_harm_count": 0,
+    "clean_fix_count_at_least": 1,
+    "promptnode_evidence_on_switches": "all",
+    "tail34_training_source": false
+  },
+  "broad_api_allowed_before_smoke": false,
+  "next_smoke_protocol": "four_task_clean_fix_graph_policy_selector_smoke",
+  "claim_boundary": "protocol only; no training, API, accuracy, or cost result"
+}

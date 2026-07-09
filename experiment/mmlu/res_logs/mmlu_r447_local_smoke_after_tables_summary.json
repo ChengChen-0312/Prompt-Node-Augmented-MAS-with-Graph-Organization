@@ -1,0 +1,74 @@
+{
+  "run_id": "R447",
+  "title": "Local smoke after tables",
+  "claim_boundary": "R447 verifies local table and audit-status scripts after table insertion. It does not execute external audits.",
+  "no_api": true,
+  "broad_api": false,
+  "tested_modules": [
+    "tests.test_r439_paper_static_integrity_precompile_audit",
+    "tests.test_r440_paper_claim_number_static_audit",
+    "tests.test_r443_manuscript_status_snapshot",
+    "tests.test_r444_external_audit_execution_plan",
+    "tests.test_r445_external_audit_payload_export",
+    "tests.test_r446_local_tables_and_submission_gaps"
+  ],
+  "test_results": [
+    {
+      "module": "tests.test_r439_paper_static_integrity_precompile_audit",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r440_paper_claim_number_static_audit",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r443_manuscript_status_snapshot",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r444_external_audit_execution_plan",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r445_external_audit_payload_export",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r446_local_tables_and_submission_gaps",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nOK\n"
+    }
+  ],
+  "failed_modules": [],
+  "local_smoke_pass": true,
+  "iterations_since_last_goal_check": [
+    "R442",
+    "R443",
+    "R444",
+    "R445",
+    "R446"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "tables_support_claim_evidence_matrix": true,
+    "arg_designer_remains_main_baseline": true,
+    "external_audit_blockers_remain_explicit": true,
+    "no_submission_ready_overclaim": true
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R448_manuscript_snapshot_after_tables",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r447_local_smoke_after_tables_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r447_local_smoke_after_tables_report.md"
+}

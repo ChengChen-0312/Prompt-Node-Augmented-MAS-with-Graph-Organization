@@ -1,0 +1,45 @@
+{
+  "rule": "r145_goal_audit_r141_r145",
+  "status": "aligned_allow_bounded_calibrated_smoke",
+  "goal_window": [
+    "R141",
+    "R142",
+    "R143",
+    "R144",
+    "R145"
+  ],
+  "goal_reference": "SCI-Q2 PromptNode node+edge graph organization with bounded validation and no tail34 threshold overfit",
+  "drift_detected": false,
+  "drift_type": "none_calibration_protocolized_and_bounded_api_only",
+  "maintained_update2_alignment": true,
+  "maintained_edge_prompt_alignment": true,
+  "maintained_robustness_alignment": true,
+  "calibration_no_tail34_training": true,
+  "r141_direct_threshold_lowering_allowed": false,
+  "r142_forbidden_training_field_violations": 0,
+  "r143_offline_gate_passed": true,
+  "r143_calibrated_selected_accuracy": "4/4",
+  "r143_clean_fix_harm": "1/0",
+  "r144_decision_method": "CalibratedEdgePromptRepairContractFinalRefer",
+  "r144_decision_method_registered": true,
+  "r144_goal_audit_required_before_api": true,
+  "r144_same_two_switch_task_smoke_allowed_next": true,
+  "bounded_api_allowed_next": true,
+  "bounded_api_scope": {
+    "task_split_path": "experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json",
+    "switch_tasks": [
+      "task_108",
+      "task_250"
+    ],
+    "fallback_guards": [
+      "task_8",
+      "task_188"
+    ],
+    "decision_method": "CalibratedEdgePromptRepairContractFinalRefer",
+    "evaluate_command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json --llm_name gpt-4o-2024-08-06 --decision_method CalibratedEdgePromptRepairContractFinalRefer --output_file experiment/aqua/aqua_tail34_r146_calibrated_repair_switch_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r146_calibrated_repair_switch_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 5"
+  },
+  "broad_api_allowed_next": false,
+  "next_protocol": "r146_bounded_calibrated_repair_api_smoke",
+  "next_goal_audit_due": "R150",
+  "claim_boundary": "five-iteration goal audit and correction, not an accuracy result"
+}

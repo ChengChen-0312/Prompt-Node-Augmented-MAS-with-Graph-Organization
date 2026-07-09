@@ -1,0 +1,27 @@
+{
+  "run_id": "R435",
+  "title": "Related work BibTeX audit preflight",
+  "claim_boundary": "R435 writes a candidate-paper manifest for citation verification. It does not authorize final BibTeX or related-work prose.",
+  "no_api": true,
+  "broad_api": false,
+  "candidate_count": 8,
+  "candidate_papers_json": ".aris/verify-papers/candidate_papers.json",
+  "required_related_work_topics": [
+    "ARG-Designer",
+    "Agent pruning/dropout",
+    "Communication topology generation",
+    "Graph prompt learning",
+    "Graph-of-agents",
+    "MAS topology and information propagation",
+    "Self-organizing MAS"
+  ],
+  "verify_papers_required_next": true,
+  "bibtex_fetch_required_next": true,
+  "final_bib_authorized": false,
+  "related_work_draft_authorized": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R436_citation_metadata_fetch_and_bib_skeleton",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r435_related_work_bibtex_audit_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r435_related_work_bibtex_audit_preflight_report.md"
+}

@@ -1,0 +1,37 @@
+{
+  "run_id": "R457",
+  "title": "Static manuscript audit after appendix",
+  "claim_boundary": "R457 checks static manuscript wiring after appendix insertion. It does not compile PDF or execute audits.",
+  "no_api": true,
+  "broad_api": false,
+  "referenced_inputs": [
+    "paper/math_commands.tex",
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex",
+    "paper/appendices/label_audit.tex"
+  ],
+  "missing_inputs": [],
+  "appendix_integrated": true,
+  "appendix_count": 1,
+  "todo_hits": [],
+  "forbidden_claim_patterns": [
+    "submission-ready",
+    "universal improvement",
+    "broad general improvement",
+    "improves all multiple-choice",
+    "broad nonmath improvement"
+  ],
+  "forbidden_claim_hits": [],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R458_caption_table_reference_polish",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r457_static_manuscript_audit_after_appendix_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r457_static_manuscript_audit_after_appendix_report.md"
+}

@@ -1,0 +1,45 @@
+{
+  "run_id": "R350",
+  "title": "Goal audit after fresh tool PromptNode preflight",
+  "claim_boundary": "R350 is the five-iteration audit after R345-R349. R347 replay is positive, but R349 shows zero fresh tool coverage, so API execution is paused until the PromptNode library covers fresh tasks.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R345",
+    "R346",
+    "R347",
+    "R348",
+    "R349"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_baseline_preserved": true,
+    "r347_replay_positive": true,
+    "r348_policy_frozen": true,
+    "r349_fresh_split_ready": true,
+    "fresh_tool_coverage_gap_detected": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "r347_replay_mechanism_evidence_allowed": true,
+    "fresh_api_execution_allowed_now": false,
+    "fresh_coverage_expansion_allowed": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Do not run fresh API while the frozen tool policy forwards zero candidates.",
+    "Expand PromptNode coverage with general nonmath and broader STEM nodes before API execution.",
+    "Keep R347 as positive mechanism replay, not a submission-level main result.",
+    "Require a fresh preflight with nonzero coverage and no leakage before spending API."
+  ],
+  "evidence_snapshot": {
+    "r347_arg_vs_tool": "20/24 -> 24/24",
+    "r349_tasks": 48,
+    "r349_local_tool_forwarded_candidate_count": 0,
+    "r349_api_calls_planned": 48
+  },
+  "next_required_run": "R351_fresh_coverage_promptnode_expansion_design",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r350_goal_audit_after_tool_promptnode_fresh_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r350_goal_audit_after_tool_promptnode_fresh_preflight_report.md"
+}

@@ -1,0 +1,1 @@
+{"timestamp": "2026-07-08T18:40:40.263243", "dataset": "aqua", "model_path": "output/xxxxforced_template_rank5", "llm_name": "gpt-4o-2024-08-06", "total_tasks": 1, "solved_tasks": 1, "pass_at_1": 100.0, "cost": 0.03683500000000001, "prompt_tokens": 3587.0, "completion_tokens": 1260.0, "detail_file": "experiment/aqua/aqua_tail34_r100_forced_template_rank5_task250_results.jsonl"}

@@ -1,0 +1,45 @@
+{
+  "run_id": "R184",
+  "title": "MMLU PN-capable graph-policy training dry-run",
+  "claim_boundary": "Training-path dry-run only. No API evaluation, no trained checkpoint claim, and no PromptNode/PromptEdge accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "materialized": {
+    "manifest_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r183_promptedge_targets.jsonl",
+    "output_dir": "experiment/PromptEdgeData_mmlu_r183",
+    "materialized_graphs": 403,
+    "unique_questions": 37
+  },
+  "dry_run": {
+    "data_dir": "experiment/PromptEdgeData_mmlu_r183",
+    "sample_size_requested": 24,
+    "dataset_graphs_loaded": 24,
+    "batch_size": 2,
+    "role_mapping_size": 9,
+    "pn_roles_present": [
+      "PN_Memory",
+      "PN_Router",
+      "PN_Verifier"
+    ],
+    "pn_roles_missing": [],
+    "data_statistics": {
+      "num_node_labels": 11,
+      "num_edge_labels": 1,
+      "max_num_nodes": 9,
+      "min_num_nodes": 5,
+      "max_num_edges": 23,
+      "min_num_edges": 5,
+      "is_directed": true
+    },
+    "finite_forward_loss": true,
+    "forward_loss": 41.30413055419922,
+    "role_accuracy": 0.0,
+    "sample_graph_count": 1,
+    "sample_generation_ok": true,
+    "sample_role_mapping_contains_pn": true
+  },
+  "old_mmlu_arg_checkpoint_role_mapping_size": 6,
+  "old_checkpoint_direct_finetune_compatible": false,
+  "requires_pn_capable_pretrain_or_expanded_checkpoint": true,
+  "next_action": "Run a short PN-capable pretraining job from the materialized PromptEdge data, then audit generated graphs before any MMLU transfer API smoke."
+}

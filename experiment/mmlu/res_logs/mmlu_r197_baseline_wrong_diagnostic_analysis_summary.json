@@ -1,0 +1,56 @@
+{
+  "run_id": "R197",
+  "title": "Baseline-wrong diagnostic analysis",
+  "claim_boundary": "Mechanism analysis only. The slice is conditioned on R162 baseline errors and cannot be used as an unbiased accuracy claim.",
+  "source_run": "R196",
+  "no_api": true,
+  "broad_api": false,
+  "selection_policy": "task_ids_explicit_from_R162_wrong_pool",
+  "tasks": 4,
+  "baseline_correct": 0,
+  "projected_correct": 2,
+  "fixes": 2,
+  "harms": 0,
+  "raw_contract_ready": "0/4",
+  "projected_contract_ready": "4/4",
+  "cost": 0.389555,
+  "fixed_tasks": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "subject": "abstract_algebra",
+      "baseline": "A",
+      "projected": "C",
+      "true": "C"
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-26",
+      "subject": "college_mathematics",
+      "baseline": "C",
+      "projected": "D",
+      "true": "D"
+    }
+  ],
+  "failed_tasks": [
+    {
+      "task_id": "MMLU-high_school_statistics_test-32",
+      "subject": "high_school_statistics",
+      "baseline": "B",
+      "projected": "B",
+      "true": "D"
+    },
+    {
+      "task_id": "MMLU-high_school_physics_test-67",
+      "subject": "high_school_physics",
+      "baseline": "C",
+      "projected": "C",
+      "true": "A"
+    }
+  ],
+  "diagnosis": {
+    "mechanism_signal_positive": true,
+    "paper_claim_supported": false,
+    "reason": "Projected PromptEdge can change wrong ARG outcomes on some hard rows, but the sample is intentionally biased toward baseline failures.",
+    "next_needed": "A small random transfer slice or full held-out evaluation to estimate unbiased fix/harm and cost-normalized accuracy."
+  },
+  "recommended_next": "R198 should prepare a small random-slice protocol with a hard cap and no claim until R200 audit."
+}

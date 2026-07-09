@@ -1,0 +1,70 @@
+{
+  "run_id": "R297",
+  "title": "Compare specialist-aware PromptNode replay against R282 ARG retrain baseline",
+  "claim_boundary": "Offline comparison only; no new API. R296 and R292 are matched on transfer100 first24 task_ids.",
+  "no_api": true,
+  "broad_api": false,
+  "comparisons": {
+    "R291_PN_all": {
+      "records": 24,
+      "pn_correct": 20,
+      "arg_correct": 22,
+      "fixes": 0,
+      "harms": 2,
+      "fix_task_ids": [],
+      "harm_task_ids": [
+        "MMLU-college_mathematics_test-17",
+        "MMLU-high_school_mathematics_test-63"
+      ],
+      "pn_wrong_task_ids": [
+        "MMLU-high_school_statistics_test-32",
+        "MMLU-college_mathematics_test-17",
+        "MMLU-high_school_mathematics_test-63",
+        "MMLU-high_school_physics_test-67"
+      ]
+    },
+    "R296_PN_specialist": {
+      "records": 24,
+      "pn_correct": 20,
+      "arg_correct": 22,
+      "fixes": 0,
+      "harms": 2,
+      "fix_task_ids": [],
+      "harm_task_ids": [
+        "MMLU-college_mathematics_test-17",
+        "MMLU-high_school_mathematics_test-63"
+      ],
+      "pn_wrong_task_ids": [
+        "MMLU-college_mathematics_test-17",
+        "MMLU-high_school_mathematics_test-63",
+        "MMLU-high_school_physics_test-67",
+        "MMLU-high_school_statistics_test-32"
+      ]
+    }
+  },
+  "transfer_superiority_claim_supported": false,
+  "sci_q2_ready": false,
+  "costs": {
+    "R292_ARG": {
+      "cost": 0.782895,
+      "prompt_tokens": 73986,
+      "completion_tokens": 27531
+    },
+    "R291_PN_all": {
+      "cost": 1.55828,
+      "prompt_tokens": 157057,
+      "completion_tokens": 51533
+    },
+    "R296_PN_specialist": {
+      "cost": 1.400155,
+      "prompt_tokens": 135560,
+      "completion_tokens": 48157
+    }
+  },
+  "main_decision": "R294 specialist-aware reselection reduced cost but did not improve accuracy; PromptNode transfer remains worse than the retrained ARG baseline on matched MMLU first24.",
+  "next_runs": [
+    "R298_failure_analysis_specialist_aware",
+    "R299_method_revision_no_api",
+    "R300_goal_audit"
+  ]
+}

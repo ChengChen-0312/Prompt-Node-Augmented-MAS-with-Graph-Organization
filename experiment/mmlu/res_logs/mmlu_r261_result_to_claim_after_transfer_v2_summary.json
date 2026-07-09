@@ -1,0 +1,24 @@
+{
+  "run_id": "R261",
+  "title": "Result-to-claim update after MMLU transfer v1/v2",
+  "claim_boundary": "Claim-package update only; no API, no new accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "claim_updates": {
+    "aqua_heldout_selector_improves_arg": "supported_offline_scope_limited",
+    "promptnode_lifecycle_edge_actions": "supported_annotation_only",
+    "mmlu_transfer_probe_protocol": "supported_protocol_only",
+    "mmlu_pnpe_v1_transfer_beats_controls": "not_supported",
+    "mmlu_guarded_v2_fixes_transfer": "not_supported",
+    "promptedge_text_independent_gain": "not_supported",
+    "sci_q2_ready": false
+  },
+  "key_evidence": {
+    "R065": "AQuA tail34 31/34 vs ARG 28/34",
+    "R242": "AQuA frozen replay 29/34 vs ARG 28/34",
+    "R247": "75 lifecycle annotations",
+    "R253_R254": "MMLU v1 proposed 10/16, plain 12/16, node-only 11/16",
+    "R259": "MMLU v2 guarded 9/16, fix/harm 1/0"
+  },
+  "next": "R262 paper-ready tables"
+}

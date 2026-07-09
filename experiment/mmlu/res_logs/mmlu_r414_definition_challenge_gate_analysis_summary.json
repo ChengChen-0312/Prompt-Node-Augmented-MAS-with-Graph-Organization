@@ -1,0 +1,96 @@
+{
+  "run_id": "R414",
+  "title": "DefinitionChallenge gate analysis",
+  "claim_boundary": "R414 analyzes a fresh targeted nonmath split. It supports only a narrow DefinitionChallenge positive/no-harm claim; it does not support broad nonmath generalization.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 24,
+  "arg_correct": 21,
+  "hybrid_correct": 22,
+  "candidate_correct": 21,
+  "delta_correct": 1,
+  "candidate_pool_delta": 0,
+  "arg_accuracy": 0.875,
+  "hybrid_accuracy": 0.916667,
+  "candidate_accuracy": 0.875,
+  "gate_forward_count": 11,
+  "fixes": 1,
+  "harms": 0,
+  "wrong_forward_count": 0,
+  "fix_task_ids": [
+    "MMLU-nonstem-moral_disputes_test-14"
+  ],
+  "harm_task_ids": [],
+  "wrong_forward_task_ids": [],
+  "candidate_oracle_fix_task_ids": [
+    "MMLU-nonstem-moral_disputes_test-14"
+  ],
+  "candidate_oracle_harm_task_ids": [
+    "MMLU-nonstem-logical_fallacies_test-12"
+  ],
+  "selection_contribution": {
+    "gate_improves_over_arg": true,
+    "gate_improves_over_candidate_pool": true,
+    "candidate_pool_alone_not_better_than_arg": true,
+    "pruned_candidate_harms": 1,
+    "pruned_candidate_harm_task_ids": [
+      "MMLU-nonstem-logical_fallacies_test-12"
+    ]
+  },
+  "subject_breakdown": {
+    "logical_fallacies": {
+      "records": 8,
+      "arg_correct": 7,
+      "candidate_correct": 6,
+      "hybrid_correct": 7,
+      "delta_correct": 0,
+      "gate_forward_count": 2,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward_count": 0
+    },
+    "moral_disputes": {
+      "records": 8,
+      "arg_correct": 6,
+      "candidate_correct": 7,
+      "hybrid_correct": 7,
+      "delta_correct": 1,
+      "gate_forward_count": 4,
+      "fixes": 1,
+      "harms": 0,
+      "wrong_forward_count": 0
+    },
+    "philosophy": {
+      "records": 8,
+      "arg_correct": 8,
+      "candidate_correct": 8,
+      "hybrid_correct": 8,
+      "delta_correct": 0,
+      "gate_forward_count": 5,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward_count": 0
+    }
+  },
+  "gate_block_reason_counts": {
+    "low_node_agreement": 13,
+    "weak_definition_anchor": 13,
+    "adversarial_challenge_failed": 13,
+    "small_distractor_margin": 13,
+    "option_binding_contract_failed": 13,
+    "weak_memory_bridge": 13
+  },
+  "claim_permissions": {
+    "narrow_definition_challenge_claim_allowed": true,
+    "broad_nonmath_claim_allowed": false,
+    "main_paper_claim_allowed": false,
+    "needs_external_integrity_audit": true,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R415_update_claim_matrix_after_nonmath_positive",
+  "input_jsonl": "experiment/mmlu/run_logs/mmlu_r413_definition_challenge_gate_api_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r414_definition_challenge_gate_analysis_report.md"
+}

@@ -1,0 +1,34 @@
+{
+  "run_id": "R388",
+  "title": "Mixed nonmath OptionBinding preflight",
+  "claim_boundary": "R388 builds a fresh mixed-nonmath manifest for SemanticConsistencyVerifierPN + OptionBindingPromptEdge. It does not execute API or support a paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "subjects": 6,
+  "subject_counts": {
+    "high_school_government_and_politics": 4,
+    "high_school_world_history": 4,
+    "moral_disputes": 4,
+    "philosophy": 4,
+    "sociology": 4,
+    "world_religions": 4
+  },
+  "tasks_per_subject": 4,
+  "tasks": 24,
+  "api_records": 48,
+  "planned_arg_baseline_calls": 24,
+  "planned_semantic_option_binding_calls": 24,
+  "variant_counts": {
+    "arg_baseline_direct_api": 24,
+    "semantic_option_binding_candidate_api": 24
+  },
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R389_mixed_nonmath_option_binding_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r388_mixed_nonmath_option_binding_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r388_mixed_nonmath_option_binding_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r388_mixed_nonmath_option_binding_preflight_report.md"
+}

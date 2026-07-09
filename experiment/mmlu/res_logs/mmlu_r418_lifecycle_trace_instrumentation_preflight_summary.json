@@ -1,0 +1,64 @@
+{
+  "run_id": "R418",
+  "title": "Lifecycle trace instrumentation preflight",
+  "claim_boundary": "R418 defines the lifecycle event schema for replaying existing results. It does not execute API or create new accuracy evidence.",
+  "no_api": true,
+  "broad_api": false,
+  "source_jsonl": "experiment/mmlu/run_logs/mmlu_r413_definition_challenge_gate_api_results.jsonl",
+  "source_records": 24,
+  "lifecycle_actions": [
+    "write",
+    "update",
+    "compress",
+    "prune",
+    "merge",
+    "upgrade"
+  ],
+  "event_schema": {
+    "required_fields": [
+      "run_id",
+      "task_id",
+      "event_index",
+      "event_type",
+      "node_or_edge",
+      "action",
+      "read_from",
+      "write_to",
+      "forward_to",
+      "evidence",
+      "gate_effect"
+    ],
+    "event_types": [
+      "PromptNodeWrite",
+      "PromptNodeUpdate",
+      "PromptNodeCompress",
+      "PromptNodePrune",
+      "PromptNodeMerge",
+      "PromptNodeUpgrade",
+      "PromptEdgeRead",
+      "PromptEdgeWrite",
+      "PromptEdgeForward",
+      "GateDecision"
+    ],
+    "node_types": [
+      "InstructionAmbiguityVerifierPN",
+      "ConceptDefinitionAnchorPN",
+      "OptionSemanticConsistencyVerifierPN",
+      "AdversarialVerifierPN",
+      "ContradictionDetectorPN",
+      "ConsensusConflictResolverPN"
+    ],
+    "edge_types": [
+      "DefinitionAnchorPromptEdge",
+      "AdversarialChallengePromptEdge",
+      "ConflictResolutionPromptEdge",
+      "OptionBindingPromptEdge"
+    ]
+  },
+  "trace_replay_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R419_lifecycle_trace_replay",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r418_lifecycle_trace_instrumentation_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r418_lifecycle_trace_instrumentation_preflight_report.md"
+}

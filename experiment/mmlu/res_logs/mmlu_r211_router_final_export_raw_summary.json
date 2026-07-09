@@ -1,0 +1,55 @@
+{
+  "run_id": "R183",
+  "title": "MMLU PromptNode/PromptEdge target export manifest",
+  "claim_boundary": "Data export only. No API evaluation, no accuracy claim, and no claim that the exported insertion targets improve over ARG-Designer.",
+  "no_api": true,
+  "broad_api": false,
+  "source_dirs": [
+    "experiment/ColdStartData_mmlu",
+    "experiment/FinetuneData_mmlu"
+  ],
+  "transfer_jsonl": "experiment/mmlu/mmlu_stem_transfer100.jsonl",
+  "output_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r211_router_final_targets.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r211_router_final_export_raw_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r211_router_final_export_raw_report.md",
+  "source_graphs": 403,
+  "exported_graphs": 403,
+  "unique_exported_questions": 37,
+  "transfer_hashes": 100,
+  "filtered_transfer_overlap": 0,
+  "failures": [],
+  "failure_count": 0,
+  "mode_counts": {
+    "Chain": 106,
+    "EfficientPruned": 23,
+    "FullConnected": 66,
+    "Layered": 67,
+    "Mesh": 53,
+    "Star": 88
+  },
+  "role_counts": {
+    "Critic": 280,
+    "Doctor": 279,
+    "Historian": 491,
+    "Knowlegable Expert": 375,
+    "Mathematician": 125,
+    "PN_Memory": 403,
+    "PN_Router": 403,
+    "PN_Verifier": 403,
+    "Psychologist": 265
+  },
+  "pn_roles": [
+    "PN_Memory",
+    "PN_Verifier",
+    "PN_Router"
+  ],
+  "target_kind": "promptedge_preserve_safe_insert",
+  "override_labels_exported": 0,
+  "leakage_audit": {
+    "exact_question_hash_against_transfer100": true,
+    "source_metadata_available": false,
+    "tail34_or_sync20_used": false,
+    "transfer100_used_as_training_label": false
+  },
+  "next_action": "R184 should dry-run or train a PN-capable MMLU graph generator from this manifest after adapting the training loader to consume exported PN/PE targets."
+}

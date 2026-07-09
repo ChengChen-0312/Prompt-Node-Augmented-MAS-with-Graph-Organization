@@ -1,0 +1,54 @@
+{
+  "run": "R165",
+  "rule": "five_iteration_sci_q2_goal_audit",
+  "window": "R161-R165",
+  "status": "aligned_but_not_sci_q2_ready",
+  "drift": false,
+  "sci_q2_ready": false,
+  "broad_api_allowed": false,
+  "next_audit": "R170",
+  "goal_checks": {
+    "arg_designer_primary_baseline_preserved": true,
+    "same_model_setting_preserved": true,
+    "promptnode_first_class_graph_semantics_preserved": true,
+    "promptedge_alignment_added": true,
+    "sync20_noise_overclaim_avoided": true,
+    "heldout_or_transfer_improvement_proven": false,
+    "cost_normalized_promptnode_result_available": false
+  },
+  "window_evidence": {
+    "R161": {
+      "type": "MMLU checkpoint build",
+      "compatible_checkpoint": true,
+      "downstream_accuracy_claim": false
+    },
+    "R162": {
+      "type": "MMLU ARG transfer baseline",
+      "accuracy": "88/100",
+      "promptnode_result": false
+    },
+    "R163": {
+      "type": "R001-style selective PromptNode/PromptEdge policy export",
+      "policy_rows": 800,
+      "selective_insert_rows": 4,
+      "fallback_rows": 796,
+      "selector_forbidden_field_violations": 0,
+      "pt_files": 4
+    },
+    "R164": {
+      "type": "selective target finetune smoke",
+      "dataset_size": 4,
+      "forward_finite_loss": true,
+      "answer_accuracy_claim": false
+    }
+  },
+  "blocking_gaps": [
+    "R162 is only an ARG transfer baseline; no PromptNode/PromptEdge transfer comparison exists.",
+    "R163 selective positives are too sparse for a stable graph-generator training claim.",
+    "R164 verifies train-path compatibility only; it does not train a usable selective model.",
+    "No held-out PromptNode/PromptEdge result currently exceeds ARG under matched budget.",
+    "No R001-compatible learned PromptEdge-label loss has been implemented; edge semantics are metadata-conditioned so far."
+  ],
+  "next_direction": "R166 should expand selective positive targets without leakage by separating switch-critical positives from preserve-safe positives, then R167 can run a bounded train smoke or short fine-tune before any API evaluation.",
+  "claim_boundary": "Goal audit only. No API calls, no answer-accuracy result, and no SCI-Q2 readiness claim."
+}

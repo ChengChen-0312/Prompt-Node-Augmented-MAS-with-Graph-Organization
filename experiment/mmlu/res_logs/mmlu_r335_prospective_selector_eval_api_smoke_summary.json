@@ -1,0 +1,51 @@
+{
+  "run_id": "R335",
+  "title": "Prospective selector eval API smoke",
+  "claim_boundary": "R335 is a bounded API smoke only. It cannot support a paper claim by itself.",
+  "no_api": false,
+  "broad_api": false,
+  "tasks": 6,
+  "records": 18,
+  "api_calls_planned": 18,
+  "api_executed": 18,
+  "api_errors": 0,
+  "api_cost": 0.058525,
+  "prompt_tokens": 3401,
+  "completion_tokens": 2768,
+  "variant_counts": {
+    "arg_baseline_direct": 6,
+    "cost_matched_plain_requery": 6,
+    "selector_promptnode_promptedge_policy": 6
+  },
+  "by_variant": {
+    "arg_baseline_direct": {
+      "records": 6,
+      "evaluated_records": 6,
+      "correct": 4,
+      "accuracy": 0.6666666666666666,
+      "fixes": 0,
+      "harms": 0
+    },
+    "cost_matched_plain_requery": {
+      "records": 6,
+      "evaluated_records": 6,
+      "correct": 2,
+      "accuracy": 0.3333333333333333,
+      "fixes": 0,
+      "harms": 2
+    },
+    "selector_promptnode_promptedge_policy": {
+      "records": 6,
+      "evaluated_records": 6,
+      "correct": 4,
+      "accuracy": 0.6666666666666666,
+      "fixes": 0,
+      "harms": 0
+    }
+  },
+  "sci_q2_ready": false,
+  "next_required_run": "R336_prospective_selector_eval_smoke_analysis",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r335_prospective_selector_eval_api_smoke_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r335_prospective_selector_eval_api_smoke_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r335_prospective_selector_eval_api_smoke_report.md"
+}

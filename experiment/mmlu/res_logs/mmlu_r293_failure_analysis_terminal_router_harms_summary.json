@@ -1,0 +1,94 @@
+{
+  "run_id": "R293",
+  "title": "Failure analysis for constrained PromptNode transfer harms",
+  "claim_boundary": "Offline failure analysis only. It explains observed R291 harms and does not support a transfer improvement claim.",
+  "no_api": true,
+  "broad_api": false,
+  "matched_tasks": 24,
+  "fixes": 0,
+  "harms": 2,
+  "harms_with_specialist_role_loss": 1,
+  "harm_records": [
+    {
+      "task_id": "MMLU-college_mathematics_test-17",
+      "subject": "college_mathematics",
+      "baseline_prediction": "C",
+      "promptnode_prediction": "B",
+      "true_answer": "C",
+      "baseline_roles": [
+        "Historian",
+        "Knowlegable Expert",
+        "Critic"
+      ],
+      "promptnode_roles": [
+        "Historian",
+        "Historian",
+        "Historian",
+        "PN_Memory",
+        "Historian",
+        "PN_Verifier",
+        "PN_Router",
+        "PN_Router",
+        "PN_Router"
+      ],
+      "baseline_specialist_roles": 1,
+      "promptnode_specialist_roles": 0,
+      "specialist_role_loss": true,
+      "promptnode_contract_ready": true
+    },
+    {
+      "task_id": "MMLU-high_school_mathematics_test-63",
+      "subject": "high_school_mathematics",
+      "baseline_prediction": "D",
+      "promptnode_prediction": "B",
+      "true_answer": "D",
+      "baseline_roles": [
+        "Psychologist",
+        "Psychologist",
+        "Mathematician"
+      ],
+      "promptnode_roles": [
+        "Historian",
+        "Critic",
+        "Knowlegable Expert",
+        "PN_Memory",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Memory",
+        "PN_Router"
+      ],
+      "baseline_specialist_roles": 1,
+      "promptnode_specialist_roles": 1,
+      "specialist_role_loss": false,
+      "promptnode_contract_ready": true
+    }
+  ],
+  "baseline_role_counts": {
+    "Critic": 16,
+    "Doctor": 12,
+    "Historian": 24,
+    "Knowlegable Expert": 35,
+    "Mathematician": 12,
+    "Psychologist": 16
+  },
+  "promptnode_role_counts": {
+    "Critic": 7,
+    "Doctor": 13,
+    "Historian": 27,
+    "Knowlegable Expert": 8,
+    "Mathematician": 8,
+    "PN_Memory": 31,
+    "PN_Router": 55,
+    "PN_Verifier": 31,
+    "Psychologist": 17
+  },
+  "mechanism_hypothesis": "The constrained decoder optimizes for PN chain completeness but not task-specialist coverage. On harms, selected graphs can replace Mathematician/Programmer/Knowlegable Expert evidence with Historian-heavy PN chains, causing the router to preserve a well-structured but wrong contract.",
+  "transfer_claim_supported": false,
+  "next_action": "Revise graph selection/training objective to jointly require PN contract structure and specialist-role preservation before running more API.",
+  "source_files": {
+    "baseline_rows": "experiment/mmlu/run_logs/mmlu_r292_arg_retrain_first24_api_results.jsonl",
+    "promptnode_rows": "experiment/mmlu/run_logs/mmlu_r291_constrained_graph_api_full24_all_exposure_results.jsonl"
+  },
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r293_failure_analysis_terminal_router_harms_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r293_failure_analysis_terminal_router_harms_report.md"
+}

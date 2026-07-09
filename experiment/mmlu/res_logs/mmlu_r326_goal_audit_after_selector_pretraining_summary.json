@@ -1,0 +1,43 @@
+{
+  "run_id": "R326",
+  "title": "Goal audit after selector pretraining setup",
+  "claim_boundary": "R326 is the required five-iteration audit after R321-R325. The direction remains aligned with the SCI-Q2 goal because training is being converted into a graph-policy selector with leakage controls and hard negatives. However, selector training is not yet a paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R321",
+    "R322",
+    "R323",
+    "R324",
+    "R325"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "paper_evidence_table_created": true,
+    "selector_manifest_frozen_without_leakage": true,
+    "promptnode_first_class_features_preserved": true,
+    "promptedge_and_lifecycle_features_preserved": true,
+    "hard_negative_gap_detected_and_addressed": true,
+    "warning_only_override_block_preserved": true,
+    "training_not_overclaimed": true
+  },
+  "claim_permissions": {
+    "offline_selector_retraining_allowed": true,
+    "api_execution_allowed": false,
+    "selector_training_paper_claim_allowed": false,
+    "aqua_clean_improvement_allowed": true,
+    "mmlu_stem_improvement_allowed": true,
+    "mmlu_nonstem_no_harm_allowed": true,
+    "broad_general_promptnode_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Continue with offline augmented selector retraining before any API run.",
+    "Treat R323 perfect accuracy as feasibility only because R324 showed easy-feature separability.",
+    "Use R325 hard negatives to force the selector to learn PromptEdge text and lifecycle safety, not just candidate confidence.",
+    "Keep the paper claim restricted to AQuA audit-clean, MMLU STEM positive, and non-STEM no-harm until prospective transfer improves."
+  ],
+  "next_required_run": "R327_augmented_selector_retraining_dry_run",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r326_goal_audit_after_selector_pretraining_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r326_goal_audit_after_selector_pretraining_report.md"
+}

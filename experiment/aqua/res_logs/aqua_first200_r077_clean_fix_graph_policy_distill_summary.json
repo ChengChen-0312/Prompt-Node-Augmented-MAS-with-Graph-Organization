@@ -1,0 +1,54 @@
+{
+  "rule": "r077_clean_fix_preserving_graph_policy_distill",
+  "timestamp": "2026-07-08T16:49:44.410507",
+  "source_policy_rows": 800,
+  "rows": 800,
+  "clean_fix_preserve_rows": 76,
+  "ambiguous_suppress_rows": 338,
+  "negative_suppress_rows": 386,
+  "clean_fix_promptnode_spec_rows": 76,
+  "clean_fix_edge_permission_rows": 76,
+  "target_class_counts": {
+    "ambiguous_or_low_margin_suppress": 338,
+    "clean_fix_preserve_graph": 76,
+    "negative_graph_suppress": 386
+  },
+  "teacher_policy_counts": {
+    "prefer_baseline_or_wait_for_more_evidence": 386,
+    "preserve_high_margin_promptnode_graph": 76,
+    "suppress_unstable_or_low_margin_switch": 338
+  },
+  "candidate_method_counts": {
+    "calibrated": 200,
+    "candidate": 200,
+    "conservative": 200,
+    "router": 200
+  },
+  "slice_counts": {
+    "aqua_100": 400,
+    "aqua_next100": 400
+  },
+  "selector_input_violations": 0,
+  "distillation_target_violations": 0,
+  "excluded_selector_input_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "direct_majority",
+    "is_solved",
+    "predicted_answer",
+    "router_option",
+    "source_task_id",
+    "task_id",
+    "true_answer"
+  ],
+  "tail34_evidence_used_as_schema_only": true,
+  "tail34_schema_anchor": {
+    "clean_positive_task_count": 3,
+    "noisy_optional_task_count": 1,
+    "unstable_boundary_task_count": 1,
+    "schema_rule": "preserve clean-fix PromptNode channels; do not train noisy-only switches as clean positives"
+  },
+  "claim_boundary": "R077 is a distillation-data artifact, not an answer-accuracy result. It uses R076 as schema guidance and first200 label-free graph-policy rows as trainable examples.",
+  "input_jsonl": "experiment/aqua/aqua_first200_graph_policy_distill_rows.jsonl"
+}

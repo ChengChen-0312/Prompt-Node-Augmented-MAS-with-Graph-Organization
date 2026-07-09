@@ -1,0 +1,34 @@
+{
+  "source_objective_summary": "experiment/aqua/res_logs/aqua_first200_contract_graph_objective_summary.json",
+  "rows_path": "experiment/aqua/aqua_first200_graph_objective_training_rows.jsonl",
+  "total_tasks": 200,
+  "variant_rows": 800,
+  "min_score_margin": 3,
+  "positive_top_tasks": 196,
+  "top_score_ties": 99,
+  "margin_top_tasks": 76,
+  "outcome_field_violations": 0,
+  "training_target_counts": {
+    "low_margin_top": 24,
+    "multi_view_tie": 313,
+    "non_positive_top": 1,
+    "non_preferred_graph": 386,
+    "preferred_graph": 76
+  },
+  "candidate_method_counts": {
+    "calibrated": 200,
+    "candidate": 200,
+    "conservative": 200,
+    "router": 200
+  },
+  "excluded_outcome_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "is_solved",
+    "r035_selected_prediction",
+    "r035_selected_source",
+    "true_answer"
+  ],
+  "claim_boundary": "Label-free graph-objective export only. Rows are targets for graph candidate selection or graph-generator training and contain no gold answer, audit label, or correctness field."
+}

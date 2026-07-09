@@ -1,0 +1,40 @@
+{
+  "rule": "r150_goal_audit_r146_r150",
+  "status": "aligned_but_not_sci_q2_ready",
+  "goal_window": [
+    "R146",
+    "R147",
+    "R148",
+    "R149",
+    "R150"
+  ],
+  "drift_detected": false,
+  "drift_type": "none_claims_constrained_after_positive_smoke",
+  "maintained_update2_alignment": true,
+  "maintained_edge_prompt_alignment": true,
+  "claim_discipline_maintained": true,
+  "r146_smoke_gate_passed": true,
+  "r146_clean_fix_harm": "1/0",
+  "r147_selected_accuracy": "30/34",
+  "r147_clean_fix_harm": "1/0",
+  "r147_fresh_integrated_full_run": false,
+  "r148_statistically_significant_at_0_05": false,
+  "r148_mcnemar_exact_p_two_sided": 0.5,
+  "r148_cost_normalized_superiority_supported": false,
+  "r148_mmlu_arg_checkpoint_available": false,
+  "r149_transfer_branch_allowed": false,
+  "r149_family_replicate_claim_allowed": true,
+  "r149_same_method_as_r147": false,
+  "sci_q2_ready": false,
+  "blocking_gaps": [
+    "R147 full-tail34 evidence is replay-level, not a fresh integrated full run",
+    "R148 McNemar p=0.5 is not statistically significant",
+    "R148 cost-normalized superiority is unsupported",
+    "MMLU transfer is blocked by missing compatible ARG checkpoint",
+    "AQuA next100 is family evidence, not same-method R147 significance"
+  ],
+  "broad_api_allowed_next": false,
+  "next_protocol": "r151_sci_q2_evidence_gap_plan_before_more_api",
+  "next_goal_audit_due": "R155",
+  "claim_boundary": "five-iteration goal audit and correction; not an accuracy or readiness result"
+}

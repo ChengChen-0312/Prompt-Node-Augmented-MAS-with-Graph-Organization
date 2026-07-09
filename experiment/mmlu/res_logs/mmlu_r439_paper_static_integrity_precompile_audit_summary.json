@@ -1,0 +1,38 @@
+{
+  "run_id": "R439",
+  "title": "Paper static integrity precompile audit",
+  "claim_boundary": "R439 checks manuscript structure before compilation. It does not replace PDF compilation, external experiment audit, citation audit, or paper-claim audit.",
+  "no_api": true,
+  "broad_api": false,
+  "referenced_sections": [
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex"
+  ],
+  "missing_sections": [],
+  "all_referenced_sections_exist": true,
+  "stale_section_files": [],
+  "remaining_forbidden_hits": [],
+  "todo_hits": [],
+  "references_bib_exists": true,
+  "latexmk": null,
+  "pdflatex": null,
+  "compile_status": "not_run_no_latex_engine",
+  "submission_blockers": [
+    "external_experiment_integrity_audit_pending",
+    "external_citation_audit_pending",
+    "paper_claim_audit_pending",
+    "latex_engine_missing_for_pdf_compile"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R440_paper_claim_number_static_audit",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r439_paper_static_integrity_precompile_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r439_paper_static_integrity_precompile_audit_report.md"
+}

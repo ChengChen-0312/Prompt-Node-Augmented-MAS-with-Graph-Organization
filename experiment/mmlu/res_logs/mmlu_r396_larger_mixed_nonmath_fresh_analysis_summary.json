@@ -1,0 +1,148 @@
+{
+  "run_id": "R396",
+  "title": "Larger mixed nonmath fresh analysis and goal audit",
+  "claim_boundary": "R396 analyzes R395 and performs the five-iteration goal audit for R391-R395. The larger mixed nonmath run supports no-harm transfer, but not positive gain.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 48,
+  "arg_correct": 41,
+  "hybrid_correct": 41,
+  "delta_correct": 0,
+  "arg_accuracy": 0.854167,
+  "hybrid_accuracy": 0.854167,
+  "candidate_label_count": 43,
+  "gate_forward_count": 24,
+  "fixes": 0,
+  "harms": 0,
+  "wrong_forward_count": 3,
+  "missed_fix_count": 4,
+  "candidate_correct_but_blocked_count": 1,
+  "fix_task_ids": [],
+  "harm_task_ids": [],
+  "wrong_forward_task_ids": [
+    "MMLU-nonstem-moral_disputes_test-24",
+    "MMLU-nonstem-logical_fallacies_test-17",
+    "MMLU-nonstem-logical_fallacies_test-18"
+  ],
+  "missed_fix_task_ids": [
+    "MMLU-nonstem-sociology_test-23",
+    "MMLU-nonstem-world_religions_test-21",
+    "MMLU-nonstem-philosophy_test-25",
+    "MMLU-nonstem-business_ethics_test-19"
+  ],
+  "candidate_correct_but_blocked_task_ids": [
+    "MMLU-nonstem-philosophy_test-25"
+  ],
+  "subject_breakdown": {
+    "business_ethics": {
+      "records": 6,
+      "arg_correct": 5,
+      "hybrid_correct": 5,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "high_school_government_and_politics": {
+      "records": 6,
+      "arg_correct": 6,
+      "hybrid_correct": 6,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "high_school_world_history": {
+      "records": 6,
+      "arg_correct": 6,
+      "hybrid_correct": 6,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "logical_fallacies": {
+      "records": 6,
+      "arg_correct": 4,
+      "hybrid_correct": 4,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 2,
+      "delta": 0
+    },
+    "moral_disputes": {
+      "records": 6,
+      "arg_correct": 5,
+      "hybrid_correct": 5,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 1,
+      "delta": 0
+    },
+    "philosophy": {
+      "records": 6,
+      "arg_correct": 5,
+      "hybrid_correct": 5,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "sociology": {
+      "records": 6,
+      "arg_correct": 5,
+      "hybrid_correct": 5,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    },
+    "world_religions": {
+      "records": 6,
+      "arg_correct": 5,
+      "hybrid_correct": 5,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward": 0,
+      "delta": 0
+    }
+  },
+  "candidate_type_counts": {
+    "Option": 17,
+    "multiple-choice": 7,
+    "option": 8,
+    "option_binding_promptedge": 9,
+    "single": 3,
+    "single-choice": 4
+  },
+  "iterations_since_last_goal_check": [
+    "R391",
+    "R392",
+    "R393",
+    "R394",
+    "R395"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "larger_mixed_no_harm": true,
+    "larger_mixed_positive": false,
+    "error_taxonomy_required": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "larger_mixed_no_harm_claim_allowed": true,
+    "positive_mixed_nonmath_claim_allowed": false,
+    "error_taxonomy_allowed_next": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "api_cost": 0.26203,
+  "prompt_tokens": 21086,
+  "completion_tokens": 10440,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R397_larger_mixed_error_taxonomy",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_report.md"
+}

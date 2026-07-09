@@ -1,0 +1,188 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Using local MMLU_DATA_ROOT=/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/datasets/MMLU
+Number of topics:  57
+Total number of questions:  285
+Reusing 16 base tasks from /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/task_split_mmlu.json
+Generating cold-start data for 7 complex configurations...
+
+=== Processing configuration: Mode=FullConnected, Agent Nums=4 ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7662.53it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19922.22it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23392.53it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 39181.33it/s]
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:30<01:31, 30.44s/it] 50%|█████     | 2/4 [00:54<00:53, 26.84s/it] 75%|███████▌  | 3/4 [01:23<00:27, 27.79s/it]100%|██████████| 4/4 [01:43<00:00, 24.50s/it]100%|██████████| 4/4 [01:43<00:00, 25.79s/it]
+Accuracy: 100.0% (1/1)
+Accuracy: 50.0% (1/2)
+Accuracy: 66.7% (2/3)
+Accuracy: 75.0% (3/4)
+Accuracy: 80.0% (4/5)
+Accuracy: 83.3% (5/6)
+Accuracy: 71.4% (5/7)
+Accuracy: 75.0% (6/8)
+Accuracy: 77.8% (7/9)
+Accuracy: 70.0% (7/10)
+Accuracy: 72.7% (8/11)
+Accuracy: 75.0% (9/12)
+Accuracy: 76.9% (10/13)
+Accuracy: 78.6% (11/14)
+Accuracy: 80.0% (12/15)
+Accuracy: 81.2% (13/16)
+Accuracy: 81.2% (13/16)
+Finished Mode=FullConnected, Agent Nums=4, Accuracy: 0.81%
+
+=== Processing configuration: Mode=Mesh, Agent Nums=4 ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7168.68it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16935.06it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21003.13it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22312.43it/s]
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:14<00:43, 14.49s/it] 50%|█████     | 2/4 [00:30<00:30, 15.47s/it] 75%|███████▌  | 3/4 [00:51<00:17, 17.83s/it]100%|██████████| 4/4 [01:04<00:00, 16.09s/it]100%|██████████| 4/4 [01:04<00:00, 16.18s/it]
+Accuracy: 100.0% (1/1)
+Accuracy: 50.0% (1/2)
+Accuracy: 66.7% (2/3)
+Accuracy: 75.0% (3/4)
+Accuracy: 80.0% (4/5)
+Accuracy: 83.3% (5/6)
+Accuracy: 71.4% (5/7)
+Accuracy: 75.0% (6/8)
+Accuracy: 77.8% (7/9)
+Accuracy: 80.0% (8/10)
+Accuracy: 81.8% (9/11)
+Accuracy: 83.3% (10/12)
+Accuracy: 84.6% (11/13)
+Accuracy: 85.7% (12/14)
+Accuracy: 86.7% (13/15)
+Accuracy: 87.5% (14/16)
+Accuracy: 87.5% (14/16)
+Finished Mode=Mesh, Agent Nums=4, Accuracy: 0.88%
+
+=== Processing configuration: Mode=FullConnected, Agent Nums=3 ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7220.32it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14986.41it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19503.99it/s]
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:17<00:53, 17.88s/it] 50%|█████     | 2/4 [00:30<00:29, 14.95s/it] 75%|███████▌  | 3/4 [00:53<00:18, 18.42s/it]100%|██████████| 4/4 [01:08<00:00, 17.30s/it]100%|██████████| 4/4 [01:08<00:00, 17.23s/it]
+Accuracy: 100.0% (1/1)
+Accuracy: 50.0% (1/2)
+Accuracy: 66.7% (2/3)
+Accuracy: 75.0% (3/4)
+Accuracy: 80.0% (4/5)
+Accuracy: 83.3% (5/6)
+Accuracy: 71.4% (5/7)
+Accuracy: 75.0% (6/8)
+Accuracy: 77.8% (7/9)
+Accuracy: 70.0% (7/10)
+Accuracy: 72.7% (8/11)
+Accuracy: 75.0% (9/12)
+Accuracy: 76.9% (10/13)
+Accuracy: 78.6% (11/14)
+Accuracy: 80.0% (12/15)
+Accuracy: 81.2% (13/16)
+Accuracy: 81.2% (13/16)
+Finished Mode=FullConnected, Agent Nums=3, Accuracy: 0.81%
+
+=== Processing configuration: Mode=FullConnected, Agent Nums=6 ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 12733.24it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20888.37it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20783.86it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18287.83it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22972.10it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18826.57it/s]
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:41<02:03, 41.01s/it] 50%|█████     | 2/4 [01:10<01:08, 34.07s/it] 75%|███████▌  | 3/4 [02:08<00:44, 44.93s/it]100%|██████████| 4/4 [02:40<00:00, 39.92s/it]100%|██████████| 4/4 [02:40<00:00, 40.08s/it]
+Accuracy: 100.0% (1/1)
+Accuracy: 50.0% (1/2)
+Accuracy: 66.7% (2/3)
+Accuracy: 75.0% (3/4)
+Accuracy: 60.0% (3/5)
+Accuracy: 66.7% (4/6)
+Accuracy: 57.1% (4/7)
+Accuracy: 62.5% (5/8)
+Accuracy: 66.7% (6/9)
+Accuracy: 60.0% (6/10)
+Accuracy: 63.6% (7/11)
+Accuracy: 66.7% (8/12)
+Accuracy: 69.2% (9/13)
+Accuracy: 71.4% (10/14)
+Accuracy: 73.3% (11/15)
+Accuracy: 75.0% (12/16)
+Accuracy: 75.0% (12/16)
+Finished Mode=FullConnected, Agent Nums=6, Accuracy: 0.75%
+
+=== Processing configuration: Mode=Mesh, Agent Nums=6 ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20183.77it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17688.79it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19028.91it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 25776.45it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18396.07it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20563.25it/s]
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:28<01:24, 28.03s/it] 50%|█████     | 2/4 [00:56<00:56, 28.05s/it] 75%|███████▌  | 3/4 [01:31<00:31, 31.59s/it]100%|██████████| 4/4 [01:56<00:00, 28.75s/it]100%|██████████| 4/4 [01:56<00:00, 29.07s/it]
+Accuracy: 100.0% (1/1)
+Accuracy: 50.0% (1/2)
+Accuracy: 66.7% (2/3)
+Accuracy: 75.0% (3/4)
+Accuracy: 80.0% (4/5)
+Accuracy: 83.3% (5/6)
+Accuracy: 71.4% (5/7)
+Accuracy: 75.0% (6/8)
+Accuracy: 77.8% (7/9)
+Accuracy: 70.0% (7/10)
+Accuracy: 72.7% (8/11)
+Accuracy: 75.0% (9/12)
+Accuracy: 76.9% (10/13)
+Accuracy: 78.6% (11/14)
+Accuracy: 80.0% (12/15)
+Accuracy: 81.2% (13/16)
+Accuracy: 81.2% (13/16)
+Finished Mode=Mesh, Agent Nums=6, Accuracy: 0.81%
+
+=== Processing configuration: Mode=FullConnected, Agent Nums=5 ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7854.36it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 35615.28it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21937.40it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19162.27it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22357.47it/s]
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:17<00:53, 17.77s/it] 50%|█████     | 2/4 [00:29<00:28, 14.22s/it] 75%|███████▌  | 3/4 [00:50<00:17, 17.25s/it]100%|██████████| 4/4 [01:07<00:00, 17.06s/it]100%|██████████| 4/4 [01:07<00:00, 16.78s/it]
+Accuracy: 100.0% (1/1)
+Accuracy: 50.0% (1/2)
+Accuracy: 66.7% (2/3)
+Accuracy: 75.0% (3/4)
+Accuracy: 80.0% (4/5)
+Accuracy: 83.3% (5/6)
+Accuracy: 71.4% (5/7)
+Accuracy: 75.0% (6/8)
+Accuracy: 77.8% (7/9)
+Accuracy: 80.0% (8/10)
+Accuracy: 81.8% (9/11)
+Accuracy: 83.3% (10/12)
+Accuracy: 84.6% (11/13)
+Accuracy: 85.7% (12/14)
+Accuracy: 86.7% (13/15)
+Accuracy: 87.5% (14/16)
+Accuracy: 87.5% (14/16)
+Finished Mode=FullConnected, Agent Nums=5, Accuracy: 0.88%
+
+=== Processing configuration: Mode=Mesh, Agent Nums=5 ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19845.34it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 58435.45it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22469.10it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22974.54it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 25443.98it/s]
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:17<00:53, 17.75s/it] 50%|█████     | 2/4 [00:37<00:37, 18.97s/it] 75%|███████▌  | 3/4 [01:23<00:31, 31.38s/it]100%|██████████| 4/4 [01:49<00:00, 29.26s/it]100%|██████████| 4/4 [01:49<00:00, 27.43s/it]
+Accuracy: 100.0% (1/1)
+Accuracy: 50.0% (1/2)
+Accuracy: 66.7% (2/3)
+Accuracy: 75.0% (3/4)
+Accuracy: 80.0% (4/5)
+Accuracy: 83.3% (5/6)
+Accuracy: 71.4% (5/7)
+Accuracy: 75.0% (6/8)
+Accuracy: 77.8% (7/9)
+Accuracy: 70.0% (7/10)
+Accuracy: 72.7% (8/11)
+Accuracy: 75.0% (9/12)
+Accuracy: 76.9% (10/13)
+Accuracy: 78.6% (11/14)
+Accuracy: 80.0% (12/15)
+Accuracy: 81.2% (13/16)
+Accuracy: 81.2% (13/16)
+Finished Mode=Mesh, Agent Nums=5, Accuracy: 0.81%
+All cold-start data generation complete.

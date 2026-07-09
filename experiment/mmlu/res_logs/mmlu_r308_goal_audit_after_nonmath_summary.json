@@ -1,0 +1,97 @@
+{
+  "run_id": "R308",
+  "title": "Goal audit after non-math PromptNode expansion",
+  "claim_boundary": "Goal-audit checkpoint only. R308 does not train, does not call APIs, and does not add accuracy-bearing rules; it verifies that R303-R307 still serve the SCI-Q2 PromptNode graph-policy goal.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R303",
+    "R304",
+    "R305",
+    "R306",
+    "R307"
+  ],
+  "source_summaries": {
+    "r303": "experiment/mmlu/res_logs/mmlu_r303_audit_exclusion_protocol_summary.json",
+    "r304": "experiment/mmlu/res_logs/mmlu_r304_multi_trigger_safety_gate_summary.json",
+    "r305": "experiment/mmlu/res_logs/mmlu_r305_nonmath_promptnode_library_summary.json",
+    "r306": "experiment/mmlu/res_logs/mmlu_r306_nonmath_stack_eval_summary.json",
+    "r307": "experiment/mmlu/res_logs/mmlu_r307_controls_transfer_protocol_summary.json"
+  },
+  "current_best": {
+    "run": "R306",
+    "arg_main97": "88/97",
+    "r304_main97": "93/97",
+    "r306_main97": "95/97",
+    "delta_vs_arg": 7,
+    "delta_vs_r304": 2,
+    "r304_fix_harm_vs_arg": "5/0",
+    "r306_fix_harm_vs_r304": "2/0",
+    "cumulative_fix_harm_vs_arg": "7/0",
+    "audit_clean_score": "95/97",
+    "nonmath_switches": [
+      "MMLU-machine_learning_test-81",
+      "MMLU-conceptual_physics_test-41"
+    ]
+  },
+  "promptnode_coverage": {
+    "nonmath_node_types": [
+      "instruction_ambiguity_verifier",
+      "option_semantic_consistency_verifier",
+      "contradiction_detector",
+      "memory_bridge",
+      "adversarial_verifier",
+      "consensus_conflict_resolver"
+    ],
+    "candidate_type_counts": {
+      "conceptual_all_of_these_consistency": 1,
+      "instruction_ambiguity_verifier": 12,
+      "memory_bridge_required": 1,
+      "none": 85,
+      "option_semantic_consistency": 1
+    },
+    "nonmath_families_available": 6,
+    "nonmath_candidate_records": 15,
+    "math_symbolic_family_present": true,
+    "promptedge_required_next": true
+  },
+  "audit_exclusion_policy": {
+    "excluded_task_ids": [
+      "MMLU-college_chemistry_test-62",
+      "MMLU-high_school_physics_test-67",
+      "MMLU-high_school_statistics_test-32"
+    ],
+    "excluded_from_training_and_main_claim": true,
+    "appendix_only": true
+  },
+  "goal_alignment": {
+    "aligned_with_promptnode_goal": true,
+    "nonmath_promptnodes_added": true,
+    "math_patch_risk_reduced": true,
+    "audit_excluded_policy_respected": true,
+    "training_deferred_as_requested": true,
+    "controls_and_transfer_not_done": true,
+    "sci_q2_goal_not_yet_satisfied": true
+  },
+  "claim_permissions": {
+    "training_authorized": false,
+    "mmlu_main97_claim": "diagnostic_supported",
+    "transfer_generalization_claim": "not_yet_supported",
+    "sci_q2_ready": false,
+    "paper_main_claim_allowed": false
+  },
+  "risks": [
+    "R306 improves MMLU main97, but negative controls have not yet ruled out route-budget or random-forward effects.",
+    "The non-math library exists, but only two non-math switches currently affect accuracy; stronger coverage is needed before training.",
+    "AQuA and non-STEM transfer are still untested under the expanded node catalog.",
+    "PromptEdge constraints are specified conceptually, but not yet isolated in a control or ablation."
+  ],
+  "next_required_run": "R309_negative_controls",
+  "next_required_actions": [
+    "Run no-nonmath, random-forward, always-forward, no-safety-gate, random-type, and no-lifecycle controls.",
+    "Reject training if any cheap control matches or exceeds R306 without worse harm.",
+    "Then run per-node ablations and at least one non-AQuA/non-STEM transfer split before authorizing training."
+  ],
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r308_goal_audit_after_nonmath_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r308_goal_audit_after_nonmath_report.md"
+}

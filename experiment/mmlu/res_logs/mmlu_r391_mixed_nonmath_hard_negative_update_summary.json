@@ -1,0 +1,32 @@
+{
+  "run_id": "R391",
+  "title": "Mixed nonmath hard-negative update",
+  "claim_boundary": "R391 adds the R389 mixed-nonmath fix as a positive row and wrong-forwards as hard negatives. It is offline only and does not authorize API execution.",
+  "no_api": true,
+  "broad_api": false,
+  "base_records": 343,
+  "r389_added_records": 3,
+  "r389_hard_negative_records": 2,
+  "r389_positive_records": 1,
+  "manifest_records": 346,
+  "source_run_counts": {
+    "R304": 97,
+    "R306": 97,
+    "R312": 40,
+    "R325": 4,
+    "R352": 48,
+    "R354": 48,
+    "R369": 9,
+    "R389": 3
+  },
+  "feature_leakage_pass": true,
+  "feature_leakage_violations": [],
+  "api_execution_authorized_next": false,
+  "offline_retraining_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R392_retrain_after_mixed_nonmath_hard_negatives",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r391_graph_policy_manifest_with_mixed_nonmath_hard_negatives.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r391_mixed_nonmath_hard_negative_update_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r391_mixed_nonmath_hard_negative_update_report.md"
+}

@@ -1,0 +1,156 @@
+{
+  "run_id": "R410",
+  "title": "Nonmath curriculum analysis",
+  "claim_boundary": "R410 analyzes R409. It shows candidate-level signal but no deployed positive gain. It cannot support a positive nonmath claim.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 32,
+  "arg_correct": 27,
+  "hybrid_correct": 27,
+  "candidate_correct": 28,
+  "delta_correct": 0,
+  "candidate_oracle_delta": 1,
+  "candidate_oracle_fixes": 2,
+  "candidate_oracle_harms": 1,
+  "candidate_oracle_fix_task_ids": [
+    "MMLU-nonstem-sociology_test-10",
+    "MMLU-nonstem-logical_fallacies_test-9"
+  ],
+  "candidate_oracle_harm_task_ids": [
+    "MMLU-nonstem-sociology_test-8"
+  ],
+  "original_gate_replay": {
+    "hybrid_correct": 27,
+    "gate_forward_count": 2,
+    "fixes": 0,
+    "harms": 0,
+    "wrong_forward_count": 0,
+    "forward_task_ids": [
+      "MMLU-nonstem-world_religions_test-9",
+      "MMLU-nonstem-logical_fallacies_test-8"
+    ],
+    "fix_task_ids": [],
+    "harm_task_ids": [],
+    "wrong_forward_task_ids": []
+  },
+  "parser_repair": {
+    "label_but_zero_node_fields": 27,
+    "rationale_starts_json": 27,
+    "affected_task_ids": [
+      "MMLU-nonstem-business_ethics_test-10",
+      "MMLU-nonstem-business_ethics_test-11",
+      "MMLU-nonstem-business_ethics_test-8",
+      "MMLU-nonstem-business_ethics_test-9",
+      "MMLU-nonstem-high_school_government_and_politics_test-10",
+      "MMLU-nonstem-high_school_government_and_politics_test-11",
+      "MMLU-nonstem-high_school_government_and_politics_test-12",
+      "MMLU-nonstem-high_school_government_and_politics_test-13",
+      "MMLU-nonstem-high_school_world_history_test-10",
+      "MMLU-nonstem-high_school_world_history_test-12",
+      "MMLU-nonstem-high_school_world_history_test-13",
+      "MMLU-nonstem-logical_fallacies_test-10",
+      "MMLU-nonstem-logical_fallacies_test-11",
+      "MMLU-nonstem-logical_fallacies_test-9",
+      "MMLU-nonstem-moral_disputes_test-10",
+      "MMLU-nonstem-moral_disputes_test-11",
+      "MMLU-nonstem-moral_disputes_test-8",
+      "MMLU-nonstem-moral_disputes_test-9",
+      "MMLU-nonstem-philosophy_test-10",
+      "MMLU-nonstem-philosophy_test-11",
+      "MMLU-nonstem-philosophy_test-8",
+      "MMLU-nonstem-philosophy_test-9",
+      "MMLU-nonstem-sociology_test-10",
+      "MMLU-nonstem-sociology_test-9",
+      "MMLU-nonstem-world_religions_test-10",
+      "MMLU-nonstem-world_religions_test-11",
+      "MMLU-nonstem-world_religions_test-8"
+    ]
+  },
+  "parser_repair_replay": {
+    "hybrid_correct": 27,
+    "gate_forward_count": 4,
+    "fixes": 0,
+    "harms": 0,
+    "wrong_forward_count": 0,
+    "forward_task_ids": [
+      "MMLU-nonstem-world_religions_test-8",
+      "MMLU-nonstem-world_religions_test-9",
+      "MMLU-nonstem-philosophy_test-9",
+      "MMLU-nonstem-logical_fallacies_test-8"
+    ],
+    "fix_task_ids": [],
+    "harm_task_ids": [],
+    "wrong_forward_task_ids": []
+  },
+  "gate_block_reason_counts": {
+    "low_node_agreement": 27,
+    "adversarial_challenge_failed": 27,
+    "small_distractor_margin": 30,
+    "option_binding_contract_failed": 27,
+    "weak_memory_bridge": 27
+  },
+  "subject_breakdown": {
+    "business_ethics": {
+      "records": 4,
+      "arg_correct": 4,
+      "candidate_correct": 4,
+      "hybrid_correct": 4
+    },
+    "high_school_government_and_politics": {
+      "records": 4,
+      "arg_correct": 4,
+      "candidate_correct": 4,
+      "hybrid_correct": 4
+    },
+    "high_school_world_history": {
+      "records": 4,
+      "arg_correct": 4,
+      "candidate_correct": 4,
+      "hybrid_correct": 4
+    },
+    "logical_fallacies": {
+      "records": 4,
+      "arg_correct": 2,
+      "candidate_correct": 3,
+      "hybrid_correct": 2
+    },
+    "moral_disputes": {
+      "records": 4,
+      "arg_correct": 3,
+      "candidate_correct": 3,
+      "hybrid_correct": 3
+    },
+    "philosophy": {
+      "records": 4,
+      "arg_correct": 4,
+      "candidate_correct": 4,
+      "hybrid_correct": 4
+    },
+    "sociology": {
+      "records": 4,
+      "arg_correct": 2,
+      "candidate_correct": 2,
+      "hybrid_correct": 2
+    },
+    "world_religions": {
+      "records": 4,
+      "arg_correct": 4,
+      "candidate_correct": 4,
+      "hybrid_correct": 4
+    }
+  },
+  "claim_permissions": {
+    "positive_nonmath_claim_allowed": false,
+    "candidate_signal_claim_allowed": true,
+    "parser_repair_required": true,
+    "learned_gate_ablation_allowed_next": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R411_curriculum_gate_ablation_and_goal_audit",
+  "input_jsonl": "experiment/mmlu/run_logs/mmlu_r409_nonmath_curriculum_api_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r410_nonmath_curriculum_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r410_nonmath_curriculum_analysis_report.md"
+}

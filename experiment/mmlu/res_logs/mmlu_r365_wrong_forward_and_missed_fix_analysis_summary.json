@@ -1,0 +1,52 @@
+{
+  "run_id": "R365",
+  "title": "Wrong-forward and missed-fix analysis",
+  "claim_boundary": "R365 diagnoses why R363 gains only one item. It does not authorize more API; it identifies candidate quality and missing verifier families as the next bottlenecks.",
+  "no_api": true,
+  "broad_api": false,
+  "wrong_forward_count": 1,
+  "wrong_forward_task_ids": [
+    "MMLU-college_mathematics_test-15"
+  ],
+  "wrong_forward_subject_counts": {
+    "college_mathematics": 1
+  },
+  "missed_fix_count": 10,
+  "missed_fix_task_ids": [
+    "MMLU-college_mathematics_test-13",
+    "MMLU-high_school_physics_test-15",
+    "MMLU-high_school_physics_test-16",
+    "MMLU-high_school_chemistry_test-13",
+    "MMLU-college_chemistry_test-12",
+    "MMLU-college_chemistry_test-13",
+    "MMLU-college_chemistry_test-14",
+    "MMLU-college_chemistry_test-15",
+    "MMLU-nonstem-high_school_us_history_test-15",
+    "MMLU-nonstem-high_school_us_history_test-16"
+  ],
+  "missed_fix_subject_counts": {
+    "college_chemistry": 4,
+    "college_mathematics": 1,
+    "high_school_chemistry": 1,
+    "high_school_physics": 2,
+    "high_school_us_history": 2
+  },
+  "root_causes": [
+    "candidate_quality_not_gate_threshold_is_primary_bottleneck",
+    "single_candidate_forward_lacks_adversarial_verification",
+    "chemistry_and_physics_specialized_verifiers_missing",
+    "passage_history_entailment_verifier_too_weak"
+  ],
+  "recommended_next_design": [
+    "Add adversarial verifier edge for high-confidence single-candidate forwards.",
+    "Add chemistry/physics verifier candidates with stricter evidence contracts.",
+    "Add passage-entailment verifier for history tasks with quoted source text.",
+    "Keep R360 gate threshold conservative; improve candidate generation before relaxing it."
+  ],
+  "api_execution_authorized_next": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R366_goal_audit_after_source_invariant_fresh_eval",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r365_wrong_forward_and_missed_fix_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r365_wrong_forward_and_missed_fix_analysis_report.md"
+}

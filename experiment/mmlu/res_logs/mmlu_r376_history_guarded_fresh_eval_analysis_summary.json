@@ -1,0 +1,57 @@
+{
+  "run_id": "R376",
+  "title": "History-guarded fresh eval analysis",
+  "claim_boundary": "R376 analyzes R375. It supports no-harm on this fresh history subset, but no positive delta. The main bottleneck is candidate-to-edge option binding: the PromptNode often wrote a high-confidence rationale while leaving candidate_label empty.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 12,
+  "arg_correct": 6,
+  "hybrid_correct": 6,
+  "delta_correct": 0,
+  "arg_accuracy": 0.5,
+  "hybrid_accuracy": 0.5,
+  "gate_forward_count": 1,
+  "fixes": 0,
+  "harms": 0,
+  "wrong_forward_count": 1,
+  "missed_fix_count": 5,
+  "empty_candidate_high_confidence_count": 9,
+  "empty_candidate_high_confidence_missed_fix_count": 4,
+  "empty_candidate_explicit_true_option_count": 2,
+  "fix_task_ids": [],
+  "harm_task_ids": [],
+  "wrong_forward_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-23"
+  ],
+  "missed_fix_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-17",
+    "MMLU-nonstem-high_school_us_history_test-18",
+    "MMLU-nonstem-high_school_us_history_test-19",
+    "MMLU-nonstem-high_school_us_history_test-21",
+    "MMLU-nonstem-high_school_us_history_test-25"
+  ],
+  "option_binding_bottleneck_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-18",
+    "MMLU-nonstem-high_school_us_history_test-19",
+    "MMLU-nonstem-high_school_us_history_test-21",
+    "MMLU-nonstem-high_school_us_history_test-25"
+  ],
+  "explicit_true_option_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-21",
+    "MMLU-nonstem-high_school_us_history_test-26"
+  ],
+  "api_cost": 0.08161,
+  "prompt_tokens": 8630,
+  "completion_tokens": 2564,
+  "claim_permissions": {
+    "fresh_no_harm_claim_allowed": true,
+    "fresh_positive_delta_claim_allowed": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R377_option_binding_promptedge_replay",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r376_history_guarded_fresh_eval_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r376_history_guarded_fresh_eval_analysis_report.md"
+}

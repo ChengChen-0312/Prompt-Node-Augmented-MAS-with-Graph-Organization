@@ -1,0 +1,47 @@
+{
+  "run_id": "R468",
+  "title": "Submission readiness matrix",
+  "claim_boundary": "R468 separates locally ready manuscript artifacts from submission blockers. It does not execute blocked steps or authorize claims.",
+  "no_api": true,
+  "broad_api": false,
+  "matrix_md": "paper/artifacts/submission_readiness_matrix.md",
+  "readiness_matrix": {
+    "local_manuscript_artifacts": {
+      "status": "ready_local",
+      "evidence": "R460 confirms appendix, artifact index, and local smoke after polish.",
+      "next_action": "Keep synchronized while audits and template conversion proceed."
+    },
+    "source_package_manifest": {
+      "status": "ready_local",
+      "evidence": "R463 lists paper source files and exclusion patterns.",
+      "next_action": "Use for future JAIR/KAIS template conversion or manual review import."
+    },
+    "external_audits": {
+      "status": "blocked",
+      "evidence": "R464 lists three payloads but transmission_performed=false.",
+      "next_action": "Obtain explicit user authorization, then run/import experiment, claim, and citation reviews."
+    },
+    "pdf_compile": {
+      "status": "blocked",
+      "evidence": "R452 found no latexmk or pdflatex.",
+      "next_action": "Install or locate a TeX engine, then compile and visually inspect the PDF."
+    },
+    "official_jcr_verification": {
+      "status": "blocked",
+      "evidence": "R467 records public planning sources only; official_jcr_verification_completed=false.",
+      "next_action": "Verify JAIR/KAIS in official JCR or institutional Web of Science."
+    },
+    "journal_template_conversion": {
+      "status": "blocked",
+      "evidence": "R462 records JAIR/KAIS templates but template_conversion_performed=false.",
+      "next_action": "Convert after external audits settle claim scope."
+    }
+  },
+  "ready_local_count": 2,
+  "blocked_count": 4,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R469_local_smoke_after_jcr_readiness",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r468_submission_readiness_matrix_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r468_submission_readiness_matrix_report.md"
+}

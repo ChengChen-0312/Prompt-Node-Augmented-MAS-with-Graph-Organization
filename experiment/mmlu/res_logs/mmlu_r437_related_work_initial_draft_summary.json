@@ -1,0 +1,39 @@
+{
+  "run_id": "R437",
+  "title": "Related work initial draft",
+  "claim_boundary": "R437 drafts related work using R436 citation skeleton keys. It still requires citation-context audit before final manuscript use.",
+  "no_api": true,
+  "broad_api": false,
+  "referenced_sections": [
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex"
+  ],
+  "citation_keys_used": [
+    "chen2026goagent",
+    "li2026argdesigner",
+    "shen2025eiblearner",
+    "wang2025agentdropout",
+    "wang2026mas2",
+    "yun2026goa",
+    "zhang2025agentprune",
+    "zi2024prog"
+  ],
+  "missing_bib_keys": [],
+  "remaining_forbidden_hits": [],
+  "complete_initial_paper_draft": true,
+  "citation_context_audit_required_next": true,
+  "final_bib_authorized": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "backup_created": "paper-backup-r437-20260709-203201-968450",
+  "next_required_run": "R438_citation_context_static_audit",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r437_related_work_initial_draft_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r437_related_work_initial_draft_report.md"
+}

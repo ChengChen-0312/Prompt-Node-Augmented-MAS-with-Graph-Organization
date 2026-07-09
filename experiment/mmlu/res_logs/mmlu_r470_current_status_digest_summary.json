@@ -1,0 +1,24 @@
+{
+  "run_id": "R470",
+  "title": "Current status digest",
+  "claim_boundary": "R470 writes a concise status digest from existing evidence and readiness files. It does not add experiments or authorize submission claims.",
+  "no_api": true,
+  "broad_api": false,
+  "digest_md": "paper/artifacts/current_status_digest.md",
+  "local_ready_items": [
+    "local_manuscript_artifacts",
+    "source_package_manifest"
+  ],
+  "blocked_items": [
+    "external audits pending",
+    "pdf compile pending",
+    "official jcr verification pending",
+    "journal template conversion pending"
+  ],
+  "local_artifacts_ready": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R471_five_run_goal_audit_after_readiness_planning",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r470_current_status_digest_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r470_current_status_digest_report.md"
+}

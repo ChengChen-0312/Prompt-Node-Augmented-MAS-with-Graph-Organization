@@ -1,0 +1,31 @@
+{
+  "run_id": "R250",
+  "title": "Five-iteration SCI-Q2 goal audit",
+  "claim_boundary": "Audit only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "audit_window": ["R246", "R247", "R248", "R249"],
+  "goal_status_from_tool": "blocked_metadata_but_objective_used_as_active_reference",
+  "drift_detected": false,
+  "sci_q2_ready": false,
+  "decision_status": "aligned_continue_tiny_transfer_probe_preflight",
+  "api_status": "broad_api_blocked; tiny_api_allowed_only_after_R252_preflight_passes",
+  "supported_now": {
+    "aqua_offline_selector_signal": "supported_offline",
+    "promptnode_lifecycle_annotations": "supported_annotation_only",
+    "mmlu_transfer_feature_table": "supported_protocol_only",
+    "claim_matrix_updated": true
+  },
+  "unsupported_now": {
+    "promptedge_text_independent_gain": true,
+    "mmlu_transfer_accuracy_improvement": true,
+    "sci_q2_submission_readiness": true
+  },
+  "authorized_next": {
+    "R251": "select balanced MMLU transfer probe set from R248 errors and controls, no API",
+    "R252": "build dry-run prompt/graph manifests and leakage/cost checks, no API",
+    "R253": "only if R252 passes, run tiny same-model API diagnostic",
+    "R254": "analyze tiny transfer results with controls and cost",
+    "R255": "mandatory goal audit"
+  }
+}

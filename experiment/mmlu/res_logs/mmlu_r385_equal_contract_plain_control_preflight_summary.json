@@ -1,0 +1,21 @@
+{
+  "run_id": "R385",
+  "title": "Equal-contract plain control preflight",
+  "claim_boundary": "R385 builds a same-task plain control with the same structured answer contract as R380 but without PromptNode, PromptEdge, or graph terminology.",
+  "no_api": true,
+  "broad_api": false,
+  "tasks": 24,
+  "api_records": 24,
+  "planned_equal_contract_plain_calls": 24,
+  "same_task_set_as_r379": true,
+  "graph_terms_absent": true,
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R386_equal_contract_plain_control_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r385_equal_contract_plain_control_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r385_equal_contract_plain_control_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r385_equal_contract_plain_control_preflight_report.md"
+}

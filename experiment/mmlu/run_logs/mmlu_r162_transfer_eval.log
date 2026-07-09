@@ -1,0 +1,280 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Loading MMLU dataset...
+Loaded transfer split: 100 tasks from experiment/mmlu/mmlu_stem_transfer100.jsonl
+Loading Sentence Transformer model: sentence-transformers/all-MiniLM-L6-v2
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20863.15it/s]
+Loading pretrained model: /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159
+model_name ef_best
+Loaded precomputed embeddings: 6 entries
+Using provided role mapping: 6 roles
+TOKENS: START=6, END=7
+Evaluating model on MMLUTransferDataset
+  0%|          | 0/25 [00:00<?, ?it/s]  4%|▍         | 1/25 [00:33<13:21, 33.42s/it]  8%|▊         | 2/25 [00:55<10:21, 27.04s/it] 12%|█▏        | 3/25 [01:26<10:30, 28.64s/it] 16%|█▌        | 4/25 [01:53<09:48, 28.00s/it] 20%|██        | 5/25 [02:34<10:53, 32.67s/it] 24%|██▍       | 6/25 [02:56<09:08, 28.88s/it] 28%|██▊       | 7/25 [03:26<08:48, 29.38s/it] 32%|███▏      | 8/25 [04:08<09:28, 33.43s/it] 36%|███▌      | 9/25 [04:34<08:19, 31.22s/it] 40%|████      | 10/25 [04:55<06:57, 27.84s/it] 44%|████▍     | 11/25 [05:24<06:35, 28.25s/it] 48%|████▊     | 12/25 [05:54<06:13, 28.74s/it] 52%|█████▏    | 13/25 [06:19<05:32, 27.75s/it] 56%|█████▌    | 14/25 [06:46<05:02, 27.51s/it] 60%|██████    | 15/25 [07:11<04:26, 26.65s/it] 64%|██████▍   | 16/25 [07:32<03:45, 25.04s/it] 68%|██████▊   | 17/25 [07:50<03:03, 22.96s/it] 72%|███████▏  | 18/25 [08:11<02:37, 22.45s/it]--------------------------------------------------------------------------------
+Accuracy: 100.0% (1/1)
+Accuracy: None | Cost: $0.1175 | Tokens: P(11284), C(4070)
+Accuracy: 100.0% (2/2)
+Accuracy: None | Cost: $0.1175 | Tokens: P(11284), C(4070)
+Accuracy: 100.0% (3/3)
+Accuracy: None | Cost: $0.1175 | Tokens: P(11284), C(4070)
+Accuracy: 100.0% (4/4)
+Accuracy: None | Cost: $0.1175 | Tokens: P(11284), C(4070)
+Batch time: 33.415s
+--------------------------------------------------------------------------------
+Accuracy: 80.0% (4/5)
+Accuracy: None | Cost: $0.2217 | Tokens: P(22164), C(7390)
+Accuracy: 83.3% (5/6)
+Accuracy: None | Cost: $0.2217 | Tokens: P(22164), C(7390)
+Accuracy: 85.7% (6/7)
+Accuracy: None | Cost: $0.2217 | Tokens: P(22164), C(7390)
+Accuracy: 87.5% (7/8)
+Accuracy: None | Cost: $0.2217 | Tokens: P(22164), C(7390)
+Batch time: 22.572s
+--------------------------------------------------------------------------------
+Accuracy: 88.9% (8/9)
+Accuracy: None | Cost: $0.3629 | Tokens: P(35617), C(12322)
+Accuracy: 90.0% (9/10)
+Accuracy: None | Cost: $0.3629 | Tokens: P(35617), C(12322)
+Accuracy: 90.9% (10/11)
+Accuracy: None | Cost: $0.3629 | Tokens: P(35617), C(12322)
+Accuracy: 91.7% (11/12)
+Accuracy: None | Cost: $0.3629 | Tokens: P(35617), C(12322)
+Batch time: 30.547s
+--------------------------------------------------------------------------------
+Accuracy: 92.3% (12/13)
+Accuracy: None | Cost: $0.4750 | Tokens: P(46779), C(16072)
+Accuracy: 92.9% (13/14)
+Accuracy: None | Cost: $0.4750 | Tokens: P(46779), C(16072)
+Accuracy: 93.3% (14/15)
+Accuracy: None | Cost: $0.4750 | Tokens: P(46779), C(16072)
+Accuracy: 93.8% (15/16)
+Accuracy: None | Cost: $0.4750 | Tokens: P(46779), C(16072)
+Batch time: 27.026s
+--------------------------------------------------------------------------------
+Accuracy: 94.1% (16/17)
+Accuracy: None | Cost: $0.6805 | Tokens: P(66943), C(23055)
+Accuracy: 94.4% (17/18)
+Accuracy: None | Cost: $0.6805 | Tokens: P(66943), C(23055)
+Accuracy: 94.7% (18/19)
+Accuracy: None | Cost: $0.6805 | Tokens: P(66943), C(23055)
+Accuracy: 95.0% (19/20)
+Accuracy: None | Cost: $0.6805 | Tokens: P(66943), C(23055)
+Batch time: 40.957s
+--------------------------------------------------------------------------------
+Accuracy: 95.2% (20/21)
+Accuracy: None | Cost: $0.8016 | Tokens: P(78540), C(27257)
+Accuracy: 90.9% (20/22)
+Accuracy: None | Cost: $0.8016 | Tokens: P(78540), C(27257)
+Accuracy: 91.3% (21/23)
+Accuracy: None | Cost: $0.8016 | Tokens: P(78540), C(27257)
+Accuracy: 91.7% (22/24)
+Accuracy: None | Cost: $0.8016 | Tokens: P(78540), C(27257)
+Batch time: 21.509s
+--------------------------------------------------------------------------------
+Accuracy: 92.0% (23/25)
+Accuracy: None | Cost: $0.9095 | Tokens: P(89393), C(30837)
+Accuracy: 92.3% (24/26)
+Accuracy: None | Cost: $0.9095 | Tokens: P(89393), C(30837)
+Accuracy: 92.6% (25/27)
+Accuracy: None | Cost: $0.9095 | Tokens: P(89393), C(30837)
+Accuracy: 92.9% (26/28)
+Accuracy: None | Cost: $0.9095 | Tokens: P(89393), C(30837)
+Batch time: 30.416s
+--------------------------------------------------------------------------------
+Accuracy: 93.1% (27/29)
+Accuracy: None | Cost: $1.0507 | Tokens: P(103306), C(35608)
+Accuracy: 93.3% (28/30)
+Accuracy: None | Cost: $1.0507 | Tokens: P(103306), C(35608)
+Accuracy: 90.3% (28/31)
+Accuracy: None | Cost: $1.0507 | Tokens: P(103306), C(35608)
+Accuracy: 87.5% (28/32)
+Accuracy: None | Cost: $1.0507 | Tokens: P(103306), C(35608)
+Batch time: 42.085s
+--------------------------------------------------------------------------------
+Accuracy: 87.9% (29/33)
+Accuracy: None | Cost: $1.1718 | Tokens: P(115833), C(39511)
+Accuracy: 88.2% (30/34)
+Accuracy: None | Cost: $1.1718 | Tokens: P(115833), C(39511)
+Accuracy: 88.6% (31/35)
+Accuracy: None | Cost: $1.1718 | Tokens: P(115833), C(39511)
+Accuracy: 88.9% (32/36)
+Accuracy: None | Cost: $1.1718 | Tokens: P(115833), C(39511)
+Batch time: 26.376s
+--------------------------------------------------------------------------------
+Accuracy: 89.2% (33/37)
+Accuracy: None | Cost: $1.2618 | Tokens: P(124955), C(42467)
+Accuracy: 89.5% (34/38)
+Accuracy: None | Cost: $1.2618 | Tokens: P(124955), C(42467)
+Accuracy: 89.7% (35/39)
+Accuracy: None | Cost: $1.2618 | Tokens: P(124955), C(42467)
+Accuracy: 90.0% (36/40)
+Accuracy: None | Cost: $1.2618 | Tokens: P(124955), C(42467)
+Batch time: 20.273s
+--------------------------------------------------------------------------------
+Accuracy: 90.2% (37/41)
+Accuracy: None | Cost: $1.3901 | Tokens: P(137654), C(46789)
+Accuracy: 90.5% (38/42)
+Accuracy: None | Cost: $1.3901 | Tokens: P(137654), C(46789)
+Accuracy: 90.7% (39/43)
+Accuracy: None | Cost: $1.3901 | Tokens: P(137654), C(46789)
+Accuracy: 90.9% (40/44)
+Accuracy: None | Cost: $1.3901 | Tokens: P(137654), C(46789)
+Batch time: 29.168s
+--------------------------------------------------------------------------------
+Accuracy: 91.1% (41/45)
+Accuracy: None | Cost: $1.4807 | Tokens: P(145887), C(50081)
+Accuracy: 91.3% (42/46)
+Accuracy: None | Cost: $1.4807 | Tokens: P(145887), C(50081)
+Accuracy: 91.5% (43/47)
+Accuracy: None | Cost: $1.4807 | Tokens: P(145887), C(50081)
+Accuracy: 89.6% (43/48)
+Accuracy: None | Cost: $1.4807 | Tokens: P(145887), C(50081)
+Batch time: 29.879s
+--------------------------------------------------------------------------------
+Accuracy: 89.8% (44/49)
+Accuracy: None | Cost: $1.6146 | Tokens: P(159738), C(54392)
+Accuracy: 90.0% (45/50)
+Accuracy: None | Cost: $1.6146 | Tokens: P(159738), C(54392)
+Accuracy: 90.2% (46/51)
+Accuracy: None | Cost: $1.6146 | Tokens: P(159738), C(54392)
+Accuracy: 90.4% (47/52)
+Accuracy: None | Cost: $1.6146 | Tokens: P(159738), C(54392)
+Batch time: 25.456s
+--------------------------------------------------------------------------------
+Accuracy: 88.7% (47/53)
+Accuracy: None | Cost: $1.7353 | Tokens: P(172403), C(58218)
+Accuracy: 88.9% (48/54)
+Accuracy: None | Cost: $1.7353 | Tokens: P(172403), C(58218)
+Accuracy: 87.3% (48/55)
+Accuracy: None | Cost: $1.7353 | Tokens: P(172403), C(58218)
+Accuracy: 87.5% (49/56)
+Accuracy: None | Cost: $1.7353 | Tokens: P(172403), C(58218)
+Batch time: 26.964s
+--------------------------------------------------------------------------------
+Accuracy: 87.7% (50/57)
+Accuracy: None | Cost: $1.8915 | Tokens: P(187274), C(63676)
+Accuracy: 87.9% (51/58)
+Accuracy: None | Cost: $1.8915 | Tokens: P(187274), C(63676)
+Accuracy: 88.1% (52/59)
+Accuracy: None | Cost: $1.8915 | Tokens: P(187274), C(63676)
+Accuracy: 86.7% (52/60)
+Accuracy: None | Cost: $1.8915 | Tokens: P(187274), C(63676)
+Batch time: 24.664s
+--------------------------------------------------------------------------------
+Accuracy: 86.9% (53/61)
+Accuracy: None | Cost: $2.0044 | Tokens: P(198565), C(67441)
+Accuracy: 87.1% (54/62)
+Accuracy: None | Cost: $2.0044 | Tokens: P(198565), C(67441)
+Accuracy: 87.3% (55/63)
+Accuracy: None | Cost: $2.0044 | Tokens: P(198565), C(67441)
+Accuracy: 87.5% (56/64)
+Accuracy: None | Cost: $2.0044 | Tokens: P(198565), C(67441)
+Batch time: 21.279s
+--------------------------------------------------------------------------------
+Accuracy: 87.7% (57/65)
+Accuracy: None | Cost: $2.0948 | Tokens: P(207410), C(70514)
+Accuracy: 87.9% (58/66)
+Accuracy: None | Cost: $2.0948 | Tokens: P(207410), C(70514)
+Accuracy: 88.1% (59/67)
+Accuracy: None | Cost: $2.0948 | Tokens: P(207410), C(70514)
+Accuracy: 88.2% (60/68)
+Accuracy: None | Cost: $2.0948 | Tokens: P(207410), C(70514)
+Batch time: 18.120s
+--------------------------------------------------------------------------------
+Accuracy: 88.4% (61/69)
+Accuracy: None | Cost: $2.1945 | Tokens: P(217093), C(73937)
+Accuracy: 88.6% (62/70)
+Accuracy: None | Cost: $2.1945 | Tokens: P(217093), C(73937)
+Accuracy: 88.7% (63/71)
+Accuracy: None | Cost: $2.1945 | Tokens: P(217093), C(73937)
+Accuracy: 88.9% (64/72)
+Accuracy: None | Cost: $2.1945 | Tokens: P(217093), C(73937)
+Batch time: 21.287s
+--------------------------------------------------------------------------------
+Accuracy: 89.0% (65/73)
+Accuracy: None | Cost: $2.3008 | Tokens: P(227927), C(77409)
+Accuracy: 89.2% (66/74)
+Accuracy: None | Cost: $2.3008 | Tokens: P(227927), C(77409)
+Accuracy: 89.3% (67/75)
+Accuracy: None | Cost: $2.3008 | Tokens: P(227927), C(77409) 76%|███████▌  | 19/25 [08:34<02:14, 22.38s/it] 80%|████████  | 20/25 [08:58<01:55, 23.05s/it] 84%|████████▍ | 21/25 [09:27<01:39, 24.77s/it] 88%|████████▊ | 22/25 [09:55<01:17, 25.69s/it] 92%|█████████▏| 23/25 [10:25<00:53, 26.91s/it] 96%|█████████▌| 24/25 [10:47<00:25, 25.65s/it]100%|██████████| 25/25 [11:14<00:00, 26.03s/it]100%|██████████| 25/25 [11:14<00:00, 26.99s/it]
+
+Accuracy: 89.5% (68/76)
+Accuracy: None | Cost: $2.3008 | Tokens: P(227927), C(77409)
+Batch time: 22.201s
+--------------------------------------------------------------------------------
+Accuracy: 89.6% (69/77)
+Accuracy: None | Cost: $2.3961 | Tokens: P(237596), C(80543)
+Accuracy: 89.7% (70/78)
+Accuracy: None | Cost: $2.3961 | Tokens: P(237596), C(80543)
+Accuracy: 89.9% (71/79)
+Accuracy: None | Cost: $2.3961 | Tokens: P(237596), C(80543)
+Accuracy: 88.8% (71/80)
+Accuracy: None | Cost: $2.3961 | Tokens: P(237596), C(80543)
+Batch time: 24.626s
+--------------------------------------------------------------------------------
+Accuracy: 88.9% (72/81)
+Accuracy: None | Cost: $2.5264 | Tokens: P(250593), C(84893)
+Accuracy: 89.0% (73/82)
+Accuracy: None | Cost: $2.5264 | Tokens: P(250593), C(84893)
+Accuracy: 89.2% (74/83)
+Accuracy: None | Cost: $2.5264 | Tokens: P(250593), C(84893)
+Accuracy: 88.1% (74/84)
+Accuracy: None | Cost: $2.5264 | Tokens: P(250593), C(84893)
+Batch time: 28.785s
+--------------------------------------------------------------------------------
+Accuracy: 88.2% (75/85)
+Accuracy: None | Cost: $2.6587 | Tokens: P(263349), C(89462)
+Accuracy: 88.4% (76/86)
+Accuracy: None | Cost: $2.6587 | Tokens: P(263349), C(89462)
+Accuracy: 88.5% (77/87)
+Accuracy: None | Cost: $2.6587 | Tokens: P(263349), C(89462)
+Accuracy: 88.6% (78/88)
+Accuracy: None | Cost: $2.6587 | Tokens: P(263349), C(89462)
+Batch time: 27.821s
+--------------------------------------------------------------------------------
+Accuracy: 87.6% (78/89)
+Accuracy: None | Cost: $2.8410 | Tokens: P(281031), C(95722)
+Accuracy: 87.8% (79/90)
+Accuracy: None | Cost: $2.8410 | Tokens: P(281031), C(95722)
+Accuracy: 86.8% (79/91)
+Accuracy: None | Cost: $2.8410 | Tokens: P(281031), C(95722)
+Accuracy: 87.0% (80/92)
+Accuracy: None | Cost: $2.8410 | Tokens: P(281031), C(95722)
+Batch time: 29.758s
+--------------------------------------------------------------------------------
+Accuracy: 87.1% (81/93)
+Accuracy: None | Cost: $2.9422 | Tokens: P(292090), C(98783)
+Accuracy: 87.2% (82/94)
+Accuracy: None | Cost: $2.9422 | Tokens: P(292090), C(98783)
+Accuracy: 87.4% (83/95)
+Accuracy: None | Cost: $2.9422 | Tokens: P(292090), C(98783)
+Accuracy: 87.5% (84/96)
+Accuracy: None | Cost: $2.9422 | Tokens: P(292090), C(98783)
+Batch time: 22.718s
+--------------------------------------------------------------------------------
+Accuracy: 87.6% (85/97)
+Accuracy: None | Cost: $3.0421 | Tokens: P(301696), C(102244)
+Accuracy: 87.8% (86/98)
+Accuracy: None | Cost: $3.0421 | Tokens: P(301696), C(102244)
+Accuracy: 87.9% (87/99)
+Accuracy: None | Cost: $3.0421 | Tokens: P(301696), C(102244)
+Accuracy: 88.0% (88/100)
+Accuracy: None | Cost: $3.0421 | Tokens: P(301696), C(102244)
+Batch time: 26.905s
+Accuracy: 88.0% (88/100)
+Evaluation complete!
+
+==================================================
+Evaluation Summary
+Model path: /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159
+Total tasks: 100
+Final accuracy (Pass@1): 0.88%
+--------------------------------------------------
+Total cost: $3.042140
+Total Prompt Tokens: 301696
+Total Completion Tokens: 102244
+--------------------------------------------------
+Detailed CSV results saved to: ARGDesigner_results.csv
+Detailed JSONL results saved to: experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl
+Summary log appended to: experiment/mmlu/res_logs/mmlu_r162_transfer_eval_summary.jsonl
+==================================================

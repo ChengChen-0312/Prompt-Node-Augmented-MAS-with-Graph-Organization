@@ -1,0 +1,74 @@
+{
+  "run_id": "R216",
+  "title": "Leakage-safe non-abstain router-final target design",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "Design only; no new target export, no API, and no accuracy claim.",
+  "source_evidence": {
+    "r112_first200": {
+      "rows": 200,
+      "switch_to_objective": 11,
+      "field_violations": 0,
+      "role": "training/proxy source only"
+    },
+    "r096_tail34": {
+      "rows": 34,
+      "switch_to_objective": 2,
+      "switch_tasks": ["task_108", "task_250"],
+      "field_violations": 0,
+      "role": "frozen eval target only"
+    },
+    "r109_rule": {
+      "rule": "switch_to_objective iff objective_prediction_differs_from_baseline and (objective_top_score>=3 or baseline_direct_votes_split)",
+      "target_agreement": "34/34",
+      "role": "rule specification"
+    },
+    "r113_proxy": {
+      "train_target_agreement": "200/200",
+      "frozen_tail34_target_agreement": "34/34",
+      "role": "target-agreement evidence only"
+    }
+  },
+  "proposed_mapping": {
+    "fallback_to_arg": {
+      "router_action": "abstain",
+      "target_option_label": "NONE"
+    },
+    "switch_to_objective": {
+      "router_action": "switch_to_objective",
+      "target_option_label": "policy_input.objective_prediction"
+    }
+  },
+  "model_visible_fields": [
+    "policy_input.baseline_prediction",
+    "policy_input.objective_prediction",
+    "policy_input.objective_prediction_differs_from_baseline",
+    "policy_input.objective_top_score",
+    "policy_input.baseline_direct_majority",
+    "policy_input.baseline_direct_majority_count",
+    "policy_input.baseline_direct_valid_vote_count",
+    "policy_input.baseline_direct_votes_split",
+    "promptedge_permissions",
+    "router_final_schema.allowed_option_labels"
+  ],
+  "forbidden_fields": [
+    "task_id",
+    "analysis",
+    "clean_label",
+    "gold_binding_status",
+    "rationale_issue",
+    "true_answer",
+    "is_correct",
+    "correctness",
+    "audit_label",
+    "source_run"
+  ],
+  "risk_controls": [
+    "tail34 R096/R109 must not be used for training",
+    "objective_prediction is a candidate label from model traces, not a gold label",
+    "target export must keep task_id only as metadata and exclude it from model_visible_fields",
+    "non-abstain labels must be evaluated with fix/harm and clean fix/harm",
+    "MMLU transfer claim remains blocked until a held-out random slice improves"
+  ],
+  "next": "R217 implement extractor tests and leakage scan for candidate non-abstain labels."
+}

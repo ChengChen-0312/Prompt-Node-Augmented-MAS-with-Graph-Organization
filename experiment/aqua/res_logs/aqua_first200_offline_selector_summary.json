@@ -1,0 +1,22 @@
+{
+  "total_tasks": 200,
+  "solved_tasks": 171,
+  "pass_at_1": 85.5,
+  "baseline_solved_tasks": 165,
+  "baseline_pass_at_1": 82.5,
+  "ensemble_solved_tasks": 170,
+  "ensemble_pass_at_1": 85.0,
+  "delta_vs_baseline": 6,
+  "delta_vs_ensemble": 1,
+  "fixes_vs_baseline": 6,
+  "harms_vs_baseline": 0,
+  "ensemble_switches": 11,
+  "rule": {
+    "name": "ensemble_if_baseline_invalid"
+  },
+  "slice_prefixes": [
+    "aqua_100",
+    "aqua_next100"
+  ],
+  "note": "Same rule learned independently by aqua_100->aqua_next100 and aqua_next100->aqua_100 cross-slice replays."
+}

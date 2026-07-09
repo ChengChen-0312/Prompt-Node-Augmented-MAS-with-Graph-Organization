@@ -1,0 +1,60 @@
+{
+  "run_id": "R344",
+  "title": "Goal audit after answer-bearing candidate generator probe",
+  "claim_boundary": "R344 is the five-iteration audit after R339-R343. It keeps the work aligned with the SCI-Q2 goal by blocking same-design prompt-only verifier expansion and redirecting to general, tool-backed PromptNodes.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R339",
+    "R340",
+    "R341",
+    "R342",
+    "R343"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_baseline_preserved": true,
+    "candidate_design_preflight_done": true,
+    "bounded_probe_executed": true,
+    "same_prompt_only_path_blocked": true,
+    "promptnode_not_dataset_patch": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "tool_backed_promptnode_design_allowed": true,
+    "symbolic_promptedge_design_allowed": true,
+    "more_api_same_prompt_design_allowed": false,
+    "answer_bearing_generator_improvement_claim_allowed": false,
+    "broad_general_promptnode_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Replace prompt-only answer-bearing verifier expansion with tool-backed or symbolic PromptNodes.",
+    "Keep virtual nodes general: verifier families must be selected by task features, not task IDs or known labels.",
+    "Treat PromptEdge as executable contracts: required evidence, option-by-option check, and reject-if-unverified.",
+    "Run a no-API design/preflight before spending more API on prospective transfer."
+  ],
+  "evidence_snapshot": {
+    "r339_root_causes": [
+      "no_answer_bearing_candidates",
+      "over_conservative_switch_contract",
+      "candidate_library_does_not_cover_prospective_stem_errors"
+    ],
+    "r342_candidate_repairs": 0,
+    "r343_root_causes": [
+      "answer_bearing_candidates_not_reliable",
+      "verifier_candidates_follow_wrong_baseline",
+      "weak_or_non_executable_evidence",
+      "prompt_only_answer_verifiers_not_sufficient"
+    ],
+    "r343_failed_tasks": [
+      "MMLU-high_school_mathematics_test-0",
+      "MMLU-college_mathematics_test-1",
+      "MMLU-college_mathematics_test-2",
+      "MMLU-college_chemistry_test-3"
+    ]
+  },
+  "next_required_run": "R345_tool_backed_promptnode_verifier_design",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r344_goal_audit_after_candidate_generator_probe_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r344_goal_audit_after_candidate_generator_probe_report.md"
+}

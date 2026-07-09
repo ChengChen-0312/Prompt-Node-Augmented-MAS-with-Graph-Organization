@@ -1,0 +1,43 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+/Users/chencheng/Downloads/论文/ARG-Designer-main/mas_framework/prompt/gsm8k_prompt_set.py:32: SyntaxWarning: invalid escape sequence '\('
+  "The last line of code calls the function you wrote and assigns the return value to the \(answer\) variable. "
+/Users/chencheng/Downloads/论文/ARG-Designer-main/mas_framework/prompt/AQuA_prompt_set.py:50: SyntaxWarning: invalid escape sequence '\('
+  "The last line of code calls the function you wrote and assigns the return value to the \(answer\) variable. "
+/Users/chencheng/Downloads/论文/ARG-Designer-main/mas_framework/prompt/AQuA_prompt_set.py:100: SyntaxWarning: invalid escape sequence '\/'
+  Thus, (1 house) = (Mary\u2019s rate) x (4 hr), so her rate is 1\/4.\nWhen Mary & Lisa paint together, it takes 3 hrs.
+/Users/chencheng/Downloads/论文/ARG-Designer-main/datasets/gsm8k_dataset.py:75: SyntaxWarning: invalid escape sequence '\d'
+  pattern = '-?\d*\.?\d+'
+/Users/chencheng/Downloads/论文/ARG-Designer-main/datasets/gsm8k_dataset.py:234: SyntaxWarning: invalid escape sequence '\%'
+  string = string.replace("\%", "")
+/Users/chencheng/Downloads/论文/ARG-Designer-main/datasets/aqua_dataset.py:209: SyntaxWarning: invalid escape sequence '\%'
+  string = string.replace("\%", "")
+/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_prompt_set.py:21: SyntaxWarning: invalid escape sequence '\('
+  "The last line of code calls the function you wrote and assigns the return value to the \(answer\) variable. "
+Loading model and tools...
+Loaded precomputed embeddings: 7 entries
+Using provided role mapping: 7 roles
+TOKENS: START=7, END=8
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6646.46it/s]
+2026-07-08 12:00:57.995 | INFO     | mas_framework.tools.reader.readers:parse_file:106 - Reading JSON Lines file from ../../datasets/AQuA/AQuA.jsonl.
+Loaded 1 Aqua test samples for evaluation.
+
+Evaluating model:   0%|          | 0/1 [00:00<?, ?it/s]
+Evaluating model:   0%|          | 0/1 [00:27<?, ?it/s, Accuracy=100.00% (1/1), Token=$2780.0000]
+Evaluating model: 100%|██████████| 1/1 [00:27<00:00, 27.31s/it, Accuracy=100.00% (1/1), Token=$2780.0000]
+Evaluating model: 100%|██████████| 1/1 [00:27<00:00, 27.31s/it, Accuracy=100.00% (1/1), Token=$2780.0000]
+
+==================================================
+Evaluation Summary
+Model path: output/aqua_pn_router_contract_model_20260708-030015
+Total tasks: 1, Solved: 1, Pass@1: 100.00%
+--------------------------------------------------
+Total cost: $0.045880
+Total Prompt Tokens: 2780
+Total Completion Tokens: 2132
+--------------------------------------------------
+Detailed results saved to: aqua_tail34_pn_router_contract_preflight1_results.jsonl
+Summary appended to: res_logs/aqua_tail34_pn_router_contract_preflight1_summary.jsonl
+==================================================

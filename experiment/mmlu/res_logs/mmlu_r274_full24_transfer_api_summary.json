@@ -1,0 +1,115 @@
+{
+  "records": 120,
+  "evaluated_records": 120,
+  "correct": 65,
+  "accuracy": 0.5416666666666666,
+  "fixes": 9,
+  "harms": 4,
+  "api_required": 72,
+  "api_executed": 72,
+  "api_errors": 0,
+  "api_cost": 0.163695,
+  "prompt_tokens": 19122,
+  "completion_tokens": 4539,
+  "variant_counts": {
+    "abstain_keep_arg": 24,
+    "arg_baseline_fixed": 24,
+    "node_only_no_promptedge_text": 24,
+    "plain_requery": 24,
+    "proposed_promptnode_promptedge": 24
+  },
+  "by_variant": {
+    "abstain_keep_arg": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 12,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0,
+      "api_required": 0,
+      "api_executed": 0,
+      "api_errors": 0
+    },
+    "arg_baseline_fixed": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 12,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0,
+      "api_required": 0,
+      "api_executed": 0,
+      "api_errors": 0
+    },
+    "node_only_no_promptedge_text": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 13,
+      "accuracy": 0.5416666666666666,
+      "fixes": 3,
+      "harms": 2,
+      "api_required": 24,
+      "api_executed": 24,
+      "api_errors": 0
+    },
+    "plain_requery": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 15,
+      "accuracy": 0.625,
+      "fixes": 3,
+      "harms": 0,
+      "api_required": 24,
+      "api_executed": 24,
+      "api_errors": 0
+    },
+    "proposed_promptnode_promptedge": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 13,
+      "accuracy": 0.5416666666666666,
+      "fixes": 3,
+      "harms": 2,
+      "api_required": 24,
+      "api_executed": 24,
+      "api_errors": 0
+    }
+  },
+  "by_selection_role": {
+    "arg_error": {
+      "records": 60,
+      "evaluated_records": 60,
+      "correct": 9,
+      "accuracy": 0.15,
+      "fixes": 9,
+      "harms": 0,
+      "api_required": 36,
+      "api_executed": 36,
+      "api_errors": 0
+    },
+    "matched_control": {
+      "records": 60,
+      "evaluated_records": 60,
+      "correct": 56,
+      "accuracy": 0.9333333333333333,
+      "fixes": 0,
+      "harms": 4,
+      "api_required": 36,
+      "api_executed": 36,
+      "api_errors": 0
+    }
+  },
+  "run_id": "R274",
+  "title": "MMLU full24 transfer API diagnostic",
+  "claim_boundary": "Full24 same-model diagnostic only; selector replay and claim audit required before transfer claims.",
+  "model": "gpt-4o-2024-08-06",
+  "records_jsonl": "experiment/mmlu/run_logs/mmlu_r273_full24_transfer_preflight_records.jsonl",
+  "preflight_json": "experiment/mmlu/res_logs/mmlu_r273_full24_transfer_preflight_summary.json",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r274_full24_transfer_api_results.jsonl",
+  "env_file": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/benchmark_config/.env",
+  "env_values_logged": false,
+  "no_api": false,
+  "broad_api": false,
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r274_full24_transfer_api_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r274_full24_transfer_api_report.md"
+}

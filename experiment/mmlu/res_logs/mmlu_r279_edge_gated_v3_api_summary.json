@@ -1,0 +1,55 @@
+{
+  "run_id": "R279",
+  "title": "MMLU full24 edge-gated v3 API diagnostic",
+  "claim_boundary": "Prospective full24 v3 diagnostic only; compare with R274 controls before any transfer claim.",
+  "records": 48,
+  "evaluated_records": 48,
+  "correct": 26,
+  "accuracy": 0.5416666666666666,
+  "fixes": 3,
+  "harms": 1,
+  "api_required": 24,
+  "api_executed": 24,
+  "api_errors": 0,
+  "api_cost": 0.09823,
+  "prompt_tokens": 10430,
+  "completion_tokens": 3072,
+  "variant_counts": {
+    "arg_baseline_fixed": 24,
+    "proposed_v3_edge_gated_pnpe": 24
+  },
+  "by_variant": {
+    "arg_baseline_fixed": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 12,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0,
+      "switches": 0,
+      "api_required": 0,
+      "api_executed": 0,
+      "api_errors": 0
+    },
+    "proposed_v3_edge_gated_pnpe": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 14,
+      "accuracy": 0.5833333333333334,
+      "fixes": 3,
+      "harms": 1,
+      "switches": 6,
+      "api_required": 24,
+      "api_executed": 24,
+      "api_errors": 0
+    }
+  },
+  "model": "gpt-4o-2024-08-06",
+  "records_jsonl": "experiment/mmlu/run_logs/mmlu_r278_edge_gated_v3_preflight_records.jsonl",
+  "preflight_json": "experiment/mmlu/res_logs/mmlu_r278_edge_gated_v3_preflight_summary.json",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r279_edge_gated_v3_api_results.jsonl",
+  "env_file": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/benchmark_config/.env",
+  "env_values_logged": false,
+  "no_api": false,
+  "broad_api": false
+}

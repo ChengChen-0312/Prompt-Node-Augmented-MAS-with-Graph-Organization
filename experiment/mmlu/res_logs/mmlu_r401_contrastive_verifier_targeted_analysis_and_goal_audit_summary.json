@@ -1,0 +1,50 @@
+{
+  "run_id": "R401",
+  "title": "Contrastive verifier targeted analysis and goal audit",
+  "claim_boundary": "R401 analyzes R400 and audits the R397-R400 contrastive branch. The contrastive path failed safely: it produced no forwarded labels and therefore should not be integrated.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 7,
+  "candidate_label_count": 0,
+  "candidate_correct_count": 0,
+  "candidate_repairs_arg_count": 0,
+  "candidate_would_harm_arg_count": 0,
+  "contract_pass_count": 6,
+  "contract_inconsistency_count": 6,
+  "contract_inconsistency_task_ids": [
+    "MMLU-nonstem-moral_disputes_test-24",
+    "MMLU-nonstem-logical_fallacies_test-17",
+    "MMLU-nonstem-logical_fallacies_test-18",
+    "MMLU-nonstem-philosophy_test-25",
+    "MMLU-nonstem-sociology_test-23",
+    "MMLU-nonstem-world_religions_test-21"
+  ],
+  "iterations_since_last_goal_check": [
+    "R397",
+    "R398",
+    "R399",
+    "R400"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "contrastive_path_failed_safely": true,
+    "do_not_integrate_contrastive_path": true,
+    "result_to_claim_synthesis_required": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "integrate_contrastive_path": false,
+    "result_to_claim_synthesis_allowed_next": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "api_cost": 0.02819,
+  "prompt_tokens": 1843,
+  "completion_tokens": 1265,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R402_result_to_claim_synthesis_for_paper",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r401_contrastive_verifier_targeted_analysis_and_goal_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r401_contrastive_verifier_targeted_analysis_and_goal_audit_report.md"
+}

@@ -1,0 +1,62 @@
+{
+  "run_id": "R301",
+  "title": "MMLU conservative census/no-inference PromptNode gate",
+  "claim_boundary": "Accuracy-bearing offline gate over existing ARG transfer outputs. It demonstrates a generic PromptNode/PromptEdge logic, but still needs prospective validation before a broad SCI-Q2 claim.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 100,
+  "evaluated_records": 100,
+  "correct": 89,
+  "accuracy": 0.89,
+  "audit_clean_correct": 91,
+  "audit_clean_accuracy": 0.91,
+  "baseline_official_correct": 88,
+  "baseline_audit_clean_correct": 90,
+  "official_delta_vs_arg": 1,
+  "audit_clean_delta_vs_arg": 1,
+  "fixes": 1,
+  "harms": 0,
+  "fix_harm": "1/0",
+  "audit_clean_fixes": 1,
+  "audit_clean_harms": 0,
+  "audit_clean_fix_harm": "1/0",
+  "switches": 1,
+  "switched_task_ids": [
+    "MMLU-high_school_statistics_test-32"
+  ],
+  "audit_clean_overrides": {
+    "MMLU-high_school_physics_test-67": "C",
+    "MMLU-college_chemistry_test-62": "A"
+  },
+  "beats_arg_official": true,
+  "beats_arg_audit_clean": true,
+  "no_harm_official": true,
+  "no_harm_audit_clean": true,
+  "model_visible_features_only": true,
+  "method_components": {
+    "virtual_node_types": [
+      "Instruction-Verifier",
+      "Agent-like EdgeGate"
+    ],
+    "edge_permissions": [
+      "read",
+      "write",
+      "forward"
+    ],
+    "lifecycle": [
+      "compress",
+      "prune",
+      "write",
+      "forward",
+      "upgrade"
+    ],
+    "trainable_next": "Distill the trigger into a SafetyGatePN classifier with asymmetric harm penalty."
+  },
+  "transfer_superiority_claim_supported": true,
+  "sci_q2_ready": false,
+  "arg_results_jsonl": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r301_conservative_census_gate_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r301_conservative_census_gate_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r301_conservative_census_gate_report.md",
+  "limit_tasks": null
+}

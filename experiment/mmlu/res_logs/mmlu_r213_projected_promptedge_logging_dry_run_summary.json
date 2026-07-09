@@ -1,0 +1,43 @@
+{
+  "run_id": "R213",
+  "title": "Projected PromptEdge MMLU transfer smoke",
+  "claim_boundary": "Diagnostic smoke only. No paper-level accuracy claim; task selection is first-N and not answer-based.",
+  "dry_run": true,
+  "no_api": true,
+  "broad_api": false,
+  "model_dir": "experiment/mmlu/output/mmlu_promptedge_pn_graph_policy_r188_e5",
+  "transfer_jsonl": "experiment/mmlu/mmlu_stem_transfer100.jsonl",
+  "baseline_jsonl": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "max_tasks": 4,
+  "task_ids": [],
+  "selection_policy": "first_n_no_answer_filter",
+  "tasks_prepared": 4,
+  "tasks_evaluated": 0,
+  "projected_contract_ready": 4,
+  "baseline_correct": 0,
+  "projected_correct": 0,
+  "fixes": 0,
+  "harms": 0,
+  "cost": 0.0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "logging_check": {
+    "rows": 4,
+    "missing_raw_graph": 0,
+    "missing_projected_graph": 0,
+    "missing_promptedge_meta": 0,
+    "missing_promptedge_permissions": 0,
+    "missing_router_final_schema": 0,
+    "permissions_forward_read_write": 4,
+    "router_final_schema_version_r211": 4,
+    "router_final_abstain_only": 4,
+    "promptedge_text_as_edge_prompt": 4,
+    "projected_all_pn_roles": 4
+  },
+  "tests": {
+    "tests.test_r213_mmlu_projected_smoke_logging": "1/1 passed",
+    "tests.test_r191_mmlu_projected_smoke_runner": "3/3 passed"
+  },
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r213_projected_promptedge_logging_dry_run_results.jsonl",
+  "next_action": "If dry_run=true, run the same command without --dry_run only if the user accepts the diagnostic cost. If dry_run=false, analyze fix/harm as diagnostic-only."
+}

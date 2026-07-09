@@ -1,0 +1,43 @@
+{
+  "run_id": "R464",
+  "title": "External audit authorization checklist",
+  "claim_boundary": "R464 records what would be sent for external audits and the required authorization boundary. It does not transmit payloads or import external reviews.",
+  "no_api": true,
+  "broad_api": false,
+  "checklist_md": "paper/artifacts/external_audit_authorization_checklist.md",
+  "audit_payloads": {
+    "experiment_integrity_audit": {
+      "payload_md": "experiment/mmlu/run_logs/mmlu_r445_experiment_integrity_external_payload.md",
+      "expected_review_md": "experiment/mmlu/run_logs/mmlu_r445_experiment_integrity_external_review.md",
+      "purpose": "Check result provenance, no fake ground truth, no phantom results, and claim scope."
+    },
+    "paper_claim_audit": {
+      "payload_md": "experiment/mmlu/run_logs/mmlu_r445_paper_claim_external_payload.md",
+      "expected_review_md": "experiment/mmlu/run_logs/mmlu_r445_paper_claim_external_review.md",
+      "purpose": "Check every number/comparison in the manuscript against raw/result files."
+    },
+    "citation_context_audit": {
+      "payload_md": "experiment/mmlu/run_logs/mmlu_r445_citation_context_external_payload.md",
+      "expected_review_md": "experiment/mmlu/run_logs/mmlu_r445_citation_context_external_review.md",
+      "purpose": "Check citation metadata and whether citation contexts are supported."
+    }
+  },
+  "payload_files_exist": {
+    "experiment_integrity_audit": true,
+    "paper_claim_audit": true,
+    "citation_context_audit": true
+  },
+  "requires_user_confirmation_before_transmission": true,
+  "external_transmission_allowed_now": false,
+  "transmission_performed": false,
+  "confirmation_boundary": [
+    "A future turn must explicitly authorize sending these payload files to an external reviewer/backend.",
+    "Authorization to continue local work is not authorization to transmit unpublished manuscript or result payloads.",
+    "After review, imported outputs must be saved to the expected_review_md paths and audited before claims are authorized."
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R465_local_smoke_after_source_and_audit_checklists",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r464_external_audit_authorization_checklist_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r464_external_audit_authorization_checklist_report.md"
+}

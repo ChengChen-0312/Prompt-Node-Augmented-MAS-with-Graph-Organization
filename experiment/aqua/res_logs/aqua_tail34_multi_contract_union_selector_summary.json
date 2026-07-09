@@ -1,0 +1,31 @@
+{
+  "total_tasks": 34,
+  "solved_tasks": 28,
+  "pass_at_1": 82.35294117647058,
+  "baseline_solved_tasks": 28,
+  "baseline_pass_at_1": 82.35294117647058,
+  "ensemble_solved_tasks": 31,
+  "ensemble_pass_at_1": 91.17647058823529,
+  "delta_vs_baseline": 0,
+  "delta_vs_ensemble": -3,
+  "fixes_vs_baseline": 0,
+  "harms_vs_baseline": 0,
+  "ensemble_switches": 0,
+  "non_baseline_switches": 0,
+  "rule": {
+    "name": "multi_contract_union",
+    "method_keys": [
+      "router",
+      "candidate",
+      "conservative",
+      "calibrated"
+    ],
+    "min_direct_methods": 2,
+    "min_strong_methods": 3,
+    "use_invalid_fallback": true
+  },
+  "selector": "multi_contract_union",
+  "train_prefix": null,
+  "test_prefix": "aqua_tail34",
+  "output_file": "./aqua_tail34_multi_contract_union_selector_results.jsonl"
+}

@@ -1,0 +1,31 @@
+{
+  "input_rows": "experiment/aqua/aqua_first200_graph_objective_training_rows.jsonl",
+  "output_pairs": "experiment/aqua/aqua_first200_graph_objective_pairwise_preferences.jsonl",
+  "source_rows": 800,
+  "total_tasks": 200,
+  "tasks_with_preferences": 76,
+  "skipped_tasks_without_preferred": 124,
+  "pairwise_rows": 228,
+  "method_pair_counts": {
+    "candidate>calibrated": 72,
+    "candidate>conservative": 72,
+    "candidate>router": 72,
+    "conservative>calibrated": 3,
+    "conservative>candidate": 3,
+    "conservative>router": 3,
+    "router>calibrated": 1,
+    "router>candidate": 1,
+    "router>conservative": 1
+  },
+  "outcome_field_violations": 0,
+  "excluded_outcome_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "is_solved",
+    "r035_selected_prediction",
+    "r035_selected_source",
+    "true_answer"
+  ],
+  "claim_boundary": "Label-free pairwise graph preferences only. These pairs are for training or selecting PromptNode graph organization before final aggregation and do not provide an accuracy claim."
+}

@@ -1,0 +1,68 @@
+{
+  "run_id": "R316",
+  "title": "PromptEdge text and cost-matched plain requery controls",
+  "claim_boundary": "Same non-STEM40 control run. It tests promptedge text removal and direct requery cost controls; it is not a broad claim.",
+  "no_api": false,
+  "broad_api": false,
+  "records": 120,
+  "tasks": 40,
+  "variant_counts": {
+    "arg_baseline_fixed": 40,
+    "node_only_no_promptedge_text": 40,
+    "plain_requery": 40
+  },
+  "by_variant": {
+    "arg_baseline_fixed": {
+      "records": 40,
+      "evaluated_records": 40,
+      "correct": 37,
+      "accuracy": 0.925,
+      "fixes": 0,
+      "harms": 0,
+      "switches": 0,
+      "api_required": 0,
+      "api_executed": 0,
+      "api_errors": 0,
+      "delta_vs_arg": 0,
+      "fix_harm": "0/0"
+    },
+    "node_only_no_promptedge_text": {
+      "records": 40,
+      "evaluated_records": 40,
+      "correct": 35,
+      "accuracy": 0.875,
+      "fixes": 0,
+      "harms": 2,
+      "switches": 3,
+      "api_required": 40,
+      "api_executed": 40,
+      "api_errors": 0,
+      "delta_vs_arg": -2,
+      "fix_harm": "0/2"
+    },
+    "plain_requery": {
+      "records": 40,
+      "evaluated_records": 40,
+      "correct": 37,
+      "accuracy": 0.925,
+      "fixes": 1,
+      "harms": 1,
+      "switches": 2,
+      "api_required": 40,
+      "api_executed": 40,
+      "api_errors": 0,
+      "delta_vs_arg": 0,
+      "fix_harm": "1/1"
+    }
+  },
+  "api_cost": 0.23588,
+  "prompt_tokens": 22357,
+  "completion_tokens": 8273,
+  "training_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R317_update_claim_matrix_after_controls",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r316_promptedge_cost_controls_manifest.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r316_promptedge_cost_controls_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r316_promptedge_cost_controls_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r316_promptedge_cost_controls_report.md"
+}

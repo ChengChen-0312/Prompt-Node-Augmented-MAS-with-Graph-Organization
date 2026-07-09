@@ -1,0 +1,52 @@
+{
+  "prefixes": [
+    "aqua_tail34"
+  ],
+  "min_top_score": 1,
+  "min_score_margin": 3,
+  "summary": {
+    "total_tasks": 34,
+    "solved_tasks": 28,
+    "baseline_solved_tasks": 28,
+    "overall": "28/34",
+    "baseline": "28/34",
+    "delta_vs_baseline": 0,
+    "fixes": 0,
+    "harms": 0,
+    "fix_harm": "0/0",
+    "switches": 0,
+    "selected_source_counts": {
+      "baseline": 34
+    }
+  },
+  "audit_files": [
+    "aqua_tail34_option_binding_audit.jsonl"
+  ],
+  "posthoc_audit_summary": {
+    "variant": "objective_guided_selector",
+    "total": 34,
+    "solved": 28,
+    "overall": "28/34",
+    "clean_total": 28,
+    "clean_solved": 27,
+    "clean": "27/28",
+    "noisy_or_ambiguous_total": 6,
+    "noisy_or_ambiguous_solved": 1,
+    "noisy_or_ambiguous": "1/6",
+    "baseline_solved": 28,
+    "delta_vs_baseline": 0,
+    "fixes": 0,
+    "harms": 0,
+    "fix_harm": "0/0",
+    "clean_fixes": 0,
+    "clean_harms": 0,
+    "clean_fix_harm": "0/0",
+    "noisy_fixes": 0,
+    "noisy_harms": 0,
+    "noisy_fix_harm": "0/0",
+    "switches": 0,
+    "switch_sources": {},
+    "notes": ""
+  },
+  "diagnostic_note": "This selector is label-free at selection time, but the summary uses true_answer for post-hoc evaluation."
+}

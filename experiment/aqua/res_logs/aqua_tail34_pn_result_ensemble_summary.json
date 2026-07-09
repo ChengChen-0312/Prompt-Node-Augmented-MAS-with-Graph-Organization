@@ -1,0 +1,14 @@
+{
+  "total_tasks": 34,
+  "solved_tasks": 31,
+  "pass_at_1": 91.17647058823529,
+  "method_order": [
+    "baseline",
+    "router",
+    "candidate",
+    "conservative",
+    "calibrated"
+  ],
+  "tie_breaker": "baseline",
+  "detail_file": "aqua_tail34_pn_result_ensemble_results.jsonl"
+}

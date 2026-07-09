@@ -1,0 +1,57 @@
+{
+  "run_id": "R348",
+  "title": "Fresh frozen-policy tool PromptNode evaluation design",
+  "claim_boundary": "R348 freezes the R345-R347 tool-backed PromptNode policy and designs a fresh MMLU eval that excludes previously used R334/R337 tasks. It is a protocol design only; no API is executed here.",
+  "no_api": true,
+  "broad_api": false,
+  "policy_frozen_after_run": "R347",
+  "frozen_policy_components": [
+    "PN_CoordinateTransformer",
+    "PN_FiniteAbelianGroupEnumerator",
+    "PN_FiniteFieldDerivativeAnalyzer",
+    "PN_RedoxBalanceLinearSolver",
+    "PromptEdge reject_if_unparsed_or_inconsistent",
+    "PromptEdge forward_exact_single_option_match_only"
+  ],
+  "fresh_task_plan": {
+    "mmlu_stem": 24,
+    "mmlu_nonstem": 24
+  },
+  "exclude_prior_runs": [
+    "R304",
+    "R306",
+    "R312",
+    "R334",
+    "R337",
+    "R341",
+    "R342",
+    "R346",
+    "R347"
+  ],
+  "planned_variants": [
+    "arg_baseline_direct_api",
+    "frozen_tool_promptnode_local",
+    "hybrid_arg_plus_tool"
+  ],
+  "metric_plan": [
+    "accuracy",
+    "fixes",
+    "harms",
+    "clean_fix_harm_if_audit_available",
+    "forwarded_candidate_count",
+    "token_cost_for_arg_baseline",
+    "cost_normalized_accuracy"
+  ],
+  "api_calls_planned": 48,
+  "leakage_preflight_required_next": true,
+  "api_execution_authorized_next": false,
+  "claim_permissions": {
+    "fresh_eval_design_allowed": true,
+    "replay_mechanism_evidence_allowed": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "next_required_run": "R349_fresh_tool_promptnode_eval_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r348_fresh_tool_promptnode_eval_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r348_fresh_tool_promptnode_eval_design_report.md"
+}

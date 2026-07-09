@@ -1,0 +1,29 @@
+{
+  "run_id": "R359",
+  "title": "Learned graph-policy source invariance audit",
+  "claim_boundary": "R359 audits the R358 offline model for source-run shortcut learning. It blocks fresh evaluation until source-specific features are removed or neutralized.",
+  "no_api": true,
+  "broad_api": false,
+  "audited_run": "R358",
+  "source_run_feature_risk_detected": true,
+  "risky_top_features": [
+    "source_run=R352"
+  ],
+  "r358_test_f1": 1.0,
+  "claim_permissions": {
+    "r358_offline_feasibility_claim_allowed": true,
+    "fresh_eval_preflight_allowed_now": false,
+    "source_invariant_retraining_required": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "course_correction": [
+    "Remove source_run and source-specific proxy features before fresh evaluation.",
+    "Retrain using only task-shape, candidate-evidence, PromptNode, PromptEdge, and lifecycle features.",
+    "Report R358 perfect offline score only as a failed shortcut-learning audit, not as method evidence."
+  ],
+  "next_required_run": "R360_source_invariant_graph_policy_retraining",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r359_learned_graph_policy_source_invariance_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r359_learned_graph_policy_source_invariance_audit_report.md"
+}

@@ -1,0 +1,39 @@
+{
+  "run_id": "R283",
+  "title": "MMLU PN-capable short graph-policy pretrain",
+  "claim_boundary": "Short no-API graph-policy pretraining only. No answer accuracy claim and no MMLU transfer claim.",
+  "no_api": true,
+  "broad_api": false,
+  "data_dir": "experiment/PromptEdgeData_mmlu_r183",
+  "output_dir": "experiment/mmlu/output/mmlu_promptnode_retrain_r283_e5_observed",
+  "epochs": 5,
+  "batch_size": 8,
+  "lr": 0.0001,
+  "seed": 42,
+  "role_scope": "observed",
+  "dataset_graphs": 403,
+  "train_graphs": 362,
+  "val_graphs": 41,
+  "role_mapping_size": 9,
+  "pn_roles_present": [
+    "PN_Memory",
+    "PN_Router",
+    "PN_Verifier"
+  ],
+  "data_statistics": {
+    "num_node_labels": 11,
+    "num_edge_labels": 1,
+    "max_num_nodes": 9,
+    "min_num_nodes": 5,
+    "max_num_edges": 23,
+    "min_num_edges": 5,
+    "is_directed": true
+  },
+  "final_validation_loss": 11.480357805887857,
+  "final_validation_role_accuracy": 47.96626984126984,
+  "best_model_path": "experiment/mmlu/output/mmlu_promptnode_retrain_r283_e5_observed/best_model.pth",
+  "best_model_exists": true,
+  "configuration_path": "experiment/mmlu/output/mmlu_promptnode_retrain_r283_e5_observed/configuration.txt",
+  "configuration_exists": true,
+  "next_action": "R187 should audit generated graph samples before any transfer API smoke."
+}

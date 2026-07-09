@@ -1,0 +1,73 @@
+import aiohttp
+from typing import List, Union, Optional
+from tenacity import retry, wait_random_exponential, stop_after_attempt
+from typing import Dict, Any
+from dotenv import find_dotenv, load_dotenv
+import os
+
+from mas_framework.llm.format import Message
+from mas_framework.llm.price import cost_count
+from mas_framework.llm.llm import LLM
+from mas_framework.llm.llm_registry import LLMRegistry
+
+
+load_dotenv(find_dotenv(usecwd=True))
+MINE_BASE_URL = os.getenv("BASE_URL", "").strip() or None
+MINE_API_KEY = (os.getenv("API_KEY") or os.getenv("OPENAI_API_KEY") or "").strip()
+from openai import OpenAI, AsyncOpenAI
+
+
+@retry(wait=wait_random_exponential(max=100), stop=stop_after_attempt(3))
+async def achat(
+        model: str,
+        msg: List[Dict],
+        max_tokens: Optional[int] = None,
+        temperature: Optional[float] = 0.2,
+        num_comps: Optional[int] = 1,
+):
+    if not MINE_API_KEY:
+        raise RuntimeError("Missing API_KEY or OPENAI_API_KEY. Add it to .env before running GPT-4o.")
+    client = AsyncOpenAI(base_url=MINE_BASE_URL, api_key=MINE_API_KEY)
+    chat_completion = await client.chat.completions.create(messages=msg, model=model, max_tokens=max_tokens,
+                                                           temperature=temperature)
+
+    response = chat_completion.choices[0].message.content
+    prompt_text = "\n".join(f"{m.get('role', '')}: {m.get('content', '')}" for m in msg)
+    cost_count(prompt_text, response or "", model)
+    return response
+
+
+@LLMRegistry.register('GPTChat')
+class GPTChat(LLM):
+
+    def __init__(self, model_name: str):
+        self.model_name = model_name
+
+    async def agen(
+            self,
+            messages: List[Message],
+            max_tokens: Optional[int] = None,
+            temperature: Optional[float] = None,
+            num_comps: Optional[int] = None,
+    ) -> Union[List[str], str]:
+
+        if max_tokens is None:
+            max_tokens = self.DEFAULT_MAX_TOKENS
+        if temperature is None:
+            temperature = self.DEFAULT_TEMPERATURE
+        if num_comps is None:
+            num_comps = self.DEFUALT_NUM_COMPLETIONS
+
+        if isinstance(messages, str):
+            messages = [Message(role="user", content=messages)]
+        return await achat(self.model_name, messages, max_tokens=max_tokens,
+                           temperature=temperature, num_comps=num_comps)
+
+    def gen(
+            self,
+            messages: List[Message],
+            max_tokens: Optional[int] = None,
+            temperature: Optional[float] = None,
+            num_comps: Optional[int] = None,
+    ) -> Union[List[str], str]:
+        pass

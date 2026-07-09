@@ -1,0 +1,67 @@
+{
+  "input_jsonl": "experiment/aqua/aqua_first200_graph_objective_training_rows.jsonl",
+  "output_jsonl": "experiment/aqua/aqua_first200_graph_policy_distill_rows.jsonl",
+  "source_training_rows": 800,
+  "policy_rows": 800,
+  "missing_graph_rows": 0,
+  "positive_policy_rows": 76,
+  "positive_prompt_node_policy_rows": 76,
+  "positive_prompt_node_spec_rows": 76,
+  "positive_prompt_node_edge_permission_rows": 76,
+  "target_counts": {
+    "low_margin_top": 24,
+    "multi_view_tie": 313,
+    "non_positive_top": 1,
+    "non_preferred_graph": 386,
+    "preferred_graph": 76
+  },
+  "candidate_method_counts": {
+    "calibrated": 200,
+    "candidate": 200,
+    "conservative": 200,
+    "router": 200
+  },
+  "slice_counts": {
+    "aqua_100": 400,
+    "aqua_next100": 400
+  },
+  "positive_prompt_node_role_counts": {
+    "PN_Memory": 76,
+    "PN_Router": 76,
+    "PN_Verifier": 76
+  },
+  "positive_prompt_node_edge_role_pair_counts": {
+    "Inspector->PN_Memory": 15,
+    "Math Solver->PN_Memory": 97,
+    "Mathematical Analyst->PN_Memory": 5,
+    "PN_Memory->PN_Verifier": 76,
+    "PN_Verifier->PN_Router": 76,
+    "Programming Expert->PN_Memory": 59
+  },
+  "unique_positive_graph_signatures": 17,
+  "unique_negative_graph_signatures": 46,
+  "outcome_field_violations": 0,
+  "excluded_policy_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "direct_majority",
+    "is_solved",
+    "predicted_answer",
+    "r035_selected_prediction",
+    "r035_selected_source",
+    "router_option",
+    "true_answer"
+  ],
+  "claim_boundary": "Node/edge graph-policy supervision only. These rows make PromptNode virtual nodes part of the graph-generation target before execution; they do not report answer accuracy.",
+  "prefixes": [
+    "aqua_100",
+    "aqua_next100"
+  ],
+  "method_keys": [
+    "router",
+    "candidate",
+    "conservative",
+    "calibrated"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "run_id": "R215",
+  "title": "Five-iteration SCI-Q2 goal audit after R211-R214",
+  "date": "2026-07-09",
+  "no_api": true,
+  "goal_status_from_system": "blocked",
+  "goal_used_as_audit_benchmark": true,
+  "window": ["R211", "R212", "R213", "R214"],
+  "drift_detected": false,
+  "sci_q2_ready": false,
+  "aligned_progress": [
+    "R211 added router-final PromptEdge schema with prompt-as-edge policy.",
+    "R212 verified zero model-visible leakage violations in 403 target rows.",
+    "R213 ensured raw/projected graph and router schema logging before API.",
+    "R214 blocked API while router-final remains abstain-only."
+  ],
+  "remaining_goal_gaps": [
+    "No non-abstain answer-changing router-final targets yet.",
+    "No MMLU transfer improvement beyond ARG.",
+    "No executed R208 negative controls.",
+    "No Tool/Resource PromptNode identity experiment.",
+    "No lifecycle update/compress/prune/merge/upgrade case study.",
+    "No cost-matched ARG re-query baseline.",
+    "No citation audit or full paper draft."
+  ],
+  "decision": "aligned_continue_no_api_target_redesign",
+  "api_status": "blocked",
+  "authorized_next": [
+    "R216: design leakage-safe non-abstain router-final target extraction from AQuA objective-safety evidence, no API.",
+    "R217: implement target extractor tests and leakage scan for candidate answer-changing labels.",
+    "R218: materialize small non-abstain training/eval manifest if leakage passes.",
+    "R219: dry-run negative controls or cost-matched protocol without API.",
+    "R220: next mandatory goal audit."
+  ],
+  "forbidden_next": [
+    "No API before a non-abstain router-final target exists and R220/R215-authorized gate is satisfied.",
+    "No MMLU improvement claim.",
+    "No SCI-Q2 readiness claim.",
+    "No raw learned edge-linking claim without projection ablation."
+  ]
+}

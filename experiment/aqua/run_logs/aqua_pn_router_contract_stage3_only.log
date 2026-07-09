@@ -1,0 +1,277 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+
+==================== Stage 3: Aqua Finetuning ====================
+Loaded 7 complete role embeddings
+Found 79 graph files
+Using all 79 graphs
+Created unified role mapping with 7 roles
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16556.67it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'edge_index', 'y', 'is_correct', 'agent_nums', 'edge_attr', 'question', 'mode', 'x'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:158: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  role_embeddings[i] = torch.tensor(graph.role_embeddings[node_idx])
+DAG check: 79/79 graphs are DAG
+Updating node labels using unified role mapping
+Loaded precomputed embeddings: 7 entries
+Using provided role mapping: 7 roles
+TOKENS: START=7, END=8
+Loaded pretrained weights, starting finetuning...
+Training model...
+Epoch 1/100, Average Training Loss: 46.9412, Role Prediction Accuracy: 22.22%
+Epoch 1/100, Validation Loss: 26.9394, Validation Role Accuracy: 24.27%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 1, Validation loss: 26.9394
+Epoch 2/100, Average Training Loss: 17.1624, Role Prediction Accuracy: 26.09%
+Epoch 2/100, Validation Loss: 11.3304, Validation Role Accuracy: 27.72%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 2, Validation loss: 11.3304
+Epoch 3/100, Average Training Loss: 9.9386, Role Prediction Accuracy: 26.92%
+Epoch 3/100, Validation Loss: 8.6376, Validation Role Accuracy: 25.49%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 3, Validation loss: 8.6376
+Epoch 4/100, Average Training Loss: 8.5212, Role Prediction Accuracy: 25.05%
+Epoch 4/100, Validation Loss: 8.1396, Validation Role Accuracy: 23.30%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 4, Validation loss: 8.1396
+Epoch 5/100, Average Training Loss: 8.0725, Role Prediction Accuracy: 20.55%
+Epoch 5/100, Validation Loss: 7.6369, Validation Role Accuracy: 27.59%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 5, Validation loss: 7.6369
+Epoch 6/100, Average Training Loss: 7.6888, Role Prediction Accuracy: 23.54%
+Epoch 6/100, Validation Loss: 7.3407, Validation Role Accuracy: 31.39%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 6, Validation loss: 7.3407
+Epoch 7/100, Average Training Loss: 7.4129, Role Prediction Accuracy: 28.93%
+Epoch 7/100, Validation Loss: 7.2536, Validation Role Accuracy: 28.27%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 7, Validation loss: 7.2536
+Epoch 8/100, Average Training Loss: 7.2146, Role Prediction Accuracy: 30.93%
+Epoch 8/100, Validation Loss: 7.1186, Validation Role Accuracy: 30.74%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 8, Validation loss: 7.1186
+Epoch 9/100, Average Training Loss: 7.5064, Role Prediction Accuracy: 29.04%
+Epoch 9/100, Validation Loss: 6.9413, Validation Role Accuracy: 31.98%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 9, Validation loss: 6.9413
+Epoch 10/100, Average Training Loss: 6.9064, Role Prediction Accuracy: 29.16%
+Epoch 10/100, Validation Loss: 6.7796, Validation Role Accuracy: 31.44%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 10, Validation loss: 6.7796
+Epoch 11/100, Average Training Loss: 6.8807, Role Prediction Accuracy: 28.50%
+Epoch 11/100, Validation Loss: 6.4711, Validation Role Accuracy: 33.20%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 11, Validation loss: 6.4711
+Epoch 12/100, Average Training Loss: 6.7425, Role Prediction Accuracy: 30.54%
+Epoch 12/100, Validation Loss: 6.3690, Validation Role Accuracy: 33.23%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 12, Validation loss: 6.3690
+Epoch 13/100, Average Training Loss: 6.3946, Role Prediction Accuracy: 33.59%
+Epoch 13/100, Validation Loss: 6.3171, Validation Role Accuracy: 34.29%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 13, Validation loss: 6.3171
+Epoch 14/100, Average Training Loss: 6.3311, Role Prediction Accuracy: 33.24%
+Epoch 14/100, Validation Loss: 6.0352, Validation Role Accuracy: 33.30%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 14, Validation loss: 6.0352
+Epoch 15/100, Average Training Loss: 6.0857, Role Prediction Accuracy: 34.70%
+Epoch 15/100, Validation Loss: 6.3335, Validation Role Accuracy: 31.32%
+Epoch 16/100, Average Training Loss: 6.4568, Role Prediction Accuracy: 29.32%
+Epoch 16/100, Validation Loss: 5.9530, Validation Role Accuracy: 34.63%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 16, Validation loss: 5.9530
+Epoch 17/100, Average Training Loss: 5.9204, Role Prediction Accuracy: 33.71%
+Epoch 17/100, Validation Loss: 5.6665, Validation Role Accuracy: 34.73%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 17, Validation loss: 5.6665
+Epoch 18/100, Average Training Loss: 5.7730, Role Prediction Accuracy: 33.90%
+Epoch 18/100, Validation Loss: 5.6468, Validation Role Accuracy: 33.61%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 18, Validation loss: 5.6468
+Epoch 19/100, Average Training Loss: 5.6096, Role Prediction Accuracy: 33.65%
+Epoch 19/100, Validation Loss: 5.5523, Validation Role Accuracy: 35.04%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 19, Validation loss: 5.5523
+Epoch 20/100, Average Training Loss: 5.3765, Role Prediction Accuracy: 36.36%
+Epoch 20/100, Validation Loss: 5.2913, Validation Role Accuracy: 35.14%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 20, Validation loss: 5.2913
+Epoch 21/100, Average Training Loss: 5.6188, Role Prediction Accuracy: 34.19%
+Epoch 21/100, Validation Loss: 5.6240, Validation Role Accuracy: 32.73%
+Epoch 22/100, Average Training Loss: 5.3213, Role Prediction Accuracy: 33.25%
+Epoch 22/100, Validation Loss: 4.9362, Validation Role Accuracy: 39.76%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 22, Validation loss: 4.9362
+Epoch 23/100, Average Training Loss: 5.2884, Role Prediction Accuracy: 36.16%
+Epoch 23/100, Validation Loss: 4.7678, Validation Role Accuracy: 36.11%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 23, Validation loss: 4.7678
+Epoch 24/100, Average Training Loss: 4.9495, Role Prediction Accuracy: 34.51%
+Epoch 24/100, Validation Loss: 4.6973, Validation Role Accuracy: 37.03%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 24, Validation loss: 4.6973
+Epoch 25/100, Average Training Loss: 4.9477, Role Prediction Accuracy: 33.71%
+Epoch 25/100, Validation Loss: 4.7323, Validation Role Accuracy: 39.97%
+Epoch 26/100, Average Training Loss: 4.8155, Role Prediction Accuracy: 39.22%
+Epoch 26/100, Validation Loss: 4.9510, Validation Role Accuracy: 34.52%
+Epoch 27/100, Average Training Loss: 4.7298, Role Prediction Accuracy: 33.18%
+Epoch 27/100, Validation Loss: 4.6536, Validation Role Accuracy: 33.51%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 27, Validation loss: 4.6536
+Epoch 28/100, Average Training Loss: 4.9007, Role Prediction Accuracy: 36.69%
+Epoch 28/100, Validation Loss: 4.3965, Validation Role Accuracy: 43.31%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 28, Validation loss: 4.3965
+Epoch 29/100, Average Training Loss: 4.5298, Role Prediction Accuracy: 41.49%
+Epoch 29/100, Validation Loss: 4.4634, Validation Role Accuracy: 42.24%
+Epoch 30/100, Average Training Loss: 4.6512, Role Prediction Accuracy: 35.43%
+Epoch 30/100, Validation Loss: 4.3334, Validation Role Accuracy: 44.13%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 30, Validation loss: 4.3334
+Epoch 31/100, Average Training Loss: 4.6845, Role Prediction Accuracy: 35.56%
+Epoch 31/100, Validation Loss: 4.2589, Validation Role Accuracy: 35.96%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 31, Validation loss: 4.2589
+Epoch 32/100, Average Training Loss: 4.3966, Role Prediction Accuracy: 37.43%
+Epoch 32/100, Validation Loss: 4.2217, Validation Role Accuracy: 40.28%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 32, Validation loss: 4.2217
+Epoch 33/100, Average Training Loss: 4.4579, Role Prediction Accuracy: 42.99%
+Epoch 33/100, Validation Loss: 4.0461, Validation Role Accuracy: 46.34%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 33, Validation loss: 4.0461
+Epoch 34/100, Average Training Loss: 4.3417, Role Prediction Accuracy: 37.54%
+Epoch 34/100, Validation Loss: 3.9587, Validation Role Accuracy: 44.69%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 34, Validation loss: 3.9587
+Epoch 35/100, Average Training Loss: 4.3396, Role Prediction Accuracy: 36.20%
+Epoch 35/100, Validation Loss: 3.9455, Validation Role Accuracy: 44.70%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 35, Validation loss: 3.9455
+Epoch 36/100, Average Training Loss: 4.2464, Role Prediction Accuracy: 41.33%
+Epoch 36/100, Validation Loss: 3.8992, Validation Role Accuracy: 42.32%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 36, Validation loss: 3.8992
+Epoch 37/100, Average Training Loss: 4.0880, Role Prediction Accuracy: 42.15%
+Epoch 37/100, Validation Loss: 3.9039, Validation Role Accuracy: 47.04%
+Epoch 38/100, Average Training Loss: 4.1628, Role Prediction Accuracy: 36.37%
+Epoch 38/100, Validation Loss: 3.8856, Validation Role Accuracy: 45.97%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 38, Validation loss: 3.8856
+Epoch 39/100, Average Training Loss: 4.0368, Role Prediction Accuracy: 43.94%
+Epoch 39/100, Validation Loss: 3.5985, Validation Role Accuracy: 44.00%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 39, Validation loss: 3.5985
+Epoch 40/100, Average Training Loss: 3.7943, Role Prediction Accuracy: 44.86%
+Epoch 40/100, Validation Loss: 3.6050, Validation Role Accuracy: 46.71%
+Epoch 41/100, Average Training Loss: 3.8661, Role Prediction Accuracy: 40.65%
+Epoch 41/100, Validation Loss: 3.6431, Validation Role Accuracy: 43.65%
+Epoch 42/100, Average Training Loss: 3.9758, Role Prediction Accuracy: 47.05%
+Epoch 42/100, Validation Loss: 3.6797, Validation Role Accuracy: 48.12%
+Epoch 43/100, Average Training Loss: 3.8404, Role Prediction Accuracy: 42.30%
+Epoch 43/100, Validation Loss: 3.8241, Validation Role Accuracy: 45.24%
+Epoch 44/100, Average Training Loss: 3.7929, Role Prediction Accuracy: 42.92%
+Epoch 44/100, Validation Loss: 3.6962, Validation Role Accuracy: 42.87%
+Epoch 45/100, Average Training Loss: 3.9252, Role Prediction Accuracy: 41.23%
+Epoch 45/100, Validation Loss: 3.7179, Validation Role Accuracy: 46.57%
+Epoch 46/100, Average Training Loss: 3.5431, Role Prediction Accuracy: 42.58%
+Epoch 46/100, Validation Loss: 3.2979, Validation Role Accuracy: 47.43%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 46, Validation loss: 3.2979
+Epoch 47/100, Average Training Loss: 3.4848, Role Prediction Accuracy: 48.22%
+Epoch 47/100, Validation Loss: 3.5408, Validation Role Accuracy: 41.41%
+Epoch 48/100, Average Training Loss: 3.5607, Role Prediction Accuracy: 41.95%
+Epoch 48/100, Validation Loss: 3.2384, Validation Role Accuracy: 48.56%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 48, Validation loss: 3.2384
+Epoch 49/100, Average Training Loss: 3.4892, Role Prediction Accuracy: 40.82%
+Epoch 49/100, Validation Loss: 3.3111, Validation Role Accuracy: 45.66%
+Epoch 50/100, Average Training Loss: 3.4565, Role Prediction Accuracy: 45.23%
+Epoch 50/100, Validation Loss: 3.6825, Validation Role Accuracy: 46.46%
+Epoch 51/100, Average Training Loss: 3.5559, Role Prediction Accuracy: 44.92%
+Epoch 51/100, Validation Loss: 3.4252, Validation Role Accuracy: 44.74%
+Epoch 52/100, Average Training Loss: 3.3812, Role Prediction Accuracy: 47.01%
+Epoch 52/100, Validation Loss: 3.1179, Validation Role Accuracy: 45.97%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 52, Validation loss: 3.1179
+Epoch 53/100, Average Training Loss: 3.4788, Role Prediction Accuracy: 44.47%
+Epoch 53/100, Validation Loss: 3.0885, Validation Role Accuracy: 47.57%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 53, Validation loss: 3.0885
+Epoch 54/100, Average Training Loss: 3.4297, Role Prediction Accuracy: 50.26%
+Epoch 54/100, Validation Loss: 3.0128, Validation Role Accuracy: 49.72%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 54, Validation loss: 3.0128
+Epoch 55/100, Average Training Loss: 3.1927, Role Prediction Accuracy: 47.34%
+Epoch 55/100, Validation Loss: 2.9508, Validation Role Accuracy: 47.12%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 55, Validation loss: 2.9508
+Epoch 56/100, Average Training Loss: 3.0990, Role Prediction Accuracy: 45.79%
+Epoch 56/100, Validation Loss: 2.8829, Validation Role Accuracy: 49.30%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 56, Validation loss: 2.8829
+Epoch 57/100, Average Training Loss: 3.0720, Role Prediction Accuracy: 45.63%
+Epoch 57/100, Validation Loss: 2.9529, Validation Role Accuracy: 49.31%
+Epoch 58/100, Average Training Loss: 3.6320, Role Prediction Accuracy: 48.63%
+Epoch 58/100, Validation Loss: 3.0943, Validation Role Accuracy: 49.70%
+Epoch 59/100, Average Training Loss: 3.1227, Role Prediction Accuracy: 50.40%
+Epoch 59/100, Validation Loss: 2.8919, Validation Role Accuracy: 47.28%
+Epoch 60/100, Average Training Loss: 3.0386, Role Prediction Accuracy: 47.99%
+Epoch 60/100, Validation Loss: 2.7476, Validation Role Accuracy: 50.19%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 60, Validation loss: 2.7476
+Epoch 61/100, Average Training Loss: 3.1635, Role Prediction Accuracy: 43.14%
+Epoch 61/100, Validation Loss: 2.7509, Validation Role Accuracy: 51.01%
+Epoch 62/100, Average Training Loss: 2.9144, Role Prediction Accuracy: 48.85%
+Epoch 62/100, Validation Loss: 2.7151, Validation Role Accuracy: 50.22%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 62, Validation loss: 2.7151
+Epoch 63/100, Average Training Loss: 2.9955, Role Prediction Accuracy: 50.04%
+Epoch 63/100, Validation Loss: 2.8096, Validation Role Accuracy: 50.57%
+Epoch 64/100, Average Training Loss: 3.1342, Role Prediction Accuracy: 50.84%
+Epoch 64/100, Validation Loss: 2.8036, Validation Role Accuracy: 52.11%
+Epoch 65/100, Average Training Loss: 2.8958, Role Prediction Accuracy: 47.11%
+Epoch 65/100, Validation Loss: 2.6345, Validation Role Accuracy: 51.56%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 65, Validation loss: 2.6345
+Epoch 66/100, Average Training Loss: 2.8801, Role Prediction Accuracy: 48.61%
+Epoch 66/100, Validation Loss: 2.6865, Validation Role Accuracy: 50.18%
+Epoch 67/100, Average Training Loss: 2.7752, Role Prediction Accuracy: 50.32%
+Epoch 67/100, Validation Loss: 2.6217, Validation Role Accuracy: 51.88%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 67, Validation loss: 2.6217
+Epoch 68/100, Average Training Loss: 2.7408, Role Prediction Accuracy: 50.31%
+Epoch 68/100, Validation Loss: 2.8314, Validation Role Accuracy: 53.59%
+Epoch 69/100, Average Training Loss: 3.0063, Role Prediction Accuracy: 49.62%
+Epoch 69/100, Validation Loss: 3.0045, Validation Role Accuracy: 53.21%
+Epoch 70/100, Average Training Loss: 2.8111, Role Prediction Accuracy: 51.98%
+Epoch 70/100, Validation Loss: 2.5628, Validation Role Accuracy: 52.87%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 70, Validation loss: 2.5628
+Epoch 71/100, Average Training Loss: 2.7680, Role Prediction Accuracy: 50.33%
+Epoch 71/100, Validation Loss: 2.5580, Validation Role Accuracy: 53.82%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 71, Validation loss: 2.5580
+Epoch 72/100, Average Training Loss: 2.6753, Role Prediction Accuracy: 50.63%
+Epoch 72/100, Validation Loss: 2.6434, Validation Role Accuracy: 52.74%
+Epoch 73/100, Average Training Loss: 2.9164, Role Prediction Accuracy: 50.46%
+Epoch 73/100, Validation Loss: 2.6588, Validation Role Accuracy: 52.39%
+Epoch 74/100, Average Training Loss: 2.7326, Role Prediction Accuracy: 51.45%
+Epoch 74/100, Validation Loss: 2.9207, Validation Role Accuracy: 55.40%
+Epoch 75/100, Average Training Loss: 2.7275, Role Prediction Accuracy: 53.49%
+Epoch 75/100, Validation Loss: 2.3925, Validation Role Accuracy: 56.12%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 75, Validation loss: 2.3925
+Epoch 76/100, Average Training Loss: 2.5174, Role Prediction Accuracy: 51.73%
+Epoch 76/100, Validation Loss: 2.5234, Validation Role Accuracy: 54.55%
+Epoch 77/100, Average Training Loss: 2.5661, Role Prediction Accuracy: 53.87%
+Epoch 77/100, Validation Loss: 2.3961, Validation Role Accuracy: 50.65%
+Epoch 78/100, Average Training Loss: 2.6741, Role Prediction Accuracy: 48.57%
+Epoch 78/100, Validation Loss: 2.3541, Validation Role Accuracy: 51.75%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 78, Validation loss: 2.3541
+Epoch 79/100, Average Training Loss: 2.6034, Role Prediction Accuracy: 49.65%
+Epoch 79/100, Validation Loss: 2.4233, Validation Role Accuracy: 52.95%
+Epoch 80/100, Average Training Loss: 2.9492, Role Prediction Accuracy: 52.68%
+Epoch 80/100, Validation Loss: 2.6363, Validation Role Accuracy: 55.13%
+Epoch 81/100, Average Training Loss: 2.4507, Role Prediction Accuracy: 55.91%
+Epoch 81/100, Validation Loss: 2.6204, Validation Role Accuracy: 50.87%
+Epoch 82/100, Average Training Loss: 2.6378, Role Prediction Accuracy: 50.76%
+Epoch 82/100, Validation Loss: 2.3431, Validation Role Accuracy: 52.65%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 82, Validation loss: 2.3431
+Epoch 83/100, Average Training Loss: 2.3816, Role Prediction Accuracy: 55.44%
+Epoch 83/100, Validation Loss: 2.2714, Validation Role Accuracy: 57.39%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 83, Validation loss: 2.2714
+Epoch 84/100, Average Training Loss: 2.5029, Role Prediction Accuracy: 52.56%
+Epoch 84/100, Validation Loss: 2.3532, Validation Role Accuracy: 49.34%
+Epoch 85/100, Average Training Loss: 2.4228, Role Prediction Accuracy: 59.14%
+Epoch 85/100, Validation Loss: 2.2674, Validation Role Accuracy: 54.95%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 85, Validation loss: 2.2674
+Epoch 86/100, Average Training Loss: 2.4876, Role Prediction Accuracy: 53.61%
+Epoch 86/100, Validation Loss: 2.3874, Validation Role Accuracy: 56.88%
+Epoch 87/100, Average Training Loss: 2.3836, Role Prediction Accuracy: 54.59%
+Epoch 87/100, Validation Loss: 2.2823, Validation Role Accuracy: 56.01%
+Epoch 88/100, Average Training Loss: 2.5860, Role Prediction Accuracy: 56.48%
+Epoch 88/100, Validation Loss: 2.4166, Validation Role Accuracy: 58.32%
+Epoch 89/100, Average Training Loss: 2.3298, Role Prediction Accuracy: 56.43%
+Epoch 89/100, Validation Loss: 2.2691, Validation Role Accuracy: 56.63%
+Epoch 90/100, Average Training Loss: 2.4920, Role Prediction Accuracy: 52.11%
+Epoch 90/100, Validation Loss: 2.2587, Validation Role Accuracy: 58.57%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 90, Validation loss: 2.2587
+Epoch 91/100, Average Training Loss: 2.5019, Role Prediction Accuracy: 56.55%
+Epoch 91/100, Validation Loss: 2.5299, Validation Role Accuracy: 47.30%
+Epoch 92/100, Average Training Loss: 2.4750, Role Prediction Accuracy: 54.86%
+Epoch 92/100, Validation Loss: 2.2047, Validation Role Accuracy: 57.80%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 92, Validation loss: 2.2047
+Epoch 93/100, Average Training Loss: 2.3858, Role Prediction Accuracy: 56.37%
+Epoch 93/100, Validation Loss: 2.3118, Validation Role Accuracy: 50.15%
+Epoch 94/100, Average Training Loss: 2.4646, Role Prediction Accuracy: 50.71%
+Epoch 94/100, Validation Loss: 2.4326, Validation Role Accuracy: 56.65%
+Epoch 95/100, Average Training Loss: 2.5376, Role Prediction Accuracy: 54.63%
+Epoch 95/100, Validation Loss: 2.2714, Validation Role Accuracy: 59.10%
+Epoch 96/100, Average Training Loss: 2.3290, Role Prediction Accuracy: 54.96%
+Epoch 96/100, Validation Loss: 2.4305, Validation Role Accuracy: 57.64%
+Epoch 97/100, Average Training Loss: 2.4372, Role Prediction Accuracy: 55.15%
+Epoch 97/100, Validation Loss: 2.1879, Validation Role Accuracy: 58.37%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 97, Validation loss: 2.1879
+Epoch 98/100, Average Training Loss: 2.5290, Role Prediction Accuracy: 57.06%
+Epoch 98/100, Validation Loss: 2.1568, Validation Role Accuracy: 55.75%
+Saved best model and statistics to output/aqua_pn_router_contract_model_20260708-030015/ef_best_model.pth, Epoch 98, Validation loss: 2.1568
+Epoch 99/100, Average Training Loss: 2.4464, Role Prediction Accuracy: 53.81%
+Epoch 99/100, Validation Loss: 2.2273, Validation Role Accuracy: 53.96%
+Epoch 100/100, Average Training Loss: 2.6105, Role Prediction Accuracy: 54.51%
+Epoch 100/100, Validation Loss: 2.2228, Validation Role Accuracy: 58.18%
+Training completed. Best model at Epoch 98, Validation loss: 2.1568
+==================== Stage 3: Aqua Finetuning Complete ====================

@@ -1,0 +1,70 @@
+{
+  "rule": "r141_repair_confidence_calibration_protocol",
+  "protocol_only": true,
+  "no_api_run": true,
+  "r140_alignment_confirmed": true,
+  "r139_forwarding_fixed": true,
+  "r139_low_confidence_rejection": true,
+  "r139_task250_repair_confidence": 0.5,
+  "r139_repair_min_confidence": 0.8,
+  "direct_threshold_lowering_allowed": false,
+  "uses_tail34_training_source": false,
+  "allowed_sources": [
+    "first200_non_tail34_option_binding_audit",
+    "first200_non_tail34_graph_policy_rows",
+    "first200_non_tail34_objective_safety_features",
+    "synthetic_numeric_repair_controls"
+  ],
+  "forbidden_sources": [
+    "tail34_true_answers_or_clean_labels",
+    "tail34_task_ids",
+    "tail34_r096_r109_r113_eval_targets_as_training",
+    "r137_or_r139_switch_predictions_as_training_labels",
+    "r139_task250_confidence_as_threshold_target"
+  ],
+  "calibration_features": [
+    "repair_binding_status",
+    "repair_distance_ratio",
+    "repair_confidence_text_bucket",
+    "verifier_router_repair_agreement",
+    "direct_majority_contradiction",
+    "option_text_exactness",
+    "candidate_source_count",
+    "numeric_distance_bucket"
+  ],
+  "success_gates": [
+    "offline_calibration_uses_no_forbidden_source",
+    "same_four_task_clean_harm_0_on_task_8_task_188",
+    "same_four_task_clean_recovery_task_250",
+    "same_four_task_noisy_task_108_not_regressed",
+    "broad_tail34_still_blocked_until_four_task_gate_passes"
+  ],
+  "calibration_output_contract": {
+    "fields": [
+      "repair_option",
+      "repair_binding_status",
+      "calibrated_repair_confidence",
+      "calibration_reason",
+      "calibration_source_family"
+    ],
+    "must_preserve_abstention_when": [
+      "direct_majority_contradiction",
+      "distance_ratio_above_bound",
+      "missing_verifier_router_agreement"
+    ]
+  },
+  "required_clean_harm_guards": [
+    "task_8",
+    "task_188"
+  ],
+  "required_clean_recovery_targets": [
+    "task_250"
+  ],
+  "noisy_optional_targets": [
+    "task_108"
+  ],
+  "same_four_task_smoke_allowed_after_offline_export": true,
+  "broad_api_allowed_next": false,
+  "next_protocol": "repair_confidence_calibration_offline_export",
+  "claim_boundary": "calibration protocol only; no API, threshold change, accuracy, transfer, robustness, or SCI-readiness claim"
+}

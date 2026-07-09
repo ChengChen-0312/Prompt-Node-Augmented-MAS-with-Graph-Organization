@@ -1,0 +1,41 @@
+{
+  "run_id": "R225",
+  "title": "Five-iteration SCI-Q2 goal audit after R221-R224",
+  "date": "2026-07-09",
+  "no_api": true,
+  "goal_status_from_system": "blocked",
+  "goal_used_as_audit_benchmark": true,
+  "window": ["R221", "R222", "R223", "R224"],
+  "drift_detected": false,
+  "sci_q2_ready": false,
+  "progress": [
+    "R221 materialized four router-final control manifests.",
+    "R222 verified 0 leakage violations across 268 control records.",
+    "R223 dry-ran local adapter over proposed and control manifests: 335 records, 106 would-switch, 0 leakage violations.",
+    "R224 updated the claim matrix and kept superiority claims blocked."
+  ],
+  "api_status": "blocked",
+  "reason_api_blocked": "Control artifacts and local adapter exist, but cost-matched ARG re-query and runtime evaluator integration are still missing.",
+  "still_missing": [
+    "cost-matched ARG re-query protocol/artifact",
+    "runtime integration with actual evaluator decision flow",
+    "answer-level comparison against controls",
+    "MMLU held-out improvement",
+    "Tool/Resource PromptNode and lifecycle case studies",
+    "citation audit and full paper draft"
+  ],
+  "decision": "aligned_continue_cost_matched_and_runtime_integration_no_api",
+  "authorized_next": [
+    "R226: materialize cost-matched ARG re-query protocol and task/budget manifest, no API.",
+    "R227: define runtime integration contract for proposed/control router-final decisions, no API.",
+    "R228: dry-run integration logs against proposed/control manifests, no API.",
+    "R229: update claim matrix and paper plan with cost/control readiness.",
+    "R230: next mandatory goal audit."
+  ],
+  "forbidden_next": [
+    "No API before R230 unless a later audit explicitly authorizes a tiny diagnostic.",
+    "No superiority claim over ARG or controls.",
+    "No SCI-Q2 readiness claim.",
+    "No cost-normalized claim without cost-matched ARG."
+  ]
+}

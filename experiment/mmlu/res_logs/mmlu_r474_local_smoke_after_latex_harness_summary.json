@@ -1,0 +1,32 @@
+{
+  "run_id": "R474",
+  "title": "Local smoke after LaTeX harness",
+  "claim_boundary": "R474 runs local tests for LaTeX environment options and compile harness. It does not install software or claim PDF compilation.",
+  "no_api": true,
+  "broad_api": false,
+  "tested_modules": [
+    "tests.test_r472_latex_environment_options",
+    "tests.test_r473_compile_command_harness"
+  ],
+  "test_results": [
+    {
+      "module": "tests.test_r472_latex_environment_options",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r473_compile_command_harness",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+    }
+  ],
+  "failed_modules": [],
+  "local_smoke_pass": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R475_waiting_for_external_audit_or_latex_engine",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r474_local_smoke_after_latex_harness_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r474_local_smoke_after_latex_harness_report.md"
+}

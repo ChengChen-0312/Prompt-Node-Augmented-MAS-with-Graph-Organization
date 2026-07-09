@@ -1,0 +1,44 @@
+{
+  "run_id": "R217",
+  "title": "Non-abstain router-final target extraction",
+  "claim_boundary": "Target extraction only; no API and no accuracy claim.",
+  "no_api": true,
+  "train_jsonl": "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl",
+  "frozen_eval_jsonl": "experiment/aqua/aqua_tail34_r096_objective_safety_policy_targets.jsonl",
+  "output_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r217_non_abstain_router_targets.jsonl",
+  "train_source_rows": 200,
+  "frozen_eval_source_rows": 34,
+  "records": 234,
+  "router_actions": {
+    "abstain": 221,
+    "switch_to_objective": 13
+  },
+  "router_actions_by_split": {
+    "train": {
+      "abstain": 189,
+      "switch_to_objective": 11
+    },
+    "frozen_eval": {
+      "abstain": 32,
+      "switch_to_objective": 2
+    }
+  },
+  "frozen_eval_switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "split_roles": {
+    "frozen_eval": 34,
+    "train": 200
+  },
+  "leakage_violations": 0,
+  "leakage_pass": true,
+  "violations": [],
+  "training_allowed_records": 200,
+  "frozen_eval_only_records": 34,
+  "tests": {
+    "tests.test_r217_non_abstain_router_targets": "4/4 passed",
+    "tests.test_r212_router_final_leakage_scan": "3/3 passed",
+    "tests.test_r211_mmlu_router_final_schema": "2/2 passed"
+  }
+}

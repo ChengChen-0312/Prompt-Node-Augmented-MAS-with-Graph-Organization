@@ -1,0 +1,162 @@
+{
+  "run_id": "R405",
+  "title": "Experiment integrity local precheck",
+  "claim_boundary": "R405 is a deterministic local precheck for result existence, number consistency, and claim boundaries. It does not replace the required independent experiment-audit reviewer.",
+  "no_api": true,
+  "broad_api": false,
+  "local_precheck_status": "pass_external_pending",
+  "checks": {
+    "source_files_exist": {
+      "status": "PASS",
+      "files": [
+        {
+          "key": "r321",
+          "path": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+          "exists": true
+        },
+        {
+          "key": "r381",
+          "path": "experiment/mmlu/res_logs/mmlu_r381_option_binding_fresh_eval_analysis_summary.json",
+          "exists": true
+        },
+        {
+          "key": "r396",
+          "path": "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+          "exists": true
+        },
+        {
+          "key": "r401",
+          "path": "experiment/mmlu/res_logs/mmlu_r401_contrastive_verifier_targeted_analysis_and_goal_audit_summary.json",
+          "exists": true
+        },
+        {
+          "key": "r402",
+          "path": "experiment/mmlu/res_logs/mmlu_r402_result_to_claim_synthesis_for_paper_summary.json",
+          "exists": true
+        }
+      ]
+    },
+    "claim_number_consistency": {
+      "status": "PASS",
+      "checked_claims": 5
+    },
+    "overclaim_boundary": {
+      "status": "PASS",
+      "broad_general_improvement_claim_allowed": false,
+      "main_paper_claim_allowed": false,
+      "sci_q2_ready": false
+    }
+  },
+  "claim_checks": [
+    {
+      "id": "C1_aqua_audit_clean_gain",
+      "claim_status": "supported",
+      "paper_use": "main_result",
+      "source": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "baseline": "28/31",
+        "promptnode": "31/31",
+        "delta_correct": 3
+      },
+      "expected_values": {
+        "baseline": "28/31",
+        "promptnode": "31/31",
+        "delta_correct": 3
+      },
+      "boundary_action": "allow_narrow_main_claim"
+    },
+    {
+      "id": "C2_mmlu_stem_gain",
+      "claim_status": "supported",
+      "paper_use": "main_transfer_result",
+      "source": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "baseline": "88/97",
+        "promptnode": "95/97",
+        "delta_correct": 7,
+        "fix_harm": "7/0"
+      },
+      "expected_values": {
+        "baseline": "88/97",
+        "promptnode": "95/97",
+        "delta_correct": 7,
+        "fix_harm": "7/0"
+      },
+      "boundary_action": "allow_narrow_main_claim"
+    },
+    {
+      "id": "C3_history_optionbinding_pilot_gain",
+      "claim_status": "partial",
+      "paper_use": "mechanism_pilot_or_appendix",
+      "source": "experiment/mmlu/res_logs/mmlu_r381_option_binding_fresh_eval_analysis_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "records": 24,
+        "arg_correct": 21,
+        "hybrid_correct": 24,
+        "delta_correct": 3,
+        "harms": 0
+      },
+      "expected_values": {
+        "records": 24,
+        "arg_correct": 21,
+        "hybrid_correct": 24,
+        "delta_correct": 3,
+        "harms": 0
+      },
+      "boundary_action": "appendix_or_mechanism_pilot_only"
+    },
+    {
+      "id": "C4_mixed_nonmath_no_harm",
+      "claim_status": "supported",
+      "paper_use": "boundary_no_harm_result",
+      "source": "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "records": 48,
+        "arg_correct": 41,
+        "hybrid_correct": 41,
+        "delta_correct": 0,
+        "harms": 0
+      },
+      "expected_values": {
+        "records": 48,
+        "arg_correct": 41,
+        "hybrid_correct": 41,
+        "delta_correct": 0,
+        "harms": 0
+      },
+      "boundary_action": "allow_no_harm_boundary_claim"
+    },
+    {
+      "id": "C5_broad_general_improvement",
+      "claim_status": "unsupported",
+      "paper_use": "forbidden_claim",
+      "source": "experiment/mmlu/res_logs/mmlu_r401_contrastive_verifier_targeted_analysis_and_goal_audit_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "claim_status": "unsupported",
+        "paper_use": "forbidden_claim",
+        "integrate_contrastive_path": false,
+        "main_paper_claim_allowed": false
+      },
+      "expected_values": {
+        "claim_status": "unsupported",
+        "paper_use": "forbidden_claim",
+        "integrate_contrastive_path": false,
+        "main_paper_claim_allowed": false
+      },
+      "boundary_action": "forbid_as_claim"
+    }
+  ],
+  "external_review_required": true,
+  "external_reviewer_available_in_this_session": false,
+  "integrity_audit_complete": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R406_external_integrity_review_package",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r405_experiment_integrity_local_precheck_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r405_experiment_integrity_local_precheck_report.md"
+}

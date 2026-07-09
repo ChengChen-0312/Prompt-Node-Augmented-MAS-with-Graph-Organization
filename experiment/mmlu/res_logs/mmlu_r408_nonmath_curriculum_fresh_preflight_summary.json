@@ -1,0 +1,52 @@
+{
+  "run_id": "R408",
+  "title": "Nonmath curriculum fresh preflight",
+  "claim_boundary": "R408 builds a leakage-free fresh MMLU non-STEM manifest for the R407 curriculum. It does not execute API or support a paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "subjects": 8,
+  "subject_counts": {
+    "business_ethics": 4,
+    "high_school_government_and_politics": 4,
+    "high_school_world_history": 4,
+    "logical_fallacies": 4,
+    "moral_disputes": 4,
+    "philosophy": 4,
+    "sociology": 4,
+    "world_religions": 4
+  },
+  "tasks_per_subject": 4,
+  "tasks": 32,
+  "api_records": 64,
+  "planned_arg_baseline_calls": 32,
+  "planned_curriculum_candidate_calls": 32,
+  "variant_counts": {
+    "arg_baseline_direct_api": 32,
+    "nonmath_curriculum_candidate_api": 32
+  },
+  "node_types": [
+    "InstructionAmbiguityVerifierPN",
+    "OptionSemanticConsistencyVerifierPN",
+    "ConceptDefinitionAnchorPN",
+    "ContradictionDetectorPN",
+    "AdversarialVerifierPN",
+    "ConsensusConflictResolverPN",
+    "MemoryBridgePN"
+  ],
+  "edge_types": [
+    "OptionBindingPromptEdge",
+    "AdversarialChallengePromptEdge",
+    "DefinitionAnchorPromptEdge",
+    "ConflictResolutionPromptEdge",
+    "MemoryBridgePromptEdge"
+  ],
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R409_nonmath_curriculum_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r408_nonmath_curriculum_fresh_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r408_nonmath_curriculum_fresh_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r408_nonmath_curriculum_fresh_preflight_report.md"
+}

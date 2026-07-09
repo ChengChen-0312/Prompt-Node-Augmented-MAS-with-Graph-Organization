@@ -1,0 +1,56 @@
+{
+  "run_id": "R311",
+  "title": "MMLU non-STEM guarded PromptNode transfer diagnostic",
+  "claim_boundary": "Same-model non-STEM transfer diagnostic. It can support no-harm evidence, not SCI-Q2 readiness by itself.",
+  "no_api": false,
+  "broad_api": false,
+  "records": 80,
+  "tasks": 40,
+  "variant_counts": {
+    "arg_baseline_fixed": 40,
+    "proposed_nonstem_promptnode_promptedge": 40
+  },
+  "by_variant": {
+    "arg_baseline_fixed": {
+      "records": 40,
+      "evaluated_records": 40,
+      "correct": 37,
+      "accuracy": 0.925,
+      "fixes": 0,
+      "harms": 0,
+      "switches": 0,
+      "api_required": 0,
+      "api_executed": 0,
+      "api_errors": 0
+    },
+    "proposed_nonstem_promptnode_promptedge": {
+      "records": 40,
+      "evaluated_records": 40,
+      "correct": 34,
+      "accuracy": 0.85,
+      "fixes": 0,
+      "harms": 3,
+      "switches": 5,
+      "api_required": 40,
+      "api_executed": 40,
+      "api_errors": 0
+    }
+  },
+  "arg_main": "37/40",
+  "proposed_main": "34/40",
+  "delta_vs_arg": -3,
+  "fix_harm_vs_arg": "0/3",
+  "no_harm": false,
+  "beats_arg": false,
+  "api_cost": 0.20547,
+  "prompt_tokens": 22371,
+  "completion_tokens": 6241,
+  "training_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R312_result_to_claim_and_ablation_plan",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r311_nonstem_promptnode_manifest.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r311_nonstem_promptnode_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r311_nonstem_promptnode_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r311_nonstem_promptnode_report.md",
+  "env_values_logged": false
+}

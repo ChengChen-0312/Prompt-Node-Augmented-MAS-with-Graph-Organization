@@ -1,0 +1,204 @@
+{
+  "rule": "r101_task250_template_rank_feature_audit",
+  "task_id": "task_250",
+  "matching_ranks": [
+    2,
+    5
+  ],
+  "nonmatching_ranks": [
+    1,
+    3,
+    4
+  ],
+  "heuristic": "support_count<=5 AND has_math_solver AND (has_inspector OR upstream_agent_count>=3)",
+  "heuristic_selected_ranks": [
+    2,
+    5
+  ],
+  "heuristic_precision": "2/2",
+  "heuristic_recall": "2/2",
+  "heuristic_input_field_violations": 0,
+  "rows": [
+    {
+      "task_id": "task_250",
+      "rank": 1,
+      "heuristic_input": {
+        "rank": 1,
+        "support_count": 35,
+        "support_aqua_100": 19,
+        "support_aqua_next100": 16,
+        "support_aqua_100_ge_next100": true,
+        "upstream_agent_count": 2,
+        "unique_upstream_role_count": 2,
+        "upstream_role_counts": {
+          "Math Solver": 1,
+          "Programming Expert": 1
+        },
+        "has_math_solver": true,
+        "has_inspector": false,
+        "has_programming_expert": true,
+        "has_duplicate_upstream_role": false,
+        "edge_count": 5,
+        "pn_write_source_count": 2,
+        "prompt_node_roles": [
+          "PN_Memory",
+          "PN_Verifier",
+          "PN_Router"
+        ],
+        "prompt_node_spec_count": 3
+      },
+      "heuristic_selected": false,
+      "predicted_answer": "A",
+      "desired_prediction": "E",
+      "matches_desired_prediction": false,
+      "is_solved": false,
+      "true_answer": "E",
+      "claim_boundary": "task250 metadata feature audit; heuristic hypothesis only, not a general selector"
+    },
+    {
+      "task_id": "task_250",
+      "rank": 2,
+      "heuristic_input": {
+        "rank": 2,
+        "support_count": 5,
+        "support_aqua_100": 4,
+        "support_aqua_next100": 1,
+        "support_aqua_100_ge_next100": true,
+        "upstream_agent_count": 2,
+        "unique_upstream_role_count": 2,
+        "upstream_role_counts": {
+          "Inspector": 1,
+          "Math Solver": 1
+        },
+        "has_math_solver": true,
+        "has_inspector": true,
+        "has_programming_expert": false,
+        "has_duplicate_upstream_role": false,
+        "edge_count": 5,
+        "pn_write_source_count": 2,
+        "prompt_node_roles": [
+          "PN_Memory",
+          "PN_Verifier",
+          "PN_Router"
+        ],
+        "prompt_node_spec_count": 3
+      },
+      "heuristic_selected": true,
+      "predicted_answer": "E",
+      "desired_prediction": "E",
+      "matches_desired_prediction": true,
+      "is_solved": true,
+      "true_answer": "E",
+      "claim_boundary": "task250 metadata feature audit; heuristic hypothesis only, not a general selector"
+    },
+    {
+      "task_id": "task_250",
+      "rank": 3,
+      "heuristic_input": {
+        "rank": 3,
+        "support_count": 5,
+        "support_aqua_100": 1,
+        "support_aqua_next100": 4,
+        "support_aqua_100_ge_next100": false,
+        "upstream_agent_count": 2,
+        "unique_upstream_role_count": 1,
+        "upstream_role_counts": {
+          "Math Solver": 2
+        },
+        "has_math_solver": true,
+        "has_inspector": false,
+        "has_programming_expert": false,
+        "has_duplicate_upstream_role": true,
+        "edge_count": 5,
+        "pn_write_source_count": 1,
+        "prompt_node_roles": [
+          "PN_Memory",
+          "PN_Verifier",
+          "PN_Router"
+        ],
+        "prompt_node_spec_count": 3
+      },
+      "heuristic_selected": false,
+      "predicted_answer": "A",
+      "desired_prediction": "E",
+      "matches_desired_prediction": false,
+      "is_solved": false,
+      "true_answer": "E",
+      "claim_boundary": "task250 metadata feature audit; heuristic hypothesis only, not a general selector"
+    },
+    {
+      "task_id": "task_250",
+      "rank": 4,
+      "heuristic_input": {
+        "rank": 4,
+        "support_count": 4,
+        "support_aqua_100": 1,
+        "support_aqua_next100": 3,
+        "support_aqua_100_ge_next100": false,
+        "upstream_agent_count": 2,
+        "unique_upstream_role_count": 2,
+        "upstream_role_counts": {
+          "Inspector": 1,
+          "Programming Expert": 1
+        },
+        "has_math_solver": false,
+        "has_inspector": true,
+        "has_programming_expert": true,
+        "has_duplicate_upstream_role": false,
+        "edge_count": 5,
+        "pn_write_source_count": 2,
+        "prompt_node_roles": [
+          "PN_Memory",
+          "PN_Verifier",
+          "PN_Router"
+        ],
+        "prompt_node_spec_count": 3
+      },
+      "heuristic_selected": false,
+      "predicted_answer": "A",
+      "desired_prediction": "E",
+      "matches_desired_prediction": false,
+      "is_solved": false,
+      "true_answer": "E",
+      "claim_boundary": "task250 metadata feature audit; heuristic hypothesis only, not a general selector"
+    },
+    {
+      "task_id": "task_250",
+      "rank": 5,
+      "heuristic_input": {
+        "rank": 5,
+        "support_count": 4,
+        "support_aqua_100": 2,
+        "support_aqua_next100": 2,
+        "support_aqua_100_ge_next100": true,
+        "upstream_agent_count": 3,
+        "unique_upstream_role_count": 2,
+        "upstream_role_counts": {
+          "Math Solver": 1,
+          "Programming Expert": 2
+        },
+        "has_math_solver": true,
+        "has_inspector": false,
+        "has_programming_expert": true,
+        "has_duplicate_upstream_role": true,
+        "edge_count": 7,
+        "pn_write_source_count": 2,
+        "prompt_node_roles": [
+          "PN_Memory",
+          "PN_Verifier",
+          "PN_Router"
+        ],
+        "prompt_node_spec_count": 3
+      },
+      "heuristic_selected": true,
+      "predicted_answer": "E",
+      "desired_prediction": "E",
+      "matches_desired_prediction": true,
+      "is_solved": true,
+      "true_answer": "E",
+      "claim_boundary": "task250 metadata feature audit; heuristic hypothesis only, not a general selector"
+    }
+  ],
+  "claim_boundary": "task250 metadata feature audit; heuristic hypothesis only, not a general selector",
+  "rows_jsonl": "experiment/aqua/aqua_tail34_r101_task250_template_rank_feature_rows.jsonl"
+}

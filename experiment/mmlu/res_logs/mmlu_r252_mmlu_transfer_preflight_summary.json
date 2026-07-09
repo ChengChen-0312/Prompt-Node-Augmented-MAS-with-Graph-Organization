@@ -1,0 +1,32 @@
+{
+  "records": 80,
+  "tasks": 16,
+  "variant_counts": {
+    "abstain_keep_arg": 16,
+    "arg_baseline_fixed": 16,
+    "node_only_no_promptedge_text": 16,
+    "plain_requery": 16,
+    "proposed_promptnode_promptedge": 16
+  },
+  "api_required": 48,
+  "deterministic_records": 32,
+  "leakage_violations": 0,
+  "leakage_pass": true,
+  "estimated_cost": 0.10977,
+  "cost_cap": 0.45,
+  "estimated_cost_within_cap": true,
+  "variant_balance_pass": true,
+  "preflight_pass": true,
+  "run_id": "R252",
+  "title": "MMLU transfer diagnostic preflight",
+  "claim_boundary": "Preflight only; no API execution, no transfer accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "model": "gpt-4o-2024-08-06",
+  "probe_jsonl": "experiment/mmlu/run_logs/mmlu_r251_mmlu_transfer_probe_tiny16.jsonl",
+  "transfer_results_jsonl": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "output_dir": "experiment/mmlu/manifests/r252_mmlu_transfer_tiny16",
+  "dryrun_jsonl": "experiment/mmlu/run_logs/mmlu_r252_mmlu_transfer_preflight_records.jsonl",
+  "max_completion_tokens": 64,
+  "authorized_api_next": true
+}

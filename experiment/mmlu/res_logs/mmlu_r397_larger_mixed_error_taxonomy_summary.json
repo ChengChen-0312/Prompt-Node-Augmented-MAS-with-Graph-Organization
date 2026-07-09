@@ -1,0 +1,51 @@
+{
+  "run_id": "R397",
+  "title": "Larger mixed error taxonomy",
+  "claim_boundary": "R397 classifies R395 errors. It is diagnostic only and cannot support a paper claim by itself.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 48,
+  "wrong_forward_count": 3,
+  "missed_fix_count": 4,
+  "candidate_correct_but_blocked_count": 1,
+  "abstention_or_schema_failure_count": 1,
+  "candidate_wrong_missed_count": 2,
+  "wrong_forward_task_ids": [
+    "MMLU-nonstem-moral_disputes_test-24",
+    "MMLU-nonstem-logical_fallacies_test-17",
+    "MMLU-nonstem-logical_fallacies_test-18"
+  ],
+  "candidate_correct_but_blocked_task_ids": [
+    "MMLU-nonstem-philosophy_test-25"
+  ],
+  "abstention_task_ids": [
+    "MMLU-nonstem-business_ethics_test-19"
+  ],
+  "candidate_wrong_missed_task_ids": [
+    "MMLU-nonstem-sociology_test-23",
+    "MMLU-nonstem-world_religions_test-21"
+  ],
+  "root_causes": [
+    "wrong_forward_definition_misbinding",
+    "candidate_quality_failure",
+    "gate_over_pruning_for_candidate_type_option",
+    "abstention_or_schema_failure"
+  ],
+  "method_implications": [
+    "Add a contrastive option-verification PromptNode that must explicitly reject the nearest distractor before forwarding.",
+    "Add a concept-definition anchor PromptNode for philosophy, moral, and logical-fallacy questions.",
+    "Use PromptEdge evidence to distinguish direct option binding from generic semantic plausibility.",
+    "Keep the weighted gate conservative until a fresh positive delta reappears."
+  ],
+  "claim_permissions": {
+    "design_iteration_allowed_next": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R398_nonmath_contrastive_verifier_design",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r397_larger_mixed_error_taxonomy_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r397_larger_mixed_error_taxonomy_report.md"
+}

@@ -1,0 +1,61 @@
+{
+  "rule": "r070_consensus3_over_r069_fresh_traces",
+  "claim_boundary": "replay_over_r069_fresh_traces_not_new_api_run",
+  "total_tasks": 34,
+  "solved_tasks": 29,
+  "baseline_solved_tasks": 26,
+  "overall": "29/34",
+  "baseline": "26/34",
+  "delta_vs_baseline": 3,
+  "multiview_run_count": 25,
+  "multiview_run": "25/34",
+  "switches": 3,
+  "switch_tasks": [
+    "task_56",
+    "task_8",
+    "task_188"
+  ],
+  "fixes": 3,
+  "harms": 0,
+  "fix_harm": "3/0",
+  "fix_tasks": [
+    "task_56",
+    "task_8",
+    "task_188"
+  ],
+  "harm_tasks": [],
+  "cost_inherited_from_r069": 3.908995000000001,
+  "posthoc_audit_summary": {
+    "variant": "r070_consensus3_over_r069_fresh_traces",
+    "total": 34,
+    "solved": 29,
+    "overall": "29/34",
+    "clean_total": 28,
+    "clean_solved": 27,
+    "clean": "27/28",
+    "noisy_or_ambiguous_total": 6,
+    "noisy_or_ambiguous_solved": 2,
+    "noisy_or_ambiguous": "2/6",
+    "baseline_solved": 26,
+    "delta_vs_baseline": 3,
+    "fixes": 3,
+    "harms": 0,
+    "fix_harm": "3/0",
+    "clean_fixes": 3,
+    "clean_harms": 0,
+    "clean_fix_harm": "3/0",
+    "noisy_fixes": 0,
+    "noisy_harms": 0,
+    "noisy_fix_harm": "0/0",
+    "switches": 3,
+    "switch_sources": {
+      "objective_top_consensus3": 3
+    },
+    "notes": ""
+  },
+  "clean": "27/28",
+  "clean_fix_harm": "3/0",
+  "noisy_or_ambiguous": "2/6",
+  "noisy_fix_harm": "0/0",
+  "interpretation": "Replays a stricter consensus switch rule over R069 fresh traces. It removes the unsupported task_59 switch while preserving accuracy, but does not reduce API cost because it still assumes R069 views were run."
+}

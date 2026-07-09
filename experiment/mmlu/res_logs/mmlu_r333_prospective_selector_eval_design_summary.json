@@ -1,0 +1,54 @@
+{
+  "run_id": "R333",
+  "title": "Prospective selector evaluation design",
+  "claim_boundary": "R333 freezes the prospective selector-evaluation protocol only. It does not construct prompts or call APIs.",
+  "no_api": true,
+  "broad_api": false,
+  "protocol": {
+    "eval_name": "prospective_mmlu_selector_heldout",
+    "model": "gpt-4o-2024-08-06",
+    "baseline": "ARG-Designer-compatible fixed ARG output where available, otherwise direct ARG-style baseline prompt",
+    "selector_policy_source": "experiment/mmlu/res_logs/mmlu_r327_augmented_selector_retraining_dry_run_summary.json",
+    "exclude_training_manifest_hashes": true,
+    "candidate_pool": [
+      "MMLU STEM held-out items not present in R322/R325 manifests",
+      "MMLU non-STEM held-out items not present in R310-R316 transfer/control runs"
+    ],
+    "target_size": {
+      "stem": 24,
+      "nonstem": 24
+    },
+    "variants": [
+      "arg_baseline_fixed_or_direct",
+      "selector_promptnode_promptedge_policy",
+      "cost_matched_plain_requery_control"
+    ]
+  },
+  "leakage_forbidden_prompt_fields": [
+    "task_id",
+    "true_answer",
+    "gold_answer",
+    "is_correct",
+    "evaluation_only",
+    "source_ref_hash"
+  ],
+  "success_criteria": [
+    "beat_arg_on_clean_stem_or_aqua_like_slice",
+    "no_harm_on_nonstem",
+    "fix_harm_nonnegative",
+    "cost_not_worse_than_plain_requery",
+    "no_label_audit_exclusions_in_main_metric_without_appendix_report"
+  ],
+  "estimated_budget": {
+    "records": 48,
+    "variants_with_api": 2,
+    "max_api_calls": 96,
+    "reason": "Bounded smoke-scale prospective check before larger held-out evaluation."
+  },
+  "preflight_authorized_next": true,
+  "api_execution_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R334_prospective_selector_eval_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r333_prospective_selector_eval_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r333_prospective_selector_eval_design_report.md"
+}

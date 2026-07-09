@@ -1,0 +1,25 @@
+{
+  "run_id": "R249",
+  "title": "Result-to-claim update after lifecycle and transfer prep",
+  "claim_boundary": "Claim-matrix update only; no API, no new accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "paper_plan_updated": true,
+  "claim_updates": {
+    "fitted_label_free_selector_learns_virtual_evidence_use": "supported_offline_small_frozen_split",
+    "conservative_selector_improves_aqua_replay_without_clean_harm": "supported_offline",
+    "conservative_selector_beats_simple_controls": "partial_offline",
+    "promptedge_text_independent_gain": "not_supported",
+    "promptnode_lifecycle_evidence": "supported_annotation_only",
+    "mmlu_transfer_probe_without_label_leakage": "supported_protocol_only",
+    "mmlu_transfer_accuracy_improvement": "not_supported",
+    "sci_q2_ready": false
+  },
+  "evidence": {
+    "r242": "train 28/33 vs 23/33; frozen_eval 29/34 vs 28/34",
+    "r243": "proposed 57/67; node-only 57/67; random 47/67; abstain 51/67; always 57/67 with higher harm",
+    "r247": "75 lifecycle annotations over task decisions and source metadata",
+    "r248": "100 MMLU transfer feature rows; 12 ARG errors; 88 controls"
+  },
+  "next_audit": "R250"
+}

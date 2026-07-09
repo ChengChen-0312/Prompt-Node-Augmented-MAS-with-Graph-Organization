@@ -1,0 +1,36 @@
+{
+  "run_id": "R209",
+  "title": "SCI-Q2-oriented paper outline after R207/R208 evidence gates",
+  "date": "2026-07-09",
+  "no_api": true,
+  "paper_ready": false,
+  "target": "SCI-Q2-oriented method + empirical journal paper",
+  "working_title": "Constrained PromptNode-PromptEdge Graph Policies for Multi-Agent Reasoning",
+  "one_sentence_contribution": "The paper studies PromptNodes and PromptEdges as first-class graph primitives for multi-agent reasoning, showing a scope-limited AQuA improvement signal while exposing the ablations needed to make the mechanism robust and publication-ready.",
+  "main_supported_result": "AQuA tail34 R065 objective-guided selector: 31/34 vs ARG 28/34, clean 28/28, fix/harm 3/0",
+  "mechanism_supported_result": "MMLU R189 projected PN/PE graph readiness: 50/50 contract-ready",
+  "unsupported_result": "MMLU random12 improvement: R202 11/12 vs 11/12",
+  "sections": [
+    "Abstract",
+    "Introduction",
+    "Related Work",
+    "Problem Formulation",
+    "Method",
+    "Experimental Setup",
+    "Results",
+    "Ablations and Analysis",
+    "Limitations and Conclusion"
+  ],
+  "key_gaps_before_submission": [
+    "router-final PN/PE redesign must improve at least one unbiased held-out slice without clean harm",
+    "negative controls in R208 must be executed",
+    "cost-matched ARG re-query baseline must be compared",
+    "citation audit must verify all related work",
+    "external result-to-claim review is still pending"
+  ],
+  "outputs": [
+    "PAPER_PLAN.md",
+    "refine-logs/PAPER_PLAN_R209_PROMPTEDGE_SCI_20260709.md",
+    "experiment/mmlu/run_logs/mmlu_r209_paper_outline_report.md"
+  ]
+}

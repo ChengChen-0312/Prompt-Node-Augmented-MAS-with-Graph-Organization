@@ -1,0 +1,60 @@
+{
+  "run_id": "R340",
+  "title": "Answer-bearing candidate generator design",
+  "claim_boundary": "R340 designs general answer-bearing verifier families after R339 found no switch candidates. It does not use true labels, task ids, or API calls.",
+  "no_api": true,
+  "broad_api": false,
+  "candidate_generator_families": [
+    {
+      "id": "option_by_option_symbolic_verifier",
+      "role": "General option-elimination verifier that checks each visible option against the stem.",
+      "trigger": "Multiple-choice STEM item with formula, numeric, set, or symbolic options.",
+      "output_contract": "May emit candidate_label only when at least two independent option checks support the same option and no checked option contradicts it."
+    },
+    {
+      "id": "coordinate_geometry_verifier",
+      "role": "Coordinate transformation and geometry verifier.",
+      "trigger": "Visible item mentions reflection, rotation, translation, slope, distance, polygon, or coordinate pairs.",
+      "output_contract": "Derive transformed coordinates from the stem and match against options."
+    },
+    {
+      "id": "algebraic_structure_verifier",
+      "role": "Finite group, vector-space, rank/nullity, polynomial, and abstract algebra verifier.",
+      "trigger": "Visible item mentions group, field, vector space, transformation, null space, quotient, ring, ideal, or polynomial over finite fields.",
+      "output_contract": "Construct minimal algebraic invariants and compare with options."
+    },
+    {
+      "id": "chemistry_balancer_verifier",
+      "role": "Stoichiometry, redox, and formula-balance verifier.",
+      "trigger": "Visible item contains chemical species, ions, reaction arrows, oxidation/reduction wording, or coefficient ratios.",
+      "output_contract": "Balance or sanity-check the visible reaction and emit an answer only when option agreement is concrete."
+    }
+  ],
+  "promptnode_roles": [
+    "PN_OptionSemanticConsistency",
+    "PN_SymbolicVerifier",
+    "PN_ToolResource",
+    "PN_InstructionVerifier",
+    "PN_SafetyGate"
+  ],
+  "promptedge_contract": {
+    "read": "Read only visible stem and options.",
+    "write": "Write compact derivation/evidence with no hidden labels.",
+    "forward": "Forward candidate_label only if confidence and evidence-count thresholds are met."
+  },
+  "lifecycle_contract": {
+    "update": "update candidate evidence",
+    "compress": "compress repeated derivations",
+    "prune": "prune warning-only or unsupported candidates",
+    "merge": "merge agreeing verifier candidates",
+    "upgrade": "upgrade repeatable high-confidence verifier family"
+  },
+  "uses_true_answers": false,
+  "uses_dataset_specific_task_rules": false,
+  "preflight_authorized_next": true,
+  "api_execution_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R341_answer_bearing_candidate_generator_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r340_answer_bearing_candidate_generator_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r340_answer_bearing_candidate_generator_design_report.md"
+}

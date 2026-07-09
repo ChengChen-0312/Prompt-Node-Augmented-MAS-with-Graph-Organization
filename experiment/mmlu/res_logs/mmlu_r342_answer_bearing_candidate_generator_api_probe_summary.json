@@ -1,0 +1,29 @@
+{
+  "run_id": "R342",
+  "title": "Answer-bearing candidate generator API probe",
+  "claim_boundary": "R342 is a 4-call mechanism probe on R337 wrong tasks. It is not a paper claim.",
+  "no_api": false,
+  "broad_api": false,
+  "records": 4,
+  "api_calls_planned": 4,
+  "api_executed": 4,
+  "api_errors": 0,
+  "candidate_label_count": 4,
+  "candidate_correct_count": 0,
+  "candidate_repairs_baseline_count": 0,
+  "candidate_harms_baseline_count": 0,
+  "verifier_family_counts": {
+    "algebraic_structure_verifier": 2,
+    "chemistry_balancer_verifier": 1,
+    "coordinate_geometry_verifier": 1
+  },
+  "api_cost": 0.01376,
+  "prompt_tokens": 763,
+  "completion_tokens": 663,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R343_answer_bearing_candidate_probe_analysis",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r342_answer_bearing_candidate_generator_api_probe_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r342_answer_bearing_candidate_generator_api_probe_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r342_answer_bearing_candidate_generator_api_probe_report.md"
+}

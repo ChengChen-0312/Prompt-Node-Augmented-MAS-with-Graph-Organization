@@ -1,0 +1,1190 @@
+{
+  "rule": "r177_datasource_inventory",
+  "total_files_scanned": 134,
+  "train_eligible_files": 24,
+  "diagnostic_only_files": 108,
+  "first200_switch_source_files": [
+    {
+      "path": "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {
+        "fallback_to_arg": 189,
+        "switch_to_objective": 11
+      },
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_r166_expanded_selective_promptedge_rows.jsonl",
+      "rows": 800,
+      "slices": {
+        "aqua_100": 400,
+        "aqua_next100": 400
+      },
+      "actions": {
+        "preserve_safe_insert": 72,
+        "suppress_or_fallback": 724,
+        "switch_critical_insert": 4
+      },
+      "task_count": 0,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    }
+  ],
+  "has_additional_non_test_override_source_beyond_first200": false,
+  "tail34_training_allowed": false,
+  "sync20_training_allowed": false,
+  "recommended_next_run": {
+    "run": "R178",
+    "type": "target-generation preflight for additional non-test AQuA rows or MMLU transfer PN/PE branch",
+    "reason": "Existing repository artifacts do not contain enough non-test switch-critical override targets."
+  },
+  "claim_boundary": "R177 is a file inventory only; it does not create new targets and does not support an accuracy claim.",
+  "files": [
+    {
+      "path": "experiment/aqua/aqua_100_contract_consensus_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_100_contract_only_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_100_multi_contract_union_only_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_100_multi_contract_union_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_contract_consensus_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_contract_only_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_graph_objective_pairwise_preferences.jsonl",
+      "rows": 228,
+      "slices": {
+        "aqua_100": 123,
+        "aqua_next100": 105
+      },
+      "actions": {},
+      "task_count": 76,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_graph_objective_training_rows.jsonl",
+      "rows": 800,
+      "slices": {
+        "aqua_100": 400,
+        "aqua_next100": 400
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_graph_policy_distill_rows.jsonl",
+      "rows": 800,
+      "slices": {
+        "aqua_100": 400,
+        "aqua_next100": 400
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_graph_policy_pt_manifest.jsonl",
+      "rows": 76,
+      "slices": {
+        "aqua_100": 41,
+        "aqua_next100": 35
+      },
+      "actions": {},
+      "task_count": 76,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_graph_ranker_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_margin3_objective_guided_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_multi_contract_union_only_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_multi_contract_union_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_objective_guided_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_offline_selector_results.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_r077_clean_fix_graph_policy_distill_rows.jsonl",
+      "rows": 800,
+      "slices": {
+        "aqua_100": 400,
+        "aqua_next100": 400
+      },
+      "actions": {},
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl",
+      "rows": 200,
+      "slices": {
+        "aqua_100": 100,
+        "aqua_next100": 100
+      },
+      "actions": {
+        "fallback_to_arg": 189,
+        "switch_to_objective": 11
+      },
+      "task_count": 200,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_r166_expanded_selective_promptedge_pt_manifest.jsonl",
+      "rows": 76,
+      "slices": {
+        "aqua_100": 41,
+        "aqua_next100": 35
+      },
+      "actions": {},
+      "task_count": 76,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_first200_r166_expanded_selective_promptedge_rows.jsonl",
+      "rows": 800,
+      "slices": {
+        "aqua_100": 400,
+        "aqua_next100": 400
+      },
+      "actions": {
+        "preserve_safe_insert": 72,
+        "suppress_or_fallback": 724,
+        "switch_critical_insert": 4
+      },
+      "task_count": 0,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_next100_contract_consensus_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_next100_contract_only_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_next100_multi_contract_union_only_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_next100_multi_contract_union_selector_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "train_eligible_if_no_outcome_fields"
+    },
+    {
+      "path": "experiment/aqua/aqua_offline_selector_100_to_next100_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "unknown_or_auxiliary"
+    },
+    {
+      "path": "experiment/aqua/aqua_offline_selector_next100_to_100_results.jsonl",
+      "rows": 100,
+      "slices": {},
+      "actions": {},
+      "task_count": 100,
+      "provenance": "unknown_or_auxiliary"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_eval20_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_option_binding_audit.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_option_binding_audit_v2.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_option_binding_audit_v3.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_option_binding_audit_v4.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_argdesigner_clean_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_argdesigner_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_candidate_select_final_all_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_candidate_select_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_constrained_generated_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_constrained_terminal_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_manual_mvr_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_router_contract_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_router_contract_trained_forced_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_router_contract_trained_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_pn_structured_manual_all_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_promptnode_guarded_fresh_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_promptnode_guarded_hard_fresh_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_promptnode_v1_replay_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_promptnode_v2_fresh_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_promptnode_v2_replay_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_r055_graph_policy_candidates4_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_r055_graph_policy_canonical_terminal_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_r055_graph_policy_preflight1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_r055_graph_policy_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_r055_graph_policy_router_contract_terminal_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_r061_selective_promptnode_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_selective_pn_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_sync20_selective_pn_v2_results.jsonl",
+      "rows": 20,
+      "slices": {},
+      "actions": {},
+      "task_count": 20,
+      "provenance": "diagnostic_only_sync20"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_arg_baseline_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_margin3_objective_guided_selector_results.jsonl",
+      "rows": 34,
+      "slices": {
+        "aqua_tail34": 34
+      },
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_multi_contract_union_only_selector_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_multi_contract_union_selector_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_objective_guided_selector_results.jsonl",
+      "rows": 34,
+      "slices": {
+        "aqua_tail34": 34
+      },
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_option_binding_audit.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_pn_calibrated_utility_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_pn_candidate_select_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_pn_conservative_router_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_pn_result_ensemble_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_pn_router_contract_preflight1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_pn_router_contract_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r058_router_contract_terminal_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r061_selective_promptnode_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r062_integrated_selective_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r062_integrated_selective_smoke3_results.jsonl",
+      "rows": 3,
+      "slices": {},
+      "actions": {},
+      "task_count": 3,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r063_risk_aware_replay_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r068_selective_multiview_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r069_integrated_selective_multiview_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r069_integrated_selective_multiview_smoke1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r070_consensus3_over_r069_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r071_cascade_multiview_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r072_integrated_cascade_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r072_integrated_cascade_smoke1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r073_surgical_cascade_trigger_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r074_surgical_cascade_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r074_surgical_cascade_smoke1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r076_clean_fix_policy_targets.jsonl",
+      "rows": 5,
+      "slices": {},
+      "actions": {},
+      "task_count": 5,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r079_clean_fix_selector_replay_results.jsonl",
+      "rows": 34,
+      "slices": {
+        "aqua_tail34": 34
+      },
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r080_r078_on_r058_metadata_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r081_promptnode_metadata_audit_rows.jsonl",
+      "rows": 8,
+      "slices": {},
+      "actions": {},
+      "task_count": 0,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_router_hardened_smoke1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_smoke1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_task56_smoke_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r084_forced_template_rank5_smoke1_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r085_forced_template_rank1_task188_smoke_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r085_forced_template_rank1_task8_smoke_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r090_forced_template_rank1_task108_smoke_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r092_forced_template_rank1_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r096_objective_safety_policy_targets.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {
+        "fallback_to_arg": 32,
+        "switch_to_objective": 2
+      },
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r097_objective_safety_template_plan.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {
+        "fallback_to_arg": 32,
+        "switch_to_objective": 2
+      },
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r098_objective_safety_template_plan_replay.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r100_forced_template_rank2_task250_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r100_forced_template_rank3_task250_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r100_forced_template_rank4_task250_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r100_forced_template_rank5_task250_results.jsonl",
+      "rows": 1,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r100_task250_template_rank_sweep_rows.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r101_task250_template_rank_feature_rows.jsonl",
+      "rows": 5,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r103_rank2_regression_smoke_results.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r106_rank5_regression_smoke_results.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r113_objective_safety_proxy_rule_eval.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {
+        "fallback_to_arg": 32,
+        "switch_to_objective": 2
+      },
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r114_objective_safety_proxy_regression_stress.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r119_lightweight_calibrated_smoke_results.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r122_guarded_two_view_probe_replay.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r123_explicit_promptnode_template_preflight.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r124_explicit_template_guarded_smoke.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r124_explicit_template_guarded_switch_results.jsonl",
+      "rows": 2,
+      "slices": {},
+      "actions": {},
+      "task_count": 2,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r127_clean_fix_graph_policy_selector_presmoke.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r128_rank5_high_fanin_selector_smoke.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r128_rank5_high_fanin_switch_results.jsonl",
+      "rows": 2,
+      "slices": {},
+      "actions": {},
+      "task_count": 2,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r129_task250_router_none_failure_diagnosis.jsonl",
+      "rows": 3,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r131_deterministic_router_none_guard_protocol.jsonl",
+      "rows": 3,
+      "slices": {},
+      "actions": {},
+      "task_count": 1,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r132_deterministic_router_none_guard_smoke.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r132_deterministic_router_none_switch_results.jsonl",
+      "rows": 2,
+      "slices": {},
+      "actions": {},
+      "task_count": 2,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r133_edge_prompt_policy_protocol.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r137_edge_prompt_repair_smoke.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r137_edge_prompt_repair_switch_results.jsonl",
+      "rows": 2,
+      "slices": {},
+      "actions": {},
+      "task_count": 2,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r139_edge_prompt_repair_forwarding_smoke.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r139_edge_prompt_repair_forwarding_switch_results.jsonl",
+      "rows": 2,
+      "slices": {},
+      "actions": {},
+      "task_count": 2,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r142_repair_confidence_synthetic_controls.jsonl",
+      "rows": 6,
+      "slices": {},
+      "actions": {},
+      "task_count": 0,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r143_calibrated_repair_final_gate_offline_replay.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r146_calibrated_repair_smoke.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r146_calibrated_repair_switch_results.jsonl",
+      "rows": 2,
+      "slices": {},
+      "actions": {},
+      "task_count": 2,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r147_frozen_selector_replay.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r171_selector_gated_promptedge_smoke_results.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r172_abstention_guard_replay_results.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/aqua_tail34_r173_action_aware_selector_replay_results.jsonl",
+      "rows": 4,
+      "slices": {},
+      "actions": {},
+      "task_count": 4,
+      "provenance": "diagnostic_only_tail34"
+    },
+    {
+      "path": "experiment/aqua/invalid_no_api_key_aqua_tail34_arg_baseline_results.jsonl",
+      "rows": 34,
+      "slices": {},
+      "actions": {},
+      "task_count": 34,
+      "provenance": "diagnostic_only_tail34"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "run_id": "R179",
+  "title": "MMLU PromptNode/PromptEdge engineering preflight",
+  "claim_boundary": "No API evaluation and no accuracy claim. This preflight checks whether the existing MMLU branch can execute and learn first-class PromptNode/PromptEdge graphs under the same ARG-Designer-style model path.",
+  "no_api": true,
+  "broad_api": false,
+  "llm_model_target": "gpt-4o-2024-08-06",
+  "mmlu_arg_baseline_available": true,
+  "mmlu_arg_baseline_reference": "experiment/mmlu/res_logs/mmlu_r162_transfer_eval_summary.json",
+  "mmlu_arg_baseline_accuracy": "88/100",
+  "execution_layer": {
+    "testgraph_has_promptnode_branch": true,
+    "branch_condition": "str(role).startswith('PN_')",
+    "blocking_order": "TestGraph calls PromptSetRegistry.get(domain).get_description(role) before selecting PromptNode for PN_* roles.",
+    "mock_constructor_result": "KeyError 'PN_Memory'",
+    "promptnode_class_available": true,
+    "promptedge_as_edge_prompt_supported_in_aqua_final_decision": true
+  },
+  "mmlu_prompt_set": {
+    "framework_prompt_set_file": "mas_framework/prompt/mmlu_prompt_set.py",
+    "experiment_prompt_set_file": "experiment/mmlu/mmlu_prompt_set.py",
+    "framework_pn_roles_present": false,
+    "experiment_pn_roles_present": false,
+    "missing_roles": [
+      "PN_Memory",
+      "PN_Verifier",
+      "PN_Router"
+    ]
+  },
+  "mmlu_checkpoint": {
+    "path": "experiment/mmlu/output/mmlu_arg_base_model_r159",
+    "role_mapping_size": 6,
+    "role_mapping": [
+      "Critic",
+      "Doctor",
+      "Historian",
+      "Knowlegable Expert",
+      "Mathematician",
+      "Psychologist"
+    ],
+    "pn_roles_present": [],
+    "can_generate_pn_roles_without_retraining": false
+  },
+  "mmlu_evaluator": {
+    "file": "experiment/mmlu/evaluate_mmlu.py",
+    "promptnode_policy_flags_present": false,
+    "decision_method_is_configurable": true,
+    "role_constraints_loaded_from_experiment_prompt_set": true,
+    "first_class_pn_topology_path_present": false
+  },
+  "sci_q2_assessment": {
+    "transfer_route_promising": true,
+    "transfer_route_ready": false,
+    "reason": "MMLU has a same-model ARG transfer baseline, but PN/PE roles are not in the MMLU role registry, training role mapping, or evaluator topology path.",
+    "next_action": "Add MMLU PN role descriptions and a non-API constructor test first; then export PN/PE graph-policy targets and retrain a MMLU PN-capable graph generator before any API accuracy run."
+  }
+}

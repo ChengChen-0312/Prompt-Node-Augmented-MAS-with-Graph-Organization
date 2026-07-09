@@ -1,0 +1,27 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Loading model and tools...
+Loaded precomputed embeddings: 7 entries
+Using provided role mapping: 7 roles
+TOKENS: START=7, END=8
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 8112.32it/s]
+2026-07-08 02:43:06.965 | INFO     | mas_framework.tools.reader.readers:parse_file:106 - Reading JSON Lines file from ../../datasets/AQuA/AQuA.jsonl.
+Loaded 20 Aqua test samples for evaluation.
+Evaluating model:   0%|          | 0/5 [00:00<?, ?it/s]/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:591: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  t = torch.tensor(emb, device=self.args.device).float()
+Evaluating model:   0%|          | 0/5 [00:38<?, ?it/s, Accuracy=50.00% (2/4), Token=$10672.0000]Evaluating model:  20%|██        | 1/5 [00:38<02:33, 38.36s/it, Accuracy=50.00% (2/4), Token=$10672.0000]/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:591: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  t = torch.tensor(emb, device=self.args.device).float()
+Evaluating model:  20%|██        | 1/5 [01:14<02:33, 38.36s/it, Accuracy=62.50% (5/8), Token=$21619.0000]Evaluating model:  40%|████      | 2/5 [01:14<01:50, 36.94s/it, Accuracy=62.50% (5/8), Token=$21619.0000]Evaluating model:  40%|████      | 2/5 [01:49<01:50, 36.94s/it, Accuracy=75.00% (9/12), Token=$31592.0000]Evaluating model:  60%|██████    | 3/5 [01:49<01:12, 36.07s/it, Accuracy=75.00% (9/12), Token=$31592.0000]Evaluating model:  60%|██████    | 3/5 [02:22<01:12, 36.07s/it, Accuracy=81.25% (13/16), Token=$42028.0000]Evaluating model:  80%|████████  | 4/5 [02:22<00:35, 35.07s/it, Accuracy=81.25% (13/16), Token=$42028.0000]Evaluating model:  80%|████████  | 4/5 [03:00<00:35, 35.07s/it, Accuracy=80.00% (16/20), Token=$53839.0000]Evaluating model: 100%|██████████| 5/5 [03:00<00:00, 36.04s/it, Accuracy=80.00% (16/20), Token=$53839.0000]Evaluating model: 100%|██████████| 5/5 [03:00<00:00, 36.12s/it, Accuracy=80.00% (16/20), Token=$53839.0000]
+
+==================================================
+Evaluation Summary
+Model path: output/aqua_pn_mvr_clean_model_20260708-015036
+Total tasks: 20, Solved: 16, Pass@1: 80.00%
+--------------------------------------------------
+Total cost: $0.757805
+Total Prompt Tokens: 53839
+Total Completion Tokens: 32574
+--------------------------------------------------
+Detailed results saved to: aqua_sync20_pn_constrained_terminal_results.jsonl
+Summary appended to: ./res_logs/aqua_sync20_pn_constrained_terminal_summary.jsonl
+==================================================

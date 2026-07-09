@@ -1,0 +1,38 @@
+{
+  "rows": 67,
+  "train_rows": 33,
+  "frozen_eval_rows": 34,
+  "training_allowed_rows": 33,
+  "frozen_eval_only_rows": 34,
+  "clean_labels": {
+    "clean": 52,
+    "noisy": 10,
+    "unknown": 5
+  },
+  "beneficial_switch_labels": 8,
+  "harmful_switch_labels": 2,
+  "clean_harm_if_switch_labels": 1,
+  "run_id": "R241",
+  "title": "Abstention policy feature table",
+  "claim_boundary": "Feature-table export only; no API, no trained-policy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "manifest_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r218_router_final_mini_manifest.jsonl",
+  "source_paths": [
+    "experiment/aqua/aqua_first200_objective_guided_selector_results.jsonl",
+    "experiment/aqua/aqua_tail34_objective_guided_selector_results.jsonl",
+    "experiment/aqua/aqua_100_pn_result_ensemble_results.jsonl",
+    "experiment/aqua/aqua_tail34_arg_baseline_results.jsonl"
+  ],
+  "audit_paths": [
+    "experiment/aqua/aqua_sync20_option_binding_audit_v4.jsonl",
+    "experiment/aqua/aqua_100_option_binding_audit.jsonl",
+    "experiment/aqua/aqua_tail34_option_binding_audit.jsonl"
+  ],
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r241_abstention_feature_table.jsonl",
+  "missing_source": [],
+  "feature_label_separation": "features are model-visible; labels/true_answer/clean_label are supervision/evaluation only",
+  "tests": {
+    "tests.test_r241_abstention_feature_table": "3/3 passed",
+    "tests.test_r238_conservative_manifest_export": "4/4 passed"
+  }
+}

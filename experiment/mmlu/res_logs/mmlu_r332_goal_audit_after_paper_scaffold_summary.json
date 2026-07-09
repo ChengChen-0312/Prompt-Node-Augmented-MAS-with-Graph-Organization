@@ -1,0 +1,39 @@
+{
+  "run_id": "R332",
+  "title": "Goal audit after paper scaffold",
+  "claim_boundary": "R332 is the five-iteration audit after R327-R331. The writing scaffold is useful, but the SCI-Q2 path still depends on prospective selector evaluation or another held-out transfer result.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R327",
+    "R328",
+    "R329",
+    "R330",
+    "R331"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "paper_scaffold_created": true,
+    "selector_claim_not_overstated": true,
+    "case_studies_ready": true,
+    "tables_and_figures_planned": true,
+    "prospective_eval_still_missing": true
+  },
+  "claim_permissions": {
+    "offline_selector_feasibility_claim_allowed": true,
+    "promptedge_safety_feature_claim_allowed": true,
+    "external_accuracy_improvement_claim_allowed": false,
+    "broad_general_promptnode_claim_allowed": false,
+    "full_paper_drafting_allowed": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Prioritize prospective selector evaluation before drafting full paper prose.",
+    "Keep PAPER_PLAN.md as a scaffold, not a submission draft.",
+    "Run only leakage-safe, bounded-cost prospective evaluation using the R327 selector policy.",
+    "If prospective eval fails, narrow the paper to AQuA+MMLU STEM evidence and selector feasibility."
+  ],
+  "next_required_run": "R333_prospective_selector_eval_design",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r332_goal_audit_after_paper_scaffold_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r332_goal_audit_after_paper_scaffold_report.md"
+}

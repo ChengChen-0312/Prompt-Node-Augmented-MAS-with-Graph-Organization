@@ -1,0 +1,30 @@
+{
+  "run_id": "R272",
+  "title": "MMLU transfer claim boundary",
+  "dataset": "MMLU STEM tiny16 transfer diagnostic",
+  "claim_boundary": "non_aqua_transfer_completed_but_superiority_not_supported",
+  "non_aqua_transfer_completed": true,
+  "r254_v1": {
+    "arg_baseline": "8/16",
+    "proposed": "10/16",
+    "plain_requery": "12/16",
+    "node_only": "11/16",
+    "proposed_fix_harm": "3/1",
+    "transfer_superiority_supported": false,
+    "proposed_beats_plain_requery": false,
+    "proposed_beats_node_only": false
+  },
+  "r259_v2": {
+    "arg_baseline": "8/16",
+    "proposed_v2": "9/16",
+    "fix_harm": "1/0",
+    "beats_arg": true,
+    "no_harm": true,
+    "api_cost": 0.05003
+  },
+  "transfer_superiority_supported": false,
+  "no_significant_harm_supported_for_v2_tiny": true,
+  "claim_revision": "narrow_to_aqua_with_mmlu_negative_transfer_boundary",
+  "paper_use": "Use MMLU as a negative transfer and robustness boundary: current PN/PE prompts can improve over fixed ARG on tiny16 but do not beat plain requery or node-only controls. Main claims must stay on AQuA official/audit-clean evidence.",
+  "stop_after_this_run": true
+}

@@ -1,0 +1,32 @@
+{
+  "run_id": "R336",
+  "title": "Prospective selector eval smoke analysis",
+  "claim_boundary": "R336 analyzes the 6-task API smoke. It supports only selector no-harm on the smoke and a plain-requery harm control; it does not support a prospective improvement claim.",
+  "no_api": true,
+  "broad_api": false,
+  "source_run": "R335",
+  "selector_vs_arg": {
+    "arg": "4/6",
+    "selector": "4/6",
+    "delta_correct": 0,
+    "fix_harm": "0/0"
+  },
+  "plain_requery_vs_arg": {
+    "arg": "4/6",
+    "plain_requery": "2/6",
+    "delta_correct": -2,
+    "fix_harm": "0/2"
+  },
+  "api_cost": 0.058525,
+  "claim_permissions": {
+    "selector_no_harm_smoke_allowed": true,
+    "selector_improvement_claim_allowed": false,
+    "plain_requery_harm_control_allowed": true,
+    "full_prospective_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "expand_authorized_next": true,
+  "next_required_run": "R337_prospective_selector_eval_expand24",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r336_prospective_selector_eval_smoke_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r336_prospective_selector_eval_smoke_analysis_report.md"
+}

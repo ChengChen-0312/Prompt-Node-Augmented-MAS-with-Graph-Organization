@@ -1,0 +1,224 @@
+{
+  "run_id": "R256",
+  "title": "MMLU transfer failure mechanism analysis",
+  "claim_boundary": "No-API failure analysis only; supports redesign decisions, not accuracy claims.",
+  "no_api": true,
+  "broad_api": false,
+  "results_jsonl": "experiment/mmlu/run_logs/mmlu_r253_mmlu_transfer_api_results.jsonl",
+  "tasks": 16,
+  "interesting_cases": 6,
+  "mode_counts": {
+    "all_api_fix": 2,
+    "graph_prompt_regression_vs_plain": 2,
+    "no_interesting_delta": 10,
+    "node_fix_lost_by_promptedge": 1,
+    "plain_fix_lost_by_proposed": 2,
+    "promptnode_family_control_harm": 1,
+    "proposed_control_harm": 1,
+    "proposed_over_plain_fix": 1
+  },
+  "cases": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "selection_role": "arg_error",
+      "true_answer": "C",
+      "arg_prediction": "A",
+      "tags": [
+        "all_api_fix"
+      ],
+      "variants": {
+        "plain_requery": {
+          "predicted_answer": "C",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": \"C\",\n  \"rationale\": \"Statement 1 is true because there are only two groups of order 4: the cyclic group Z_4 and the Klein four-group V_4. Therefore, among any three groups of order 4, at least two must"
+        },
+        "node_only_no_promptedge_text": {
+          "predicted_answer": "C",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": C,\n  \"rationale\": \"Statement 1 is true because there are only two groups of order 4, the cyclic group Z_4 and the Klein four-group V_4, so at least two of G, H, and K must be isomorphic."
+        },
+        "proposed_promptnode_promptedge": {
+          "predicted_answer": "C",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": C,\n  \"rationale\": \"Statement 1 is true because there are only two groups of order 4, the cyclic group Z_4 and the Klein four-group V_4, so at least two of G, H, and K must be isomorphic."
+        }
+      }
+    },
+    {
+      "task_id": "MMLU-college_chemistry_test-62",
+      "selection_role": "arg_error",
+      "true_answer": "B",
+      "arg_prediction": "A",
+      "tags": [
+        "all_api_fix"
+      ],
+      "variants": {
+        "plain_requery": {
+          "predicted_answer": "B",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": \"B\",\n  \"rationale\": \"The magnetic moment of 2H (deuterium) is approximately 2.88 x 10^-27 J T-1, which matches the given value. The nuclear spin of deuterium is also 1,"
+        },
+        "node_only_no_promptedge_text": {
+          "predicted_answer": "B",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": B,\n  \"rationale\": \"The magnetic moment of 2H (deuterium) is approximately 2.884 x 10^-27 J T-1, which matches the given value. The nuclear spin of 2H is also 1, making"
+        },
+        "proposed_promptnode_promptedge": {
+          "predicted_answer": "B",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": B,\n  \"rationale\": \"The magnetic moment of 2.884 x 10^-27 J T-1 and a nuclear spin of 1 matches the properties of deuterium (2H). Other options have different magnetic moments or spins.\"\n}\n```"
+        }
+      }
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-17",
+      "selection_role": "matched_control",
+      "true_answer": "C",
+      "arg_prediction": "C",
+      "tags": [
+        "graph_prompt_regression_vs_plain",
+        "promptnode_family_control_harm",
+        "proposed_control_harm"
+      ],
+      "variants": {
+        "plain_requery": {
+          "predicted_answer": "C",
+          "is_correct": true,
+          "fix": false,
+          "harm": false,
+          "raw_response_excerpt": "To solve this problem, we need to calculate the work done by the force \\( \\mathbf{F} \\) on the particle as it moves along the given path. The work done by a force on a particle moving along a path is given by the line integral of the force along the path.\n\nThe force \\( \\"
+        },
+        "node_only_no_promptedge_text": {
+          "predicted_answer": "B",
+          "is_correct": false,
+          "fix": false,
+          "harm": true,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": B,\n  \"rationale\": \"The work done by a force F on a particle moving along a path r(t) is given by the integral of F dot dr over the path. Here, F is parallel to (-1, 0, 1) and the"
+        },
+        "proposed_promptnode_promptedge": {
+          "predicted_answer": "A",
+          "is_correct": false,
+          "fix": false,
+          "harm": true,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": A,\n  \"rationale\": \"The work done by a force F on a particle moving along a path is given by the line integral of F along the path. The force vector F is parallel to (-1, 0, 1), so we can express it"
+        }
+      }
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-26",
+      "selection_role": "arg_error",
+      "true_answer": "D",
+      "arg_prediction": "C",
+      "tags": [
+        "node_fix_lost_by_promptedge",
+        "plain_fix_lost_by_proposed"
+      ],
+      "variants": {
+        "plain_requery": {
+          "predicted_answer": "D",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": \"D\",\n  \"rationale\": \"Let Kate's rate of work be 1/k tests per day and John's rate be 1/j tests per day. When Kate starts, she works for 6 days and John for 4 days in 10 days total,"
+        },
+        "node_only_no_promptedge_text": {
+          "predicted_answer": "D",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": D,\n  \"rationale\": \"Kate and John work in alternating 2-day shifts. When Kate starts, it takes 10 days, meaning Kate works 6 days and John 4 days. When John starts, it takes 10.5 days, meaning John"
+        },
+        "proposed_promptnode_promptedge": {
+          "predicted_answer": "C",
+          "is_correct": false,
+          "fix": false,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": \"C\",\n  \"rationale\": \"Kate and John work in alternating 2-day shifts. When Kate starts, they complete the test in 10 days, and when John starts, they complete it in 10.5 days. This implies that Kate's contribution is"
+        }
+      }
+    },
+    {
+      "task_id": "MMLU-conceptual_physics_test-41",
+      "selection_role": "arg_error",
+      "true_answer": "D",
+      "arg_prediction": "B",
+      "tags": [
+        "graph_prompt_regression_vs_plain",
+        "plain_fix_lost_by_proposed"
+      ],
+      "variants": {
+        "plain_requery": {
+          "predicted_answer": "D",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": \"D\",\n  \"rationale\": \"Bow waves are produced when waves overlap and constructively interfere as the source moves faster than the wave speed, causing all these phenomena to occur.\"\n}\n```"
+        },
+        "node_only_no_promptedge_text": {
+          "predicted_answer": "A",
+          "is_correct": false,
+          "fix": false,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": A,\n  \"rationale\": \"Bow waves are produced when waves of water overlap one another, creating a V-shaped wave pattern. This is a result of the waves moving at the same speed as the source, not slower, and does not necessarily involve constructive interference. Therefore"
+        },
+        "proposed_promptnode_promptedge": {
+          "predicted_answer": "A",
+          "is_correct": false,
+          "fix": false,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": A,\n  \"rationale\": \"Bow waves are produced when waves of water overlap one another, creating a V-shaped wave pattern. This occurs when the source moves faster than the wave speed in the medium, causing the waves to overlap and form a bow wave.\"\n}\n```"
+        }
+      }
+    },
+    {
+      "task_id": "MMLU-elementary_mathematics_test-222",
+      "selection_role": "arg_error",
+      "true_answer": "D",
+      "arg_prediction": "A",
+      "tags": [
+        "proposed_over_plain_fix"
+      ],
+      "variants": {
+        "plain_requery": {
+          "predicted_answer": "A",
+          "is_correct": false,
+          "fix": false,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": \"A\",\n  \"rationale\": \"The problem states that the baseball team sold 215 youth tickets for $3 each. Therefore, the total revenue from youth tickets is 215 × 3. The correct expression for this revenue is found in Option A: (215"
+        },
+        "node_only_no_promptedge_text": {
+          "predicted_answer": "D",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": D,\n  \"rationale\": \"The problem involves calculating the revenue from selling youth tickets. The team sold 215 youth tickets at $3 each, so the correct calculation is 215 × 3. Option D, (467 × 7) – (215 ×"
+        },
+        "proposed_promptnode_promptedge": {
+          "predicted_answer": "D",
+          "is_correct": true,
+          "fix": true,
+          "harm": false,
+          "raw_response_excerpt": "```json\n{\n  \"selected_label\": D,\n  \"rationale\": \"The problem involves calculating the total revenue from selling youth tickets. The team sold 215 youth tickets at $3 each, so the total revenue is 215 × 3. The correct expression for this calculation is found in option D,"
+        }
+      }
+    }
+  ],
+  "design_constraints_for_v2": [
+    "Do not treat PromptEdge text as intrinsically beneficial; R254 shows node-only beats proposed.",
+    "Add a selector gate: use PN/PE only when it improves over plain reasoning signals or preserves controls.",
+    "Reduce over-conditioning on ARG initial choice and edge procedure when plain requery already solves the item.",
+    "Add a harm guard for matched-control cases before switching away from ARG."
+  ]
+}

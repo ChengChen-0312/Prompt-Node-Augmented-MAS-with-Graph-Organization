@@ -1,0 +1,20 @@
+{
+  "run_id": "R277",
+  "title": "Transfer claim update after full24 edge-gated selector",
+  "claim_boundary": "Claim update only; no API and no new accuracy claim.",
+  "claim_supported": "partial",
+  "sci_q2_ready": false,
+  "r276_correct": 13,
+  "r276_records": 24,
+  "r276_fix_harm": "1/0",
+  "beats_arg": true,
+  "beats_plain_requery": false,
+  "beats_node_only": false,
+  "beats_proposed": false,
+  "suggested_claim_revision": "PromptEdge should be framed as a gated/prunable edge; full24 replay supports a prospective selector, not final transfer superiority.",
+  "next_experiments_needed": [
+    "Prospective full24 or transfer100 run with the edge-gated policy in the prompt, not post-hoc replay.",
+    "A held-out split for selector rule selection vs evaluation to avoid tiny/full24 overfitting.",
+    "Negative controls: always-plain, always-node, always-promptedge, random-gated edge."
+  ]
+}

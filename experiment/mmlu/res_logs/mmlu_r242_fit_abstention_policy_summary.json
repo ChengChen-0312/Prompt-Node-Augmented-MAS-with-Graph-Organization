@@ -1,0 +1,46 @@
+{
+  "run_id": "R242",
+  "title": "Fit train-time abstention policy",
+  "claim_boundary": "Offline train/frozen policy fit only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "feature_table_jsonl": "experiment/mmlu/run_logs/mmlu_r241_abstention_feature_table.jsonl",
+  "spec": {
+    "score_threshold": 3,
+    "majority_count_lt": 3
+  },
+  "candidate_count": 60,
+  "train_metrics": {
+    "records": 33,
+    "switches": 9,
+    "accuracy_count": 28,
+    "accuracy": 0.8484848484848485,
+    "baseline_accuracy_count": 23,
+    "fixes": 5,
+    "harms": 0,
+    "clean_harms": 0
+  },
+  "frozen_eval_metrics": {
+    "records": 34,
+    "switches": 1,
+    "accuracy_count": 29,
+    "accuracy": 0.8529411764705882,
+    "baseline_accuracy_count": 28,
+    "fixes": 1,
+    "harms": 0,
+    "clean_harms": 0
+  },
+  "all_metrics": {
+    "records": 67,
+    "switches": 10,
+    "accuracy_count": 57,
+    "accuracy": 0.8507462686567164,
+    "baseline_accuracy_count": 51,
+    "fixes": 6,
+    "harms": 0,
+    "clean_harms": 0
+  },
+  "tests": {
+    "tests.test_r242_fit_abstention_policy": "3/3 passed",
+    "tests.test_r241_abstention_feature_table": "3/3 passed"
+  }
+}

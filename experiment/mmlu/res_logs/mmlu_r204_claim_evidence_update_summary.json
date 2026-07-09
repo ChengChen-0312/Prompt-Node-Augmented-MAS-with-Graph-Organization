@@ -1,0 +1,38 @@
+{
+  "run_id": "R204",
+  "title": "Claim-evidence update after random12 diagnostic",
+  "claim_boundary": "Evidence organization only. No API evaluation and no new accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "updates": [
+    {
+      "claim": "Projected PromptEdge improves MMLU transfer accuracy over ARG-Designer.",
+      "previous_status": "not_yet_supported",
+      "new_status": "not_supported_by_random12",
+      "evidence": "R202 random12 baseline 11/12, projected 11/12, fixes 0, harms 0"
+    },
+    {
+      "claim": "Projected PromptEdge has low harm risk on small MMLU transfer slices.",
+      "previous_status": "weakly_supported",
+      "new_status": "weakly_supported_plus_random12",
+      "evidence": "R192 harms 0/4; R196 harms 0/4; R202 harms 0/12"
+    },
+    {
+      "claim": "Hybrid projection is structurally necessary.",
+      "previous_status": "supported_as_graph_evidence",
+      "new_status": "supported_as_graph_evidence",
+      "evidence": "R202 raw contract-ready 0/12, projected contract-ready 12/12"
+    },
+    {
+      "claim": "MMLU branch is ready for SCI-Q2 main result.",
+      "previous_status": "not_supported",
+      "new_status": "not_supported",
+      "evidence": "No random accuracy gain; fully learned edge-linking remains unsupported"
+    }
+  ],
+  "recommended_research_direction": [
+    "Keep AQuA R065 as the strongest current accuracy signal.",
+    "Use MMLU as robustness/safety/negative evidence unless method redesign improves random transfer accuracy.",
+    "Focus next method iteration on learned edge ordering or router-final design rather than more API."
+  ]
+}

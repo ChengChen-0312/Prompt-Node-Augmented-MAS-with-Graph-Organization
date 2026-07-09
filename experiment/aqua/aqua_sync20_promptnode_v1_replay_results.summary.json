@@ -1,0 +1,12 @@
+{
+  "total": 20,
+  "solved": 17,
+  "accuracy": 0.85,
+  "changed": 2,
+  "fixes": 0,
+  "harms": 0,
+  "cost": 0.21059,
+  "prompt_tokens": 24583.0,
+  "completion_tokens": 5845.0,
+  "output_file": "/Users/chencheng/Downloads/\u8bba\u6587/ARG-Designer-main/experiment/aqua/aqua_sync20_promptnode_v1_replay_results.jsonl"
+}

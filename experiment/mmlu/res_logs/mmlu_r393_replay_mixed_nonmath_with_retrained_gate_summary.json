@@ -1,0 +1,38 @@
+{
+  "run_id": "R393",
+  "title": "Replay mixed nonmath with retrained gate",
+  "claim_boundary": "R393 replays R389 outputs with the R392 weighted gate. It is not a fresh API result, but verifies that the updated gate removes known wrong-forwards without losing the positive delta.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 24,
+  "arg_correct": 19,
+  "original_hybrid_correct": 20,
+  "retrained_hybrid_correct": 20,
+  "retrained_delta_correct": 1,
+  "original_gate_forward_count": 20,
+  "retrained_gate_forward_count": 11,
+  "retrained_fixes": 1,
+  "retrained_harms": 0,
+  "retrained_wrong_forward_count": 0,
+  "blocked_original_wrong_forward_count": 2,
+  "retrained_fix_task_ids": [
+    "MMLU-nonstem-high_school_government_and_politics_test-1"
+  ],
+  "blocked_original_wrong_forward_task_ids": [
+    "MMLU-nonstem-sociology_test-18",
+    "MMLU-nonstem-world_religions_test-18"
+  ],
+  "claim_permissions": {
+    "replay_positive_no_harm_allowed": true,
+    "larger_fresh_preflight_allowed_next": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R394_larger_mixed_nonmath_fresh_preflight",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r393_replay_mixed_nonmath_with_retrained_gate_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r393_replay_mixed_nonmath_with_retrained_gate_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r393_replay_mixed_nonmath_with_retrained_gate_report.md"
+}

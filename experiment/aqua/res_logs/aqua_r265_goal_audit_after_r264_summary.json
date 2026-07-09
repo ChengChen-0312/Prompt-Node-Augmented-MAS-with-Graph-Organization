@@ -1,0 +1,36 @@
+{
+  "run_id": "R265",
+  "title": "Five-iteration SCI-Q2 goal audit after R264",
+  "audit_window": "R261-R264",
+  "status": "aligned_redirect_to_label_noise_and_low_cost_selector",
+  "drift": false,
+  "sci_q2_ready": false,
+  "r264_teacher_improved": false,
+  "r264_leakage_ok": true,
+  "r264_oracle_teacher_accuracy": "31/34",
+  "r264_non_oracle_teacher_accuracy": "31/34",
+  "dataset_disagreement_flags": [
+    "task_139",
+    "task_228",
+    "task_59"
+  ],
+  "aligned_evidence": [
+    "R262 keeps R065 as an expensive teacher rather than deployment method.",
+    "R263 keeps distillation as a low-cost selector scaffold only.",
+    "R264 tests stronger general PromptNode/PromptEdge verifiers without exposing gold labels.",
+    "R264 refuses to optimize toward target-specific formulas when verifiers consistently oppose dataset labels."
+  ],
+  "blocked_claims": [
+    "do_not_distill_r264_as_higher_teacher",
+    "do_not_claim_32_34_plus_aqua_teacher",
+    "do_not_treat_remaining_r065_errors_as_clean_fix_targets_without_label_audit",
+    "do_not_expand_task_specific_prompt_formulas"
+  ],
+  "next_actions": [
+    "Run a label-noise/error-boundary audit for task_59/task_139/task_228 and mark them outside clean improvement claims if confirmed noisy.",
+    "Resume R263-style low-cost selector distillation from R065's already supported fixes, not from R264's failed higher-teacher targets.",
+    "Keep SCI-Q2 claim centered on robust PromptNode graph organization, clean fix/harm, controls, lifecycle, and cost boundary.",
+    "Next mandatory goal audit is R270."
+  ],
+  "claim_boundary": "Aligned with the SCI-Q2 goal, but not paper-ready. R264 is negative evidence against unbounded strong-teacher expansion on the remaining R065 errors."
+}

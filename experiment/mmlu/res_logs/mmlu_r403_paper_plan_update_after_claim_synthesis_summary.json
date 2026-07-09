@@ -1,0 +1,32 @@
+{
+  "run_id": "R403",
+  "title": "Paper plan update after claim synthesis",
+  "claim_boundary": "R403 writes R402's narrowed claim boundary into PAPER_PLAN.md.",
+  "no_api": true,
+  "broad_api": false,
+  "claim_ids": [
+    "C1_aqua_audit_clean_gain",
+    "C2_mmlu_stem_gain",
+    "C3_history_optionbinding_pilot_gain",
+    "C4_mixed_nonmath_no_harm",
+    "C5_broad_general_improvement"
+  ],
+  "update_block": "## R402 Claim Synthesis Update\n\n**Verdict**: `partial` support for a narrowed SCI-Q2 paper claim.\n\n| Claim ID | Status | Paper Use | Evidence |\n|---|---|---|---|\n| `C1_aqua_audit_clean_gain` | `supported` | `main_result` | AQuA audit-clean tail31: ARG 28/31 vs PromptNode 31/31. |\n| `C2_mmlu_stem_gain` | `supported` | `main_transfer_result` | MMLU STEM main97: ARG 88/97 vs PromptNode 95/97, fix/harm 7/0. |\n| `C3_history_optionbinding_pilot_gain` | `partial` | `mechanism_pilot_or_appendix` | Fresh history pilot R380/R381: ARG 21/24 vs hybrid 24/24, but single subject and small sample. |\n| `C4_mixed_nonmath_no_harm` | `supported` | `boundary_no_harm_result` | Larger mixed nonmath R395/R396: ARG 41/48 vs hybrid 41/48, harm 0. |\n| `C5_broad_general_improvement` | `unsupported` | `forbidden_claim` | Mixed nonmath larger split has no positive delta; contrastive branch failed safely. |\n\n**Allowed main text framing**:\n\nPromptNode/PromptEdge graph organization improves audited AQuA tail and MMLU STEM under ARG-Designer-matched settings, while learned safety gates preserve no-harm behavior on broader nonmath multiple-choice transfer. Do not claim universal improvement.\n\n**Forbidden framing**:\n\n- Do not claim broad general improvement across all nonmath/multiple-choice tasks.\n- Do not treat the R380 history pilot as a main transfer result.\n- Do not integrate the failed R400 contrastive branch.\n\n**Missing before submission freeze**:\n\n- Larger prospective nonmath split with positive gain, not only no-harm.\n- Independent integrity audit of all tables before manuscript submission.\n- Cost-normalized deployment result if R065/R380 teacher-like paths are used in main text.\n- Full paper figures/tables updated with exact claim boundaries.\n",
+  "claim_permissions": {
+    "aqua_clean_improvement_claim_allowed": true,
+    "mmlu_stem_improvement_claim_allowed": true,
+    "mixed_nonmath_no_harm_claim_allowed": true,
+    "history_optionbinding_pilot_claim_allowed": true,
+    "broad_general_improvement_claim_allowed": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_plan_update_authorized": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R404_integrity_audit_preflight",
+  "paper_plan": "PAPER_PLAN.md",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r403_paper_plan_update_after_claim_synthesis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r403_paper_plan_update_after_claim_synthesis_report.md",
+  "paper_plan_updated": true
+}

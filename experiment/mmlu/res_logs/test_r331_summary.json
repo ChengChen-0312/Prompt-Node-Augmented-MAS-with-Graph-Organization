@@ -1,0 +1,105 @@
+{
+  "run_id": "R331",
+  "title": "Paper outline scaffold",
+  "working_title": "PromptNode-Augmented Multi-Agent Graphs for Robust Reasoning",
+  "one_sentence_contribution": "We introduce PromptNodes as first-class virtual graph elements with typed identities, PromptEdges, and lifecycle actions, improving audited AQuA tail and MMLU STEM reasoning over ARG-Designer while exposing clear no-harm and training boundaries.",
+  "target_venue": "SCI_Q2_JOURNAL",
+  "paper_type": "method_and_empirical_diagnostic",
+  "claims_evidence_matrix": [
+    {
+      "id": "C1_aqua_clean_gain",
+      "claim": "PromptNode-guided graph organization improves ARG-Designer on the audited AQuA tail split.",
+      "evidence": "R321 main table: ARG 28/31 vs PromptNode 31/31 after excluding task_59/task_139/task_228.",
+      "status": "supported",
+      "section": "§5.1"
+    },
+    {
+      "id": "C2_mmlu_stem_gain",
+      "claim": "The method transfers to MMLU STEM with a clean positive gain over ARG-Designer.",
+      "evidence": "R321/R306: ARG 88/97 vs PromptNode 95/97; fix/harm 7/0.",
+      "status": "supported",
+      "section": "§5.2"
+    },
+    {
+      "id": "C3_nonstem_no_harm_boundary",
+      "claim": "Non-STEM transfer currently supports a no-harm boundary, not an improvement claim.",
+      "evidence": "R312/R321: ARG 37/40 vs safety replay 37/40; fix/harm 0/0; raw non-STEM 34/40 is reported as limitation.",
+      "status": "supported_boundary",
+      "section": "§5.3 and §7"
+    },
+    {
+      "id": "C4_promptedge_selector_safety",
+      "claim": "PromptEdge text is a safety feature for train-time graph-policy selection.",
+      "evidence": "R327: no-family selector without edge text creates 1 false forward; with edge text creates 0.",
+      "status": "partial_offline",
+      "section": "§6.2"
+    },
+    {
+      "id": "C5_broad_general_improvement",
+      "claim": "PromptNode universally improves multi-agent reasoning across all multiple-choice datasets.",
+      "evidence": "Contradicted by raw non-STEM negative transfer; no prospective selector API evaluation yet.",
+      "status": "blocked",
+      "section": "Not claimed"
+    }
+  ],
+  "sections": [
+    {
+      "id": "abstract",
+      "title": "Abstract",
+      "page_budget": "0.25 pages",
+      "contents": "State the graph-organization problem, PromptNode/PromptEdge method, AQuA/MMLU gains, no-harm boundary, and honest limitation."
+    },
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "page_budget": "1.5 pages",
+      "contents": "Motivate MAS graph organization, explain why post-hoc answer patches are insufficient, and state the first-class virtual-node contribution."
+    },
+    {
+      "id": "related_work",
+      "title": "Related Work",
+      "page_budget": "1.5 pages",
+      "contents": "Organize around MAS graph optimization, agent pruning/dropout, workflow optimization, and verifier/tool-augmented reasoning. All citations require later audit."
+    },
+    {
+      "id": "method",
+      "title": "PromptNode-Augmented MAS",
+      "page_budget": "2.0 pages",
+      "contents": "Define PromptNode identity, PromptEdge read/write/forward permissions, lifecycle actions, insertion locations, and selector gate."
+    },
+    {
+      "id": "experimental_setup",
+      "title": "Experimental Setup",
+      "page_budget": "1.2 pages",
+      "contents": "ARG-Designer baseline, model setting, AQuA audit-clean protocol, MMLU STEM/non-STEM transfer, cost accounting, and label-audit appendix contract."
+    },
+    {
+      "id": "results_and_ablations",
+      "title": "Results and Ablations",
+      "page_budget": "2.5 pages",
+      "contents": "Main results, completed negative controls, component ablations, cost-matched requery, symbolic vs non-math separation."
+    },
+    {
+      "id": "selector_and_cases",
+      "title": "Selector Dry Run and Case Studies",
+      "page_budget": "1.5 pages",
+      "contents": "Offline leakage-safe selector manifest, hard negatives, PromptEdge feature ablation, and four mechanism case studies."
+    },
+    {
+      "id": "limitations_conclusion",
+      "title": "Limitations and Conclusion",
+      "page_budget": "0.8 pages",
+      "contents": "State no broad non-STEM improvement yet, selector needs prospective evaluation, and SCI-Q2 submission still needs citation/claim audits."
+    }
+  ],
+  "section_count": 8,
+  "figure_plan_source": "experiment/mmlu/res_logs/mmlu_r330_paper_tables_and_figures_plan_summary.json",
+  "citation_status": "needs_audit",
+  "reviewer_feedback_status": "not_run_no_external_reviewer_tool_available",
+  "goal_audit_due_next": true,
+  "sci_q2_ready": false,
+  "next_required_run": "R332_goal_audit_after_paper_scaffold",
+  "output_md": "PAPER_PLAN.md",
+  "summary_json": "experiment/mmlu/res_logs/test_r331_summary.json",
+  "report_md": "experiment/mmlu/run_logs/test_r331_report.md"
+}

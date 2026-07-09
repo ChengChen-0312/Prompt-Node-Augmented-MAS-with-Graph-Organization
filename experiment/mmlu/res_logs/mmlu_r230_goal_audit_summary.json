@@ -1,0 +1,30 @@
+{
+  "run_id": "R230",
+  "title": "Five-iteration SCI-Q2 goal audit",
+  "claim_boundary": "Audit only; no API, no accuracy claim, and no SCI-Q2 readiness claim.",
+  "audit_window": ["R226", "R227", "R228", "R229"],
+  "goal_status_seen": "blocked",
+  "goal_used_as_benchmark": true,
+  "drift_detected": false,
+  "status": "aligned_continue_api_preflight_then_tiny_diagnostic",
+  "sci_q2_ready": false,
+  "api_status": "conditionally_authorized_after_runner_and_preflight",
+  "why_not_direct_api": [
+    "R228 is a local dry-run, not a tested API runner",
+    "model-visible prompt construction still needs a leakage-safe implementation",
+    "cost cap enforcement and result schema must be testable before spending API budget"
+  ],
+  "authorized_next": {
+    "R231": "implement leakage-safe tiny diagnostic runner with dry-run mode and tests",
+    "R232": "validate diagnostic manifest, cost cap, and model-visible prompts",
+    "R233": "if R232 passes, execute tiny gpt-4o-2024-08-06 diagnostic on the pre-registered set",
+    "R234": "analyze answer-level results against controls and cost-matched ARG",
+    "R235": "mandatory goal audit"
+  },
+  "forbidden": [
+    "no broad API sweep before R235",
+    "no superiority claim without answer-level results",
+    "no SCI-Q2 readiness claim",
+    "no use of target labels, correctness labels, task ids, or audit flags in model-visible prompts"
+  ]
+}

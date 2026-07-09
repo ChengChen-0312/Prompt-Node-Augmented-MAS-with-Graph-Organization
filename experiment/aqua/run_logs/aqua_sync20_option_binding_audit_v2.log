@@ -1,0 +1,20 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+{
+  "total": 20,
+  "clean_label_counts": {
+    "clean": 18,
+    "noisy": 2
+  },
+  "rationale_issue_counts": {
+    "none": 18,
+    "arithmetic_error": 2
+  },
+  "gold_binding_status_counts": {
+    "exact": 18,
+    "contradictory": 2
+  },
+  "confidence_counts": {
+    "high": 20
+  }
+}

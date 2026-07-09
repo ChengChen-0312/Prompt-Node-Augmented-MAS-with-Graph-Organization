@@ -1,0 +1,100 @@
+{
+  "rule": "r069_integrated_selective_multiview_promptnode",
+  "total_tasks": 1,
+  "solved_tasks": 0,
+  "baseline_solved_tasks": 1,
+  "overall": "0/1",
+  "baseline": "1/1",
+  "delta_vs_baseline": -1,
+  "multiview_run_count": 1,
+  "multiview_run": "1/1",
+  "switches": 1,
+  "fixes": 0,
+  "harms": 1,
+  "fix_harm": "0/1",
+  "run_tasks": [
+    "task_114"
+  ],
+  "switch_tasks": [
+    "task_114"
+  ],
+  "fix_tasks": [],
+  "harm_tasks": [
+    "task_114"
+  ],
+  "posthoc_audit_summary": {
+    "variant": "r069_integrated_selective_multiview_promptnode",
+    "total": 1,
+    "solved": 0,
+    "overall": "0/1",
+    "clean_total": 0,
+    "clean_solved": 0,
+    "clean": "0/0",
+    "noisy_or_ambiguous_total": 1,
+    "noisy_or_ambiguous_solved": 0,
+    "noisy_or_ambiguous": "0/1",
+    "baseline_solved": 1,
+    "delta_vs_baseline": -1,
+    "fixes": 0,
+    "harms": 1,
+    "fix_harm": "0/1",
+    "clean_fixes": 0,
+    "clean_harms": 0,
+    "clean_fix_harm": "0/0",
+    "noisy_fixes": 0,
+    "noisy_harms": 1,
+    "noisy_fix_harm": "0/1",
+    "switches": 1,
+    "switch_sources": {
+      "objective_top": 1
+    },
+    "notes": ""
+  },
+  "clean": "0/0",
+  "noisy_or_ambiguous": "0/1",
+  "clean_fix_harm": "0/0",
+  "noisy_fix_harm": "0/1",
+  "timestamp": "2026-07-08T14:22:46.566344",
+  "boundary": "fresh_integrated_selective_multiview_promptnode_run",
+  "split_name": "tail34",
+  "llm_name": "gpt-4o-2024-08-06",
+  "baseline_model_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/output/aqua_sync20_model_20260707-230509",
+  "promptnode_model_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/output/aqua_pn_router_contract_model_20260708-030015",
+  "output_file": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_tail34_r069_integrated_selective_multiview_smoke1_results.jsonl",
+  "view_configs": [
+    {
+      "method_key": "router",
+      "decision_method": "RouterContractFinalRefer",
+      "num_candidate_graphs": 1,
+      "decision_exposure_policy": "auto"
+    },
+    {
+      "method_key": "candidate",
+      "decision_method": "RouterContractFinalRefer",
+      "num_candidate_graphs": 4,
+      "decision_exposure_policy": "auto"
+    },
+    {
+      "method_key": "conservative",
+      "decision_method": "ConservativeRouterContractFinalRefer",
+      "num_candidate_graphs": 1,
+      "decision_exposure_policy": "auto"
+    },
+    {
+      "method_key": "calibrated",
+      "decision_method": "CalibratedPNUtilityFinalRefer",
+      "num_candidate_graphs": 1,
+      "decision_exposure_policy": "auto"
+    }
+  ],
+  "cost": 0.223575,
+  "prompt_tokens": 14031.0,
+  "completion_tokens": 10228.0,
+  "trigger_excludes": [
+    "true_answer",
+    "is_solved",
+    "clean_label",
+    "audit_label",
+    "task_id-specific rules"
+  ]
+}

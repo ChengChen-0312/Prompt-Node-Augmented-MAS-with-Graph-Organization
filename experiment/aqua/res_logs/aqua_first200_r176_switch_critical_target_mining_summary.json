@@ -1,0 +1,795 @@
+{
+  "rule": "r176_switch_critical_target_mining",
+  "r112_rows": 200,
+  "r077_rows": 800,
+  "r166_rows": 800,
+  "r112_switch_rows": 11,
+  "r166_switch_rows": 4,
+  "gap_class_counts": {
+    "confirmed_switch_critical": 4,
+    "low_confidence_promptnode_candidate": 4,
+    "no_promptnode_candidate": 1,
+    "weak_high_margin_tie_candidate": 2
+  },
+  "confirmed_switch_critical_rows": 4,
+  "weak_high_margin_tie_rows": 2,
+  "expanded_override_pool_if_weak_included": 6,
+  "expanded_override_pool_by_slice": {
+    "aqua_100": 3,
+    "aqua_next100": 3
+  },
+  "expanded_override_pool_still_insufficient": true,
+  "records": [
+    {
+      "task_id": "task_152",
+      "slice_prefix": "aqua_100",
+      "policy_input": {
+        "baseline_prediction": "None.",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 3,
+        "baseline_direct_majority": null,
+        "baseline_direct_majority_count": 0,
+        "baseline_direct_valid_vote_count": 0,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "candidate",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "low_margin_top",
+          "objective_reward": 3.0,
+          "score_margin_to_next": 2.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Inspector|Math Solver|Mathematical Analyst::0->1,1->2",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "router",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "no_promptnode_candidate",
+      "claimable_override_label": false,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_172",
+      "slice_prefix": "aqua_100",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "candidate",
+          "target_class": "clean_fix_preserve_graph",
+          "candidate_label": 1,
+          "objective_bucket": "preferred_graph",
+          "objective_reward": 3.0,
+          "score_margin_to_next": 4.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|Mathematical Analyst|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": true
+        },
+        {
+          "candidate_method": "router",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": -1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": -1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": -1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "confirmed_switch_critical",
+      "claimable_override_label": true,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_95",
+      "slice_prefix": "aqua_100",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 3,
+        "baseline_direct_valid_vote_count": 3,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "candidate",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "low_margin_top",
+          "objective_reward": 3.0,
+          "score_margin_to_next": 2.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "router",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "low_confidence_promptnode_candidate",
+      "claimable_override_label": false,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_135",
+      "slice_prefix": "aqua_100",
+      "policy_input": {
+        "baseline_prediction": "None.",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 11,
+        "baseline_direct_majority": null,
+        "baseline_direct_majority_count": 0,
+        "baseline_direct_valid_vote_count": 0,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "router",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 11.0,
+          "score_margin_to_next": 8.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 11.0,
+          "score_margin_to_next": 8.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 3.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "candidate",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 0.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "weak_high_margin_tie_candidate",
+      "claimable_override_label": false,
+      "weak_expansion_candidate": true
+    },
+    {
+      "task_id": "task_122",
+      "slice_prefix": "aqua_100",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 9,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "candidate",
+          "target_class": "clean_fix_preserve_graph",
+          "candidate_label": 1,
+          "objective_bucket": "preferred_graph",
+          "objective_reward": 9.0,
+          "score_margin_to_next": 4.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": true
+        },
+        {
+          "candidate_method": "router",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 5.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 5.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 5.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "confirmed_switch_critical",
+      "claimable_override_label": true,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_149",
+      "slice_prefix": "aqua_100",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 4,
+        "baseline_direct_majority": null,
+        "baseline_direct_majority_count": 0,
+        "baseline_direct_valid_vote_count": 0,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "conservative",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 4.0,
+          "score_margin_to_next": 2.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 4.0,
+          "score_margin_to_next": 2.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "router",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 2.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "candidate",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 0.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "low_confidence_promptnode_candidate",
+      "claimable_override_label": false,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_176",
+      "slice_prefix": "aqua_next100",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 10,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "candidate",
+          "target_class": "clean_fix_preserve_graph",
+          "candidate_label": 1,
+          "objective_bucket": "preferred_graph",
+          "objective_reward": 10.0,
+          "score_margin_to_next": 9.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->3,1->2,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": true
+        },
+        {
+          "candidate_method": "router",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 0,
+          "has_promptnode_edge_permissions": false,
+          "graph_signature": "Math Solver|Programming Expert::0->1",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "confirmed_switch_critical",
+      "claimable_override_label": true,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_184",
+      "slice_prefix": "aqua_next100",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": true
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "router",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "low_margin_top",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 1.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "candidate",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 0.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 0.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 0.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,0->3,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "low_confidence_promptnode_candidate",
+      "claimable_override_label": false,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_197",
+      "slice_prefix": "aqua_next100",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 10,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "router",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 10.0,
+          "score_margin_to_next": 1.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 10.0,
+          "score_margin_to_next": 1.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 9.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "candidate",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 6.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "low_confidence_promptnode_candidate",
+      "claimable_override_label": false,
+      "weak_expansion_candidate": false
+    },
+    {
+      "task_id": "task_67",
+      "slice_prefix": "aqua_next100",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 10,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "router",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 10.0,
+          "score_margin_to_next": 9.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->3,1->2,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "ambiguous_or_low_margin_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "multi_view_tie",
+          "objective_reward": 10.0,
+          "score_margin_to_next": 9.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->3,1->2,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->3,1->2,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "candidate",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 0.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "weak_high_margin_tie_candidate",
+      "claimable_override_label": false,
+      "weak_expansion_candidate": true
+    },
+    {
+      "task_id": "task_207",
+      "slice_prefix": "aqua_next100",
+      "policy_input": {
+        "baseline_prediction": "None.",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 9,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "candidate_count": 4,
+      "candidate_features": [
+        {
+          "candidate_method": "candidate",
+          "target_class": "clean_fix_preserve_graph",
+          "candidate_label": 1,
+          "objective_bucket": "preferred_graph",
+          "objective_reward": 9.0,
+          "score_margin_to_next": 8.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier|Programming Expert::0->1,0->2,1->2,2->3,3->4",
+          "is_r166_switch_critical": true
+        },
+        {
+          "candidate_method": "router",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->3,1->2,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "conservative",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->3,1->2,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        },
+        {
+          "candidate_method": "calibrated",
+          "target_class": "negative_graph_suppress",
+          "candidate_label": 0,
+          "objective_bucket": "non_preferred_graph",
+          "objective_reward": 1.0,
+          "score_margin_to_next": 0.0,
+          "num_prompt_nodes": 3,
+          "has_promptnode_edge_permissions": true,
+          "graph_signature": "Math Solver|PN_Memory|PN_Router|PN_Verifier::0->1,0->3,1->2,1->3,2->3,3->4,4->5",
+          "is_r166_switch_critical": false
+        }
+      ],
+      "gap_class": "confirmed_switch_critical",
+      "claimable_override_label": true,
+      "weak_expansion_candidate": false
+    }
+  ],
+  "claim_boundary": "R176 is a no-API target-mining audit. Weak high-margin tie rows are diagnostic expansion candidates only; they are not claimable learned override labels without additional validation."
+}

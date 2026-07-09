@@ -1,0 +1,44 @@
+{
+  "run_id": "R303",
+  "title": "MMLU audit-excluded protocol freeze",
+  "claim_boundary": "Protocol freeze only. The three audited tasks are excluded from future training/distillation and main-result aggregation; they remain available for appendix sensitivity analysis.",
+  "no_api": true,
+  "broad_api": false,
+  "arg_results_jsonl": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "total_records": 100,
+  "excluded_count": 3,
+  "excluded_task_ids": [
+    "MMLU-college_chemistry_test-62",
+    "MMLU-high_school_physics_test-67",
+    "MMLU-high_school_statistics_test-32"
+  ],
+  "exclusion_reasons": {
+    "MMLU-high_school_statistics_test-32": "Known ARG failure already used for R301/R302 gate discovery; exclude from further training/distillation to avoid tuning to a single audited item.",
+    "MMLU-high_school_physics_test-67": "MMLU-Redux 2.0 marks wrong_groundtruth; keep in appendix sensitivity analysis only.",
+    "MMLU-college_chemistry_test-62": "MMLU-Redux 2.0 marks wrong_groundtruth; keep in appendix sensitivity analysis only."
+  },
+  "main_eval_records": 97,
+  "appendix_records": 3,
+  "arg_full_official_correct": 88,
+  "arg_full_audit_clean_correct": 90,
+  "arg_main_official_correct": 88,
+  "arg_main_audit_clean_correct": 88,
+  "arg_appendix_official_correct": 0,
+  "arg_appendix_audit_clean_correct": 2,
+  "training_policy": {
+    "exclude_from_training": [
+      "MMLU-college_chemistry_test-62",
+      "MMLU-high_school_physics_test-67",
+      "MMLU-high_school_statistics_test-32"
+    ],
+    "exclude_from_distillation": [
+      "MMLU-college_chemistry_test-62",
+      "MMLU-high_school_physics_test-67",
+      "MMLU-high_school_statistics_test-32"
+    ],
+    "main_text_reporting": "Use main97 as the primary MMLU transfer result; report official/audit-clean/full100 in appendix.",
+    "appendix_reporting": "Explain one known ARG-discovery item and two MMLU-Redux wrong-groundtruth items."
+  },
+  "next_run": "R304 multi-trigger learned SafetyGatePN on main97",
+  "sci_q2_ready": false
+}

@@ -1,0 +1,77 @@
+{
+  "run_id": "R420",
+  "title": "Paper asset table refresh",
+  "claim_boundary": "R420 indexes paper assets for drafting. It does not authorize claims or mark the paper SCI-Q2 ready.",
+  "no_api": true,
+  "broad_api": false,
+  "paper_assets": [
+    {
+      "asset_type": "main_result_table",
+      "title": "AQuA/MMLU main result table",
+      "source": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+      "paper_section": "Results",
+      "status": "ready_with_claim_boundaries",
+      "note": "Use together with R415 claim update; broad claims remain disabled."
+    },
+    {
+      "asset_type": "claim_matrix",
+      "title": "Updated claim-evidence matrix",
+      "source": "experiment/mmlu/res_logs/mmlu_r415_update_claim_matrix_after_nonmath_positive_summary.json",
+      "paper_section": "Experimental Setup / Results",
+      "status": "ready_provisional",
+      "note": "Includes C6 narrow DefinitionChallenge positive result."
+    },
+    {
+      "asset_type": "cost_table",
+      "title": "Cost-normalized result table",
+      "source": "experiment/mmlu/res_logs/mmlu_r416_cost_normalized_claim_table_and_goal_audit_summary.json",
+      "paper_section": "Results / Cost Analysis",
+      "status": "incomplete_for_submission",
+      "note": "MMLU STEM cost and external integrity audit are missing."
+    },
+    {
+      "asset_type": "case_study_pack",
+      "title": "Mechanism case studies",
+      "source": "experiment/mmlu/res_logs/mmlu_r417_case_study_evidence_pack_summary.json",
+      "paper_section": "Case Studies",
+      "status": "ready_with_caveats",
+      "note": "3 reproducible case-study entries."
+    },
+    {
+      "asset_type": "lifecycle_trace",
+      "title": "PromptNode lifecycle trace",
+      "source": "experiment/mmlu/res_logs/mmlu_r419_lifecycle_trace_replay_summary.json",
+      "paper_section": "Method / Case Studies",
+      "status": "ready_for_visualization",
+      "note": "121 lifecycle events from R413 replay."
+    },
+    {
+      "asset_type": "paper_plan",
+      "title": "Paper plan with claim updates",
+      "source": "PAPER_PLAN.md",
+      "paper_section": "All sections",
+      "status": "updated",
+      "note": "Contains R402 and R415 claim-boundary updates."
+    }
+  ],
+  "claim_ids": [
+    "C1_aqua_audit_clean_gain",
+    "C2_mmlu_stem_gain",
+    "C3_history_optionbinding_pilot_gain",
+    "C4_mixed_nonmath_no_harm",
+    "C5_broad_general_improvement",
+    "C6_definition_challenge_fresh_positive"
+  ],
+  "cost_rows": 6,
+  "case_studies": 3,
+  "lifecycle_events": 121,
+  "missing_assets": [
+    "submission_complete_cost_table",
+    "external_experiment_integrity_audit"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R421_submission_readiness_goal_audit",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r420_paper_asset_table_refresh_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r420_paper_asset_table_refresh_report.md"
+}

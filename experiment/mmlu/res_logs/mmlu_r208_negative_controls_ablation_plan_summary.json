@@ -1,0 +1,94 @@
+{
+  "run_id": "R208",
+  "title": "Negative controls and ablation plan for SCI-Q2 evidence",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "protocol only; no new accuracy claim",
+  "motivation": "Prevent the paper from claiming gains caused by generic extra tokens, post-hoc answer patches, projection-only structure, or dataset-specific overfitting.",
+  "primary_questions": [
+    "Does first-class PN/PE insertion help beyond just giving the LLM more prompt tokens?",
+    "Does PromptEdge-as-edge-text add value beyond node-local PromptNode text?",
+    "Does router-final activation produce safe answer changes?",
+    "Can learned activation approximate AQuA R065/R095 gains without paying full multi-view cost?",
+    "Does the method transfer without tuning on the target split?"
+  ],
+  "negative_controls": [
+    {
+      "name": "random_promptnode_text",
+      "purpose": "Controls for extra token budget.",
+      "expected_result": "No improvement and possibly higher cost."
+    },
+    {
+      "name": "shuffled_promptedge_order",
+      "purpose": "Controls for whether PN_Memory -> PN_Verifier -> PN_Router ordering matters.",
+      "expected_result": "Worse contract readiness or lower fix rate."
+    },
+    {
+      "name": "node_only_no_promptedge",
+      "purpose": "Tests whether explicit PromptEdges matter beyond adding virtual nodes.",
+      "expected_result": "Weaker routing/verification consistency."
+    },
+    {
+      "name": "edge_only_no_promptnode",
+      "purpose": "Tests whether prompt-as-edge alone is enough.",
+      "expected_result": "Useful only if predecessor agents already expose enough evidence."
+    },
+    {
+      "name": "always_insert_pn",
+      "purpose": "Controls for indiscriminate virtual-node insertion.",
+      "expected_result": "Higher cost and potential harms."
+    },
+    {
+      "name": "gold_or_task_id_leakage_check",
+      "purpose": "Ensures selectors do not use labels, correctness, audit labels, or task ids.",
+      "expected_result": "Zero violations."
+    }
+  ],
+  "ablations": [
+    "ARG baseline",
+    "raw learned PN/PE graph",
+    "projected PN/PE structure only",
+    "projected PN/PE with router-final",
+    "projected PN/PE with PromptEdge text",
+    "distilled objective-safety selector",
+    "cost-matched ARG re-query baseline"
+  ],
+  "datasets": {
+    "main": "AQuA tail34 only if treated as held-out validation from first200-derived rules",
+    "transfer": "MMLU STEM transfer100 or random slices with no tuning on selected rows",
+    "baseline_reference": "AQuA sync20 R001 is reproduction/breakdown, not main evidence"
+  },
+  "metrics": [
+    "accuracy",
+    "clean_accuracy",
+    "fix_harm",
+    "clean_fix_harm",
+    "contract_ready_rate",
+    "raw_vs_projected_gap",
+    "cost_per_correct",
+    "incremental_cost_per_fix",
+    "selection_rate",
+    "leakage_violations"
+  ],
+  "statistical_checks": [
+    "paired exact/McNemar-style comparison where task count supports it",
+    "bootstrap confidence interval for accuracy delta and fix-harm delta",
+    "report all task-level switches, including neutral wrong-to-wrong switches",
+    "separate clean/noisy audited rows for AQuA"
+  ],
+  "go_no_go": {
+    "go_for_new_api": [
+      "R210 audit passes",
+      "implementation has no leakage fields",
+      "dry-run shows projected and raw graph states logged separately",
+      "cost cap is explicit",
+      "success and failure criteria are pre-registered"
+    ],
+    "stop_conditions": [
+      "random or shuffled controls match the proposed method",
+      "router-final introduces clean harm above pre-registered tolerance",
+      "MMLU random slices remain neutral after router-final redesign",
+      "cost-normalized gains are worse than ARG re-query baseline"
+    ]
+  }
+}

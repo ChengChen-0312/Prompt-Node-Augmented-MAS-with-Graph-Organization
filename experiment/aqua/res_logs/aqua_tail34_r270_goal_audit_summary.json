@@ -1,0 +1,24 @@
+{
+  "run_id": "R270",
+  "title": "Five-run goal audit after R266-R269",
+  "audit_window": [
+    "R266",
+    "R267",
+    "R268",
+    "R269",
+    "R270"
+  ],
+  "aligned_with_goal": true,
+  "drift_detected": false,
+  "goal_reference": "SCI-Q2 PromptNode/PromptEdge graph organization with ARG-Designer baseline, same-model evidence, robustness, cost, transfer, and transparent data audit.",
+  "evidence_checked": {
+    "audit_clean_reporting_preserved": true,
+    "cost_safety_combination_created": true,
+    "student_policy_export_created": true,
+    "student_policy_leakage_violations": 0,
+    "critical_task114_sensitivity_preserved": true,
+    "transfer_boundary_still_required": true
+  },
+  "course_correction": "Continue to R271/R272. Do not claim SCI-Q2 readiness, broad transfer superiority, or a trained low-cost model until transfer and fresh student evaluation are complete.",
+  "next_required_stop": "R272_transfer_boundary"
+}

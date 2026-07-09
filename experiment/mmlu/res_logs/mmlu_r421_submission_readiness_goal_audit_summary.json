@@ -1,0 +1,47 @@
+{
+  "run_id": "R421",
+  "title": "Submission readiness goal audit",
+  "claim_boundary": "R421 audits readiness against the SCI-Q2 goal after R417-R421. It is a routing checkpoint, not a claim.",
+  "no_api": true,
+  "broad_api": false,
+  "readiness_verdict": "not_ready",
+  "supported_or_narrow_claims": [
+    "C1_aqua_audit_clean_gain",
+    "C2_mmlu_stem_gain",
+    "C3_history_optionbinding_pilot_gain",
+    "C4_mixed_nonmath_no_harm",
+    "C6_definition_challenge_fresh_positive"
+  ],
+  "blocking_gaps": [
+    "external_integrity_audit_missing",
+    "mmlu_stem_cost_missing",
+    "broad_nonmath_larger_split_missing",
+    "submission_complete_cost_table_missing"
+  ],
+  "iterations_since_last_goal_check": [
+    "R417",
+    "R418",
+    "R419",
+    "R420",
+    "R421"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_designer_remains_main_baseline": true,
+    "promptnode_first_class_boundary_preserved": true,
+    "heldout_positive_evidence_exists": true,
+    "case_study_and_lifecycle_assets_exist": true,
+    "cost_reporting_gap_visible": true,
+    "overclaiming_blocked": true
+  },
+  "recommended_next_actions": [
+    "Reconstruct or rerun MMLU STEM cost accounting.",
+    "Run independent experiment integrity audit.",
+    "Only after those, draft paper tables and methods text."
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R422_mmlu_stem_cost_reconstruction_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r421_submission_readiness_goal_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r421_submission_readiness_goal_audit_report.md"
+}

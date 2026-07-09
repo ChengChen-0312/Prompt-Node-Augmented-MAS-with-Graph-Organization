@@ -1,0 +1,83 @@
+{
+  "rule": "r106_rank5_regression_smoke_report",
+  "num_tasks": 4,
+  "baseline_solved": 2,
+  "rank5_solved": 3,
+  "fix_harm": "2/1",
+  "clean_fix_harm": "1/1",
+  "noisy_fix_harm": "1/0",
+  "clean_harm_guard_harms": [
+    "task_8"
+  ],
+  "clean_recovery_targets_solved": [
+    "task_250"
+  ],
+  "rank2_rank5_consensus_tasks": [
+    "task_108"
+  ],
+  "consensus_clean_recovery_solved": [],
+  "total_cost": 0.16642999999999997,
+  "rows": [
+    {
+      "task_id": "task_8",
+      "baseline_prediction": "E",
+      "rank2_prediction": "E",
+      "rank5_prediction": "C",
+      "true_answer": "E",
+      "baseline_is_solved": true,
+      "rank2_is_solved": true,
+      "rank5_is_solved": false,
+      "fix": false,
+      "harm": true,
+      "rank2_rank5_consensus": false,
+      "clean_label": "clean",
+      "role": "clean_harm_guard"
+    },
+    {
+      "task_id": "task_108",
+      "baseline_prediction": "B",
+      "rank2_prediction": "D",
+      "rank5_prediction": "D",
+      "true_answer": "D",
+      "baseline_is_solved": false,
+      "rank2_is_solved": true,
+      "rank5_is_solved": true,
+      "fix": true,
+      "harm": false,
+      "rank2_rank5_consensus": true,
+      "clean_label": "noisy",
+      "role": "noisy_optional_target"
+    },
+    {
+      "task_id": "task_188",
+      "baseline_prediction": "D",
+      "rank2_prediction": "C",
+      "rank5_prediction": "D",
+      "true_answer": "D",
+      "baseline_is_solved": true,
+      "rank2_is_solved": false,
+      "rank5_is_solved": true,
+      "fix": false,
+      "harm": false,
+      "rank2_rank5_consensus": false,
+      "clean_label": "clean",
+      "role": "clean_harm_guard"
+    },
+    {
+      "task_id": "task_250",
+      "baseline_prediction": "A",
+      "rank2_prediction": "A",
+      "rank5_prediction": "E",
+      "true_answer": "E",
+      "baseline_is_solved": false,
+      "rank2_is_solved": false,
+      "rank5_is_solved": true,
+      "fix": true,
+      "harm": false,
+      "rank2_rank5_consensus": false,
+      "clean_label": "clean",
+      "role": "clean_recovery_target"
+    }
+  ],
+  "claim_boundary": "four-task rank5 regression smoke; consensus not clean-safe"
+}

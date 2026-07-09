@@ -1,0 +1,1 @@
+{"timestamp": "2026-07-08T03:58:59.017578", "dataset": "aqua", "model_path": "output/aqua_pn_router_contract_model_20260708-030015ef_best", "llm_name": "gpt-4o-2024-08-06", "total_tasks": 20, "solved_tasks": 16, "pass_at_1": 80.0, "cost": 0.7585149999999998, "prompt_tokens": 72089.0, "completion_tokens": 26538.0, "detail_file": "aqua_sync20_selective_pn_v2_results.jsonl"}

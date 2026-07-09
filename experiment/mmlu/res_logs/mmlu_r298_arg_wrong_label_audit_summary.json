@@ -1,0 +1,38 @@
+{
+  "run_id": "R298",
+  "title": "MMLU ARG wrong-case label audit",
+  "claim_boundary": "Label audit only; no new API and no method improvement claim.",
+  "no_api": true,
+  "broad_api": false,
+  "audited_tasks": [
+    {
+      "task_id": "MMLU-high_school_statistics_test-32",
+      "dataset_label": "D",
+      "arg_prediction": "B",
+      "audit_clean_answer": "D",
+      "label_verdict": "label_appears_correct_after_option_compression",
+      "source_url": "https://www.crackap.com/ap/statistics/question-331.html"
+    },
+    {
+      "task_id": "MMLU-high_school_physics_test-67",
+      "dataset_label": "A",
+      "arg_prediction": "C",
+      "audit_clean_answer": "C",
+      "label_verdict": "dataset_label_appears_wrong",
+      "source_url": "https://www.crackap.com/ap/physics-1/question-45-answer-and-explanation.html"
+    }
+  ],
+  "official_scores": {
+    "R292_ARG": "22/24",
+    "R291_PN_all": "20/24",
+    "R296_PN_specialist": "20/24"
+  },
+  "audit_clean_scores": {
+    "R292_ARG": "23/24",
+    "R291_PN_all": "21/24",
+    "R296_PN_specialist": "21/24"
+  },
+  "transfer_superiority_claim_supported": false,
+  "sci_q2_ready": false,
+  "next_decision": "Do not optimize for the noisy physics item. Build a generic no-harm gate that preserves ARG unless PromptNode evidence has cross-dataset, option-bound support."
+}

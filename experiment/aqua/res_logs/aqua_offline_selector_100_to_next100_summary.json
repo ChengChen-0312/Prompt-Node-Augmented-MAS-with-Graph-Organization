@@ -1,0 +1,22 @@
+{
+  "total_tasks": 100,
+  "solved_tasks": 85,
+  "pass_at_1": 85.0,
+  "baseline_solved_tasks": 82,
+  "baseline_pass_at_1": 82.0,
+  "ensemble_solved_tasks": 85,
+  "ensemble_pass_at_1": 85.0,
+  "delta_vs_baseline": 3,
+  "delta_vs_ensemble": 0,
+  "fixes_vs_baseline": 3,
+  "harms_vs_baseline": 0,
+  "ensemble_switches": 5,
+  "rule": {
+    "name": "ensemble_if_baseline_invalid",
+    "train_solved": 86,
+    "train_total": 100
+  },
+  "train_prefix": "aqua_100",
+  "test_prefix": "aqua_next100",
+  "output_file": "experiment/aqua/aqua_offline_selector_100_to_next100_results.jsonl"
+}

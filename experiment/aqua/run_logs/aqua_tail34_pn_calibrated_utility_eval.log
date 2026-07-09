@@ -1,0 +1,45 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Loading model and tools...
+Loaded precomputed embeddings: 7 entries
+Using provided role mapping: 7 roles
+TOKENS: START=7, END=8
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19799.87it/s]
+2026-07-08 12:13:09.358 | INFO     | mas_framework.tools.reader.readers:parse_file:106 - Reading JSON Lines file from ../../datasets/AQuA/AQuA.jsonl.
+Loaded 34 Aqua test samples for evaluation.
+
+Evaluating model:   0%|          | 0/9 [00:00<?, ?it/s]
+Evaluating model:   0%|          | 0/9 [00:24<?, ?it/s, Accuracy=100.00% (4/4), Token=$10012.0000]
+Evaluating model:  11%|█         | 1/9 [00:24<03:12, 24.11s/it, Accuracy=100.00% (4/4), Token=$10012.0000]
+Evaluating model:  11%|█         | 1/9 [00:41<03:12, 24.11s/it, Accuracy=100.00% (8/8), Token=$16538.0000]
+Evaluating model:  22%|██▏       | 2/9 [00:41<02:19, 19.98s/it, Accuracy=100.00% (8/8), Token=$16538.0000]
+Evaluating model:  22%|██▏       | 2/9 [01:10<02:19, 19.98s/it, Accuracy=100.00% (12/12), Token=$25476.0000]
+Evaluating model:  33%|███▎      | 3/9 [01:10<02:25, 24.30s/it, Accuracy=100.00% (12/12), Token=$25476.0000]
+Evaluating model:  33%|███▎      | 3/9 [01:41<02:25, 24.30s/it, Accuracy=93.75% (15/16), Token=$37610.0000] 
+Evaluating model:  44%|████▍     | 4/9 [01:41<02:14, 26.84s/it, Accuracy=93.75% (15/16), Token=$37610.0000]
+Evaluating model:  44%|████▍     | 4/9 [02:02<02:14, 26.84s/it, Accuracy=90.00% (18/20), Token=$47176.0000]
+Evaluating model:  56%|█████▌    | 5/9 [02:02<01:39, 24.75s/it, Accuracy=90.00% (18/20), Token=$47176.0000]
+Evaluating model:  56%|█████▌    | 5/9 [02:25<01:39, 24.75s/it, Accuracy=83.33% (20/24), Token=$54848.0000]
+Evaluating model:  67%|██████▋   | 6/9 [02:25<01:12, 24.12s/it, Accuracy=83.33% (20/24), Token=$54848.0000]
+Evaluating model:  67%|██████▋   | 6/9 [02:41<01:12, 24.12s/it, Accuracy=82.14% (23/28), Token=$62357.0000]
+Evaluating model:  78%|███████▊  | 7/9 [02:41<00:42, 21.48s/it, Accuracy=82.14% (23/28), Token=$62357.0000]
+Evaluating model:  78%|███████▊  | 7/9 [02:58<00:42, 21.48s/it, Accuracy=84.38% (27/32), Token=$68366.0000]
+Evaluating model:  89%|████████▉ | 8/9 [02:58<00:20, 20.16s/it, Accuracy=84.38% (27/32), Token=$68366.0000]
+Evaluating model:  89%|████████▉ | 8/9 [03:16<00:20, 20.16s/it, Accuracy=85.29% (29/34), Token=$72876.0000]
+Evaluating model: 100%|██████████| 9/9 [03:16<00:00, 19.40s/it, Accuracy=85.29% (29/34), Token=$72876.0000]
+Evaluating model: 100%|██████████| 9/9 [03:16<00:00, 21.82s/it, Accuracy=85.29% (29/34), Token=$72876.0000]
+
+==================================================
+Evaluation Summary
+Model path: output/aqua_pn_router_contract_model_20260708-030015
+Total tasks: 34, Solved: 29, Pass@1: 85.29%
+--------------------------------------------------
+Total cost: $1.044135
+Total Prompt Tokens: 72876
+Total Completion Tokens: 45317
+--------------------------------------------------
+Detailed results saved to: aqua_tail34_pn_calibrated_utility_results.jsonl
+Summary appended to: res_logs/aqua_tail34_pn_calibrated_utility_summary.jsonl
+==================================================

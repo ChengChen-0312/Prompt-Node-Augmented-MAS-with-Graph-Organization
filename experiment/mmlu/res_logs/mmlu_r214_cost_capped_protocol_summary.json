@@ -1,0 +1,53 @@
+{
+  "run_id": "R214",
+  "title": "Cost-capped router-final evaluation protocol",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "Protocol only; no evaluation and no accuracy claim.",
+  "api_eligible_now": false,
+  "reason_api_blocked": "R211-R213 pass schema/logging gates, but router-final targets are still abstain-only and cannot test answer-changing improvements.",
+  "prerequisites_before_api": [
+    "R215 goal audit passes.",
+    "Runtime evaluator has an answer-changing router-final decision stage or target labels beyond abstain/NONE.",
+    "R213 logging contract remains intact.",
+    "Leakage scan passes for all model-visible router-final features.",
+    "User accepts explicit cost cap."
+  ],
+  "candidate_protocol_after_prerequisites": {
+    "max_tasks": 4,
+    "selection": "mixed diagnostic, not a paper claim",
+    "baseline_wrong_tasks": [
+      "MMLU-high_school_statistics_test-32",
+      "MMLU-high_school_physics_test-67"
+    ],
+    "baseline_correct_control_count": 2,
+    "baseline_correct_control_selection": "fixed seed random from transfer100 excluding R192/R196/R202 tasks",
+    "cost_cap_usd": 0.45,
+    "model": "gpt-4o-2024-08-06",
+    "baseline": "R162 MMLU ARG baseline",
+    "required_logging": [
+      "raw_graph",
+      "projected_graph",
+      "promptedge_meta",
+      "promptedge_permissions",
+      "router_final_schema",
+      "raw_graph_audit",
+      "projected_graph_audit",
+      "cost_tokens"
+    ],
+    "success_criteria": [
+      "harms == 0 on baseline-correct controls",
+      "at least one diagnostic fix on baseline-wrong tasks if answer-changing router is active",
+      "all logs pass leakage scan",
+      "cost <= 0.45"
+    ],
+    "failure_criteria": [
+      "any clean/control harm",
+      "missing graph/router logs",
+      "leakage violation",
+      "cost cap exceeded",
+      "abstain-only router produces no new evidence"
+    ]
+  },
+  "next": "R215 goal audit before any API."
+}

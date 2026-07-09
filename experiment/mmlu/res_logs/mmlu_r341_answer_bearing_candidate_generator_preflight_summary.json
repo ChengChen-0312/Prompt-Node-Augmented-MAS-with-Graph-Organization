@@ -1,0 +1,23 @@
+{
+  "run_id": "R341",
+  "title": "Answer-bearing candidate generator preflight",
+  "claim_boundary": "R341 prepares a targeted mechanism-debug probe on R337 wrong tasks. It is not a paper claim and does not authorize broader API expansion.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 4,
+  "verifier_family_counts": {
+    "algebraic_structure_verifier": 2,
+    "chemistry_balancer_verifier": 1,
+    "coordinate_geometry_verifier": 1
+  },
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "uses_true_answers_in_prompt": false,
+  "api_probe_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R342_answer_bearing_candidate_generator_api_probe",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r341_answer_bearing_candidate_generator_probe_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r341_answer_bearing_candidate_generator_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r341_answer_bearing_candidate_generator_preflight_report.md"
+}

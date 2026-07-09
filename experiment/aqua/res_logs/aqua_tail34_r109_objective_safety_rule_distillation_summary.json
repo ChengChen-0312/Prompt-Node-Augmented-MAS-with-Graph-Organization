@@ -1,0 +1,806 @@
+{
+  "rule": "r109_objective_safety_rule_distillation",
+  "num_rows": 34,
+  "target_agreement": "34/34",
+  "switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "objective_diff_suppressed_tasks": [
+    "task_114",
+    "task_59"
+  ],
+  "rule_input_field_violations": 0,
+  "distilled_rule": "switch_to_objective iff objective_prediction_differs_from_baseline and (objective_top_score>=3 or baseline_direct_votes_split)",
+  "requires_multiview_objective_features": true,
+  "cheap_single_template_proxy_ready": false,
+  "rows": [
+    {
+      "task_id": "task_114",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "insufficient_safety_evidence",
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "unsupported",
+        "rationale_issue": "arithmetic_error"
+      }
+    },
+    {
+      "task_id": "task_56",
+      "rule_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_107",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_240",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_179",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_166",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_183",
+      "rule_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_50",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_143",
+      "rule_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_251",
+      "rule_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_154",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_129",
+      "rule_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 3,
+        "baseline_direct_valid_vote_count": 3,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_59",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "insufficient_safety_evidence",
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      }
+    },
+    {
+      "task_id": "task_55",
+      "rule_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_23",
+      "rule_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_7",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_8",
+      "rule_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_108",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": true
+      },
+      "target_action": "switch_to_objective",
+      "distilled_action": "switch_to_objective",
+      "matches_target": true,
+      "target_reason": "baseline_direct_split_allows_switch",
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      }
+    },
+    {
+      "task_id": "task_151",
+      "rule_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 3,
+        "baseline_direct_valid_vote_count": 3,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_22",
+      "rule_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 3,
+        "baseline_direct_valid_vote_count": 3,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_139",
+      "rule_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      }
+    },
+    {
+      "task_id": "task_228",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "invalid_logic"
+      }
+    },
+    {
+      "task_id": "task_250",
+      "rule_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "distilled_action": "switch_to_objective",
+      "matches_target": true,
+      "target_reason": "objective_top_score_ge3",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_173",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_26",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_188",
+      "rule_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_35",
+      "rule_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_57",
+      "rule_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_62",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_70",
+      "rule_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_189",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_6",
+      "rule_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": true
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      }
+    },
+    {
+      "task_id": "task_28",
+      "rule_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    },
+    {
+      "task_id": "task_163",
+      "rule_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "distilled_action": "fallback_to_arg",
+      "matches_target": true,
+      "target_reason": "same_prediction_as_arg",
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      }
+    }
+  ],
+  "source_runs": [
+    "R096",
+    "R108"
+  ],
+  "claim_boundary": "rule distillation over R096 targets; no new accuracy or cheap-proxy claim"
+}

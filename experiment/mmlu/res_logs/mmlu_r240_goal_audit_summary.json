@@ -1,0 +1,37 @@
+{
+  "run_id": "R240",
+  "title": "Five-iteration SCI-Q2 goal audit",
+  "claim_boundary": "Audit only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "audit_window": ["R236", "R237", "R238", "R239"],
+  "goal_status_seen": "blocked",
+  "goal_used_as_benchmark": true,
+  "drift_detected": false,
+  "status": "aligned_continue_train_time_abstention_policy_no_api",
+  "sci_q2_ready": false,
+  "api_status": "blocked_until_trained_policy_frozen_eval_passes",
+  "key_evidence": {
+    "r236_first200": "170/200 vs baseline 165/200, fix/harm 5/0, clean fix/harm 1/0",
+    "r237_frozen_eval": "29/34 vs baseline 28/34, fix/harm 1/0",
+    "r238_controls_executable": true,
+    "r239_prompt_router_status": "not_supported"
+  },
+  "decision_reason": [
+    "The conservative abstention rule fixes the R233 clean-harm failure offline.",
+    "However, it is still an explicit offline replay, not a trained policy or live held-out result.",
+    "The goal explicitly requires train-time graph-policy/selector evidence and robustness beyond a prompt-only patch.",
+    "The next stage should train or fit a small abstention policy using label-free PN/PE features and evaluate it on frozen splits before any more API."
+  ],
+  "authorized_next": {
+    "R241": "build train/frozen feature table for abstention policy, no API",
+    "R242": "fit interpretable train-time abstention policy and evaluate frozen split, no API",
+    "R243": "compare trained policy against R238 controls and R236 explicit rule, no API",
+    "R244": "case-study extraction for fix, abstain-protected clean case, and no-fix cases, no API",
+    "R245": "mandatory goal audit"
+  },
+  "forbidden": [
+    "no further API before a trained/fitted policy passes frozen-eval and control checks",
+    "no superiority claim over ARG from offline replay alone",
+    "no SCI-Q2 readiness claim",
+    "no prompt-only router expansion"
+  ]
+}

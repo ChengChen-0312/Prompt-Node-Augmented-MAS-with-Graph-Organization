@@ -1,0 +1,22 @@
+{
+  "run_id": "R189",
+  "title": "MMLU PromptEdge structural projection audit",
+  "claim_boundary": "No-API graph projection audit only. This supports a hybrid constrained-decoder claim, not a fully learned edge-linking claim and not an answer accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "model_dir": "experiment/mmlu/output/mmlu_promptedge_pn_graph_policy_r188_e5",
+  "transfer_jsonl": "experiment/mmlu/mmlu_stem_transfer100.jsonl",
+  "tasks_audited": 50,
+  "raw_contract_ready_graphs": 2,
+  "projected_contract_ready_graphs": 50,
+  "raw_pn_chain_graphs": 2,
+  "projected_pn_chain_graphs": 50,
+  "raw_dag_graphs": 50,
+  "projected_dag_graphs": 50,
+  "projection_contract_ready_rate": 1.0,
+  "raw_contract_ready_rate": 0.04,
+  "projection_audit_pass": true,
+  "details_jsonl": "experiment/mmlu/run_logs/mmlu_r189_promptedge_projection_audit_details.jsonl",
+  "paper_claim_boundary": "May claim structural projection yields execution-ready PromptEdge graphs; must not claim learned edge policy without an ablation separating raw learned graph from projection.",
+  "next_action": "R190 goal audit should decide whether a tiny API smoke is justified under a hybrid constrained-decoder claim."
+}

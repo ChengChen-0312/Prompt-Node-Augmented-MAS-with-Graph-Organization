@@ -1,0 +1,113 @@
+{
+  "rule": "r075_fresh_cascade_pareto_report",
+  "timestamp": "2026-07-08T16:33:27.730229",
+  "rows": [
+    {
+      "run_id": "R069",
+      "description": "fresh integrated four-view selective PromptNode",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r069_integrated_selective_multiview_summary.json",
+      "overall": "29/34",
+      "solved_tasks": 29,
+      "baseline": "26/34",
+      "baseline_solved_tasks": 26,
+      "delta_vs_baseline": 3,
+      "clean": "27/28",
+      "clean_fix_harm": "3/0",
+      "clean_fixes": 3,
+      "noisy_fix_harm": "0/0",
+      "fix_harm": "3/0",
+      "fix_tasks": [
+        "task_188",
+        "task_56",
+        "task_8"
+      ],
+      "harm_tasks": [],
+      "switch_tasks": [
+        "task_188",
+        "task_56",
+        "task_59",
+        "task_8"
+      ],
+      "multiview_run": "25/34",
+      "view_calls": null,
+      "cost": 3.908995,
+      "trigger_policy": null
+    },
+    {
+      "run_id": "R072",
+      "description": "fresh integrated cascade PromptNode",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r072_integrated_cascade_summary.json",
+      "overall": "29/34",
+      "solved_tasks": 29,
+      "baseline": "27/34",
+      "baseline_solved_tasks": 27,
+      "delta_vs_baseline": 2,
+      "clean": "26/28",
+      "clean_fix_harm": "2/0",
+      "clean_fixes": 2,
+      "noisy_fix_harm": "0/0",
+      "fix_harm": "2/0",
+      "fix_tasks": [
+        "task_188",
+        "task_56"
+      ],
+      "harm_tasks": [],
+      "switch_tasks": [
+        "task_188",
+        "task_56"
+      ],
+      "multiview_run": "26/34",
+      "view_calls": "58/104",
+      "cost": 2.82604,
+      "trigger_policy": null
+    },
+    {
+      "run_id": "R074",
+      "description": "fresh integrated surgical cascade PromptNode",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r074_surgical_cascade_summary.json",
+      "overall": "29/34",
+      "solved_tasks": 29,
+      "baseline": "28/34",
+      "baseline_solved_tasks": 28,
+      "delta_vs_baseline": 1,
+      "clean": "26/28",
+      "clean_fix_harm": "0/0",
+      "clean_fixes": 0,
+      "noisy_fix_harm": "1/0",
+      "fix_harm": "1/0",
+      "fix_tasks": [
+        "task_108"
+      ],
+      "harm_tasks": [],
+      "switch_tasks": [
+        "task_108",
+        "task_56",
+        "task_59"
+      ],
+      "multiview_run": "13/34",
+      "view_calls": "28/52",
+      "cost": 1.828715,
+      "trigger_policy": "r073_surgical"
+    }
+  ],
+  "accuracy_cost_frontier": [
+    "R074"
+  ],
+  "clean_mechanism_frontier": [
+    "R069",
+    "R072",
+    "R074"
+  ],
+  "stability": {
+    "r072_clean_fixes_lost_by_r074": [
+      "task_188",
+      "task_56"
+    ],
+    "r074_new_fix_not_in_r072": [
+      "task_108"
+    ],
+    "common_harms": []
+  },
+  "recommended_next": "distill_clean_fix_preserving_trigger_or_graph_policy",
+  "claim_boundary": "R074 is best on accuracy-cost among measured fresh runs, but R069/R072 carry the clean-fix mechanism signal. The next method should preserve clean fixes while reducing cost."
+}

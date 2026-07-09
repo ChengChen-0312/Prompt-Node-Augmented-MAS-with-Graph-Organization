@@ -1,0 +1,162 @@
+{
+  "run_id": "R417",
+  "title": "Case study evidence pack",
+  "claim_boundary": "R417 extracts reproducible case-study evidence. It supports mechanism discussion only, not new accuracy claims.",
+  "no_api": true,
+  "broad_api": false,
+  "case_studies": [
+    {
+      "case_id": "definition_challenge_fix",
+      "task_id": "MMLU-nonstem-moral_disputes_test-14",
+      "subject": "moral_disputes",
+      "mechanism": "DefinitionChallenge gate forwards a candidate that fixes ARG without harm.",
+      "transition": {
+        "arg_prediction": "A",
+        "candidate_label": "C",
+        "final_prediction": "C",
+        "true_answer": "C",
+        "arg_correct": false,
+        "candidate_correct": true,
+        "final_correct": true,
+        "gate_forward": true,
+        "gate_block_reasons": []
+      },
+      "graph_elements": [
+        "InstructionAmbiguityVerifierPN",
+        "ConceptDefinitionAnchorPN",
+        "OptionSemanticConsistencyVerifierPN",
+        "AdversarialVerifierPN",
+        "ContradictionDetectorPN",
+        "ConsensusConflictResolverPN",
+        "DefinitionAnchorPromptEdge",
+        "AdversarialChallengePromptEdge",
+        "ConflictResolutionPromptEdge",
+        "OptionBindingPromptEdge"
+      ],
+      "node_evidence": {
+        "confidence": 0.92,
+        "node_agreement_count": 5,
+        "contradiction_count": 0,
+        "definition_anchor_confidence": 0.95,
+        "adversarial_challenge_pass": true,
+        "nearest_distractor_margin": 0.87,
+        "rationale": "Both consequentialism and virtue ethics are considered value-based moral theories because they focus on the value of outcomes and character traits, respectively.",
+        "promptnode_outputs": {
+          "InstructionAmbiguityVerifierPN": "The instruction is to identify an example of a value-based moral theory.",
+          "ConceptDefinitionAnchorPN": "Value-based moral theories focus on the inherent value of actions or character traits. Consequentialism evaluates the moral worth based on outcomes, while virtue ethics emphasizes character and virtues.",
+          "OptionSemanticConsistencyVerifierPN": {
+            "A": true,
+            "B": true,
+            "C": true,
+            "D": false
+          },
+          "AdversarialVerifierPN": "Option D is the nearest distractor, but it fails to account for both consequentialism and virtue ethics being value-based.",
+          "ContradictionDetectorPN": "No contradictions found in the rationale or options."
+        }
+      },
+      "evidence_file": "experiment/mmlu/run_logs/mmlu_r413_definition_challenge_gate_api_results.jsonl",
+      "caveat": ""
+    },
+    {
+      "case_id": "verifier_pruned_candidate_harm",
+      "task_id": "MMLU-nonstem-logical_fallacies_test-12",
+      "subject": "logical_fallacies",
+      "mechanism": "Conflict-resolution and gate contracts block a candidate that would have harmed an already-correct ARG answer.",
+      "transition": {
+        "arg_prediction": "D",
+        "candidate_label": "A",
+        "final_prediction": "D",
+        "true_answer": "D",
+        "arg_correct": true,
+        "candidate_correct": false,
+        "final_correct": true,
+        "gate_forward": false,
+        "gate_block_reasons": [
+          "low_node_agreement",
+          "weak_definition_anchor",
+          "adversarial_challenge_failed",
+          "small_distractor_margin",
+          "option_binding_contract_failed",
+          "weak_memory_bridge"
+        ]
+      },
+      "graph_elements": [
+        "InstructionAmbiguityVerifierPN",
+        "ConceptDefinitionAnchorPN",
+        "OptionSemanticConsistencyVerifierPN",
+        "AdversarialVerifierPN",
+        "ContradictionDetectorPN",
+        "ConsensusConflictResolverPN",
+        "DefinitionAnchorPromptEdge",
+        "AdversarialChallengePromptEdge",
+        "ConflictResolutionPromptEdge",
+        "OptionBindingPromptEdge"
+      ],
+      "node_evidence": {
+        "confidence": 0.92,
+        "node_agreement_count": 0,
+        "contradiction_count": 0,
+        "definition_anchor_confidence": 0.0,
+        "adversarial_challenge_pass": false,
+        "nearest_distractor_margin": 0.0,
+        "rationale": "{\n  \"candidate_label\": \"A\",\n  \"confidence\": 0.92,\n  \"node_agreement_count\": 4,\n  \"node_disagreement_count\": 0,\n  \"contradiction_count\": 0,\n  \"ambiguity_flag\": false,\n  \"definition_anchor_confidence\": 0.95,\n  \"adversarial_challenge_pass\": true,\n  \"nearest_distractor\": \"D\",\n  \"nearest_distractor_margin\": 0.15,\n  \"option_binding_contract_pass\": true,\n  \"memory_bridge_write_confidence\": 0.88,\n  \"promptnode_outputs\": {\n    \"InstructionAmbiguityVerifierPN\": \"The instruction confirms a reservation but adds 'space-available basis', introducing ambiguity.\",\n    \"ConceptDefinitionAnchorPN\": \"Equivocation involves using ambiguous language to conceal the truth or avoid committing.\",\n    \"OptionSemanticConsistencyVerifierPN\": {\n      \"A\": \"Matches the definition of equivocation due to ambiguous reservation terms.\",\n      \"B\": \"Does not apply; no logical structure affirming a consequent.\",\n      \"C\": \"Irrelevant; no reference to probability or chance.\",\n      \"D\": \"Inconsistency is not evident; the ",
+        "promptnode_outputs": {}
+      },
+      "evidence_file": "experiment/mmlu/run_logs/mmlu_r413_definition_challenge_gate_api_results.jsonl",
+      "caveat": "The blocked row also exposes parser/contract fragility: the raw rationale contains embedded JSON. Use this as a safety-prune case, not as a pure semantic-verifier proof."
+    },
+    {
+      "case_id": "gate_beats_candidate_pool",
+      "task_id": "R413_aggregate",
+      "subject": "logical_fallacies+moral_disputes+philosophy",
+      "mechanism": "The gate improves over both ARG and the raw candidate pool by forwarding selectively.",
+      "transition": {
+        "arg_correct": 21,
+        "candidate_correct": 21,
+        "hybrid_correct": 22,
+        "fixes": 1,
+        "harms": 0,
+        "wrong_forward_count": 0,
+        "pruned_candidate_harms": 1
+      },
+      "graph_elements": [
+        "InstructionAmbiguityVerifierPN",
+        "ConceptDefinitionAnchorPN",
+        "OptionSemanticConsistencyVerifierPN",
+        "AdversarialVerifierPN",
+        "ContradictionDetectorPN",
+        "ConsensusConflictResolverPN",
+        "DefinitionAnchorPromptEdge",
+        "AdversarialChallengePromptEdge",
+        "ConflictResolutionPromptEdge",
+        "OptionBindingPromptEdge"
+      ],
+      "node_evidence": {
+        "gate_improves_over_arg": true,
+        "gate_improves_over_candidate_pool": true,
+        "candidate_pool_alone_not_better_than_arg": true,
+        "pruned_candidate_harms": 1,
+        "pruned_candidate_harm_task_ids": [
+          "MMLU-nonstem-logical_fallacies_test-12"
+        ]
+      },
+      "evidence_file": "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+      "caveat": "Aggregate mechanism case; use alongside task-level cases."
+    }
+  ],
+  "case_study_sections_allowed": [
+    "Verifier/gate suppresses a harmful candidate",
+    "Definition anchor plus adversarial edge repairs ARG",
+    "Selective gate beats candidate pool"
+  ],
+  "lifecycle_trace_status": "partial_needs_explicit_runtime_logging",
+  "missing_case_evidence": [
+    "Explicit runtime logs for lifecycle update/compress/prune/merge/upgrade are still needed.",
+    "A clean semantic-verifier-only suppressed-harm case should be collected if available."
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R418_lifecycle_trace_instrumentation_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r417_case_study_evidence_pack_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r417_case_study_evidence_pack_report.md"
+}

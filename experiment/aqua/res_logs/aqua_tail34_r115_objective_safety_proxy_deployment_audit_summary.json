@@ -1,0 +1,35 @@
+{
+  "rule": "r115_objective_safety_proxy_deployment_audit",
+  "learned_rule": "diff_and_top_score_ge_3_or_split",
+  "rule_features": [
+    "objective_prediction_differs_from_baseline",
+    "objective_top_score",
+    "baseline_direct_votes_split"
+  ],
+  "rule_feature_count": 3,
+  "features_requiring_objective_guided_trace": [
+    "objective_prediction_differs_from_baseline",
+    "objective_top_score"
+  ],
+  "features_requiring_arg_baseline_trace": [
+    "baseline_direct_votes_split"
+  ],
+  "requires_multiview_objective_features": true,
+  "single_template_guard_sufficient": false,
+  "cheap_single_template_deployable": false,
+  "cost_reduction_claim_ready": false,
+  "prospective_api_ready": false,
+  "supporting_positive_checks": {
+    "r113_frozen_tail34_target_agreement": "34/34",
+    "r114_regression_action_agreement": "4/4",
+    "r114_clean_fix_harm": "1/0"
+  },
+  "deployment_blockers": [
+    "requires objective-guided multi-view trace features",
+    "single rank5-template features were insufficient in R108",
+    "no prospective API validation with the proxy has been run",
+    "no measured cost reduction for proxy deployment exists"
+  ],
+  "input_field_violations": 0,
+  "claim_boundary": "deployment dependency audit only; no accuracy, cost-reduction, or API claim"
+}

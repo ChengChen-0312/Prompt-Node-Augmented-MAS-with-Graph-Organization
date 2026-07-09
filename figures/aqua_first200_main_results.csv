@@ -1,0 +1,8 @@
+key,display,overall,overall_rate,clean,clean_rate,noisy_or_ambiguous,noisy_or_ambiguous_rate,delta_vs_baseline,fix_harm,clean_fix_harm,switches,claim_role
+arg,ARG baseline,165/200,82.5,152/167,91.01796407185628,13/33,39.39393939393939,0,0/0,0/0,0,primary baseline
+ensemble,PN result ensemble,170/200,85.0,154/167,92.21556886227546,16/33,48.484848484848484,5,9/4,3/1,22,complementarity; harms exist
+r034,R034 single-router contract,167/200,83.5,154/167,92.21556886227546,13/33,39.39393939393939,2,2/0,2/0,2,single-view PN signal
+r035_pure,R035 multi-contract only,168/200,84.0,155/167,92.81437125748504,13/33,39.39393939393939,3,3/0,3/0,3,main mechanism candidate
+r035_full,R035 multi-contract + invalid fallback,174/200,87.0,156/167,93.41317365269461,18/33,54.54545454545454,9,9/0,4/0,14,full system; fallback separated
+r039,R039 objective-guided selector,172/200,86.0,155/167,92.81437125748504,17/33,51.515151515151516,7,9/2,4/1,16,rejected as main due clean harm
+r040,R040 margin-gated objective,170/200,85.0,154/167,92.21556886227546,16/33,48.484848484848484,5,5/0,2/0,7,safe system candidate

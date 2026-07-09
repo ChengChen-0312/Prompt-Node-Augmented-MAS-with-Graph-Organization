@@ -1,0 +1,25 @@
+{
+  "rule": "r082_clean_fix_graph_template_export",
+  "timestamp": "2026-07-08T17:04:17.089551",
+  "source_rows": 800,
+  "positive_rows": 76,
+  "unique_templates": 17,
+  "templates_with_promptnode_specs": 17,
+  "templates_with_edge_permissions": 17,
+  "top_support_count": 35,
+  "forbidden_field_violations": 0,
+  "excluded_template_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "direct_majority",
+    "is_solved",
+    "predicted_answer",
+    "router_option",
+    "source_task_id",
+    "task_id",
+    "true_answer"
+  ],
+  "claim_boundary": "R082 exports a clean-fix PromptNode graph template library for future candidate generation. It is not an answer-accuracy result.",
+  "input_jsonl": "experiment/aqua/aqua_first200_r077_clean_fix_graph_policy_distill_rows.jsonl"
+}

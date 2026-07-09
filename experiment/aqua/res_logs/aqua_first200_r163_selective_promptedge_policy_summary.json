@@ -1,0 +1,59 @@
+{
+  "rule": "r163_r001_selective_promptedge_policy_export",
+  "source_r077_rows": 800,
+  "source_r112_rows": 200,
+  "matched_r112_rows": 800,
+  "exported_rows": 800,
+  "selective_insert_rows": 4,
+  "fallback_rows": 796,
+  "prompt_edge_type_counts": {
+    "agent_flow": 6,
+    "forward_verified": 4,
+    "verify_contract": 4,
+    "write_memory": 10
+  },
+  "selector_input_forbidden_field_violations": 0,
+  "forbidden_selector_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "direct_majority",
+    "is_solved",
+    "predicted_answer",
+    "router_option",
+    "source_task_id",
+    "task_id",
+    "true_answer"
+  ],
+  "claim_boundary": "Offline target export only; no API calls and no answer-accuracy claim.",
+  "pt_summary": {
+    "source_policy_rows": 4,
+    "exported_pt_files": 4,
+    "skipped_non_positive_rows": 0,
+    "promptnode_pt_files": 4,
+    "promptnode_spec_pt_files": 4,
+    "promptnode_edge_permission_pt_files": 4,
+    "positive_prompt_node_role_counts": {
+      "PN_Memory": 4,
+      "PN_Router": 4,
+      "PN_Verifier": 4
+    },
+    "unique_positive_graph_signatures": 3,
+    "output_dir": "experiment/FinetuneData_AQuA_R163_selective_promptedge",
+    "outcome_field_violations": 0,
+    "excluded_pt_fields": [
+      "audit_label",
+      "baseline_is_solved",
+      "clean_label",
+      "direct_majority",
+      "is_solved",
+      "predicted_answer",
+      "router_option",
+      "true_answer"
+    ],
+    "claim_boundary": "ARGDesigner-compatible PyG finetune files generated from positive label-free PromptNode graph-policy targets. Files contain graph roles/edges and task text, not gold answers, predictions, router options, audit labels, or correctness fields."
+  },
+  "output_jsonl": "experiment/aqua/aqua_first200_r163_selective_promptedge_policy_rows.jsonl",
+  "manifest_jsonl": "experiment/aqua/aqua_first200_r163_selective_promptedge_pt_manifest.jsonl",
+  "report_md": "experiment/aqua/run_logs/aqua_first200_r163_selective_promptedge_policy_report.md"
+}

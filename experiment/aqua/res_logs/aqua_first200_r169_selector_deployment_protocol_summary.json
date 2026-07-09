@@ -1,0 +1,54 @@
+{
+  "run": "R169",
+  "rule": "r169_selector_gated_promptedge_deployment_protocol",
+  "protocol_only": true,
+  "no_api": true,
+  "broad_api_allowed": false,
+  "bounded_smoke_allowed_after_r170_audit": true,
+  "required_artifacts": {
+    "r166_targets": "experiment/aqua/aqua_first200_r166_expanded_selective_promptedge_rows.jsonl",
+    "r167_checkpoint": "experiment/aqua/output/aqua_r166_expanded_selective_promptedge_r167_short/ef_best_model.pth",
+    "r168_selector": "experiment/aqua/res_logs/aqua_first200_r168_promptedge_selector_summary.json"
+  },
+  "selector_requirements": {
+    "eval_target_agreement_min": 0.95,
+    "eval_positive_recall_min": 0.95,
+    "input_field_violations_required": 0,
+    "actual_eval_target_agreement": 0.995,
+    "actual_eval_positive_recall": 0.9714285714285714,
+    "actual_input_field_violations": 0,
+    "requirements_met": true
+  },
+  "deployment_rule": {
+    "default_action": "fallback_to_arg",
+    "allow_promptnode_graph_only_if": [
+      "R168 selector predicts positive_graph_target",
+      "generated graph contains PN_Memory, PN_Verifier, and PN_Router",
+      "generated graph is a DAG",
+      "PromptEdge metadata includes write_memory, verify_contract, and forward_verified path",
+      "final decision uses router suppression for NO_EXACT_OPTION instead of nearest-choice coercion"
+    ],
+    "forbidden_inputs": [
+      "true_answer",
+      "predicted_answer",
+      "is_solved",
+      "clean_label",
+      "audit_label",
+      "task_id"
+    ]
+  },
+  "allowed_next_run": {
+    "run": "R171",
+    "type": "bounded four-task or small held-out smoke after R170 audit",
+    "max_api_tasks": 4,
+    "required_report": [
+      "internal ARG baseline",
+      "selector decision",
+      "PromptNode graph evidence",
+      "fix/harm",
+      "clean fix/harm if audit labels are available",
+      "cost"
+    ]
+  },
+  "claim_boundary": "Protocol only. No API calls, no answer-accuracy result, and no SCI-Q2 readiness claim."
+}
