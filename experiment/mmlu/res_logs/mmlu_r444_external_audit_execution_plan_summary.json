@@ -1,0 +1,76 @@
+{
+  "run_id": "R444",
+  "title": "External audit execution plan",
+  "claim_boundary": "R444 orders the external audit execution and output capture paths. It does not execute external reviews.",
+  "no_api": true,
+  "broad_api": false,
+  "execution_order": [
+    "experiment_integrity_audit",
+    "paper_claim_audit",
+    "citation_context_audit"
+  ],
+  "audit_execution_plan": {
+    "experiment_integrity_audit": {
+      "prompt_md": "experiment/mmlu/run_logs/mmlu_r441_experiment_integrity_audit_prompt.md",
+      "files": [
+        "experiment/aqua/res_logs/aqua_tail34_r271_final_claim_table_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r419_lifecycle_trace_replay_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r426_update_cost_table_with_stem_probe_and_goal_audit_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r440_paper_claim_number_static_audit_summary.json"
+      ],
+      "expected_output_md": "experiment/mmlu/run_logs/mmlu_r445_experiment_integrity_external_review.md",
+      "purpose": "Verify result provenance, scope, and no fake/phantom claim."
+    },
+    "paper_claim_audit": {
+      "prompt_md": "experiment/mmlu/run_logs/mmlu_r441_paper_claim_audit_prompt.md",
+      "files": [
+        "paper/main.tex",
+        "paper/sections/0_abstract.tex",
+        "paper/sections/1_introduction.tex",
+        "paper/sections/2_related_work.tex",
+        "paper/sections/3_method.tex",
+        "paper/sections/4_experimental_setup.tex",
+        "paper/sections/5_results.tex",
+        "paper/sections/6_case_studies.tex",
+        "paper/sections/7_limitations.tex",
+        "paper/sections/8_conclusion.tex",
+        "paper/references.bib",
+        "experiment/aqua/res_logs/aqua_tail34_r271_final_claim_table_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r419_lifecycle_trace_replay_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r426_update_cost_table_with_stem_probe_and_goal_audit_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r440_paper_claim_number_static_audit_summary.json"
+      ],
+      "expected_output_md": "experiment/mmlu/run_logs/mmlu_r445_paper_claim_external_review.md",
+      "purpose": "Verify every number and comparison against raw/result files."
+    },
+    "citation_context_audit": {
+      "prompt_md": "experiment/mmlu/run_logs/mmlu_r441_citation_context_audit_prompt.md",
+      "files": [
+        "paper/references.bib",
+        "paper/sections/2_related_work.tex",
+        "paper/.aris/citation-audit/r438_static_contexts.json",
+        ".aris/verify-papers/r436_citation_metadata.json"
+      ],
+      "expected_output_md": "experiment/mmlu/run_logs/mmlu_r445_citation_context_external_review.md",
+      "purpose": "Verify citation existence, metadata, and context support."
+    }
+  },
+  "external_audit_execution_ready": true,
+  "external_reviews_executed": [],
+  "execution_backends_allowed": [
+    "in_app_browser_gpt5_5pro",
+    "api_fresh_reviewer_if_available",
+    "manual_import"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R445_external_audit_execution_or_manual_import",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r444_external_audit_execution_plan_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r444_external_audit_execution_plan_report.md"
+}

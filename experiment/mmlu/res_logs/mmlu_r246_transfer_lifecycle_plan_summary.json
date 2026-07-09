@@ -1,0 +1,35 @@
+{
+  "run_id": "R246",
+  "title": "Transfer and lifecycle evidence plan",
+  "claim_boundary": "Planning only; no API, no new accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "selected_artifacts": {
+    "aqua_lifecycle_metadata": {
+      "rows": "experiment/aqua/aqua_tail34_r081_promptnode_metadata_audit_rows.jsonl",
+      "report": "experiment/aqua/run_logs/aqua_tail34_r081_promptnode_metadata_audit_report.md",
+      "known_gap": "positive AQuA accuracy sources lack explicit PromptNode roles; dense PromptNode source has metadata but is negative"
+    },
+    "mmlu_transfer_baseline": {
+      "results": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+      "report": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_report.md",
+      "baseline": "88/100 same-model ARG transfer baseline, gpt-4o-2024-08-06"
+    },
+    "aqua_policy_artifacts": {
+      "feature_table": "experiment/mmlu/run_logs/mmlu_r241_abstention_feature_table.jsonl",
+      "fitted_policy": "experiment/mmlu/res_logs/mmlu_r242_fit_abstention_policy_summary.json",
+      "controls": "experiment/mmlu/res_logs/mmlu_r243_control_comparison_summary.json",
+      "case_studies": "experiment/mmlu/res_logs/mmlu_r244_case_study_extraction_summary.json"
+    }
+  },
+  "evidence_plan": {
+    "R247": "Annotate PromptNode lifecycle actions from available graph/case artifacts: update, compress, prune, merge, upgrade.",
+    "R248": "Prepare MMLU transfer feature table/analog around ARG errors and PN/PE contract readiness, no API.",
+    "R249": "Update claim matrix: AQuA fitted abstention policy, controls, lifecycle annotations, and transfer gaps.",
+    "R250": "Goal audit before any API or paper-result claim."
+  },
+  "claim_boundaries": {
+    "lifecycle": "Lifecycle annotation can support mechanism/case-study claims only until linked to live accuracy.",
+    "transfer": "MMLU transfer baseline is ARG-only; PN/PE transfer improvement remains unsupported.",
+    "edge_text": "PromptEdge text-specific gain remains unsupported because node-only equals proposed in R243."
+  }
+}

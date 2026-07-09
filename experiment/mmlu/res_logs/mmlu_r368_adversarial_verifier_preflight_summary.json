@@ -1,0 +1,23 @@
+{
+  "run_id": "R368",
+  "title": "Adversarial verifier preflight",
+  "claim_boundary": "R368 builds a targeted mechanism-debug API manifest for R365 wrong-forward and missed-fix tasks. It is not a paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "target_task_count": 11,
+  "records": 11,
+  "variant_counts": {
+    "adversarial_candidate_verifier_api": 1,
+    "domain_specialized_candidate_api": 10
+  },
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "uses_true_answers_in_prompt": false,
+  "api_probe_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R369_adversarial_verifier_api_probe",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r368_adversarial_verifier_preflight_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r368_adversarial_verifier_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r368_adversarial_verifier_preflight_report.md"
+}

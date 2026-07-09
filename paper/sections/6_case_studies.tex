@@ -1,0 +1,8 @@
+\section{Mechanism Case Studies}
+\label{sec:cases}
+
+R417 extracts three reproducible mechanism cases. In \texttt{MMLU-nonstem-moral\_disputes\_test-14}, ARG predicts A, while the DefinitionChallenge graph forwards C and matches the dataset label; this is the single fresh fix in R413. The active elements are ConceptDefinitionAnchorPN, AdversarialVerifierPN, OptionBindingPromptEdge, and ConsensusConflictResolverPN.
+
+In \texttt{MMLU-nonstem-logical\_fallacies\_test-12}, the candidate would have changed an already correct ARG answer. The gate prunes the candidate, preserving the final answer. This case should be described carefully: the row also exposes parser and contract fragility, so it is a safety-prune case rather than a pure semantic-verifier proof.
+
+At the aggregate level, R413 shows that graph selection matters: ARG is 21/24, the candidate pool is also 21/24, and the gated graph is 22/24. The trace replay in R419 records 121 lifecycle events, including 11 forward decisions, 13 prune events, and one upgrade event for the repair case.

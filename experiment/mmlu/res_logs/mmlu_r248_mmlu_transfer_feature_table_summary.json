@@ -1,0 +1,144 @@
+{
+  "rows": 100,
+  "arg_errors": 12,
+  "correct_controls": 88,
+  "probe_priorities": {
+    "arg_error_transfer_probe": 12,
+    "control_correct_transfer_probe": 88
+  },
+  "subjects": {
+    "abstract_algebra": 4,
+    "astronomy": 3,
+    "college_chemistry": 8,
+    "college_computer_science": 4,
+    "college_mathematics": 10,
+    "college_physics": 2,
+    "conceptual_physics": 12,
+    "electrical_engineering": 4,
+    "elementary_mathematics": 12,
+    "high_school_chemistry": 7,
+    "high_school_computer_science": 2,
+    "high_school_mathematics": 12,
+    "high_school_physics": 4,
+    "high_school_statistics": 8,
+    "machine_learning": 8
+  },
+  "error_subjects": {
+    "abstract_algebra": 1,
+    "college_chemistry": 2,
+    "college_mathematics": 3,
+    "conceptual_physics": 1,
+    "elementary_mathematics": 1,
+    "high_school_physics": 1,
+    "high_school_statistics": 2,
+    "machine_learning": 1
+  },
+  "run_id": "R248",
+  "title": "MMLU transfer feature table",
+  "claim_boundary": "No-API transfer feature table only. It identifies label-free probe features and ARG error candidates; it does not claim PromptNode/PromptEdge transfer accuracy improvement.",
+  "no_api": true,
+  "broad_api": false,
+  "transfer_results_jsonl": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "contract_summary_json": "experiment/mmlu/res_logs/mmlu_r189_promptedge_projection_audit_summary.json",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r248_mmlu_transfer_feature_table.jsonl",
+  "subject_stats": {
+    "abstract_algebra": {
+      "records": 4,
+      "correct": 3,
+      "accuracy": 0.75,
+      "error_rate": 0.25
+    },
+    "astronomy": {
+      "records": 3,
+      "correct": 3,
+      "accuracy": 1.0,
+      "error_rate": 0.0
+    },
+    "college_chemistry": {
+      "records": 8,
+      "correct": 6,
+      "accuracy": 0.75,
+      "error_rate": 0.25
+    },
+    "college_computer_science": {
+      "records": 4,
+      "correct": 4,
+      "accuracy": 1.0,
+      "error_rate": 0.0
+    },
+    "college_mathematics": {
+      "records": 10,
+      "correct": 7,
+      "accuracy": 0.7,
+      "error_rate": 0.3
+    },
+    "college_physics": {
+      "records": 2,
+      "correct": 2,
+      "accuracy": 1.0,
+      "error_rate": 0.0
+    },
+    "conceptual_physics": {
+      "records": 12,
+      "correct": 11,
+      "accuracy": 0.916667,
+      "error_rate": 0.083333
+    },
+    "electrical_engineering": {
+      "records": 4,
+      "correct": 4,
+      "accuracy": 1.0,
+      "error_rate": 0.0
+    },
+    "elementary_mathematics": {
+      "records": 12,
+      "correct": 11,
+      "accuracy": 0.916667,
+      "error_rate": 0.083333
+    },
+    "high_school_chemistry": {
+      "records": 7,
+      "correct": 7,
+      "accuracy": 1.0,
+      "error_rate": 0.0
+    },
+    "high_school_computer_science": {
+      "records": 2,
+      "correct": 2,
+      "accuracy": 1.0,
+      "error_rate": 0.0
+    },
+    "high_school_mathematics": {
+      "records": 12,
+      "correct": 12,
+      "accuracy": 1.0,
+      "error_rate": 0.0
+    },
+    "high_school_physics": {
+      "records": 4,
+      "correct": 3,
+      "accuracy": 0.75,
+      "error_rate": 0.25
+    },
+    "high_school_statistics": {
+      "records": 8,
+      "correct": 6,
+      "accuracy": 0.75,
+      "error_rate": 0.25
+    },
+    "machine_learning": {
+      "records": 8,
+      "correct": 7,
+      "accuracy": 0.875,
+      "error_rate": 0.125
+    }
+  },
+  "contract_summary": {
+    "raw_contract_ready_rate": 0.04,
+    "projected_contract_ready_rate": 1.0,
+    "projection_gap": 0.96,
+    "projection_audit_pass": true,
+    "source_run_id": "R189"
+  },
+  "feature_label_separation": "features are model-visible and exclude true_answer/predicted labels; labels are evaluation-only"
+}

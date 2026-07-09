@@ -1,0 +1,18 @@
+{
+  "run": "R072",
+  "boundary": "fresh_integrated_cascade_multiview_promptnode_run",
+  "accuracy": "29/34",
+  "internal_arg_baseline": "27/34",
+  "historical_r059_arg_baseline": "28/34",
+  "r059_arg_baseline_cost": 0.93285,
+  "r069_fresh_integrated_cost": 3.908995,
+  "r071_replay_estimated_cost": 2.599491,
+  "r072_measured_cost": 2.82604,
+  "r072_saving_vs_r069": 1.082955,
+  "r072_cost_delta_vs_r071_estimate": 0.226549,
+  "r072_relative_cost_vs_r059_arg": 3.03,
+  "r072_view_calls": "58/104",
+  "r072_view_call_rate": 0.5576923076923077,
+  "r072_view_reduction_vs_full": 0.4423076923076923,
+  "claim_boundary": "R072 is a measured fresh cascade run that lowers cost versus R069 while preserving 29/34 accuracy, but it does not reproduce the R065/R068 31/34 replay ceiling."
+}

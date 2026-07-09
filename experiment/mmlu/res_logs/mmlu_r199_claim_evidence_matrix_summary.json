@@ -1,0 +1,71 @@
+{
+  "run_id": "R199",
+  "title": "Claim-evidence matrix update",
+  "claim_boundary": "Evidence organization only. No API evaluation and no new accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "claims": [
+    {
+      "claim": "PromptNode/PromptEdge can be represented as first-class graph structure before execution.",
+      "status": "supported",
+      "evidence": [
+        "R181 MMLU PN role closure",
+        "R182 topology adapter",
+        "R183 target export",
+        "R184 training dry-run"
+      ]
+    },
+    {
+      "claim": "A PN-capable graph generator can learn to emit PN roles on MMLU.",
+      "status": "partially_supported",
+      "evidence": [
+        "R188 any-PN 50/50",
+        "R188 role accuracy 45.03"
+      ],
+      "limitation": "Raw PN chain/edge linking remains weak: R188 contract-ready 2/50."
+    },
+    {
+      "claim": "The current learned model fully learns PromptEdge linking.",
+      "status": "not_supported",
+      "evidence": [
+        "R187 contract-ready 1/50",
+        "R188 contract-ready 2/50"
+      ]
+    },
+    {
+      "claim": "Hybrid constrained decoding yields execution-ready PromptEdge graphs.",
+      "status": "supported_as_graph_evidence",
+      "evidence": [
+        "R189 projected contract-ready 50/50",
+        "R191 dry-run projected contract-ready 4/4",
+        "R192 projected contract-ready 4/4",
+        "R196 projected contract-ready 4/4"
+      ],
+      "limitation": "This is not fully learned edge-linking and needs projection ablation."
+    },
+    {
+      "claim": "Projected PromptEdge improves MMLU transfer accuracy over ARG-Designer.",
+      "status": "not_yet_supported",
+      "evidence": [
+        "R192 first4 baseline/projected 4/4 vs 4/4",
+        "R196 baseline-wrong diagnostic 0/4 vs 2/4"
+      ],
+      "limitation": "R196 is conditioned on baseline errors and cannot be an unbiased accuracy result."
+    },
+    {
+      "claim": "Projected PromptEdge has no obvious harm signal in tiny smoke tests.",
+      "status": "weakly_supported",
+      "evidence": [
+        "R192 harms 0/4 on first-N already-correct tasks",
+        "R196 harms 0/4 on baseline-wrong diagnostic"
+      ],
+      "limitation": "Needs random or full held-out slice."
+    }
+  ],
+  "next_evidence_needed": [
+    "R200 audit decision on 12-task random slice.",
+    "If run, report unbiased fix/harm and cost-normalized accuracy.",
+    "Projection ablation: raw learned graph vs projected graph.",
+    "Negative controls: no projection, random PN, dense PN, no routing."
+  ]
+}

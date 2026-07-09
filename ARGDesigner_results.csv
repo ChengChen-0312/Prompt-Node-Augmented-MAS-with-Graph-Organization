@@ -1,0 +1,768 @@
+dataset,id,question,mode,size,is_correct
+mmlu,MMLU-abstract_algebra_test-9,"Find all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7
+Option A: 1
+Option B: 2
+Option C: 2,3
+Option D: 6",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-8,"Let V be a finite-dimensional real vector space and let P be a linear transformation of V such that P^2 = P. Which of the following must be true?
+I. P is invertible.
+II. P is diagonalizable.
+III. P is either the identity transformation or the zero transformation.
+Option A: None
+Option B: I only
+Option C: II only
+Option D: III only",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-44,"To place the first paving stone in a path, Alex starts at the crate of stones, walks three feet, places the stone, and returns to the crate. For each subsequent stone, Alex walks two feet farther each way. Alex will place the first 50 stones in a path. After returning to the crate from placing the $50^\text{th}$ stone, what is the total distance Alex walked, in feet?
+Option A: 100
+Option B: 90950
+Option C: 5200
+Option D: 50",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-38,"A theater collected $6 for each ticket sold to a movie. The theater sold 500 tickets to the movie. The expression below can be used to find how much money the theater collected for the tickets. 6 × 500 Which expression can also be used to find how much money the theater collected for the tickets?
+Option A: 30 × 10^1
+Option B: 30 × 10^3
+Option C: (6 × 5) × 10^2
+Option D: (6 × 5) × 10^3",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-32,"A local school has seven math teachers and seven English teachers. When comparing their mean salaries, which of the following is most appropriate?
+Option A: A two-sample z-test of population means
+Option B: A two-sample t-test of population means
+Option C: A one-sample z-test on a set of differences
+Option D: None of the above are appropriate.",ARGDesigner,6,False
+mmlu,MMLU-college_physics_test-34,"A three-dimensional harmonic oscillator is in thermal equilibrium with a temperature reservoir at temperature T. The average total energy of the oscillator is
+Option A: (1/2) k T
+Option B: kT
+Option C: (3/2) k T
+Option D: 3kT",ARGDesigner,6,True
+mmlu,MMLU-high_school_physics_test-5,"A 1-kg object is released from rest at the top of a rough-surfaced incline. The object slides without rotating to the bottom of the incline. The object’s kinetic energy at the bottom must be
+Option A: Equal to the block’s gravitational potential energy when it was released, because total mechanical energy must be conserved.
+Option B: Equal to the block’s gravitational potential energy when it was released, because the gain in kinetic energy compensates for the mechanical energy lost to thermal energy on the rough incline.
+Option C: Less than the block’s gravitational potential energy when it was released, because the gravitational potential energy was converted both to thermal energy and to kinetic energy.
+Option D: Less than the block’s gravitational potential energy when it was released, because the work done by the friction force must be greater than the block’s gain in kinetic energy.",ARGDesigner,6,True
+mmlu,MMLU-college_chemistry_test-20,"Which of the following is an n-type semiconductor?
+Option A: Silicon
+Option B: Diamond
+Option C: Silicon carbide
+Option D: Arsenic-doped silicon",ARGDesigner,6,True
+mmlu,MMLU-high_school_chemistry_test-27,"The ideal gas law is successful for most gases because
+Option A: room temperature is high
+Option B: volumes are small
+Option C: gas particles do not interact significantly
+Option D: gases are dimers",ARGDesigner,6,True
+mmlu,MMLU-college_computer_science_test-2,"In the NoNicks operating system, the time required by a single file-read operation has four nonoverlapping components:
+disk seek time-25 msec
+disk latency time-8 msec
+disk transfer time- 1 msec per 1,000 bytes
+operating system overhead-1 msec per 1,000 bytes + 10 msec
+In version 1 of the system, the file read retrieved blocks of 1,000 bytes. In version 2, the file read (along with the underlying layout on disk) was modified to retrieve blocks of 4,000 bytes. The ratio of-the time required to read a large file under version 2 to the time required to read the same large file under version 1 is approximately
+Option A: 1:4
+Option B: 1:3.5
+Option C: 1:1
+Option D: 1.1:1",ARGDesigner,6,True
+mmlu,MMLU-high_school_computer_science_test-75,"This question is based on the following declarations: String strA = ""CARROT"", strB = ""Carrot"", strC = ""car""; Given that all uppercase letters precede all lowercase letters when considering alphabetical order, which is true?
+Option A: strA.compareTo(strB) < 0 && strB.compareTo(strC) > 0
+Option B: strC.compareTo(strB) < 0 && strB.compareTo(strA) < 0
+Option C: strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0
+Option D: !(strA.compareTo(strB) == 0) && strB.compareTo(strA) < 0",ARGDesigner,6,True
+mmlu,MMLU-machine_learning_test-33,"The disadvantage of Grid search is
+Option A: It can not be applied to non-differentiable functions.
+Option B: It can not be applied to non-continuous functions.
+Option C: It is hard to implement.
+Option D: It runs reasonably slow for multiple linear regression.",ARGDesigner,6,True
+mmlu,MMLU-electrical_engineering_test-44,"A sinusoidal signal is analog signal, because
+Option A: it can have a number of values between the negative and positive peaks
+Option B: it is negative for one half cycle
+Option C: it is positive for one half cycle
+Option D: it has positive as well as negative values",ARGDesigner,6,True
+mmlu,MMLU-astronomy_test-6,"Some of Mars'water is frozen in the soil and the ice caps and some was lost due to solar wind stripping but much of the original water is thought to have been lost through another mechanism. What happened to this ""lost""water?
+Option A: it was stripped away by the magnetic field when it rapidly decreased in strength
+Option B: it was broken into hydrogen and oxygen by ultraviolet light and the hydrogen was lost through thermal escape
+Option C: it was consumed by a civilization of thirsty Martians
+Option D: it was vaporized during a period of intense volcanism and was lost to space through thermal escape",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-13,"As a blinking light source approaching you gains speed, you see the frequency of flashes
+Option A: increase.
+Option B: decrease.
+Option C: remain unchanged.
+Option D: None of these.",ARGDesigner,6,True
+mmlu,MMLU-abstract_algebra_test-35,"Find the degree for the given field extension Q(sqrt(2), sqrt(3)) over Q.
+Option A: 0
+Option B: 4
+Option C: 2
+Option D: 6",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-17,"Let F be a constant unit force that is parallel to the vector (-1, 0, 1) in xyz-space. What is the work done by F on a particle that moves along the path given by (t, t^2, t^3) between time t=0 and time t=1?
+Option A: -1/4
+Option B: -1/(4sqrt(2))
+Option C: 0
+Option D: sqrt(2)",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-63,"Anton has two species of ants, Species A and Species B, in his ant farm. The two species are identical in appearance, but Anton knows that every day, there are twice as many ants of Species A than before, while there are three times as many ants of Species B. On Day 0, Anton counts that there are 30 ants in his ant farm. On Day 5, Anton counts that there are 3281 ants in his ant farm. How many of these are of Species A?
+Option A: 211
+Option B: 2321
+Option C: 11
+Option D: 608",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-78,"Write the ratio of 2 cups to 3 qt as a fraction in simplest form.
+Option A: 3 over 2
+Option B: 2 over 3
+Option C: 2 over 12
+Option D: 1 over 6",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-82,"On the same test, Mary and Pam scored at the 64th and 56th percentiles, respectively. Which of the following is a true statement?
+Option A: Mary scored eight more points than Pam.
+Option B: Mary's score is 8% higher than Pam's.
+Option C: Eight percent of those who took the test scored between Pam and Mary.
+Option D: Thirty-six people scored higher than both Mary and Pam.",ARGDesigner,6,True
+mmlu,MMLU-college_physics_test-55,"Two students perform an experiment in which they drop a ball from rest from a known height above the ground and measure the speed of the ball just before it strikes the ground. From repeated measurement, the students estimate the uncertainty in the measured speed of the ball to be 10 percent. Which of the following gives the uncertainty in the kinetic energy of the ball? (Assume the uncertainty in the ball’s mass is negligibly small.)
+Option A: 5%
+Option B: 10%
+Option C: 15%
+Option D: 20%",ARGDesigner,6,True
+mmlu,MMLU-high_school_physics_test-67,"Which of the following changes to a circuit will always bring about an increase in the current?
+Option A: Increased voltage and increased resistance
+Option B: Decreased voltage and decreased resistance
+Option C: Increased voltage and decreased resistance
+Option D: Decreased voltage and increased resistance",ARGDesigner,6,False
+mmlu,MMLU-college_chemistry_test-35,"Calculate the spin angular momentum of 43Ca. [I = 7⁄2]
+Option A: 2.166 x 10^-34 J s
+Option B: 3.691 x 10^-34 J s
+Option C: 4.185 x 10^-34 J s
+Option D: 5.493 x 10^-34 J s",ARGDesigner,6,True
+mmlu,MMLU-high_school_chemistry_test-65,"Which of the following molecules cannot hydrogen bond with molecules identical to itself but can hydrogen bond with one of the molecules above or below it in the following responses?
+Option A: CH3CH2OH
+Option B: CH3CH2COOH
+Option C: CH3CH2CHO
+Option D: C6H5CHO",ARGDesigner,6,True
+mmlu,MMLU-college_computer_science_test-44,"For a connected, undirected graph G = (V, E), which of the following must be true?
+I. Σ_{v∈V} degree(v) is even.
+II. |E| ≥ |V| − 1
+III. G has at least one vertex with degree 1.
+Option A: I only
+Option B: II only
+Option C: III only
+Option D: I and II",ARGDesigner,6,True
+mmlu,MMLU-high_school_computer_science_test-76,"In the procedure Mystery below, the parameter number is a positive integer.
+
+ PROCEDURE Mystery (number)
+ {
+  REPEAT UNTIL (number <= 0)
+  {
+   number ← number - 2
+  }
+  IF (number = 0)
+  {
+   RETURN (true)
+  }
+  ELSE
+  {
+   RETURN (false)
+  }
+ }
+
+ Which of the following best describes the result of running the procedure Mystery?
+Option A: The procedure returns true when the initial value of number is 2, and it otherwise returns false.
+Option B: The procedure returns true when the initial value of number is greater than 2, and it otherwise returns false.
+Option C: The procedure returns true when the initial value of number is even, and it otherwise returns false.
+Option D: The procedure returns true when the initial value of number is odd, and it otherwise returns false.",ARGDesigner,6,True
+mmlu,MMLU-machine_learning_test-38,"Suppose your model is overfitting. Which of the following is NOT a valid way to try and reduce the overfitting?
+Option A: Increase the amount of training data.
+Option B: Improve the optimisation algorithm being used for error minimisation.
+Option C: Decrease the model complexity.
+Option D: Reduce the noise in the training data.",ARGDesigner,6,True
+mmlu,MMLU-electrical_engineering_test-62,"Electrons in p-type material of a semi-conductor are called as
+Option A: either minority carriers or majority carriers
+Option B: minority carriers
+Option C: majority carriers
+Option D: valance carriers",ARGDesigner,6,True
+mmlu,MMLU-astronomy_test-84,"Which factor s most important in determining the history of volanism and tectonism on a planet?
+Option A: size of the planet
+Option B: presence of an atmosphere
+Option C: distance from the sun
+Option D: rotation period",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-17,"Compared with the sound you hear from the siren of a stationary fire engine the sound you hear when it approaches you has an increased
+Option A: speed
+Option B: frequency
+Option C: wavelength
+Option D: All of these",ARGDesigner,6,True
+mmlu,MMLU-abstract_algebra_test-53,"Statement 1 | If G, H and K are groups of order 4, at least two of them are isomorphic. Statement 2 | If Z_r + Z_s is isomorphic to a subgroup Z_m + Z_n, then r divides m and s divides n.
+Option A: True, True
+Option B: False, False
+Option C: True, False
+Option D: False, True",ARGDesigner,6,False
+mmlu,MMLU-college_mathematics_test-26,"It takes Kate k days to write a GRE math practice test. It takes John j days to write a GRE math practice test. If Kate and John work on a practice test in alternating 2-day shifts, it takes them 10 days when Kate starts and 10.5 days when John starts. How long would it take the two to complete a practice test if Kate and John worked simultaneously?
+Option A: 9/2 days
+Option B: 5 days
+Option C: 41/8 days
+Option D: 36/7 days",ARGDesigner,6,False
+mmlu,MMLU-high_school_mathematics_test-76,"Which statement is true?
+Option A: If f(x) is continuous at x = c, then f′(c) exists.
+Option B: If f′(c) = 0, then f has a local maximum or minimum at (c, f (c)).
+Option C: If f′′(c) = 0, then the graph of f has an inflection point at (c, f (c)).
+Option D: If f is differentiable at x = c, then f is continuous at x = c.",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-79,"The Mills Library has 1,007,199 books. The Springvale Library has 907,082 books. Which of the following is the best estimate of how many more books the Mills Library has than the Springvale Library?
+Option A: 100,000 books
+Option B: 80,000 books
+Option C: 10,000 books
+Option D: 8,000 books",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-107,"A test for heartworm in dogs shows a positive result in 96% of dogs that actually have heartworm, and shows a negative result in 98% of dogs with no heartworm. If heartworm actually occurs in 10% of dogs, what is the probability that a randomly selected dog that tested positive for heartworm actually has heartworm?
+Option A: 11%
+Option B: 18%
+Option C: 84%
+Option D: 88%",ARGDesigner,6,True
+mmlu,MMLU-high_school_physics_test-72,"A proton enters a solenoid. Upon entry, the proton is moving in a straight line along the axis of the solenoid. Which of the following is a correct description of the proton’s motion within the solenoid?
+Option A: The proton will be bent in a parabolic path.
+Option B: The proton will be bent in a circular path.
+Option C: The proton will continue in its straight path at constant velocity.
+Option D: The proton will continue in its straight path and slow down.",ARGDesigner,6,True
+mmlu,MMLU-college_chemistry_test-40,"Which of the following statements about nuclear binding energies is NOT true?
+Option A: Binding energy per nucleon reaches a maximum for 56Fe.
+Option B: Nuclear binding energies have about the same magnitude as chemical bond energies.
+Option C: Nuclei have slightly less mass than the sum of their component nucleons.
+Option D: The nuclei of heavy elements have more neutrons than protons in order to provide sufficient binding energy to hold the nuclei together.",ARGDesigner,6,True
+mmlu,MMLU-high_school_chemistry_test-132,"According to the kinetic-molecular theory of gases,
+Option A: the average kinetic energy of a gas particle is directly related to the Kelvin temperature
+Option B: ideal gas particles do not attract or repel each other
+Option C: the atoms or molecules of an ideal gas have no volume
+Option D: (A), (B), and (C) are part of the theory",ARGDesigner,6,True
+mmlu,MMLU-college_computer_science_test-53,"Which of the following sorting algorithms has average-case and worst-case running times of O(n log n)?
+Option A: Bubble sort
+Option B: Insertion sort
+Option C: Merge sort
+Option D: Quicksort",ARGDesigner,6,True
+mmlu,MMLU-machine_learning_test-77,"Statement 1| The SVM learning algorithm is guaranteed to find the globally optimal hypothesis with respect to its object function. Statement 2| After being mapped into feature space Q through a radial basis kernel function, a Perceptron may be able to achieve better classification performance than in its original space (though we can’t guarantee this).
+Option A: True, True
+Option B: False, False
+Option C: True, False
+Option D: False, True",ARGDesigner,6,True
+mmlu,MMLU-electrical_engineering_test-125,"Thin laminations are used in a machine in order to reduce
+Option A: Eddy current losses
+Option B: Hysteresis losses
+Option C: Both A and B
+Option D: Copper losses",ARGDesigner,6,True
+mmlu,MMLU-astronomy_test-109,"How do we think the ""hot Jupiters"" around other stars were formed?
+Option A: They where formed when their stars flung material out into the system in a process similar to planetary fission.
+Option B: They formed as gas giants beyond the frost line and then migrated inwards.
+Option C: They formed as dense rocky planets close to the star in the same orbits that they are seen today.
+Option D: They formed as gas giants close to the star in the same orbits that they are seen today.",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-33,"The equation E = mc^2 indicates that energy
+Option A: equals mass moving at the speed of light squared.
+Option B: equals moving mass.
+Option C: is fundamentally different than mass.
+Option D: and mass are closely related.",ARGDesigner,6,True
+mmlu,MMLU-abstract_algebra_test-58,"Statement 1 | Every group of order 159 is cyclic. Statement 2 | Every group of order 102 has a nontrivial proper normal subgroup.
+Option A: True, True
+Option B: False, False
+Option C: True, False
+Option D: False, True",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-31,"In xyz-space, what are the coordinates of the point on the plane 2x + y + 3z = 3 that is closest to the origin?
+Option A: (0, 0, 1)
+Option B: (3/7, 3/14, 9/14)
+Option C: (7/15, 8/15, 1/15)
+Option D: (5/6, 1/3, 1/3)",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-87,"An equilateral triangle has sides of 12 inches. What is the approximate area of the triangle?
+Option A: 62
+Option B: 72
+Option C: 84
+Option D: 112",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-102,"A model of a park was built on a scale of 1.5 centimeters to 50 meters. If the distance between two trees in the park is 150 meters, what is this distance on the model?
+Option A: 0.5 centimeter
+Option B: 4.5 centimeters
+Option C: 75 centimeters
+Option D: 225 centimeters",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-127,"Two dice are rolled simultaneously. If both dice show 6, then the player wins $20; otherwise the player loses the game. It costs $2.00 to play the game. What is the expected gain or loss per game?
+Option A: The player will gain about $0.55.
+Option B: The player will gain about $1.44.
+Option C: The player will lose about $0.55.
+Option D: The player will lose about $1.44.",ARGDesigner,6,False
+mmlu,MMLU-high_school_physics_test-125,"A student pushes a puck across a table, moving it from position x = 0 to position x = 0.2 m. After he lets go, the puck continues to travel across the table, coming to rest at position x = 1.2 m. When the puck is at position x = 1.0 m, which of the following is a correct assertion about the net force on the puck?
+Option A: The net force is in the negative direction, because the puck is moving in the positive direction but slowing down.
+Option B: The net force is down, because the puck is near the Earth, where gravitational acceleration is 10 m/s^2 downward.
+Option C: The net force is in the positive direction, because the student’s push caused the puck to speed up in the positive direction.
+Option D: The net force is zero, because the student’s push in the positive direction must equal the force of friction in the negative direction.",ARGDesigner,6,True
+mmlu,MMLU-college_chemistry_test-53,"Elements with partially filled 4f or 5f orbitals include all of the following EXCEPT
+Option A: Cu
+Option B: Gd
+Option C: Eu
+Option D: Am",ARGDesigner,6,True
+mmlu,MMLU-high_school_chemistry_test-137,"What is the mass of one molecule of cholesterol (C27H46O, molecular mass = 386)?
+Option A: 6.41 × 10^-22 g
+Option B: 1.5 × 10^-21 g
+Option C: 1.38 × 10^-21 g
+Option D: 3 × 10^-23 g",ARGDesigner,6,True
+mmlu,MMLU-college_computer_science_test-88,"One approach to handling fuzzy logic data might be to design a computer using ternary (base-3) logic so that data could be stored as “true,” “false,” and “unknown.” If each ternary logic element is called a flit, how many flits are required to represent at least 256 different values?
+Option A: 4
+Option B: 5
+Option C: 6
+Option D: 7",ARGDesigner,6,True
+mmlu,MMLU-machine_learning_test-81,"Statement 1| In a Bayesian network, the inference results of the junction tree algorithm are the same as the inference results of variable elimination. Statement 2| If two random variable X and Y are conditionally independent given another random variable Z, then in the corresponding Bayesian network, the nodes for X and Y are d-separated given Z.
+Option A: True, True
+Option B: False, False
+Option C: True, False
+Option D: False, True",ARGDesigner,6,False
+mmlu,MMLU-electrical_engineering_test-140,"If all the elements in a particular network are linear, then the superposition theorem would hold, when the excitation is
+Option A: DC only
+Option B: AC only
+Option C: Either AC or DC
+Option D: An Impulse",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-41,"Bow waves are produced by waves of water
+Option A: overlapping one another
+Option B: constructively interfering
+Option C: moving slower than the source producing them
+Option D: All of these",ARGDesigner,6,False
+mmlu,MMLU-college_mathematics_test-37,"Let V be the real vector space of all real 2 x 3 matrices, and let W be the real vector space of all real 4 x 1 column vectors. If T is a linear transformation from V onto W, what is the dimension of the subspace kernel of T?
+Option A: 2
+Option B: 3
+Option C: 4
+Option D: 5",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-97,"If there is a 70% chance that it will rain on a given day, what is the percent chance that it will NOT rain on that same day?
+Option A: 0%
+Option B: 30%
+Option C: 50%
+Option D: 70%",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-105,"Which pair of ratios can form a proportion?
+Option A: 2 over 5 and 8 over 10
+Option B: 2 over 5 and 10 over 15
+Option C: 2 over 5 and 4 over 25
+Option D: 2 over 5 and 6 over 15",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-141,"Which of the following statements is false?
+Option A: Like the normal distribution, the t-distributions are symmetric.
+Option B: The t-distributions are lower at the mean and higher at the tails, and so are more spread out than the normal distribution.
+Option C: The greater the df, the closer the t-distributions are to the normal distribution.
+Option D: The smaller the df, the better the 68-95-99.7 Rule works for t-models.",ARGDesigner,6,True
+mmlu,MMLU-college_chemistry_test-62,"The magnetic moment (μI) of an unknown nuclide is 2.884 x 10^-27 J T-1. Given the nuclear spin is known to be 1, identify the unknown nuclide.
+Option A: 14N
+Option B: 2H
+Option C: 19F
+Option D: 6Li",ARGDesigner,6,False
+mmlu,MMLU-high_school_chemistry_test-140,"When potassium perchlorate, KClO4, dissolves in water, the temperature of the resultant solution is lower than the initial temperature of the components. Which of the following conclusions may be related to this?
+Option A: This is a spontaneous process because it is exothermic.
+Option B: This is a spontaneous process because of an entropy increase.
+Option C: This is a spontaneous process because of an entropy decrease.
+Option D: This is a spontaneous process because it is exothermic.",ARGDesigner,6,True
+mmlu,MMLU-machine_learning_test-89,"Statement 1| The BLEU metric uses precision, while the ROGUE metric uses recall. Statement 2| Hidden markov models were frequently used to model English sentences.
+Option A: True, True
+Option B: False, False
+Option C: True, False
+Option D: False, True",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-67,"The red glow in the neon tube of an advertising sign is a result of
+Option A: fluorescence.
+Option B: coherence.
+Option C: polarization.
+Option D: de-excitation.",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-43,"Suppose A and B are n × n matrices with real entries. Which of the follow are TRUE?
+I. The trace of A^2 is nonnegative.
+II. If A^2 = A, then the trace of A is nonnegative.
+III. The trace of AB is the product of the traces of A and B.
+Option A: II only
+Option B: III only
+Option C: I and II only
+Option D: II and III only",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-105,"If $f(x) = 2$ for all real numbers $x$, what is the value of $f(x + 2)$?
+Option A: 2
+Option B: 4
+Option C: 0
+Option D: 1",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-135,"Last year, Chesa made 32 one-cup servings of soup for a school party. This year, she will make two times the amount of soup that she made last year. How many gallons of soup will Chesa make this year?
+Option A: 64
+Option B: 16
+Option C: 4
+Option D: 2",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-142,"A kidney dialysis center periodically checks a sample of its equipment and performs a major recalibration if readings are sufficiently off target. Similarly, a fabric factory periodically checks the sizes of towels coming off an assembly line and halts production if measurements are sufficiently off target. In both situations, we have the null hypothesis that the equipment is performing satisfactorily. For each situation, which is the more serious concern, a Type I or Type II error?
+Option A: Dialysis center: Type I error, towel manufacturer: Type I error
+Option B: Dialysis center: Type I error, towel manufacturer: Type II error
+Option C: Dialysis center: Type II error, towel manufacturer: Type I error
+Option D: Dialysis center: Type II error, towel manufacturer: Type II error",ARGDesigner,6,True
+mmlu,MMLU-college_chemistry_test-64,"Which of the following types of spectroscopy is a light-scattering technique?
+Option A: Nuclear magnetic resonance
+Option B: Infrared
+Option C: Raman
+Option D: Ultraviolet-visible",ARGDesigner,6,True
+mmlu,MMLU-high_school_chemistry_test-160,"Identify the Brønsted-Lowry conjugate acid-base pair in the following list.
+Option A: H3O+ and OH-
+Option B: H3PO4 and H2PO4-
+Option C: HClO4 and ClO3-
+Option D: SO32- and HSO2-",ARGDesigner,6,True
+mmlu,MMLU-machine_learning_test-95,"Which of the following is NOT supervised learning?
+Option A: PCA
+Option B: Decision Tree
+Option C: Linear Regression
+Option D: Naive Bayesian",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-83,"If the Sun collapsed to become a black hole Planet Earth would
+Option A: continue in its present orbit.
+Option B: likely be sucked into the black hole.
+Option C: be pulled apart by tidal forces.
+Option D: Both C and D.",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-64,"Which of the following is NOT a group?
+Option A: The integers under addition
+Option B: The nonzero integers under multiplication
+Option C: The nonzero real numbers under multiplication
+Option D: The complex numbers under addition",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-111,"What is the least perfect square with 3 different prime factors?
+Option A: 300
+Option B: 9
+Option C: 900
+Option D: 666",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-201,"During a semester, a student received scores of 76, 80, 83, 71, 80, and 78 on six tests. What is the student's average score for these six tests?
+Option A: 76
+Option B: 77
+Option C: 78
+Option D: 79",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-185,"In comparing the life expectancies of two models of refrigerators, the average years before complete breakdown of 10 model A refrigerators is compared with that of 15 model B refrigerators. The 90% confidence interval estimate of the difference is (6, 12). Which of the following is the most reasonable conclusion?
+Option A: The mean life expectancy of one model is twice that of the other.
+Option B: The mean life expectancy of one model is 6 years, while the mean life expectancy of the other is 12 years.
+Option C: The probability that the life expectancies are different is 0.90.
+Option D: We should be 90% confident that the difference in life expectancies is between 6 and 12 years.",ARGDesigner,6,True
+mmlu,MMLU-college_chemistry_test-68,"Exact solutions of the Schrödinger equation CANNOT be obtained for a
+Option A: simple harmonic oscillator
+Option B: particle in a one-dimensional box
+Option C: rigid rotor
+Option D: helium atom",ARGDesigner,6,True
+mmlu,MMLU-high_school_chemistry_test-171,"0.25 mol of a weak, monoprotic acid is dissolved in 0.25 L of distilled water. The pH was then measured as 4.26. What is the pKa of this weak acid?
+Option A: 4.26
+Option B: 8.52
+Option C: 7.52
+Option D: 3.66",ARGDesigner,6,True
+mmlu,MMLU-machine_learning_test-97,"Which one of the following is equal to P(A, B, C) given Boolean random variables A, B and C, and no independence or conditional independence assumptions between any of them?
+Option A: P(A | B) * P(B | C) * P(C | A)
+Option B: P(C | A, B) * P(A) * P(B)
+Option C: P(A, B | C) * P(C)
+Option D: P(A | B, C) * P(B | A, C) * P(C | A, B)",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-103,"If a star that is 20 light-years from Earth explodes, gravitational waves from the explosion would reach Earth in
+Option A: less than 20 years.
+Option B: 20 years.
+Option C: more than 20 years.
+Option D: None of these.",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-67,"Let R be a ring and let U and V be (two-sided) ideals of R. Which of the following must also be ideals of R ?
+I. {u + v : u \in and v \in V}
+II. {uv : u \in U and v \in V}
+III. {x : x \in U and x \in V}
+Option A: II only
+Option B: III only
+Option C: I and II only
+Option D: I and III only",ARGDesigner,6,False
+mmlu,MMLU-high_school_mathematics_test-114,"Solve for $x$:$$\left(\frac{1}{25}\right)^{x + 2} = 125^{-x}.$$
+Option A: 1
+Option B: 2
+Option C: 3
+Option D: 4",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-221,"Keri spent 3 hours on her homework. She spent equal amounts of time on all subjects. If Keri spent 1 over 2 hour on science, how many subjects did she study?
+Option A: 4 subjects
+Option B: 2 subjects
+Option C: 6 subjects
+Option D: 5 subjects",ARGDesigner,6,True
+mmlu,MMLU-high_school_statistics_test-203,"Self-efficacy (the belief that one has control over one's situation) as it related to job satisfaction was studied. When a group of teachers rated their ability to control their situation and their satisfaction with their job, the two variables had a correlation of 0.30. Which statement follows from this correlation?
+Option A: If you want teachers to be happy with their job, give them more control over their situation.
+Option B: If you want teachers to take more control over their situation, make them happier at their jobs.
+Option C: Teachers in the study who were more satisfied with their job were less confident in their ability to control their situation.
+Option D: 9% of the variability in job satisfaction can be explained by the linear model with self-efficacy as a predictor.",ARGDesigner,6,True
+mmlu,MMLU-college_chemistry_test-97,"What is the NMR frequency of 31P in a 20.0 T magnetic field?
+Option A: 54.91 MHz
+Option B: 239.2 MHz
+Option C: 345.0 MHz
+Option D: 2167 MHz",ARGDesigner,6,False
+mmlu,MMLU-machine_learning_test-104,"Statement 1| The ReLU's gradient is zero for $x<0$, and the sigmoid gradient $\sigma(x)(1-\sigma(x))\le \frac{1}{4}$ for all $x$. Statement 2| The sigmoid has a continuous gradient and the ReLU has a discontinuous gradient.
+Option A: True, True
+Option B: False, False
+Option C: True, False
+Option D: False, True",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-108,"The surface of Planet Earth loses energy to outer space due mostly to
+Option A: conduction.
+Option B: convection.
+Option C: radiation.
+Option D: radioactivity.",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-73,"Suppose A is a 3 × 3 matrix such that det(A − λI) = −λ^3 + 3λ^2 + λ − 3, where I is the 3 × 3 identity matrix. Which of the following are TRUE of A?
+I. The trace of A is 3.
+II. The determinate of A is −3.
+III. The matrix A has eigenvalues −3 and 1.
+Option A: I only
+Option B: II only
+Option C: III only
+Option D: I and II only",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-117,"A point in space $(x,y,z)$ is randomly selected so that $-1\le x \le 1$,$-1\le y \le 1$,$-1\le z \le 1$. What is the probability that $x^2+y^2+z^2\le 1$?
+Option A: \frac{\pi}{24}
+Option B: \frac{\pi}{12}
+Option C: \frac{\pi}{6}
+Option D: \frac{\pi}{3}",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-222,"A baseball team sold 215 youth tickets for $3 ea
+Option A: (215 × 3) – (467 × 7)
+Option B: (215 × 7) – (467 × 3)
+Option C: (467 × 3) – (215 × 7)
+Option D: (467 × 7) – (215 × 3)",ARGDesigner,6,False
+mmlu,MMLU-conceptual_physics_test-126,"When a fusion reaction converts a pair of hydrogen isotopes to an alpha particle and a neutron most of the energy released is in the form of
+Option A: gamma radiation.
+Option B: kinetic energy of the alpha particle.
+Option C: kinetic energy of the neutron.
+Option D: All of these about equally.",ARGDesigner,6,True
+mmlu,MMLU-college_mathematics_test-92,"If a real number x is chosen at random in the interval [0, 3] and a real number y is chosen at random in the interval [0, 4], what is the probability that x < y?
+Option A: 1/2
+Option B: 7/12
+Option C: 5/8
+Option D: 2/3",ARGDesigner,6,False
+mmlu,MMLU-high_school_mathematics_test-123,"When $(x\sqrt{x^3})^4$ is simplified, what is the exponent of $x$?
+Option A: 5
+Option B: 10
+Option C: 2
+Option D: 12",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-231,"A grocerystore sells a bag of 5 lemons for $2.00. What is the unit cost of each lemon in the bag?
+Option A: $2.50
+Option B: $0.60
+Option C: $0.40
+Option D: $0.10",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-172,"To say that a rose petal is red is to say that it
+Option A: absorbs red
+Option B: reflects red
+Option C: emits red
+Option D: transmits red",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-143,"The standard tip in a restaurant is $ 15 \%$ of the bill before tax. Many people in California find the tip by doubling the sales tax, which is $8.25 \%$. By how many cents does this exceed the standard tip on a bill of $ \$60 $ before tax?
+Option A: 90
+Option B: 80
+Option C: 70
+Option D: 60",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-275,"Lucy is counting by 2s. She starts with the number 2 and stops at the number 50. Which number would Lucy not count?
+Option A: 11
+Option B: 22
+Option C: 34
+Option D: 48",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-182,"The pitch of a sound is mostly related to its
+Option A: intensity
+Option B: frequency
+Option C: amplitude
+Option D: speed",ARGDesigner,6,True
+mmlu,MMLU-high_school_mathematics_test-146,"Suppose that for some $a,b,c$ we have $a+b+c = 6$, $ab+ac+bc = 5$ and $abc = -12$. What is $a^3+b^3+c^3$?
+Option A: 90
+Option B: 99
+Option C: 64
+Option D: 91",ARGDesigner,6,True
+mmlu,MMLU-elementary_mathematics_test-377,"Peter is in a group of 25 people. All 25 people went fishing in boats. There were 5 people in each boat. How can Peter find the number of boats the group used?
+Option A: Add 5 to 25
+Option B: Divide 25 by 5
+Option C: Multiply 25 by 5
+Option D: Subtract 5 from 25",ARGDesigner,6,True
+mmlu,MMLU-conceptual_physics_test-219,"Light reflecting from a smooth surface undergoes a change in
+Option A: frequency.
+Option B: wavelength.
+Option C: All of these.
+Option D: None of these.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-business_ethics_test-0,"_______ such as bitcoin are becoming increasingly mainstream and have a whole host of associated ethical implications, for example, they are______ and more ______. However, they have also been used to engage in _______.
+Option A: Cryptocurrencies, Expensive, Secure, Financial Crime
+Option B: Traditional currency, Cheap, Unsecure, Charitable giving
+Option C: Cryptocurrencies, Cheap, Secure, Financial crime
+Option D: Traditional currency, Expensive, Unsecure, Charitable giving",ARGDesigner,6,False
+mmlu,MMLU-nonstem-business_ethics_test-1,"Typical advertising regulatory bodies suggest, for example that adverts must not: encourage _________, cause unnecessary ________ or _____, and must not cause _______ offence.
+Option A: Unsafe practices, Wants, Fear, Trivial
+Option B: Unsafe practices, Distress, Fear, Serious
+Option C: Safe practices, Wants, Jealousy, Trivial
+Option D: Safe practices, Distress, Jealousy, Serious",ARGDesigner,6,True
+mmlu,MMLU-nonstem-business_ethics_test-0,"_______ such as bitcoin are becoming increasingly mainstream and have a whole host of associated ethical implications, for example, they are______ and more ______. However, they have also been used to engage in _______.
+Option A: Cryptocurrencies, Expensive, Secure, Financial Crime
+Option B: Traditional currency, Cheap, Unsecure, Charitable giving
+Option C: Cryptocurrencies, Cheap, Secure, Financial crime
+Option D: Traditional currency, Expensive, Unsecure, Charitable giving",ARGDesigner,6,False
+mmlu,MMLU-nonstem-business_ethics_test-1,"Typical advertising regulatory bodies suggest, for example that adverts must not: encourage _________, cause unnecessary ________ or _____, and must not cause _______ offence.
+Option A: Unsafe practices, Wants, Fear, Trivial
+Option B: Unsafe practices, Distress, Fear, Serious
+Option C: Safe practices, Wants, Jealousy, Trivial
+Option D: Safe practices, Distress, Jealousy, Serious",ARGDesigner,6,True
+mmlu,MMLU-nonstem-business_ethics_test-2,"______ are the obligations of workers towards their employer, based on individual contracts and wider employment laws.
+Option A: Employee rights
+Option B: Employee rights
+Option C: Employer duties
+Option D: Employee duties",ARGDesigner,6,True
+mmlu,MMLU-nonstem-business_ethics_test-3,"______ is an employee's preferred ratio between work-related and non-work-related activities which, due to intensification of work and technological shifts, has become a hotly contested issue in recent years.
+Option A: Presenteeism
+Option B: Absenteeism
+Option C: Work-play balance
+Option D: Work-life balance",ARGDesigner,6,True
+mmlu,MMLU-nonstem-business_ethics_test-4,"_______ can be a likened to their natural counterparts, comprising of a balanced network of interdependent organisms and their environments thus adding value to sustainability thinking due to the consideration of companies and industries as being bound together, and interdependent due to all kinds of resources and wastes.
+Option A: Industrial supply loops
+Option B: Industrial ecosystems
+Option C: Ecological ecosystems
+Option D: Corporate ecosystems",ARGDesigner,6,True
+mmlu,MMLU-nonstem-logical_fallacies_test-0,"A valid disjunctive syllogism has a major premise that:
+Option A: includes two or more alternatives
+Option B: classifies subjects
+Option C: affirms the antecedent or denies the consequent
+Option D: leads to a valid conclusion",ARGDesigner,6,True
+mmlu,MMLU-nonstem-logical_fallacies_test-1,"Which of the following best describes the fallacy of style over substance?
+Option A: Changing the meaning of a word or phrase from one part of the argument to another.
+Option B: Confusing figurative language with literal language.
+Option C: Reasoning that ideas presented in an appealing manner are correct, regardless of the content of the message.
+Option D: Using emotionally charged language to create an impression about the subject of a claim, without making an argument that the language fits the subject.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-logical_fallacies_test-2,"Which of the following fallacies is a way of suppressing evidence that eliminates a source of evidence from consideration by claiming the source is flawed, when there is no true relationship between the alleged flaw and the reliability of the source?
+Option A: significance
+Option B: snob appeal
+Option C: poisoning the well
+Option D: appeal to anonymous authority",ARGDesigner,6,True
+mmlu,MMLU-nonstem-logical_fallacies_test-3,"The false analogy fallacy is
+Option A: a specific type of false cause fallacy that argues that since two event happened at the same time one event must have caused the other
+Option B: arguing that an event that preceded another event necessarily is the cause of the second event
+Option C: arguing that since something is new it is necessarily good
+Option D: drawing a conclusion based on a comparison when the items being compared are not similar enough to support the conclusion.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-logical_fallacies_test-4,"The _ad nauseam_ fallacy is
+Option A: arguing that something should be done because that's the way it's been done in the past.
+Option B: arguing that an act should be carried out because it will not have any significant consequences, when there is no evidence of the effects
+Option C: reasoning that a conclusion is true because it's been claimed so often
+Option D: reasoning that a claim is true because so many people believe it is true",ARGDesigner,6,True
+mmlu,MMLU-nonstem-philosophy_test-0,"Aesthetics deals with objects that are_____.
+Option A: essential to our existence
+Option B: unimportant to most people
+Option C: not essential to our existence
+Option D: rarely viewed",ARGDesigner,6,True
+mmlu,MMLU-nonstem-philosophy_test-1,"For Socrates, an unexamined life is a tragedy because it results in grievous harm to _____.
+Option A: the state
+Option B: the justice system
+Option C: the body
+Option D: the soul",ARGDesigner,6,True
+mmlu,MMLU-nonstem-philosophy_test-2,"According to Kant, nothing can be called “good” without qualification except _____.
+Option A: right action
+Option B: good consequences
+Option C: happiness
+Option D: a good will",ARGDesigner,6,True
+mmlu,MMLU-nonstem-philosophy_test-3,"Plato's view is that true beauty is _____.
+Option A: found in everyday objects
+Option B: nonexistent
+Option C: everywhere in the natural world
+Option D: not of this world",ARGDesigner,6,True
+mmlu,MMLU-nonstem-philosophy_test-4,"In Aristotle’s terminology, incontinence is when:
+Option A: one does not know that one’s actions are wrong.
+Option B: one knows that one’s actions are wrong, but does them anyway.
+Option C: one knows that one’s feelings are inappropriate, and does not act on them.
+Option D: one does the right action, but for the wrong reason.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-moral_disputes_test-0,"Just war theory's principle of military necessity belongs to
+Option A: jus in bello.
+Option B: jus ad bellum.
+Option C: moral nihilism.
+Option D: all of the above",ARGDesigner,6,True
+mmlu,MMLU-nonstem-moral_disputes_test-1,"According to Mill, censoring speech that is possibly true
+Option A: violates human dignity.
+Option B: fails a prima facie duty of honesty.
+Option C: is tantamount to asserting that you are infallible.
+Option D: is a risk worth taking of the speech is dangerous enough.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-moral_disputes_test-2,"West argues that feminist rhetoric has
+Option A: obscures the harms of noncoerced, consensual sex by implying that because what is coerced is bad what is noncoerced is good.
+Option B: obscures the harms of rape by equating all sex with nonconsensual sex.
+Option C: by not acknowledging a distinction between what is good and what noncoerced, has led to the acknowledgement of the harms of consensual sex.
+Option D: All of the above",ARGDesigner,6,True
+mmlu,MMLU-nonstem-moral_disputes_test-3,"According to Mill, the value of a particular pleasure depends on
+Option A: its quantity alone.
+Option B: its quality alone.
+Option C: both its quantity and its quality.
+Option D: neither its quantity nor its quality.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-moral_disputes_test-4,"According to Carruthers, whenever someone is required to act in a certain way toward an animal for the sake of the animal, what explains that fact are facts about
+Option A: the animal.
+Option B: the wider effects on human beings.
+Option C: both A and B
+Option D: neither A nor B",ARGDesigner,6,True
+mmlu,MMLU-nonstem-professional_law_test-0,"One afternoon, a pilot was flying a small airplane when it suddenly ran out of gas. As he was coming in for an emergency landing, the plane crossed into a neighboring state at a very low altitude. At this time, a 9-year-old boy was walking to school when he was struck and injured by an object, which may have fallen from the plane. In federal court, a negligence suit was brought against the pilot by the father of the boy for his son. Accompanied by his father, the boy had visited an attorney for preliminary discussions regarding the case. However, the father did not retain the attorney to represent his son in the lawsuit. Instead, the father hired another lawyer to handle the case. At trial, the pilot's attorney calls the consulting attorney to testify what the boy had said to him regarding his physical condition during the consultation that the attorney had had with the boy and his father. The attorney's testimony is
+Option A: admissible, because the attorney-client privilege was waived by the filing of the lawsuit.
+Option B: admissible, because there is no privilege of confidentiality when a person other than the client is present at the attorney-client consultation.
+Option C: inadmissible, because the attorney-client privilege prevents such a breach of confidential communications.
+Option D: inadmissible, because it was a statement of physical condition not made for the purpose of obtaining medical treatment.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-professional_law_test-1,"A state statute provides: ""Whenever a person knows or should know that he (or she) is being arrested by a police officer, it is the duty of such person to refrain from using force or any weapon in resisting arrest. "" Violation of the statute is made punishable by fine and/or imprisonment. One morning, there was a bank robbery in the state. That afternoon, a police officer arrested a suspect who he believed was involved in the crime. However, the police officer and the suspect have given different accounts concerning what happened next. According to the police officer, after the suspect was apprehended, he resisted arrest and hit the police officer in the mouth with his fist. The police officer, who was momentarily stunned, pulled out his nightstick and struck the suspect over the head with it. On the other hand, the suspect claimed that after he was arrested, he cursed at the policeman, whereupon the police officer began hitting the suspect with his nightstick. To avoid being hit again, the suspect hit the police officer with his fist, knocking him down. The suspect was charged with assault. The suspect should be found
+Option A: not guilty, if the arrest was unlawful without probable cause and the jury believes the suspect's account.
+Option B: not guilty, if the arrest was lawful, provided that the jury believes the suspect's account.
+Option C: guilty, if the arrest was lawful, regardless which account the jury believes.
+Option D: guilty, if the arrest was unlawful, regardless which account the jury believes.",ARGDesigner,6,False
+mmlu,MMLU-nonstem-professional_law_test-2,"A taxpayer was notified by the government that her individual income tax was underpaid by $1,012. 69. The taxpayer retained an attorney to represent her in contesting the assessment. During the preparation of his client's case, the attorney suggested that it might be a good idea if the taxpayer hired an accountant to organize her records and prepare a financial statement for the year in question. Following the attorney's advice, the taxpayer consulted an accountant, an old family friend, who prepared a financial statement, which the attorney referred to at trial. During the trial, the attorney representing the government called the accountant to testif' about statements that the taxpayer made to him. The accountant's proposed testimony is
+Option A: inadmissible, because it would violate the attorney-client privilege.
+Option B: inadmissible, because it would violate the taxpayer's privilege against self-incrimination.
+Option C: inadmissible as violative of the work-product rule.
+Option D: admissible as an admission.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-professional_law_test-3,"A resident announced his candidacy for state representative. A law in the state requires new political entrants (regardless of party affiliation) to obtain three times the number of signatures as other candidates who have run for office previously. The resident, however, failed to obtain the necessary number of authenticating signatures to have his name placed on the ballot. The resident filed a complaint in federal district court alleging the unconstitutionality of the authenticating requirement. Which of the following, if established, is the state's strongest argument for sustaining the validity of the authenticating requirement?
+Option A: The resident's petition contained a large number of false signatures.
+Option B: A similar authenticating statute was held to be constitutional in another state the previous year.
+Option C: The authenticating requirement was necessary to further a compelling state interest.
+Option D: Two other candidates had successfully petitioned to have their names included on the ballot.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-professional_law_test-4,"A defendant was angry at his friend for marrying the defendant's former girlfriend. As the friend was painting his house one afternoon, the defendant fired a shot from his gun at him. Although the shot missed the friend, the bullet struck and killed the friend's daughter. The defendant is subsequently charged with the first-degree murder of the daughter. The relevant statutes in effect in this jurisdiction are as follows:Section 169: Murder in the first degree is the unlawful and intentional killing of a human being with malice aforethought. Section 170: Malice is expressed when there is manifested a deliberate intention to take away the life of another. Which of the following, if established, would provide the defendant with his best defense?
+Option A: He intended to kill the friend and not the daughter.
+Option B: He intended only to wound the friend.
+Option C: He was unaware of the elements of malice.
+Option D: The killing was the result of negligence in missing the friend.",ARGDesigner,6,False
+mmlu,MMLU-nonstem-high_school_us_history_test-0,"This question refers to the following information.
+""The far-reaching, the boundless future will be the era of American greatness. In its magnificent domain of space and time, the nation of many nations is destined to manifest to mankind the excellence of divine principles; to establish on earth the noblest temple ever dedicated to the worship of the Most High—the Sacred and the True. Its floor shall be a hemisphere—its roof the firmament of the star-studded heavens, and its congregation a Union of many Republics, comprising hundreds of happy millions, calling, owning no man master, but governed by God's natural and moral law of equality, the law of brotherhood—of 'peace and good will amongst men.'""
+John L. O'Sullivan, ""The Great Nation of Futurity,"" 1839
+By what means did the United States take possession of the Oregon Territory?
+Option A: The United States was granted the territory in a postwar treaty with France.
+Option B: The United States bought it from the Native Americans who lived there.
+Option C: U.S. settlers were the first to arrive in the region; they claimed it for their country.
+Option D: Great Britain ceded it to the United States as part of a negotiated treaty.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-high_school_us_history_test-1,"This question refers to the following information.
+BECAUSE no People can be truly happy, though under the greatest Enjoyment of Civil Liberties, if abridged of the Freedom of their Consciences, as to their Religious Profession and Worship: And Almighty God being the only Lord of Conscience, Father of Lights and Spirits; and the Author as well as Object of all divine Knowledge, Faith and Worship, who only doth enlighten the Minds, and persuade and convince the Understanding of People, I do hereby grant and declare, That no Person or Persons, inhabiting in this Province or Territories, who shall confess and acknowledge One almighty God, the Creator, Upholder and Ruler of the World; and profess him or themselves obliged to live quietly under the Civil Government, shall be in any Case molested or prejudiced, in his or their Person or Estate, because of his or their conscientious Persuasion or Practice, nor be compelled to frequent or maintain any religious Worship, Place or Ministry, contrary to his or their Mind.…
+—William Penn, Charter of Privileges Granted by William Penn,
+esq. to the Inhabitants of Pennsylvania and Territories, October 28, 1701
+Because of Penn's Charter of Privileges, Pennsylvania became
+Option A: one of the most religiously diverse colonies in British America.
+Option B: one of the least religiously diverse colonies in America.
+Option C: notorious for witch hunting and popular superstition.
+Option D: known for its hostility to traditional religious practices.",ARGDesigner,6,True
+mmlu,MMLU-nonstem-high_school_us_history_test-2,"This question refers to the following information.
+""We conclude that, in the field of public education, the doctrine of ""separate but equal"" has no place. Separate educational facilities are inherently unequal. Therefore, we hold that the plaintiffs and others similarly situated for whom the actions have been brought are, by reason of the segregation complained of, deprived of the equal protection of the laws guaranteed by the Fourteenth Amendment.""
+Brown v. Board of Education, 1954
+Desegregation of schools was, in part, a response to unfulfilled promises from which of the following initiatives?
+Option A: The Great Society
+Option B: The Square Deal
+Option C: The New Deal
+Option D: Reconstruction",ARGDesigner,6,True
+mmlu,MMLU-nonstem-high_school_us_history_test-3,"This question refers to the following information.
+""Since the foundations of the American commonwealth were laid in colonial times over 300 years ago, vigorous complaint and more or less bitter persecution have been aimed at newcomers to our shores. Also the congressional reports of about 1840 are full of abuse of English, Scotch, Welsh immigrants as paupers, criminals, and so forth. Old citizens in Detroit of Irish and German descent have told me of the fierce tirades and propaganda directed against the great waves of Irish and Germans who came over from 1840 on for a few decades to escape civil, racial, and religious persecution in their native lands. The ""Know-Nothings,"" lineal ancestors of the Ku-Klux Klan, bitterly denounced the Irish and Germans as mongrels, scum, foreigners, and a menace to our institutions, much as other great branches of the Caucasian race of glorious history and antecedents are berated to-day….But to-day it is the Italians, Spanish, Poles, Jews, Greeks, Russians, Balkanians, and so forth, who are the racial lepers…..In this bill we find racial discrimination at its worst—a deliberate attempt to go back 84 years in our census taken every 10 years so that a blow may be aimed at peoples of eastern and southern Europe, particularly at our recent allies in the Great War—Poland and Italy.""
+Robert H. Clancy, Congressional Record, 68th Congress, 1st Session, 1924
+Which one of the following legislative acts is most closely an example of nativism?
+Option A: The Wagner Act of 1935
+Option B: The Alien and Sedition Acts of 1798
+Option C: The Espionage Act of 1917
+Option D: The Immigration and Nationality Act of 1965",ARGDesigner,6,True
+mmlu,MMLU-nonstem-high_school_us_history_test-4,"This question refers to the following information.
+Now, we have organized a society, and we call it ""Share Our Wealth Society,"" a society with the motto ""Every Man a King.""…
+We propose to limit the wealth of big men in the country. There is an average of $15,000 in wealth to every family in America. That is right here today.
+We do not propose to divide it up equally. We do not propose a division of wealth, but we do propose to limit poverty that we will allow to be inflicted on any man's family. We will not say we are going to try to guarantee any equality … but we do say that one third of the average is low enough for any one family to hold, that there should be a guarantee of a family wealth of around $5,000; enough for a home, an automobile, a radio, and the ordinary conveniences, and the opportunity to educate their children.…
+We will have to limit fortunes. Our present plan is that we will allow no man to own more than $50,000,000. We think that with that limit we will be able to carry out the balance of the program.
+—Senator Huey P. Long of Louisiana, Radio Address, February 23, 1934
+President Franklin D. Roosevelt responded to political challenges like that of Senator Long by doing which of the following?
+Option A: Announcing that he would not run for re-election
+Option B: Launching the Second New Deal, a series of legislative acts including Social Security
+Option C: Diverting people's attention by allowing the Japanese to bomb Pearl Harbor
+Option D: Urging Congress to cut taxes and deregulate the economy",ARGDesigner,6,True
+mmlu,MMLU-nonstem-sociology_test-0,"Mass-society theory suggests that:
+Option A: the content of the media is determined by market forces
+Option B: the subordinate classes are dominated by the ideology of the ruling class
+Option C: the media manipulate 'the masses' as vulnerable, passive consumers
+Option D: audiences make selective interpretations of media messages",ARGDesigner,6,True
+mmlu,MMLU-nonstem-sociology_test-1,"The ecological approach to urban sociology involved studying:
+Option A: how social groups colonized different areas of the city and competed for resources
+Option B: the forms of wildlife and natural habitats that could be found on the edges of the city
+Option C: the way in which people organized collective protests about environmental issues
+Option D: how men and women used the city's public spaces differently",ARGDesigner,6,True
+mmlu,MMLU-nonstem-sociology_test-2,"Becker proclaimed that cannabis use was:
+Option A: increasing throughout all sections of youth in the 1970s
+Option B: learned gradually through the social processes of a deviant career
+Option C: a dangerous pastime that young people should not be allowed to pursue
+Option D: not as enjoyable as other sociologists had suggested",ARGDesigner,6,True
+mmlu,MMLU-nonstem-sociology_test-3,"The middle classes that developed over the nineteenth century were:
+Option A: an urban set, involved in civic bodies and voluntary associations
+Option B: too diverse to have a strong sense of class consciousness
+Option C: often involved in 'white collar' work
+Option D: all of the above",ARGDesigner,6,True
+mmlu,MMLU-nonstem-sociology_test-4,"Technological forms of surveillance have made it easier to:
+Option A: access and exchange 'private' information about consumers
+Option B: reduce prison overcrowding by the use of electronic tagging
+Option C: monitor employees' activities at work
+Option D: all of the above",ARGDesigner,6,True
+mmlu,MMLU-nonstem-world_religions_test-0,"What can murtis be translated as?
+Option A: Offerings
+Option B: Prayers
+Option C: Apparitions
+Option D: Idols",ARGDesigner,6,True
+mmlu,MMLU-nonstem-world_religions_test-1,"Naturalists who concentrated on natural elements and processes are associated with which of the following?
+Option A: Daoism
+Option B: Yin-Yang School
+Option C: Mengzi
+Option D: Humanistic Buddhism",ARGDesigner,6,True
+mmlu,MMLU-nonstem-world_religions_test-2,"When was the first Buddhist temple constructed in Japan?
+Option A: 325 CE
+Option B: 119 CE
+Option C: 451 CE
+Option D: 596 CE",ARGDesigner,6,True
+mmlu,MMLU-nonstem-world_religions_test-3,"What is the name of the ten day New Year festival that celebrated Babylon's culture?
+Option A: Akitu
+Option B: Wag and Thoth
+Option C: Bast
+Option D: Nehebkau",ARGDesigner,6,True
+mmlu,MMLU-nonstem-world_religions_test-4,"Which of the following terms denote the Japanese art of flower arranging?
+Option A: Zazen
+Option B: Tariki
+Option C: Kami
+Option D: Ikebana",ARGDesigner,6,True

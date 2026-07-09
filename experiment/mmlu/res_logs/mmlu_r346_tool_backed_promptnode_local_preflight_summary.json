@@ -1,0 +1,23 @@
+{
+  "run_id": "R346",
+  "title": "Tool-backed PromptNode local preflight on R337 wrong tasks",
+  "claim_boundary": "R346 is a targeted no-API mechanism preflight on R337 wrong tasks. It shows whether deterministic PromptNodes can produce machine-checkable candidates, but it is not a held-out paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 4,
+  "api_calls": 0,
+  "forwarded_candidate_count": 4,
+  "candidate_correct_count": 4,
+  "candidate_repairs_baseline_count": 4,
+  "candidate_harms_baseline_count": 0,
+  "uses_true_answers_in_tool": false,
+  "uses_task_ids_or_known_wrong_items": false,
+  "targeted_mechanism_probe": true,
+  "prospective_replay_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R347_tool_backed_promptnode_prospective_replay24",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r346_tool_backed_promptnode_local_preflight_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r346_tool_backed_promptnode_local_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r346_tool_backed_promptnode_local_preflight_report.md"
+}

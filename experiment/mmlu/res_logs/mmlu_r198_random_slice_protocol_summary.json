@@ -1,0 +1,47 @@
+{
+  "run_id": "R198",
+  "title": "Random transfer slice protocol for projected PromptEdge",
+  "claim_boundary": "Protocol only. No API evaluation and no accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "selection": {
+    "seed": 20260709,
+    "sample_size": 12,
+    "population": "MMLU transfer100 excluding R192 first4 and R196 baseline-wrong diagnostic tasks",
+    "answer_based_selection": false
+  },
+  "selected_task_ids": [
+    "MMLU-college_computer_science_test-53",
+    "MMLU-conceptual_physics_test-103",
+    "MMLU-elementary_mathematics_test-222",
+    "MMLU-college_chemistry_test-64",
+    "MMLU-high_school_physics_test-72",
+    "MMLU-machine_learning_test-77",
+    "MMLU-electrical_engineering_test-44",
+    "MMLU-astronomy_test-109",
+    "MMLU-elementary_mathematics_test-102",
+    "MMLU-conceptual_physics_test-108",
+    "MMLU-elementary_mathematics_test-221",
+    "MMLU-high_school_chemistry_test-137"
+  ],
+  "r162_baseline_on_selected_after_selection": {
+    "correct": 11,
+    "total": 12,
+    "wrong_task_ids": [
+      "MMLU-elementary_mathematics_test-222"
+    ]
+  },
+  "estimated_cost_from_r192_r196": {
+    "mean_cost_per_task": 0.09883,
+    "estimated_12_task_cost": 1.186,
+    "mean_prompt_tokens_per_task": 10163,
+    "mean_completion_tokens_per_task": 3201
+  },
+  "success_criteria_for_diagnostic_expansion": [
+    "No more than 1 harm among 11 baseline-correct tasks.",
+    "Fix the one baseline-wrong task or show no harm with clear graph/cost evidence.",
+    "Report raw vs projected graph contract readiness for every task.",
+    "Do not convert this 12-task slice into the final paper result without a later full/random protocol audit."
+  ],
+  "recommended_next": "R200 audit should decide whether the 12-task random slice is worth the estimated cost."
+}

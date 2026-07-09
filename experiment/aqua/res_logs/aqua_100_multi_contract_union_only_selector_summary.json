@@ -1,0 +1,31 @@
+{
+  "total_tasks": 100,
+  "solved_tasks": 84,
+  "pass_at_1": 84.0,
+  "baseline_solved_tasks": 83,
+  "baseline_pass_at_1": 83.0,
+  "ensemble_solved_tasks": 85,
+  "ensemble_pass_at_1": 85.0,
+  "delta_vs_baseline": 1,
+  "delta_vs_ensemble": -1,
+  "fixes_vs_baseline": 1,
+  "harms_vs_baseline": 0,
+  "ensemble_switches": 0,
+  "non_baseline_switches": 1,
+  "rule": {
+    "name": "multi_contract_union",
+    "method_keys": [
+      "router",
+      "candidate",
+      "conservative",
+      "calibrated"
+    ],
+    "min_direct_methods": 2,
+    "min_strong_methods": 3,
+    "use_invalid_fallback": false
+  },
+  "selector": "multi_contract_union",
+  "train_prefix": null,
+  "test_prefix": "aqua_100",
+  "output_file": "experiment/aqua/aqua_100_multi_contract_union_only_selector_results.jsonl"
+}

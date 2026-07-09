@@ -1,0 +1,34 @@
+{
+  "run_id": "R339",
+  "title": "Selector non-switch failure analysis",
+  "claim_boundary": "R339 explains why R337 tied ARG: the selector never switched because the prospective candidate generator produced no answer-bearing candidates. This analysis blocks more API expansion until candidate generation is fixed.",
+  "no_api": true,
+  "broad_api": false,
+  "selector_action_counts": {
+    "KEEP_ARG": 24
+  },
+  "selector_switches": 0,
+  "baseline_wrong_tasks": 4,
+  "selector_wrong_tasks": 4,
+  "candidate_type_counts": {
+    "instruction_ambiguity_verifier": 3,
+    "none": 21
+  },
+  "answer_bearing_candidate_count": 0,
+  "root_causes": [
+    "no_answer_bearing_candidates",
+    "over_conservative_switch_contract",
+    "candidate_library_does_not_cover_prospective_stem_errors"
+  ],
+  "wrong_task_ids": [
+    "MMLU-high_school_mathematics_test-0",
+    "MMLU-college_mathematics_test-1",
+    "MMLU-college_mathematics_test-2",
+    "MMLU-college_chemistry_test-3"
+  ],
+  "api_execution_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R340_answer_bearing_candidate_generator_design",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r339_selector_non_switch_failure_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r339_selector_non_switch_failure_analysis_report.md"
+}

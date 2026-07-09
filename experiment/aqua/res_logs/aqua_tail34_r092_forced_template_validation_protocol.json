@@ -1,0 +1,51 @@
+{
+  "rule": "r092_forced_template_tail34_validation_protocol",
+  "timestamp": "2026-07-08T17:54:43.911281",
+  "status": "pre_registered_before_full_run",
+  "dataset_path": "datasets/AQuA/AQuA.jsonl",
+  "task_split_path": "experiment/aqua/task_split_aqua_tail34.json",
+  "num_tasks": 34,
+  "llm_name": "gpt-4o-2024-08-06",
+  "decision_method": "RouterContractFinalRefer",
+  "forced_template_candidate_jsonl": "experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl",
+  "forced_template_rank": 1,
+  "forced_template_output_file": "experiment/aqua/aqua_tail34_r092_forced_template_rank1_results.jsonl",
+  "forced_template_summary_log_file": "experiment/aqua/res_logs/aqua_tail34_r092_forced_template_rank1_summary.jsonl",
+  "gate_rule": "r088_bad_exact_contract_gate",
+  "gate_summary_json": "experiment/aqua/res_logs/aqua_tail34_r092_bad_exact_gate_forced_tail34_summary.json",
+  "gate_report_md": "experiment/aqua/run_logs/aqua_tail34_r092_bad_exact_gate_forced_tail34_report.md",
+  "baseline_results": "experiment/aqua/aqua_tail34_arg_baseline_results.jsonl",
+  "baseline_accuracy_reference": "28/34",
+  "decision_feature_fields": [
+    "all_router_contracts_weak",
+    "direct_majority",
+    "direct_majority_count",
+    "direct_valid_vote_count",
+    "has_promptnode_graph",
+    "predicted_answer",
+    "predicted_option_is_none_of_these",
+    "predicted_option_text",
+    "router_binding_status",
+    "router_conflicts_with_direct_majority",
+    "router_matches_direct_majority",
+    "router_option",
+    "strong_router_contract_count"
+  ],
+  "forbidden_outcome_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "is_solved",
+    "run_group",
+    "task_id",
+    "true_answer"
+  ],
+  "success_gate": {
+    "minimum_gate_solved": ">=29/34",
+    "maximum_harm": 0,
+    "required_decision_field_violations": 0,
+    "required_same_model": "gpt-4o-2024-08-06"
+  },
+  "failure_interpretation": "If the frozen gate does not beat ARG or introduces harm, forced rank-1 templates are not ready as a paper main result; move back to template selection or graph-policy training.",
+  "claim_boundary": "pre-registered full tail34 forced-template validation protocol, not a result"
+}

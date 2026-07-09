@@ -1,0 +1,28 @@
+{
+  "source_records": 234,
+  "mini_records": 67,
+  "max_abstain_per_switch": 2,
+  "train_switch_records": 11,
+  "train_abstain_records_available": 189,
+  "train_abstain_records_selected": 22,
+  "frozen_eval_records": 34,
+  "frozen_eval_switch_records": 2,
+  "router_actions": {
+    "abstain": 54,
+    "switch_to_objective": 13
+  },
+  "split_roles": {
+    "frozen_eval": 34,
+    "train": 33
+  },
+  "run_id": "R218",
+  "title": "Router-final mini-manifest materialization",
+  "claim_boundary": "Manifest materialization only; no API and no accuracy claim.",
+  "no_api": true,
+  "input_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r217_non_abstain_router_targets.jsonl",
+  "output_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r218_router_final_mini_manifest.jsonl",
+  "tests": {
+    "tests.test_r218_router_mini_manifest": "2/2 passed",
+    "tests.test_r217_non_abstain_router_targets": "4/4 passed"
+  }
+}

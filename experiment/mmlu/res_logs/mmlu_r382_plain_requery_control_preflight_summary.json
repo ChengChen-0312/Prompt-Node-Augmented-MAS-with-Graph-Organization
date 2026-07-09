@@ -1,0 +1,20 @@
+{
+  "run_id": "R382",
+  "title": "Plain requery control preflight",
+  "claim_boundary": "R382 builds a same-task plain requery control for R380. It removes PromptNode/PromptEdge graph language to test whether R380's gain is just a second-call prompt-strength effect.",
+  "no_api": true,
+  "broad_api": false,
+  "tasks": 24,
+  "api_records": 24,
+  "planned_plain_requery_calls": 24,
+  "same_task_set_as_r379": true,
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R383_plain_requery_control_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r382_plain_requery_control_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r382_plain_requery_control_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r382_plain_requery_control_preflight_report.md"
+}

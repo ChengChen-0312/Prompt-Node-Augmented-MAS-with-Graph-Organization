@@ -1,0 +1,78 @@
+{
+  "records": 20,
+  "evaluated_records": 20,
+  "correct": 4,
+  "accuracy": 0.2,
+  "fixes": 3,
+  "harms": 4,
+  "api_required": 8,
+  "api_executed": 8,
+  "api_errors": 0,
+  "api_cost": 0.01895,
+  "prompt_tokens": 2638,
+  "completion_tokens": 384,
+  "variant_counts": {
+    "abstain_only_router": 4,
+    "always_switch_to_objective": 4,
+    "node_only_no_promptedge_text": 4,
+    "proposed_router_final": 4,
+    "random_switch_labels_same_rate": 4
+  },
+  "by_variant": {
+    "abstain_only_router": {
+      "records": 4,
+      "correct": 1,
+      "accuracy": 0.25,
+      "fixes": 0,
+      "harms": 0,
+      "api_required": 0
+    },
+    "always_switch_to_objective": {
+      "records": 4,
+      "correct": 1,
+      "accuracy": 0.25,
+      "fixes": 1,
+      "harms": 1,
+      "api_required": 0
+    },
+    "node_only_no_promptedge_text": {
+      "records": 4,
+      "correct": 1,
+      "accuracy": 0.25,
+      "fixes": 1,
+      "harms": 1,
+      "api_required": 4
+    },
+    "proposed_router_final": {
+      "records": 4,
+      "correct": 1,
+      "accuracy": 0.25,
+      "fixes": 1,
+      "harms": 1,
+      "api_required": 4
+    },
+    "random_switch_labels_same_rate": {
+      "records": 4,
+      "correct": 0,
+      "accuracy": 0.0,
+      "fixes": 0,
+      "harms": 1,
+      "api_required": 0
+    }
+  },
+  "run_id": "R233",
+  "title": "Tiny API diagnostic executor",
+  "claim_boundary": "Tiny pre-registered diagnostic only; not a paper-level accuracy or SCI-Q2 readiness claim.",
+  "model": "gpt-4o-2024-08-06",
+  "records_jsonl": "experiment/mmlu/run_logs/mmlu_r231_tiny_diagnostic_preflight_records.jsonl",
+  "preflight_json": "experiment/mmlu/res_logs/mmlu_r232_tiny_diagnostic_preflight_audit_summary.json",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r233_tiny_api_diagnostic_results.jsonl",
+  "env_file": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/benchmark_config/.env",
+  "env_values_logged": false,
+  "no_api": false,
+  "broad_api": false,
+  "tests": {
+    "tests.test_r233_tiny_api_diagnostic_executor": "6/6 passed",
+    "tests.test_r232_tiny_diagnostic_preflight_audit": "6/6 passed"
+  }
+}

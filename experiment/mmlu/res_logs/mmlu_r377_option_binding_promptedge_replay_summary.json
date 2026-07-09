@@ -1,0 +1,38 @@
+{
+  "run_id": "R377",
+  "title": "OptionBinding PromptEdge replay",
+  "claim_boundary": "R377 is a replay over R375 outputs. It tests whether a first-class PromptEdge can bind explicit Option X rationales into structured candidate labels before the learned safety gate. It is not a fresh API result.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 12,
+  "arg_correct": 6,
+  "r375_hybrid_correct": 6,
+  "edge_hybrid_correct": 7,
+  "delta_vs_arg": 1,
+  "delta_vs_r375": 1,
+  "arg_accuracy": 0.5,
+  "edge_hybrid_accuracy": 0.583333,
+  "bound_candidate_count": 2,
+  "gate_forward_count": 2,
+  "fixes": 1,
+  "harms": 0,
+  "wrong_forward_count": 0,
+  "blocked_original_r375_forward_count": 1,
+  "fix_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-21"
+  ],
+  "harm_task_ids": [],
+  "wrong_forward_task_ids": [],
+  "claim_permissions": {
+    "mechanism_replay_positive_delta_no_harm_allowed": true,
+    "fresh_positive_delta_claim_allowed": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R378_goal_audit_after_option_binding_promptedge",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r377_option_binding_promptedge_replay_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r377_option_binding_promptedge_replay_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r377_option_binding_promptedge_replay_report.md"
+}

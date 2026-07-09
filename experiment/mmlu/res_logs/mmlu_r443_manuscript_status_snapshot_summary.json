@@ -1,0 +1,88 @@
+{
+  "run_id": "R443",
+  "title": "Manuscript status snapshot",
+  "claim_boundary": "R443 summarizes the current initial paper draft and remaining blockers. It does not execute external audits or mark the manuscript ready for submission.",
+  "no_api": true,
+  "broad_api": false,
+  "paper_files": [
+    "paper/main.tex",
+    "paper/math_commands.tex",
+    "paper/references.bib",
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex"
+  ],
+  "complete_initial_paper_draft": true,
+  "local_smoke_pass": true,
+  "static_structure_pass": true,
+  "static_number_audit_pass": true,
+  "external_audit_packages": {
+    "experiment_integrity_audit": {
+      "prompt_md": "experiment/mmlu/run_logs/mmlu_r441_experiment_integrity_audit_prompt.md",
+      "files": [
+        "experiment/aqua/res_logs/aqua_tail34_r271_final_claim_table_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r419_lifecycle_trace_replay_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r426_update_cost_table_with_stem_probe_and_goal_audit_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r440_paper_claim_number_static_audit_summary.json"
+      ],
+      "required": true,
+      "executed": false
+    },
+    "citation_context_audit": {
+      "prompt_md": "experiment/mmlu/run_logs/mmlu_r441_citation_context_audit_prompt.md",
+      "files": [
+        "paper/references.bib",
+        "paper/sections/2_related_work.tex",
+        "paper/.aris/citation-audit/r438_static_contexts.json",
+        ".aris/verify-papers/r436_citation_metadata.json"
+      ],
+      "required": true,
+      "executed": false
+    },
+    "paper_claim_audit": {
+      "prompt_md": "experiment/mmlu/run_logs/mmlu_r441_paper_claim_audit_prompt.md",
+      "files": [
+        "paper/main.tex",
+        "paper/sections/0_abstract.tex",
+        "paper/sections/1_introduction.tex",
+        "paper/sections/2_related_work.tex",
+        "paper/sections/3_method.tex",
+        "paper/sections/4_experimental_setup.tex",
+        "paper/sections/5_results.tex",
+        "paper/sections/6_case_studies.tex",
+        "paper/sections/7_limitations.tex",
+        "paper/sections/8_conclusion.tex",
+        "paper/references.bib",
+        "experiment/aqua/res_logs/aqua_tail34_r271_final_claim_table_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r419_lifecycle_trace_replay_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r426_update_cost_table_with_stem_probe_and_goal_audit_summary.json",
+        "experiment/mmlu/res_logs/mmlu_r440_paper_claim_number_static_audit_summary.json"
+      ],
+      "required": true,
+      "executed": false
+    }
+  },
+  "remaining_blockers": [
+    "external_experiment_integrity_audit_pending",
+    "external_citation_audit_pending",
+    "external_paper_claim_audit_pending",
+    "latex_engine_missing_for_pdf_compile"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R444_external_audit_execution_plan",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r443_manuscript_status_snapshot_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r443_manuscript_status_snapshot_report.md"
+}

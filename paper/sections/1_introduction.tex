@@ -1,0 +1,18 @@
+\section{Introduction}
+\label{sec:introduction}
+
+LLM-based multi-agent systems turn reasoning into a communication problem. A correct intermediate insight can be lost if it is sent to the wrong agent, repeated too late, or merged with a higher-confidence but wrong consensus. Conversely, an erroneous argument can spread through the graph and dominate the final answer. This makes graph organization a first-order design choice rather than an implementation detail.
+
+ARG-Designer is a strong baseline because it treats multi-agent design as graph generation, allowing the system to learn which ordinary agents and edges should be present. Our work asks a different question: whether the graph should also contain virtual functional nodes that do not act like ordinary solvers, but instead manage instruction binding, memory transfer, verification, option elimination, contradiction checks, and answer forwarding. The user-facing intuition is simple. A PromptNode is not a late answer patch. It is a typed graph element with permissions and lifecycle state.
+
+We propose PromptNode-Augmented MAS, where virtual nodes and PromptEdges are inserted into the communication graph before aggregation. A PromptNode has an identity, a structured state, and allowed lifecycle actions. A PromptEdge controls what a downstream node may read, what it may write, and whether its candidate answer can be forwarded. This design makes prompt content part of graph organization: a prompt can live inside a node, but it can also appear as an edge contract that constrains how evidence moves.
+
+The current paper supports four bounded contributions:
+\begin{enumerate}
+    \item We define PromptNodes and PromptEdges as first-class graph elements for MAS reasoning, including typed identities, read/write/forward permissions, and lifecycle actions.
+    \item We show a positive audited result on AQuA tail reasoning under ARG-Designer-matched settings: 31/31 on the audit-clean slice versus 28/31 for ARG.
+    \item We show transfer to MMLU STEM with 95/97 versus 88/97 for ARG, while keeping the cost row explicitly marked as a probe estimate rather than original exact accounting.
+    \item We report a bounded non-STEM picture: a broader mixed split is no-harm at 41/48 versus 41/48, while a targeted DefinitionChallenge split improves 21/24 to 22/24 with no harms.
+\end{enumerate}
+
+These claims are intentionally narrower than a generic claim that virtual nodes always improve multi-agent reasoning. The evidence so far supports graph-organization gains on audited mathematical and STEM reasoning, plus a targeted concept-definition transfer result. It does not support a broad non-STEM improvement claim. This boundary is important for a credible SCI-Q2 submission: the method must be presented as a reproducible graph-policy design with explicit failure modes, not as a dataset-specific trick.

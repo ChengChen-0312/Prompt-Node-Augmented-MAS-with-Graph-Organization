@@ -1,0 +1,29 @@
+{
+  "rule": "r110_objective_safety_proxy_protocol",
+  "train_sources": [
+    "experiment/aqua/aqua_first200_r077_clean_fix_graph_policy_distill_rows.jsonl"
+  ],
+  "train_source_rows": 800,
+  "train_clean_fix_preserve_rows": 76,
+  "existing_selector_eval_agreement": 0.9675,
+  "tail34_eval_target_source": "experiment/aqua/res_logs/aqua_tail34_r109_objective_safety_rule_distillation_summary.json",
+  "tail34_eval_target_rows": 34,
+  "tail34_training_allowed": false,
+  "forbidden_tail34_training_sources": [
+    "experiment/aqua/aqua_tail34_r096_objective_safety_policy_targets.jsonl",
+    "experiment/aqua/res_logs/aqua_tail34_r109_objective_safety_rule_distillation_summary.json",
+    "experiment/aqua/aqua_tail34_r106_rank5_regression_smoke_results.jsonl"
+  ],
+  "required_rule_features": [
+    "objective_prediction_differs_from_baseline",
+    "objective_top_score",
+    "baseline_direct_votes_split"
+  ],
+  "proxy_candidate_families": [
+    "lightweight_multiview_objective",
+    "graph_policy_selector"
+  ],
+  "input_field_violations": 0,
+  "minimum_next_gate": "train on first200/non-tail34 only; evaluate target agreement on frozen R109 tail34 rule targets; then run a small clean-harm/recovery smoke before broad API use",
+  "claim_boundary": "protocol only; no trained proxy, accuracy, or SCI claim"
+}

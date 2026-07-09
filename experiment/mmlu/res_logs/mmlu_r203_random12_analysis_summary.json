@@ -1,0 +1,31 @@
+{
+  "run_id": "R203",
+  "title": "Random12 projected PromptEdge diagnostic analysis",
+  "claim_boundary": "Diagnostic analysis only. The 12-task slice is small and cannot serve as a final paper result.",
+  "source_run": "R202",
+  "no_api": true,
+  "broad_api": false,
+  "selection_policy": "R198 random seed 20260709, excluding prior smoke/diagnostic tasks",
+  "tasks": 12,
+  "baseline_correct": 11,
+  "projected_correct": 11,
+  "baseline_accuracy": 0.9167,
+  "projected_accuracy": 0.9167,
+  "accuracy_delta": 0.0,
+  "fixes": 0,
+  "harms": 0,
+  "raw_contract_ready": "0/12",
+  "projected_contract_ready": "12/12",
+  "cost": 0.697925,
+  "prompt_tokens": 73498,
+  "completion_tokens": 22029,
+  "cost_per_task": 0.05816,
+  "diagnosis": {
+    "random_improvement_signal": false,
+    "harm_signal": false,
+    "graph_projection_required": true,
+    "mmlu_paper_claim_supported": false,
+    "reason": "The random slice preserved R162 accuracy but did not fix the only baseline-wrong task."
+  },
+  "recommended_next": "Do not scale MMLU API yet. Update claim matrix and consider method redesign or a larger random protocol only after R205 audit."
+}

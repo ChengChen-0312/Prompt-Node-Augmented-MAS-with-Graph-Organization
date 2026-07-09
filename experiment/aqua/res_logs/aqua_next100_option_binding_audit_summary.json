@@ -1,0 +1,19 @@
+{
+  "total": 100,
+  "clean_label_counts": {
+    "clean": 82,
+    "noisy": 18
+  },
+  "rationale_issue_counts": {
+    "none": 82,
+    "arithmetic_error": 18
+  },
+  "gold_binding_status_counts": {
+    "exact": 82,
+    "contradictory": 17,
+    "unsupported": 1
+  },
+  "confidence_counts": {
+    "high": 100
+  }
+}

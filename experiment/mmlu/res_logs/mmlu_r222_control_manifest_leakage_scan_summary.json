@@ -1,0 +1,67 @@
+{
+  "input_dir": "experiment/mmlu/promptedge_targets/r221_controls",
+  "files": 4,
+  "records": 268,
+  "leakage_violations": 0,
+  "leakage_pass": true,
+  "per_file": {
+    "mmlu_r221_abstain_only_router.jsonl": {
+      "records": 67,
+      "variants": {
+        "abstain_only_router": 67
+      },
+      "router_actions": {
+        "abstain": 67
+      },
+      "leakage_violations": 0,
+      "leakage_pass": true,
+      "violations": []
+    },
+    "mmlu_r221_always_switch_to_objective.jsonl": {
+      "records": 67,
+      "variants": {
+        "always_switch_to_objective": 67
+      },
+      "router_actions": {
+        "switch_to_objective": 67
+      },
+      "leakage_violations": 0,
+      "leakage_pass": true,
+      "violations": []
+    },
+    "mmlu_r221_node_only_no_promptedge_text.jsonl": {
+      "records": 67,
+      "variants": {
+        "node_only_no_promptedge_text": 67
+      },
+      "router_actions": {
+        "abstain": 54,
+        "switch_to_objective": 13
+      },
+      "leakage_violations": 0,
+      "leakage_pass": true,
+      "violations": []
+    },
+    "mmlu_r221_random_switch_labels_same_rate.jsonl": {
+      "records": 67,
+      "variants": {
+        "random_switch_labels_same_rate": 67
+      },
+      "router_actions": {
+        "abstain": 54,
+        "switch_to_objective": 13
+      },
+      "leakage_violations": 0,
+      "leakage_pass": true,
+      "violations": []
+    }
+  },
+  "run_id": "R222",
+  "title": "Router-final control manifest leakage scan",
+  "claim_boundary": "Leakage scan only; no API and no accuracy claim.",
+  "no_api": true,
+  "tests": {
+    "tests.test_r222_control_manifest_leakage_scan": "3/3 passed",
+    "tests.test_r221_router_control_manifests": "5/5 passed"
+  }
+}

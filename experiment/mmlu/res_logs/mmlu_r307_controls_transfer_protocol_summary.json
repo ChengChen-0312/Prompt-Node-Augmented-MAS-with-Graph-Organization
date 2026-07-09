@@ -1,0 +1,53 @@
+{
+  "run_id": "R307",
+  "title": "Controls and transfer protocol before training",
+  "claim_boundary": "Protocol freeze only. It blocks training until negative controls, ablations, and at least two transfer settings are evaluated.",
+  "no_api": true,
+  "broad_api": false,
+  "source_summary": "experiment/mmlu/res_logs/mmlu_r306_nonmath_stack_eval_summary.json",
+  "current_best_run": "R306",
+  "current_best_main97": "95/97",
+  "current_best_fix_harm": "2/0",
+  "current_best_switches": [
+    "MMLU-machine_learning_test-81",
+    "MMLU-conceptual_physics_test-41"
+  ],
+  "negative_controls": {
+    "no_nonmath_promptnodes": "R304 baseline stack without R305/R306 non-math nodes.",
+    "random_forward": "Randomly forward the same number of candidate nodes as R306; must not match R306 gain.",
+    "always_forward": "Forward every non-empty candidate; expected to expose harm if SafetyGate is removed.",
+    "no_safety_gate": "Verifier candidates bypass PN_SafetyGate and go straight to router.",
+    "random_promptnode_type": "Replace each candidate type with a random type while keeping candidate label hidden from gate.",
+    "no_lifecycle": "Disable compress/prune/upgrade annotations and test whether graph policy degrades."
+  },
+  "required_ablations": {
+    "remove_instruction_ambiguity_verifier": "Measure whether ambiguity flags prevent unsafe forwarding.",
+    "remove_option_semantic_consistency": "Expected to lose MMLU-machine_learning_test-81 repair.",
+    "remove_contradiction_detector": "Expected to lose conceptual all-of-these repair.",
+    "remove_memory_bridge": "Expected to leave truncation cases unresolved and document data-path limitation.",
+    "remove_symbolic_verifier_family": "Separate non-math contribution from R304 symbolic contribution.",
+    "remove_safety_gate": "Must be worse or higher harm than gated variant."
+  },
+  "required_transfer_splits": {
+    "AQuA_tail34_audit_clean": "Run the same node catalog on AQuA tail34 audit-clean with task_59/task_139/task_228 excluded or appendix-only.",
+    "MMLU_non_STEM_multiple_choice": "Create a non-STEM multiple-choice split to test instruction/semantic nodes outside formula-heavy STEM.",
+    "MMLU_STEM_main97": "Retain current main97 as development/diagnostic split, not the only evidence."
+  },
+  "training_entry_criteria": {
+    "main97_no_harm": "R306 or later keeps main official and audit-clean harm at 0.",
+    "controls_pass": "No negative control beats the gated method at equal switch budget.",
+    "transfer_not_negative": "At least one non-AQuA transfer split has positive gain or statistically non-negative delta.",
+    "type_coverage": "At least four PromptNode families contribute candidates, with at least two non-symbolic families.",
+    "leakage_pass": "Training inputs exclude task_id, true_answer, correctness, and audit labels."
+  },
+  "training_authorized_next": false,
+  "next_runs": [
+    "R308 random/always-forward negative controls",
+    "R309 per-node ablation table",
+    "R310 AQuA transfer stack replay",
+    "R311 MMLU non-STEM transfer split preflight"
+  ],
+  "sci_q2_ready": false,
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r307_controls_transfer_protocol_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r307_controls_transfer_protocol_report.md"
+}

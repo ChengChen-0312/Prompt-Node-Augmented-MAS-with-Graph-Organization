@@ -1,0 +1,22 @@
+{
+  "run_id": "R294",
+  "title": "Specialist-aware constrained PromptNode decoding",
+  "claim_boundary": "No-API reselection over saved R287 candidates. It changes only selection objective; no new graph sampling, answer labels, or API calls are used.",
+  "no_api": true,
+  "broad_api": false,
+  "tasks": 24,
+  "candidate_graphs": 1536,
+  "selected_contract_ready": 20,
+  "selected_contract_ready_rate": 0.8333333333333334,
+  "selected_with_specialist": 19,
+  "selected_mean_specialist_count": 1.5,
+  "changed_from_r287": 14,
+  "api_eval_allowed_next": true,
+  "accuracy_claim_supported": false,
+  "next_goal_audit_due": "R295",
+  "candidates_jsonl": "experiment/mmlu/run_logs/mmlu_r287_constrained_promptnode_decoding_c64_candidates.jsonl",
+  "reference_selected_jsonl": "experiment/mmlu/run_logs/mmlu_r287_constrained_promptnode_decoding_c64_selected.jsonl",
+  "selected_jsonl": "experiment/mmlu/run_logs/mmlu_r294_specialist_aware_decoding_selected.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r294_specialist_aware_decoding_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r294_specialist_aware_decoding_report.md"
+}

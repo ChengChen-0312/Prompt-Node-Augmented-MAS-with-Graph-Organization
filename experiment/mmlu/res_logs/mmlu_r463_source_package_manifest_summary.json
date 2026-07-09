@@ -1,0 +1,40 @@
+{
+  "run_id": "R463",
+  "title": "Source package manifest",
+  "claim_boundary": "R463 lists source files for future template conversion or external review. It does not create an archive, include secrets, or certify submission readiness.",
+  "no_api": true,
+  "broad_api": false,
+  "manifest_md": "paper/artifacts/source_package_manifest.md",
+  "package_sources": [
+    "paper/appendices/label_audit.tex",
+    "paper/artifacts/journal_template_probe.md",
+    "paper/artifacts/reproducibility_index.md",
+    "paper/main.tex",
+    "paper/math_commands.tex",
+    "paper/references.bib",
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex",
+    "paper/tables/cost_results.tex",
+    "paper/tables/main_results.tex"
+  ],
+  "missing_sources": [],
+  "excluded_patterns": [
+    ".env",
+    "*.key",
+    "*api_key*",
+    "run_logs/*_api_results.jsonl",
+    "__pycache__"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R464_external_audit_authorization_checklist",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r463_source_package_manifest_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r463_source_package_manifest_report.md"
+}

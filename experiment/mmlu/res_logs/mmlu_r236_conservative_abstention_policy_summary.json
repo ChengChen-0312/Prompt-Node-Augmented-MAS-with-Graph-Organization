@@ -1,0 +1,124 @@
+{
+  "run_id": "R236",
+  "title": "Conservative abstention policy derivation",
+  "claim_boundary": "Offline policy derivation only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "source_jsonl": "experiment/aqua/aqua_first200_objective_guided_selector_results.jsonl",
+  "feature_jsonl": "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl",
+  "audit_paths": [
+    "experiment/aqua/aqua_sync20_option_binding_audit_v4.jsonl",
+    "experiment/aqua/aqua_100_option_binding_audit.jsonl"
+  ],
+  "candidate_policies": [
+    "current_top3",
+    "high_confidence_top10",
+    "high_confidence_top11",
+    "baseline_invalid_top10",
+    "baseline_consensus_guard_top3",
+    "baseline_consensus_guard_top10"
+  ],
+  "selected_policy": "baseline_consensus_guard_top3",
+  "selected_metrics": {
+    "tasks": 200,
+    "switches": 9,
+    "switch_rate": 0.045,
+    "accuracy_count": 170,
+    "accuracy": 0.85,
+    "baseline_accuracy_count": 165,
+    "fixes": 5,
+    "harms": 0,
+    "clean_tasks": 85,
+    "clean_fixes": 1,
+    "clean_harms": 0
+  },
+  "policy_results": [
+    {
+      "policy": "current_top3",
+      "tasks": 200,
+      "switches": 10,
+      "switch_rate": 0.05,
+      "accuracy_count": 169,
+      "accuracy": 0.845,
+      "baseline_accuracy_count": 165,
+      "fixes": 5,
+      "harms": 1,
+      "clean_tasks": 85,
+      "clean_fixes": 1,
+      "clean_harms": 1
+    },
+    {
+      "policy": "high_confidence_top10",
+      "tasks": 200,
+      "switches": 4,
+      "switch_rate": 0.02,
+      "accuracy_count": 168,
+      "accuracy": 0.84,
+      "baseline_accuracy_count": 165,
+      "fixes": 3,
+      "harms": 0,
+      "clean_tasks": 85,
+      "clean_fixes": 0,
+      "clean_harms": 0
+    },
+    {
+      "policy": "high_confidence_top11",
+      "tasks": 200,
+      "switches": 1,
+      "switch_rate": 0.005,
+      "accuracy_count": 166,
+      "accuracy": 0.83,
+      "baseline_accuracy_count": 165,
+      "fixes": 1,
+      "harms": 0,
+      "clean_tasks": 85,
+      "clean_fixes": 0,
+      "clean_harms": 0
+    },
+    {
+      "policy": "baseline_invalid_top10",
+      "tasks": 200,
+      "switches": 1,
+      "switch_rate": 0.005,
+      "accuracy_count": 166,
+      "accuracy": 0.83,
+      "baseline_accuracy_count": 165,
+      "fixes": 1,
+      "harms": 0,
+      "clean_tasks": 85,
+      "clean_fixes": 0,
+      "clean_harms": 0
+    },
+    {
+      "policy": "baseline_consensus_guard_top3",
+      "tasks": 200,
+      "switches": 9,
+      "switch_rate": 0.045,
+      "accuracy_count": 170,
+      "accuracy": 0.85,
+      "baseline_accuracy_count": 165,
+      "fixes": 5,
+      "harms": 0,
+      "clean_tasks": 85,
+      "clean_fixes": 1,
+      "clean_harms": 0
+    },
+    {
+      "policy": "baseline_consensus_guard_top10",
+      "tasks": 200,
+      "switches": 4,
+      "switch_rate": 0.02,
+      "accuracy_count": 168,
+      "accuracy": 0.84,
+      "baseline_accuracy_count": 165,
+      "fixes": 3,
+      "harms": 0,
+      "clean_tasks": 85,
+      "clean_fixes": 0,
+      "clean_harms": 0
+    }
+  ],
+  "tests": {
+    "tests.test_r236_conservative_abstention_policy": "5/5 passed",
+    "tests.test_r234_tiny_diagnostic_failure_analysis": "4/4 passed"
+  }
+}

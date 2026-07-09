@@ -1,0 +1,44 @@
+{
+  "rule": "r138_router_repair_forwarding_prompt_hardening",
+  "prompt_hardening_only": true,
+  "no_api_run": true,
+  "prompt_as_edge_first_class": true,
+  "node_only_promptnode_sufficient": false,
+  "edge_prompt_types": [
+    "evidence_write",
+    "memory_to_verifier_read",
+    "mismatch_repair_escalation",
+    "router_to_final_answer_contract",
+    "verifier_to_router_forward"
+  ],
+  "r137_forwarding_gap_confirmed": true,
+  "r137_task250_verifier_repair_candidate_present": true,
+  "r137_task250_router_repair_forwarded": false,
+  "allowed_repair_status_values": [
+    "NUMERIC_NEAREST_WITH_TYPO_CHECK",
+    "NUMERIC_TYPO_REPAIR",
+    "SYMBOLIC_EQUIVALENCE_REPAIR"
+  ],
+  "pn_verifier_repair_status_values_hardened": true,
+  "pn_verifier_forbids_exact_as_repair_status": true,
+  "pn_router_repair_forwarding_required": true,
+  "router_supported_none_repair_coexistence": true,
+  "pn_router_does_not_reset_repair_fields": true,
+  "no_task_id_routing": true,
+  "multi_dataset_transfer_required": true,
+  "decision_method": "EdgePromptRepairContractFinalRefer",
+  "switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "fallback_tasks": [
+    "task_8",
+    "task_188"
+  ],
+  "task_split_path": "experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json",
+  "evaluate_command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json --llm_name gpt-4o-2024-08-06 --decision_method EdgePromptRepairContractFinalRefer --output_file experiment/aqua/aqua_tail34_r139_edge_prompt_repair_forwarding_switch_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r139_edge_prompt_repair_forwarding_switch_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 5",
+  "same_two_switch_task_smoke_allowed_next": true,
+  "broad_api_allowed_next": false,
+  "next_protocol": "bounded_router_repair_forwarding_api_smoke",
+  "claim_boundary": "prompt-hardening protocol only; no API, accuracy, clean-recovery, transfer, robustness, or SCI-readiness claim"
+}

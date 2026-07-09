@@ -1,0 +1,234 @@
+{
+  "run_id": "R411",
+  "title": "Curriculum gate ablation and goal audit",
+  "claim_boundary": "R411 is a same-split diagnostic ablation. It may define a prospective gate hypothesis, but it cannot support a positive nonmath paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 32,
+  "arg_correct": 27,
+  "candidate_correct": 28,
+  "gate_ablations": [
+    {
+      "name": "parser_repair_conservative",
+      "hybrid_correct": 27,
+      "delta_correct": 0,
+      "gate_forward_count": 4,
+      "fixes": 0,
+      "harms": 0,
+      "wrong_forward_count": 0,
+      "forward_task_ids": [
+        "MMLU-nonstem-world_religions_test-8",
+        "MMLU-nonstem-world_religions_test-9",
+        "MMLU-nonstem-philosophy_test-9",
+        "MMLU-nonstem-logical_fallacies_test-8"
+      ],
+      "fix_task_ids": [],
+      "harm_task_ids": [],
+      "wrong_forward_task_ids": []
+    },
+    {
+      "name": "relaxed_margin_015",
+      "hybrid_correct": 28,
+      "delta_correct": 1,
+      "gate_forward_count": 28,
+      "fixes": 2,
+      "harms": 1,
+      "wrong_forward_count": 4,
+      "forward_task_ids": [
+        "MMLU-nonstem-high_school_world_history_test-10",
+        "MMLU-nonstem-high_school_world_history_test-11",
+        "MMLU-nonstem-high_school_world_history_test-12",
+        "MMLU-nonstem-high_school_world_history_test-13",
+        "MMLU-nonstem-high_school_government_and_politics_test-10",
+        "MMLU-nonstem-high_school_government_and_politics_test-11",
+        "MMLU-nonstem-high_school_government_and_politics_test-12",
+        "MMLU-nonstem-sociology_test-8",
+        "MMLU-nonstem-sociology_test-9",
+        "MMLU-nonstem-sociology_test-10",
+        "MMLU-nonstem-sociology_test-11",
+        "MMLU-nonstem-moral_disputes_test-8",
+        "MMLU-nonstem-moral_disputes_test-10",
+        "MMLU-nonstem-moral_disputes_test-11",
+        "MMLU-nonstem-world_religions_test-8",
+        "MMLU-nonstem-world_religions_test-9",
+        "MMLU-nonstem-world_religions_test-10",
+        "MMLU-nonstem-world_religions_test-11",
+        "MMLU-nonstem-philosophy_test-8",
+        "MMLU-nonstem-philosophy_test-9",
+        "MMLU-nonstem-philosophy_test-10",
+        "MMLU-nonstem-philosophy_test-11",
+        "MMLU-nonstem-logical_fallacies_test-8",
+        "MMLU-nonstem-logical_fallacies_test-9",
+        "MMLU-nonstem-logical_fallacies_test-10",
+        "MMLU-nonstem-logical_fallacies_test-11",
+        "MMLU-nonstem-business_ethics_test-8",
+        "MMLU-nonstem-business_ethics_test-9"
+      ],
+      "fix_task_ids": [
+        "MMLU-nonstem-sociology_test-10",
+        "MMLU-nonstem-logical_fallacies_test-9"
+      ],
+      "harm_task_ids": [
+        "MMLU-nonstem-sociology_test-8"
+      ],
+      "wrong_forward_task_ids": [
+        "MMLU-nonstem-sociology_test-8",
+        "MMLU-nonstem-sociology_test-9",
+        "MMLU-nonstem-moral_disputes_test-10",
+        "MMLU-nonstem-logical_fallacies_test-11"
+      ]
+    },
+    {
+      "name": "logical_fallacy_definition_gate",
+      "hybrid_correct": 28,
+      "delta_correct": 1,
+      "gate_forward_count": 4,
+      "fixes": 1,
+      "harms": 0,
+      "wrong_forward_count": 1,
+      "forward_task_ids": [
+        "MMLU-nonstem-logical_fallacies_test-8",
+        "MMLU-nonstem-logical_fallacies_test-9",
+        "MMLU-nonstem-logical_fallacies_test-10",
+        "MMLU-nonstem-logical_fallacies_test-11"
+      ],
+      "fix_task_ids": [
+        "MMLU-nonstem-logical_fallacies_test-9"
+      ],
+      "harm_task_ids": [],
+      "wrong_forward_task_ids": [
+        "MMLU-nonstem-logical_fallacies_test-11"
+      ]
+    },
+    {
+      "name": "non_sociology_relaxed_gate",
+      "hybrid_correct": 28,
+      "delta_correct": 1,
+      "gate_forward_count": 24,
+      "fixes": 1,
+      "harms": 0,
+      "wrong_forward_count": 2,
+      "forward_task_ids": [
+        "MMLU-nonstem-high_school_world_history_test-10",
+        "MMLU-nonstem-high_school_world_history_test-11",
+        "MMLU-nonstem-high_school_world_history_test-12",
+        "MMLU-nonstem-high_school_world_history_test-13",
+        "MMLU-nonstem-high_school_government_and_politics_test-10",
+        "MMLU-nonstem-high_school_government_and_politics_test-11",
+        "MMLU-nonstem-high_school_government_and_politics_test-12",
+        "MMLU-nonstem-moral_disputes_test-8",
+        "MMLU-nonstem-moral_disputes_test-10",
+        "MMLU-nonstem-moral_disputes_test-11",
+        "MMLU-nonstem-world_religions_test-8",
+        "MMLU-nonstem-world_religions_test-9",
+        "MMLU-nonstem-world_religions_test-10",
+        "MMLU-nonstem-world_religions_test-11",
+        "MMLU-nonstem-philosophy_test-8",
+        "MMLU-nonstem-philosophy_test-9",
+        "MMLU-nonstem-philosophy_test-10",
+        "MMLU-nonstem-philosophy_test-11",
+        "MMLU-nonstem-logical_fallacies_test-8",
+        "MMLU-nonstem-logical_fallacies_test-9",
+        "MMLU-nonstem-logical_fallacies_test-10",
+        "MMLU-nonstem-logical_fallacies_test-11",
+        "MMLU-nonstem-business_ethics_test-8",
+        "MMLU-nonstem-business_ethics_test-9"
+      ],
+      "fix_task_ids": [
+        "MMLU-nonstem-logical_fallacies_test-9"
+      ],
+      "harm_task_ids": [],
+      "wrong_forward_task_ids": [
+        "MMLU-nonstem-moral_disputes_test-10",
+        "MMLU-nonstem-logical_fallacies_test-11"
+      ]
+    },
+    {
+      "name": "logic_moral_philosophy_gate",
+      "hybrid_correct": 28,
+      "delta_correct": 1,
+      "gate_forward_count": 11,
+      "fixes": 1,
+      "harms": 0,
+      "wrong_forward_count": 2,
+      "forward_task_ids": [
+        "MMLU-nonstem-moral_disputes_test-8",
+        "MMLU-nonstem-moral_disputes_test-10",
+        "MMLU-nonstem-moral_disputes_test-11",
+        "MMLU-nonstem-philosophy_test-8",
+        "MMLU-nonstem-philosophy_test-9",
+        "MMLU-nonstem-philosophy_test-10",
+        "MMLU-nonstem-philosophy_test-11",
+        "MMLU-nonstem-logical_fallacies_test-8",
+        "MMLU-nonstem-logical_fallacies_test-9",
+        "MMLU-nonstem-logical_fallacies_test-10",
+        "MMLU-nonstem-logical_fallacies_test-11"
+      ],
+      "fix_task_ids": [
+        "MMLU-nonstem-logical_fallacies_test-9"
+      ],
+      "harm_task_ids": [],
+      "wrong_forward_task_ids": [
+        "MMLU-nonstem-moral_disputes_test-10",
+        "MMLU-nonstem-logical_fallacies_test-11"
+      ]
+    }
+  ],
+  "best_diagnostic_gate": {
+    "name": "logical_fallacy_definition_gate",
+    "hybrid_correct": 28,
+    "delta_correct": 1,
+    "gate_forward_count": 4,
+    "fixes": 1,
+    "harms": 0,
+    "wrong_forward_count": 1,
+    "forward_task_ids": [
+      "MMLU-nonstem-logical_fallacies_test-8",
+      "MMLU-nonstem-logical_fallacies_test-9",
+      "MMLU-nonstem-logical_fallacies_test-10",
+      "MMLU-nonstem-logical_fallacies_test-11"
+    ],
+    "fix_task_ids": [
+      "MMLU-nonstem-logical_fallacies_test-9"
+    ],
+    "harm_task_ids": [],
+    "wrong_forward_task_ids": [
+      "MMLU-nonstem-logical_fallacies_test-11"
+    ]
+  },
+  "same_split_diagnostic_only": true,
+  "prospective_gate_hypothesis": {
+    "name": "definition_challenge_gate",
+    "source": "logical_fallacy_definition_gate",
+    "description": "Forward only for definition-heavy logical-fallacy style items when parser-repaired node evidence passes relaxed margin 0.15, contradiction-free, adversarial-challenge, and option-binding contracts.",
+    "must_be_tested_on_fresh_split": true
+  },
+  "iterations_since_last_goal_check": [
+    "R407",
+    "R408",
+    "R409",
+    "R410",
+    "R411"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_designer_remains_main_baseline": true,
+    "promptnode_first_class_boundary_preserved": true,
+    "nonmath_positive_claim_not_yet_supported": true,
+    "fresh_transfer_required_next": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "positive_nonmath_claim_allowed": false,
+    "same_split_gate_ablation_claim_allowed": false,
+    "fresh_prospective_gate_preflight_allowed_next": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R412_fresh_definition_challenge_gate_preflight",
+  "input_jsonl": "experiment/mmlu/run_logs/mmlu_r409_nonmath_curriculum_api_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r411_curriculum_gate_ablation_and_goal_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r411_curriculum_gate_ablation_and_goal_audit_report.md"
+}

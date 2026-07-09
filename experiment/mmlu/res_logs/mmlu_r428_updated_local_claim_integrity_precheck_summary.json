@@ -1,0 +1,130 @@
+{
+  "run_id": "R428",
+  "title": "Updated local claim integrity precheck",
+  "claim_boundary": "R428 mechanically verifies updated C6 and STEM cost-estimate rows. It does not replace external integrity audit.",
+  "no_api": true,
+  "broad_api": false,
+  "checks": {
+    "source_files_exist": {
+      "status": "PASS",
+      "files": [
+        {
+          "path": "experiment/mmlu/res_logs/mmlu_r415_update_claim_matrix_after_nonmath_positive_summary.json",
+          "exists": true
+        },
+        {
+          "path": "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+          "exists": true
+        },
+        {
+          "path": "experiment/mmlu/res_logs/mmlu_r426_update_cost_table_with_stem_probe_and_goal_audit_summary.json",
+          "exists": true
+        }
+      ]
+    },
+    "claim_number_consistency": {
+      "status": "PASS",
+      "checked_claims": 6
+    },
+    "cost_row_consistency": {
+      "status": "PASS",
+      "checked_rows": [
+        "MMLU_STEM_R306_probe_estimate"
+      ]
+    },
+    "overclaim_boundary": {
+      "status": "PASS",
+      "broad_nonmath_claim_allowed": false
+    }
+  },
+  "claim_checks": [
+    {
+      "id": "C1_aqua_audit_clean_gain",
+      "claim_status": "supported",
+      "paper_use": "main_result",
+      "source": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "status": "supported"
+      },
+      "boundary_action": "carry_forward_previous_precheck"
+    },
+    {
+      "id": "C2_mmlu_stem_gain",
+      "claim_status": "supported",
+      "paper_use": "main_transfer_result",
+      "source": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "status": "supported"
+      },
+      "boundary_action": "carry_forward_previous_precheck"
+    },
+    {
+      "id": "C3_history_optionbinding_pilot_gain",
+      "claim_status": "partial",
+      "paper_use": "mechanism_pilot_or_appendix",
+      "source": "experiment/mmlu/res_logs/mmlu_r381_option_binding_fresh_eval_analysis_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "status": "partial"
+      },
+      "boundary_action": "carry_forward_previous_precheck"
+    },
+    {
+      "id": "C4_mixed_nonmath_no_harm",
+      "claim_status": "supported",
+      "paper_use": "boundary_no_harm_result",
+      "source": "experiment/mmlu/res_logs/mmlu_r396_larger_mixed_nonmath_fresh_analysis_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "status": "supported"
+      },
+      "boundary_action": "carry_forward_previous_precheck"
+    },
+    {
+      "id": "C5_broad_general_improvement",
+      "claim_status": "unsupported",
+      "paper_use": "forbidden_claim",
+      "source": "experiment/mmlu/res_logs/mmlu_r401_contrastive_verifier_targeted_analysis_and_goal_audit_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "status": "unsupported"
+      },
+      "boundary_action": "forbid_as_claim"
+    },
+    {
+      "id": "C6_definition_challenge_fresh_positive",
+      "claim_status": "supported_narrow",
+      "paper_use": "targeted_nonmath_transfer_result_or_appendix",
+      "source": "experiment/mmlu/res_logs/mmlu_r414_definition_challenge_gate_analysis_summary.json",
+      "status": "PASS",
+      "verified_values": {
+        "records": 24,
+        "arg_correct": 21,
+        "hybrid_correct": 22,
+        "candidate_correct": 21,
+        "fixes": 1,
+        "harms": 0,
+        "wrong_forward_count": 0
+      },
+      "boundary_action": "allow_narrow_targeted_claim_only"
+    }
+  ],
+  "cost_row_checks": {
+    "MMLU_STEM_R306_probe_estimate": {
+      "status": "PASS",
+      "score": "95/97",
+      "cost": 0.676454,
+      "cost_evidence": "probe_estimate_not_exact"
+    }
+  },
+  "external_review_required": true,
+  "integrity_audit_complete": false,
+  "paper_draft_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R429_paper_method_results_draft_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r428_updated_local_claim_integrity_precheck_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r428_updated_local_claim_integrity_precheck_report.md"
+}

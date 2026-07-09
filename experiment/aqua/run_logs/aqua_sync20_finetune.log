@@ -1,0 +1,840 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Starting new Aqua run, outputs to: output/aqua_sync20_model_20260707-230509
+
+==================== Stage 1: Pretraining Aqua Model ====================
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7470.79it/s]
+Precomputed 4 role embeddings, saved to ../ColdStartData_Aqua/precomputed_role_embeddings.pkl
+Found 21 graph files
+Filtered 21 successful graphs for pretraining
+Using all 21 graphs
+Created unified role mapping with 4 roles
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18538.96it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15581.52it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18778.29it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 13665.69it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 13570.39it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16712.96it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19398.02it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14513.16it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 13812.49it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 11995.04it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 12000.37it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14076.68it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19063.34it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18933.83it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22008.93it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 32782.92it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16187.55it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14397.56it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 32249.43it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16817.05it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17407.96it/s]
+DAG check: 21/21 graphs are DAG
+Updating node labels using unified role mapping
+Updating node labels using unified role mapping
+Loaded precomputed embeddings: 4 entries
+Using provided role mapping: 4 roles
+TOKENS: START=4, END=5
+Training model...
+/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:153: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  role_embeddings[i] = torch.tensor(graph.role_embeddings[node_idx])
+Epoch 1/100, Average Training Loss: 17.2165, Role Prediction Accuracy: 23.44%
+Epoch 1/100, Validation Loss: 14.8765, Validation Role Accuracy: 0.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 1, Validation loss: 14.8765
+Epoch 2/100, Average Training Loss: 13.6832, Role Prediction Accuracy: 35.94%
+Epoch 2/100, Validation Loss: 12.5823, Validation Role Accuracy: 0.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 2, Validation loss: 12.5823
+Epoch 3/100, Average Training Loss: 12.0333, Role Prediction Accuracy: 29.69%
+Epoch 3/100, Validation Loss: 11.3031, Validation Role Accuracy: 0.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 3, Validation loss: 11.3031
+Epoch 4/100, Average Training Loss: 10.8123, Role Prediction Accuracy: 37.50%
+Epoch 4/100, Validation Loss: 10.2377, Validation Role Accuracy: 0.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 4, Validation loss: 10.2377
+Epoch 5/100, Average Training Loss: 9.5579, Role Prediction Accuracy: 31.25%
+Epoch 5/100, Validation Loss: 9.1788, Validation Role Accuracy: 0.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 5, Validation loss: 9.1788
+Epoch 6/100, Average Training Loss: 8.4805, Role Prediction Accuracy: 34.38%
+Epoch 6/100, Validation Loss: 8.1778, Validation Role Accuracy: 0.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 6, Validation loss: 8.1778
+Epoch 7/100, Average Training Loss: 7.5368, Role Prediction Accuracy: 23.44%
+Epoch 7/100, Validation Loss: 7.1530, Validation Role Accuracy: 0.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 7, Validation loss: 7.1530
+Epoch 8/100, Average Training Loss: 6.5168, Role Prediction Accuracy: 39.06%
+Epoch 8/100, Validation Loss: 6.2386, Validation Role Accuracy: 16.67%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 8, Validation loss: 6.2386
+Epoch 9/100, Average Training Loss: 5.7617, Role Prediction Accuracy: 46.88%
+Epoch 9/100, Validation Loss: 5.4374, Validation Role Accuracy: 16.67%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 9, Validation loss: 5.4374
+Epoch 10/100, Average Training Loss: 5.0016, Role Prediction Accuracy: 50.00%
+Epoch 10/100, Validation Loss: 4.7772, Validation Role Accuracy: 16.67%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 10, Validation loss: 4.7772
+Epoch 11/100, Average Training Loss: 4.3456, Role Prediction Accuracy: 34.38%
+Epoch 11/100, Validation Loss: 4.2399, Validation Role Accuracy: 16.67%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 11, Validation loss: 4.2399
+Epoch 12/100, Average Training Loss: 3.7882, Role Prediction Accuracy: 40.62%
+Epoch 12/100, Validation Loss: 3.7276, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 12, Validation loss: 3.7276
+Epoch 13/100, Average Training Loss: 3.3989, Role Prediction Accuracy: 42.19%
+Epoch 13/100, Validation Loss: 3.3639, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 13, Validation loss: 3.3639
+Epoch 14/100, Average Training Loss: 3.0711, Role Prediction Accuracy: 42.19%
+Epoch 14/100, Validation Loss: 3.0163, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 14, Validation loss: 3.0163
+Epoch 15/100, Average Training Loss: 2.7440, Role Prediction Accuracy: 45.31%
+Epoch 15/100, Validation Loss: 2.7624, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 15, Validation loss: 2.7624
+Epoch 16/100, Average Training Loss: 2.4961, Role Prediction Accuracy: 37.50%
+Epoch 16/100, Validation Loss: 2.5450, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 16, Validation loss: 2.5450
+Epoch 17/100, Average Training Loss: 2.3061, Role Prediction Accuracy: 40.62%
+Epoch 17/100, Validation Loss: 2.3660, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 17, Validation loss: 2.3660
+Epoch 18/100, Average Training Loss: 2.1835, Role Prediction Accuracy: 42.19%
+Epoch 18/100, Validation Loss: 2.2727, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 18, Validation loss: 2.2727
+Epoch 19/100, Average Training Loss: 2.0665, Role Prediction Accuracy: 32.81%
+Epoch 19/100, Validation Loss: 2.1093, Validation Role Accuracy: 33.33%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 19, Validation loss: 2.1093
+Epoch 20/100, Average Training Loss: 2.0370, Role Prediction Accuracy: 40.62%
+Epoch 20/100, Validation Loss: 2.0494, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 20, Validation loss: 2.0494
+Epoch 21/100, Average Training Loss: 1.9507, Role Prediction Accuracy: 43.75%
+Epoch 21/100, Validation Loss: 2.0739, Validation Role Accuracy: 25.00%
+Epoch 22/100, Average Training Loss: 1.8877, Role Prediction Accuracy: 43.75%
+Epoch 22/100, Validation Loss: 2.0294, Validation Role Accuracy: 33.33%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 22, Validation loss: 2.0294
+Epoch 23/100, Average Training Loss: 1.8604, Role Prediction Accuracy: 45.31%
+Epoch 23/100, Validation Loss: 2.0641, Validation Role Accuracy: 16.67%
+Epoch 24/100, Average Training Loss: 1.8309, Role Prediction Accuracy: 45.31%
+Epoch 24/100, Validation Loss: 2.1049, Validation Role Accuracy: 16.67%
+Epoch 25/100, Average Training Loss: 1.8368, Role Prediction Accuracy: 39.06%
+Epoch 25/100, Validation Loss: 1.9557, Validation Role Accuracy: 25.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 25, Validation loss: 1.9557
+Epoch 26/100, Average Training Loss: 1.7553, Role Prediction Accuracy: 42.19%
+Epoch 26/100, Validation Loss: 1.9487, Validation Role Accuracy: 16.67%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 26, Validation loss: 1.9487
+Epoch 27/100, Average Training Loss: 1.7484, Role Prediction Accuracy: 46.88%
+Epoch 27/100, Validation Loss: 1.9680, Validation Role Accuracy: 25.00%
+Epoch 28/100, Average Training Loss: 1.7385, Role Prediction Accuracy: 43.75%
+Epoch 28/100, Validation Loss: 1.9551, Validation Role Accuracy: 16.67%
+Epoch 29/100, Average Training Loss: 1.7353, Role Prediction Accuracy: 42.19%
+Epoch 29/100, Validation Loss: 1.8633, Validation Role Accuracy: 33.33%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 29, Validation loss: 1.8633
+Epoch 30/100, Average Training Loss: 1.7299, Role Prediction Accuracy: 32.81%
+Epoch 30/100, Validation Loss: 1.7985, Validation Role Accuracy: 33.33%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/best_model.pth, Epoch 30, Validation loss: 1.7985
+Epoch 31/100, Average Training Loss: 1.7310, Role Prediction Accuracy: 40.62%
+Epoch 31/100, Validation Loss: 1.8213, Validation Role Accuracy: 25.00%
+Epoch 32/100, Average Training Loss: 1.7099, Role Prediction Accuracy: 48.44%
+Epoch 32/100, Validation Loss: 1.8913, Validation Role Accuracy: 25.00%
+Epoch 33/100, Average Training Loss: 1.7012, Role Prediction Accuracy: 42.19%
+Epoch 33/100, Validation Loss: 1.9889, Validation Role Accuracy: 25.00%
+Epoch 34/100, Average Training Loss: 1.6708, Role Prediction Accuracy: 48.44%
+Epoch 34/100, Validation Loss: 2.1359, Validation Role Accuracy: 16.67%
+Epoch 35/100, Average Training Loss: 1.6864, Role Prediction Accuracy: 43.75%
+Epoch 35/100, Validation Loss: 2.1619, Validation Role Accuracy: 16.67%
+Epoch 36/100, Average Training Loss: 1.6438, Role Prediction Accuracy: 48.44%
+Epoch 36/100, Validation Loss: 2.1921, Validation Role Accuracy: 16.67%
+Epoch 37/100, Average Training Loss: 1.6880, Role Prediction Accuracy: 45.31%
+Epoch 37/100, Validation Loss: 2.0808, Validation Role Accuracy: 16.67%
+Epoch 38/100, Average Training Loss: 1.6851, Role Prediction Accuracy: 43.75%
+Epoch 38/100, Validation Loss: 1.9834, Validation Role Accuracy: 25.00%
+Epoch 39/100, Average Training Loss: 1.6558, Role Prediction Accuracy: 42.19%
+Epoch 39/100, Validation Loss: 1.9579, Validation Role Accuracy: 33.33%
+Epoch 40/100, Average Training Loss: 1.6897, Role Prediction Accuracy: 42.19%
+Epoch 40/100, Validation Loss: 1.9721, Validation Role Accuracy: 25.00%
+Epoch 41/100, Average Training Loss: 1.6412, Role Prediction Accuracy: 50.00%
+Epoch 41/100, Validation Loss: 2.0044, Validation Role Accuracy: 25.00%
+Epoch 42/100, Average Training Loss: 1.6274, Role Prediction Accuracy: 43.75%
+Epoch 42/100, Validation Loss: 2.0411, Validation Role Accuracy: 16.67%
+Epoch 43/100, Average Training Loss: 1.6276, Role Prediction Accuracy: 51.56%
+Epoch 43/100, Validation Loss: 2.1664, Validation Role Accuracy: 16.67%
+Epoch 44/100, Average Training Loss: 1.6291, Role Prediction Accuracy: 45.31%
+Epoch 44/100, Validation Loss: 2.2211, Validation Role Accuracy: 16.67%
+Epoch 45/100, Average Training Loss: 1.5915, Role Prediction Accuracy: 50.00%
+Epoch 45/100, Validation Loss: 2.2810, Validation Role Accuracy: 16.67%
+Epoch 46/100, Average Training Loss: 1.6971, Role Prediction Accuracy: 39.06%
+Epoch 46/100, Validation Loss: 2.1821, Validation Role Accuracy: 16.67%
+Epoch 47/100, Average Training Loss: 1.6383, Role Prediction Accuracy: 42.19%
+Epoch 47/100, Validation Loss: 1.9565, Validation Role Accuracy: 16.67%
+Epoch 48/100, Average Training Loss: 1.6387, Role Prediction Accuracy: 43.75%
+Epoch 48/100, Validation Loss: 1.9453, Validation Role Accuracy: 33.33%
+Epoch 49/100, Average Training Loss: 1.6350, Role Prediction Accuracy: 51.56%
+Epoch 49/100, Validation Loss: 1.9990, Validation Role Accuracy: 25.00%
+Epoch 50/100, Average Training Loss: 1.5742, Role Prediction Accuracy: 50.00%
+Epoch 50/100, Validation Loss: 2.1034, Validation Role Accuracy: 25.00%
+Epoch 51/100, Average Training Loss: 1.5773, Role Prediction Accuracy: 51.56%
+Epoch 51/100, Validation Loss: 2.2372, Validation Role Accuracy: 16.67%
+Epoch 52/100, Average Training Loss: 1.5528, Role Prediction Accuracy: 57.81%
+Epoch 52/100, Validation Loss: 2.3443, Validation Role Accuracy: 16.67%
+Epoch 53/100, Average Training Loss: 1.6414, Role Prediction Accuracy: 43.75%
+Epoch 53/100, Validation Loss: 2.2854, Validation Role Accuracy: 16.67%
+Epoch 54/100, Average Training Loss: 1.5912, Role Prediction Accuracy: 43.75%
+Epoch 54/100, Validation Loss: 2.2383, Validation Role Accuracy: 16.67%
+Epoch 55/100, Average Training Loss: 1.6074, Role Prediction Accuracy: 40.62%
+Epoch 55/100, Validation Loss: 2.1089, Validation Role Accuracy: 25.00%
+Epoch 56/100, Average Training Loss: 1.5683, Role Prediction Accuracy: 45.31%
+Epoch 56/100, Validation Loss: 2.0809, Validation Role Accuracy: 25.00%
+Epoch 57/100, Average Training Loss: 1.5718, Role Prediction Accuracy: 46.88%
+Epoch 57/100, Validation Loss: 2.1284, Validation Role Accuracy: 25.00%
+Epoch 58/100, Average Training Loss: 1.5360, Role Prediction Accuracy: 48.44%
+Epoch 58/100, Validation Loss: 2.1827, Validation Role Accuracy: 16.67%
+Epoch 59/100, Average Training Loss: 1.5693, Role Prediction Accuracy: 45.31%
+Epoch 59/100, Validation Loss: 2.2188, Validation Role Accuracy: 16.67%
+Epoch 60/100, Average Training Loss: 1.5403, Role Prediction Accuracy: 50.00%
+Epoch 60/100, Validation Loss: 2.1427, Validation Role Accuracy: 16.67%
+Epoch 61/100, Average Training Loss: 1.5149, Role Prediction Accuracy: 56.25%
+Epoch 61/100, Validation Loss: 2.0745, Validation Role Accuracy: 16.67%
+Epoch 62/100, Average Training Loss: 1.5475, Role Prediction Accuracy: 50.00%
+Epoch 62/100, Validation Loss: 2.1686, Validation Role Accuracy: 16.67%
+Epoch 63/100, Average Training Loss: 1.5192, Role Prediction Accuracy: 54.69%
+Epoch 63/100, Validation Loss: 2.3266, Validation Role Accuracy: 16.67%
+Epoch 64/100, Average Training Loss: 1.4861, Role Prediction Accuracy: 51.56%
+Epoch 64/100, Validation Loss: 2.4800, Validation Role Accuracy: 16.67%
+Epoch 65/100, Average Training Loss: 1.5161, Role Prediction Accuracy: 50.00%
+Epoch 65/100, Validation Loss: 2.3977, Validation Role Accuracy: 16.67%
+Epoch 66/100, Average Training Loss: 1.5117, Role Prediction Accuracy: 48.44%
+Epoch 66/100, Validation Loss: 2.3637, Validation Role Accuracy: 16.67%
+Epoch 67/100, Average Training Loss: 1.4923, Role Prediction Accuracy: 54.69%
+Epoch 67/100, Validation Loss: 2.2988, Validation Role Accuracy: 16.67%
+Epoch 68/100, Average Training Loss: 1.4656, Role Prediction Accuracy: 56.25%
+Epoch 68/100, Validation Loss: 2.3502, Validation Role Accuracy: 16.67%
+Epoch 69/100, Average Training Loss: 1.4939, Role Prediction Accuracy: 43.75%
+Epoch 69/100, Validation Loss: 2.3174, Validation Role Accuracy: 16.67%
+Epoch 70/100, Average Training Loss: 1.4723, Role Prediction Accuracy: 45.31%
+Epoch 70/100, Validation Loss: 2.2540, Validation Role Accuracy: 25.00%
+Epoch 71/100, Average Training Loss: 1.4894, Role Prediction Accuracy: 46.88%
+Epoch 71/100, Validation Loss: 2.1039, Validation Role Accuracy: 25.00%
+Epoch 72/100, Average Training Loss: 1.4604, Role Prediction Accuracy: 51.56%
+Epoch 72/100, Validation Loss: 2.1000, Validation Role Accuracy: 16.67%
+Epoch 73/100, Average Training Loss: 1.4315, Role Prediction Accuracy: 57.81%
+Epoch 73/100, Validation Loss: 2.1732, Validation Role Accuracy: 16.67%
+Epoch 74/100, Average Training Loss: 1.4578, Role Prediction Accuracy: 54.69%
+Epoch 74/100, Validation Loss: 2.2191, Validation Role Accuracy: 16.67%
+Epoch 75/100, Average Training Loss: 1.4294, Role Prediction Accuracy: 50.00%
+Epoch 75/100, Validation Loss: 2.2063, Validation Role Accuracy: 16.67%
+Epoch 76/100, Average Training Loss: 1.4074, Role Prediction Accuracy: 54.69%
+Epoch 76/100, Validation Loss: 2.1161, Validation Role Accuracy: 25.00%
+Epoch 77/100, Average Training Loss: 1.4069, Role Prediction Accuracy: 51.56%
+Epoch 77/100, Validation Loss: 2.0800, Validation Role Accuracy: 16.67%
+Epoch 78/100, Average Training Loss: 1.4358, Role Prediction Accuracy: 50.00%
+Epoch 78/100, Validation Loss: 2.1469, Validation Role Accuracy: 0.00%
+Epoch 79/100, Average Training Loss: 1.4189, Role Prediction Accuracy: 56.25%
+Epoch 79/100, Validation Loss: 2.2751, Validation Role Accuracy: 16.67%
+Epoch 80/100, Average Training Loss: 1.3899, Role Prediction Accuracy: 54.69%
+Epoch 80/100, Validation Loss: 2.3237, Validation Role Accuracy: 16.67%
+Epoch 81/100, Average Training Loss: 1.4114, Role Prediction Accuracy: 56.25%
+Epoch 81/100, Validation Loss: 2.4718, Validation Role Accuracy: 16.67%
+Epoch 82/100, Average Training Loss: 1.4110, Role Prediction Accuracy: 53.12%
+Epoch 82/100, Validation Loss: 2.3760, Validation Role Accuracy: 16.67%
+Epoch 83/100, Average Training Loss: 1.3346, Role Prediction Accuracy: 59.38%
+Epoch 83/100, Validation Loss: 2.2141, Validation Role Accuracy: 16.67%
+Epoch 84/100, Average Training Loss: 1.3506, Role Prediction Accuracy: 57.81%
+Epoch 84/100, Validation Loss: 2.1336, Validation Role Accuracy: 16.67%
+Epoch 85/100, Average Training Loss: 1.3380, Role Prediction Accuracy: 56.25%
+Epoch 85/100, Validation Loss: 2.1014, Validation Role Accuracy: 16.67%
+Epoch 86/100, Average Training Loss: 1.3352, Role Prediction Accuracy: 59.38%
+Epoch 86/100, Validation Loss: 2.1700, Validation Role Accuracy: 16.67%
+Epoch 87/100, Average Training Loss: 1.2848, Role Prediction Accuracy: 57.81%
+Epoch 87/100, Validation Loss: 2.2381, Validation Role Accuracy: 16.67%
+Epoch 88/100, Average Training Loss: 1.2913, Role Prediction Accuracy: 64.06%
+Epoch 88/100, Validation Loss: 2.2085, Validation Role Accuracy: 16.67%
+Epoch 89/100, Average Training Loss: 1.2843, Role Prediction Accuracy: 62.50%
+Epoch 89/100, Validation Loss: 2.1759, Validation Role Accuracy: 16.67%
+Epoch 90/100, Average Training Loss: 1.2961, Role Prediction Accuracy: 54.69%
+Epoch 90/100, Validation Loss: 2.1980, Validation Role Accuracy: 0.00%
+Epoch 91/100, Average Training Loss: 1.2885, Role Prediction Accuracy: 53.12%
+Epoch 91/100, Validation Loss: 2.1912, Validation Role Accuracy: 0.00%
+Epoch 92/100, Average Training Loss: 1.2634, Role Prediction Accuracy: 60.94%
+Epoch 92/100, Validation Loss: 2.1579, Validation Role Accuracy: 16.67%
+Epoch 93/100, Average Training Loss: 1.2819, Role Prediction Accuracy: 53.12%
+Epoch 93/100, Validation Loss: 2.3522, Validation Role Accuracy: 16.67%
+Epoch 94/100, Average Training Loss: 1.2448, Role Prediction Accuracy: 62.50%
+Epoch 94/100, Validation Loss: 2.5625, Validation Role Accuracy: 16.67%
+Epoch 95/100, Average Training Loss: 1.2072, Role Prediction Accuracy: 67.19%
+Epoch 95/100, Validation Loss: 2.2008, Validation Role Accuracy: 16.67%
+Epoch 96/100, Average Training Loss: 1.2082, Role Prediction Accuracy: 62.50%
+Epoch 96/100, Validation Loss: 2.1816, Validation Role Accuracy: 16.67%
+Epoch 97/100, Average Training Loss: 1.2830, Role Prediction Accuracy: 56.25%
+Epoch 97/100, Validation Loss: 2.0741, Validation Role Accuracy: 16.67%
+Epoch 98/100, Average Training Loss: 1.2311, Role Prediction Accuracy: 62.50%
+Epoch 98/100, Validation Loss: 2.0997, Validation Role Accuracy: 8.33%
+Epoch 99/100, Average Training Loss: 1.2037, Role Prediction Accuracy: 62.50%
+Epoch 99/100, Validation Loss: 2.1493, Validation Role Accuracy: 16.67%
+Epoch 100/100, Average Training Loss: 1.1863, Role Prediction Accuracy: 60.94%
+Epoch 100/100, Validation Loss: 2.1684, Validation Role Accuracy: 0.00%
+Training completed. Best model at Epoch 30, Validation loss: 1.7985
+==================== Stage 1 Complete ====================
+2026-07-07 23:10:07.862 | INFO     | mas_framework.tools.reader.readers:parse_file:106 - Reading JSON Lines file from ../../datasets/AQuA/AQuA.jsonl.
+
+Loaded 12 tasks (from training set) for Aqua finetune data generation.
+
+==================== Stage 2a: Aqua Pruned Data ====================
+Loaded precomputed embeddings: 4 entries
+Using provided role mapping: 4 roles
+TOKENS: START=4, END=5
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23548.09it/s]
+Pruning:   0%|          | 0/12 [00:00<?, ?it/s]/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:591: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  t = torch.tensor(emb, device=self.args.device).float()
+Pruning:   8%|▊         | 1/12 [00:27<05:03, 27.56s/it]/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:591: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  t = torch.tensor(emb, device=self.args.device).float()
+Pruning:  42%|████▏     | 5/12 [01:00<01:17, 11.07s/it]Pruning:  75%|███████▌  | 9/12 [01:30<00:27,  9.08s/it]Pruning: 100%|██████████| 12/12 [01:30<00:00,  7.51s/it]
+Stage 2a done, 9 graphs saved
+
+==================== Stage 2b: Aqua Simple Data ====================
+Config Layered-4
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6983.50it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14821.88it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23109.73it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23072.70it/s]
+Processing Layered-4:   0%|          | 0/3 [00:00<?, ?it/s]Processing Layered-4:  33%|███▎      | 1/3 [00:28<00:57, 28.76s/it]Processing Layered-4:  67%|██████▋   | 2/3 [01:00<00:30, 30.59s/it]Processing Layered-4: 100%|██████████| 3/3 [01:47<00:00, 38.02s/it]Processing Layered-4: 100%|██████████| 3/3 [01:47<00:00, 35.83s/it]
+Config Layered-4 done, 10 / 12 solved
+Config Chain-2
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7180.71it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19995.06it/s]
+Processing Chain-2:   0%|          | 0/3 [00:00<?, ?it/s]Processing Chain-2:  33%|███▎      | 1/3 [00:18<00:37, 18.92s/it]Processing Chain-2:  67%|██████▋   | 2/3 [00:39<00:20, 20.08s/it]Processing Chain-2: 100%|██████████| 3/3 [01:15<00:00, 27.08s/it]Processing Chain-2: 100%|██████████| 3/3 [01:15<00:00, 25.07s/it]
+Config Chain-2 done, 11 / 12 solved
+Config Star-4
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 31807.78it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19976.57it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17991.56it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19094.51it/s]
+Processing Star-4:   0%|          | 0/3 [00:00<?, ?it/s]Processing Star-4:  33%|███▎      | 1/3 [00:28<00:56, 28.16s/it]Processing Star-4:  67%|██████▋   | 2/3 [00:57<00:28, 28.93s/it]Processing Star-4: 100%|██████████| 3/3 [01:44<00:00, 37.11s/it]Processing Star-4: 100%|██████████| 3/3 [01:44<00:00, 34.82s/it]
+Config Star-4 done, 10 / 12 solved
+Config Star-3
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7082.07it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15632.27it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14762.62it/s]
+Processing Star-3:   0%|          | 0/3 [00:00<?, ?it/s]Processing Star-3:  33%|███▎      | 1/3 [00:24<00:49, 24.63s/it]Processing Star-3:  67%|██████▋   | 2/3 [00:52<00:26, 26.25s/it]Processing Star-3: 100%|██████████| 3/3 [01:15<00:00, 25.11s/it]Processing Star-3: 100%|██████████| 3/3 [01:15<00:00, 25.26s/it]
+Config Star-3 done, 11 / 12 solved
+Config Chain-4
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6459.24it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17633.92it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20243.35it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15127.05it/s]
+Processing Chain-4:   0%|          | 0/3 [00:00<?, ?it/s]Processing Chain-4:  33%|███▎      | 1/3 [00:28<00:56, 28.24s/it]Processing Chain-4:  67%|██████▋   | 2/3 [00:58<00:29, 29.67s/it]Processing Chain-4: 100%|██████████| 3/3 [01:36<00:00, 33.36s/it]Processing Chain-4: 100%|██████████| 3/3 [01:36<00:00, 32.22s/it]
+Config Chain-4 done, 10 / 12 solved
+Config Chain-3
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20683.36it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20518.32it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16225.24it/s]
+Processing Chain-3:   0%|          | 0/3 [00:00<?, ?it/s]Processing Chain-3:  33%|███▎      | 1/3 [00:26<00:53, 26.96s/it]Processing Chain-3:  67%|██████▋   | 2/3 [00:57<00:29, 29.16s/it]Processing Chain-3: 100%|██████████| 3/3 [01:30<00:00, 30.77s/it]Processing Chain-3: 100%|██████████| 3/3 [01:30<00:00, 30.12s/it]
+Config Chain-3 done, 10 / 12 solved
+Stage 2b done
+
+==================== Stage 2c: Aqua Replay Data ====================
+Copying:   0%|          | 0/6 [00:00<?, ?it/s]Copying: 100%|██████████| 6/6 [00:00<00:00, 1980.63it/s]
+Stage 2c done
+
+==================== Stage 3: Aqua Finetuning ====================
+Loaded 4 precomputed role embeddings
+Found 77 graph files
+Using all 77 graphs
+Created unified role mapping with 4 roles
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18937.15it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19769.06it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19260.51it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15486.57it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19277.70it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22298.61it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20117.03it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16570.65it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15947.34it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17779.79it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15603.47it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17600.87it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16006.42it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15284.39it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15895.11it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17098.60it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19474.09it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14807.15it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18806.08it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21382.56it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19637.86it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17651.93it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19130.02it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20125.47it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18645.37it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19152.07it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15498.24it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14252.69it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15853.70it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14289.93it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15575.34it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15996.35it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15302.26it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21233.33it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20388.57it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15523.85it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14577.32it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 13610.15it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21272.01it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21593.11it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 13986.90it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18256.14it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22878.43it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14460.21it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18165.56it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22940.38it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18812.63it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14329.75it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20800.87it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19849.90it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18805.26it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21966.41it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18744.88it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19969.18it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19888.28it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16559.21it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17685.89it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17725.08it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21116.05it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15282.23it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18919.74it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15948.51it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15917.37it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18885.00it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 13855.46it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16815.75it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14443.78it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16533.23it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18269.27it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18275.45it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15925.00it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15879.92it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18744.88it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 25006.56it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18889.13it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19281.14it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'agent_nums', 'edge_attr', 'edge_index', 'question', 'x', 'mode', 'is_correct', 'y'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21396.33it/s]
+DAG check: 77/77 graphs are DAG
+Updating node labels using unified role mapping
+Loaded precomputed embeddings: 4 entries
+Using provided role mapping: 4 roles
+TOKENS: START=4, END=5
+Loaded pretrained weights, starting finetuning...
+Training model...
+/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:153: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  role_embeddings[i] = torch.tensor(graph.role_embeddings[node_idx])
+Epoch 1/100, Average Training Loss: 39.2628, Role Prediction Accuracy: 30.21%
+Epoch 1/100, Validation Loss: 19.7446, Validation Role Accuracy: 30.10%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 1, Validation loss: 19.7446
+Epoch 2/100, Average Training Loss: 11.7357, Role Prediction Accuracy: 29.79%
+Epoch 2/100, Validation Loss: 8.5703, Validation Role Accuracy: 32.40%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 2, Validation loss: 8.5703
+Epoch 3/100, Average Training Loss: 7.7063, Role Prediction Accuracy: 30.73%
+Epoch 3/100, Validation Loss: 6.6690, Validation Role Accuracy: 31.46%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 3, Validation loss: 6.6690
+Epoch 4/100, Average Training Loss: 6.2239, Role Prediction Accuracy: 32.08%
+Epoch 4/100, Validation Loss: 5.9961, Validation Role Accuracy: 32.81%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 4, Validation loss: 5.9961
+Epoch 5/100, Average Training Loss: 6.1197, Role Prediction Accuracy: 32.71%
+Epoch 5/100, Validation Loss: 5.7998, Validation Role Accuracy: 32.40%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 5, Validation loss: 5.7998
+Epoch 6/100, Average Training Loss: 5.7883, Role Prediction Accuracy: 33.96%
+Epoch 6/100, Validation Loss: 5.6698, Validation Role Accuracy: 32.60%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 6, Validation loss: 5.6698
+Epoch 7/100, Average Training Loss: 6.0663, Role Prediction Accuracy: 31.88%
+Epoch 7/100, Validation Loss: 5.6261, Validation Role Accuracy: 30.52%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 7, Validation loss: 5.6261
+Epoch 8/100, Average Training Loss: 5.9274, Role Prediction Accuracy: 31.67%
+Epoch 8/100, Validation Loss: 5.4866, Validation Role Accuracy: 30.00%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 8, Validation loss: 5.4866
+Epoch 9/100, Average Training Loss: 5.8492, Role Prediction Accuracy: 31.04%
+Epoch 9/100, Validation Loss: 5.3626, Validation Role Accuracy: 31.25%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 9, Validation loss: 5.3626
+Epoch 10/100, Average Training Loss: 5.4175, Role Prediction Accuracy: 29.90%
+Epoch 10/100, Validation Loss: 5.1244, Validation Role Accuracy: 32.29%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 10, Validation loss: 5.1244
+Epoch 11/100, Average Training Loss: 5.3819, Role Prediction Accuracy: 32.50%
+Epoch 11/100, Validation Loss: 5.2500, Validation Role Accuracy: 32.19%
+Epoch 12/100, Average Training Loss: 5.2616, Role Prediction Accuracy: 30.21%
+Epoch 12/100, Validation Loss: 4.9498, Validation Role Accuracy: 31.98%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 12, Validation loss: 4.9498
+Epoch 13/100, Average Training Loss: 4.9902, Role Prediction Accuracy: 32.81%
+Epoch 13/100, Validation Loss: 5.0284, Validation Role Accuracy: 30.42%
+Epoch 14/100, Average Training Loss: 5.2345, Role Prediction Accuracy: 29.38%
+Epoch 14/100, Validation Loss: 4.7602, Validation Role Accuracy: 33.85%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 14, Validation loss: 4.7602
+Epoch 15/100, Average Training Loss: 4.9735, Role Prediction Accuracy: 30.52%
+Epoch 15/100, Validation Loss: 4.8686, Validation Role Accuracy: 33.54%
+Epoch 16/100, Average Training Loss: 4.9664, Role Prediction Accuracy: 30.62%
+Epoch 16/100, Validation Loss: 4.6936, Validation Role Accuracy: 30.21%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 16, Validation loss: 4.6936
+Epoch 17/100, Average Training Loss: 5.0205, Role Prediction Accuracy: 32.08%
+Epoch 17/100, Validation Loss: 4.6348, Validation Role Accuracy: 32.60%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 17, Validation loss: 4.6348
+Epoch 18/100, Average Training Loss: 4.7627, Role Prediction Accuracy: 33.65%
+Epoch 18/100, Validation Loss: 4.9190, Validation Role Accuracy: 33.02%
+Epoch 19/100, Average Training Loss: 4.8810, Role Prediction Accuracy: 30.21%
+Epoch 19/100, Validation Loss: 4.4962, Validation Role Accuracy: 33.54%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 19, Validation loss: 4.4962
+Epoch 20/100, Average Training Loss: 4.5840, Role Prediction Accuracy: 31.98%
+Epoch 20/100, Validation Loss: 4.9688, Validation Role Accuracy: 33.44%
+Epoch 21/100, Average Training Loss: 4.5807, Role Prediction Accuracy: 32.08%
+Epoch 21/100, Validation Loss: 4.2273, Validation Role Accuracy: 33.75%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 21, Validation loss: 4.2273
+Epoch 22/100, Average Training Loss: 4.4378, Role Prediction Accuracy: 32.71%
+Epoch 22/100, Validation Loss: 4.1235, Validation Role Accuracy: 33.85%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 22, Validation loss: 4.1235
+Epoch 23/100, Average Training Loss: 4.6070, Role Prediction Accuracy: 33.96%
+Epoch 23/100, Validation Loss: 4.5125, Validation Role Accuracy: 32.19%
+Epoch 24/100, Average Training Loss: 4.5107, Role Prediction Accuracy: 35.00%
+Epoch 24/100, Validation Loss: 4.4813, Validation Role Accuracy: 34.06%
+Epoch 25/100, Average Training Loss: 4.2946, Role Prediction Accuracy: 30.62%
+Epoch 25/100, Validation Loss: 4.2564, Validation Role Accuracy: 36.88%
+Epoch 26/100, Average Training Loss: 4.5168, Role Prediction Accuracy: 36.04%
+Epoch 26/100, Validation Loss: 4.1958, Validation Role Accuracy: 32.19%
+Epoch 27/100, Average Training Loss: 4.2980, Role Prediction Accuracy: 33.44%
+Epoch 27/100, Validation Loss: 4.1431, Validation Role Accuracy: 34.90%
+Epoch 28/100, Average Training Loss: 4.1679, Role Prediction Accuracy: 33.65%
+Epoch 28/100, Validation Loss: 4.0844, Validation Role Accuracy: 38.96%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 28, Validation loss: 4.0844
+Epoch 29/100, Average Training Loss: 4.1098, Role Prediction Accuracy: 31.46%
+Epoch 29/100, Validation Loss: 3.6887, Validation Role Accuracy: 35.42%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 29, Validation loss: 3.6887
+Epoch 30/100, Average Training Loss: 4.0411, Role Prediction Accuracy: 40.00%
+Epoch 30/100, Validation Loss: 4.0644, Validation Role Accuracy: 39.06%
+Epoch 31/100, Average Training Loss: 4.2829, Role Prediction Accuracy: 34.37%
+Epoch 31/100, Validation Loss: 3.6984, Validation Role Accuracy: 33.02%
+Epoch 32/100, Average Training Loss: 3.7172, Role Prediction Accuracy: 36.88%
+Epoch 32/100, Validation Loss: 3.4597, Validation Role Accuracy: 42.71%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 32, Validation loss: 3.4597
+Epoch 33/100, Average Training Loss: 3.8571, Role Prediction Accuracy: 35.10%
+Epoch 33/100, Validation Loss: 3.4306, Validation Role Accuracy: 39.79%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 33, Validation loss: 3.4306
+Epoch 34/100, Average Training Loss: 3.7141, Role Prediction Accuracy: 30.52%
+Epoch 34/100, Validation Loss: 3.4731, Validation Role Accuracy: 42.92%
+Epoch 35/100, Average Training Loss: 3.6971, Role Prediction Accuracy: 38.33%
+Epoch 35/100, Validation Loss: 3.5535, Validation Role Accuracy: 36.25%
+Epoch 36/100, Average Training Loss: 3.6877, Role Prediction Accuracy: 39.27%
+Epoch 36/100, Validation Loss: 3.8570, Validation Role Accuracy: 41.46%
+Epoch 37/100, Average Training Loss: 3.5612, Role Prediction Accuracy: 32.29%
+Epoch 37/100, Validation Loss: 3.3393, Validation Role Accuracy: 44.38%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 37, Validation loss: 3.3393
+Epoch 38/100, Average Training Loss: 3.4162, Role Prediction Accuracy: 38.44%
+Epoch 38/100, Validation Loss: 3.3832, Validation Role Accuracy: 39.37%
+Epoch 39/100, Average Training Loss: 3.2647, Role Prediction Accuracy: 37.81%
+Epoch 39/100, Validation Loss: 3.7467, Validation Role Accuracy: 40.83%
+Epoch 40/100, Average Training Loss: 3.5237, Role Prediction Accuracy: 41.25%
+Epoch 40/100, Validation Loss: 3.4138, Validation Role Accuracy: 40.52%
+Epoch 41/100, Average Training Loss: 3.3073, Role Prediction Accuracy: 44.90%
+Epoch 41/100, Validation Loss: 3.4285, Validation Role Accuracy: 44.69%
+Epoch 42/100, Average Training Loss: 3.2783, Role Prediction Accuracy: 42.19%
+Epoch 42/100, Validation Loss: 3.6999, Validation Role Accuracy: 43.54%
+Epoch 43/100, Average Training Loss: 3.4863, Role Prediction Accuracy: 44.27%
+Epoch 43/100, Validation Loss: 3.2727, Validation Role Accuracy: 41.77%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 43, Validation loss: 3.2727
+Epoch 44/100, Average Training Loss: 3.1569, Role Prediction Accuracy: 42.60%
+Epoch 44/100, Validation Loss: 2.9135, Validation Role Accuracy: 48.13%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 44, Validation loss: 2.9135
+Epoch 45/100, Average Training Loss: 3.0575, Role Prediction Accuracy: 44.48%
+Epoch 45/100, Validation Loss: 2.8727, Validation Role Accuracy: 47.81%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 45, Validation loss: 2.8727
+Epoch 46/100, Average Training Loss: 3.0358, Role Prediction Accuracy: 47.50%
+Epoch 46/100, Validation Loss: 2.8749, Validation Role Accuracy: 46.35%
+Epoch 47/100, Average Training Loss: 3.0433, Role Prediction Accuracy: 45.52%
+Epoch 47/100, Validation Loss: 2.8610, Validation Role Accuracy: 47.40%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 47, Validation loss: 2.8610
+Epoch 48/100, Average Training Loss: 2.9918, Role Prediction Accuracy: 43.44%
+Epoch 48/100, Validation Loss: 3.0927, Validation Role Accuracy: 48.54%
+Epoch 49/100, Average Training Loss: 3.0510, Role Prediction Accuracy: 44.48%
+Epoch 49/100, Validation Loss: 2.7841, Validation Role Accuracy: 47.08%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 49, Validation loss: 2.7841
+Epoch 50/100, Average Training Loss: 2.9363, Role Prediction Accuracy: 45.73%
+Epoch 50/100, Validation Loss: 2.7256, Validation Role Accuracy: 49.69%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 50, Validation loss: 2.7256
+Epoch 51/100, Average Training Loss: 2.9645, Role Prediction Accuracy: 47.60%
+Epoch 51/100, Validation Loss: 2.9717, Validation Role Accuracy: 47.40%
+Epoch 52/100, Average Training Loss: 3.0284, Role Prediction Accuracy: 45.94%
+Epoch 52/100, Validation Loss: 2.8960, Validation Role Accuracy: 47.40%
+Epoch 53/100, Average Training Loss: 3.0497, Role Prediction Accuracy: 46.46%
+Epoch 53/100, Validation Loss: 2.6773, Validation Role Accuracy: 49.06%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 53, Validation loss: 2.6773
+Epoch 54/100, Average Training Loss: 3.0131, Role Prediction Accuracy: 44.06%
+Epoch 54/100, Validation Loss: 3.0916, Validation Role Accuracy: 47.71%
+Epoch 55/100, Average Training Loss: 3.0397, Role Prediction Accuracy: 44.27%
+Epoch 55/100, Validation Loss: 2.7486, Validation Role Accuracy: 49.06%
+Epoch 56/100, Average Training Loss: 3.0304, Role Prediction Accuracy: 46.15%
+Epoch 56/100, Validation Loss: 2.8957, Validation Role Accuracy: 48.96%
+Epoch 57/100, Average Training Loss: 2.8995, Role Prediction Accuracy: 45.73%
+Epoch 57/100, Validation Loss: 2.5906, Validation Role Accuracy: 48.33%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 57, Validation loss: 2.5906
+Epoch 58/100, Average Training Loss: 2.8881, Role Prediction Accuracy: 46.77%
+Epoch 58/100, Validation Loss: 2.6164, Validation Role Accuracy: 49.69%
+Epoch 59/100, Average Training Loss: 2.8101, Role Prediction Accuracy: 47.40%
+Epoch 59/100, Validation Loss: 2.6883, Validation Role Accuracy: 50.83%
+Epoch 60/100, Average Training Loss: 2.8846, Role Prediction Accuracy: 49.90%
+Epoch 60/100, Validation Loss: 2.6853, Validation Role Accuracy: 50.31%
+Epoch 61/100, Average Training Loss: 2.7384, Role Prediction Accuracy: 50.83%
+Epoch 61/100, Validation Loss: 2.6106, Validation Role Accuracy: 47.50%
+Epoch 62/100, Average Training Loss: 2.7743, Role Prediction Accuracy: 44.90%
+Epoch 62/100, Validation Loss: 2.5233, Validation Role Accuracy: 48.44%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 62, Validation loss: 2.5233
+Epoch 63/100, Average Training Loss: 2.7598, Role Prediction Accuracy: 46.04%
+Epoch 63/100, Validation Loss: 2.6843, Validation Role Accuracy: 47.92%
+Epoch 64/100, Average Training Loss: 2.7483, Role Prediction Accuracy: 46.98%
+Epoch 64/100, Validation Loss: 2.5960, Validation Role Accuracy: 49.38%
+Epoch 65/100, Average Training Loss: 2.7702, Role Prediction Accuracy: 52.29%
+Epoch 65/100, Validation Loss: 2.4917, Validation Role Accuracy: 52.60%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 65, Validation loss: 2.4917
+Epoch 66/100, Average Training Loss: 2.8020, Role Prediction Accuracy: 47.29%
+Epoch 66/100, Validation Loss: 2.5771, Validation Role Accuracy: 48.33%
+Epoch 67/100, Average Training Loss: 2.6952, Role Prediction Accuracy: 47.60%
+Epoch 67/100, Validation Loss: 2.6027, Validation Role Accuracy: 52.08%
+Epoch 68/100, Average Training Loss: 2.7297, Role Prediction Accuracy: 52.08%
+Epoch 68/100, Validation Loss: 2.4868, Validation Role Accuracy: 52.29%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 68, Validation loss: 2.4868
+Epoch 69/100, Average Training Loss: 2.7995, Role Prediction Accuracy: 50.83%
+Epoch 69/100, Validation Loss: 2.6749, Validation Role Accuracy: 49.58%
+Epoch 70/100, Average Training Loss: 2.7661, Role Prediction Accuracy: 48.85%
+Epoch 70/100, Validation Loss: 2.5485, Validation Role Accuracy: 51.77%
+Epoch 71/100, Average Training Loss: 2.6038, Role Prediction Accuracy: 54.79%
+Epoch 71/100, Validation Loss: 2.7775, Validation Role Accuracy: 50.21%
+Epoch 72/100, Average Training Loss: 2.6730, Role Prediction Accuracy: 49.48%
+Epoch 72/100, Validation Loss: 2.7042, Validation Role Accuracy: 53.85%
+Epoch 73/100, Average Training Loss: 2.6305, Role Prediction Accuracy: 49.17%
+Epoch 73/100, Validation Loss: 2.5337, Validation Role Accuracy: 49.69%
+Epoch 74/100, Average Training Loss: 2.5971, Role Prediction Accuracy: 50.83%
+Epoch 74/100, Validation Loss: 2.5073, Validation Role Accuracy: 53.02%
+Epoch 75/100, Average Training Loss: 2.5552, Role Prediction Accuracy: 50.10%
+Epoch 75/100, Validation Loss: 2.5618, Validation Role Accuracy: 52.29%
+Epoch 76/100, Average Training Loss: 2.7344, Role Prediction Accuracy: 52.29%
+Epoch 76/100, Validation Loss: 2.4107, Validation Role Accuracy: 50.63%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 76, Validation loss: 2.4107
+Epoch 77/100, Average Training Loss: 2.6314, Role Prediction Accuracy: 51.98%
+Epoch 77/100, Validation Loss: 2.6249, Validation Role Accuracy: 54.48%
+Epoch 78/100, Average Training Loss: 2.8085, Role Prediction Accuracy: 49.90%
+Epoch 78/100, Validation Loss: 2.5359, Validation Role Accuracy: 51.56%
+Epoch 79/100, Average Training Loss: 2.5280, Role Prediction Accuracy: 54.38%
+Epoch 79/100, Validation Loss: 2.4286, Validation Role Accuracy: 55.00%
+Epoch 80/100, Average Training Loss: 2.9455, Role Prediction Accuracy: 52.19%
+Epoch 80/100, Validation Loss: 3.1216, Validation Role Accuracy: 52.08%
+Epoch 81/100, Average Training Loss: 2.7326, Role Prediction Accuracy: 53.12%
+Epoch 81/100, Validation Loss: 2.7606, Validation Role Accuracy: 53.44%
+Epoch 82/100, Average Training Loss: 2.7178, Role Prediction Accuracy: 52.19%
+Epoch 82/100, Validation Loss: 2.6823, Validation Role Accuracy: 50.63%
+Epoch 83/100, Average Training Loss: 2.4870, Role Prediction Accuracy: 52.50%
+Epoch 83/100, Validation Loss: 2.9142, Validation Role Accuracy: 50.94%
+Epoch 84/100, Average Training Loss: 2.6198, Role Prediction Accuracy: 49.48%
+Epoch 84/100, Validation Loss: 2.8890, Validation Role Accuracy: 43.12%
+Epoch 85/100, Average Training Loss: 2.5504, Role Prediction Accuracy: 50.42%
+Epoch 85/100, Validation Loss: 2.5971, Validation Role Accuracy: 52.40%
+Epoch 86/100, Average Training Loss: 2.6082, Role Prediction Accuracy: 48.13%
+Epoch 86/100, Validation Loss: 2.4775, Validation Role Accuracy: 52.60%
+Epoch 87/100, Average Training Loss: 2.5346, Role Prediction Accuracy: 52.92%
+Epoch 87/100, Validation Loss: 2.3104, Validation Role Accuracy: 51.98%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 87, Validation loss: 2.3104
+Epoch 88/100, Average Training Loss: 2.4181, Role Prediction Accuracy: 48.96%
+Epoch 88/100, Validation Loss: 2.2755, Validation Role Accuracy: 53.54%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 88, Validation loss: 2.2755
+Epoch 89/100, Average Training Loss: 2.4581, Role Prediction Accuracy: 48.75%
+Epoch 89/100, Validation Loss: 2.5636, Validation Role Accuracy: 53.96%
+Epoch 90/100, Average Training Loss: 2.4473, Role Prediction Accuracy: 54.48%
+Epoch 90/100, Validation Loss: 2.3484, Validation Role Accuracy: 54.38%
+Epoch 91/100, Average Training Loss: 2.5775, Role Prediction Accuracy: 50.00%
+Epoch 91/100, Validation Loss: 2.3642, Validation Role Accuracy: 53.23%
+Epoch 92/100, Average Training Loss: 2.3261, Role Prediction Accuracy: 55.10%
+Epoch 92/100, Validation Loss: 2.2526, Validation Role Accuracy: 54.48%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 92, Validation loss: 2.2526
+Epoch 93/100, Average Training Loss: 2.5362, Role Prediction Accuracy: 50.00%
+Epoch 93/100, Validation Loss: 2.3813, Validation Role Accuracy: 52.50%
+Epoch 94/100, Average Training Loss: 2.3812, Role Prediction Accuracy: 51.56%
+Epoch 94/100, Validation Loss: 2.2497, Validation Role Accuracy: 54.06%
+Saved best model and statistics to output/aqua_sync20_model_20260707-230509/ef_best_model.pth, Epoch 94, Validation loss: 2.2497
+Epoch 95/100, Average Training Loss: 2.6141, Role Prediction Accuracy: 49.69%
+Epoch 95/100, Validation Loss: 2.2943, Validation Role Accuracy: 54.48%
+Epoch 96/100, Average Training Loss: 2.4150, Role Prediction Accuracy: 50.31%
+Epoch 96/100, Validation Loss: 2.3005, Validation Role Accuracy: 53.96%
+Epoch 97/100, Average Training Loss: 2.4652, Role Prediction Accuracy: 54.58%
+Epoch 97/100, Validation Loss: 2.3012, Validation Role Accuracy: 52.40%
+Epoch 98/100, Average Training Loss: 2.3254, Role Prediction Accuracy: 54.69%
+Epoch 98/100, Validation Loss: 2.2718, Validation Role Accuracy: 54.38%
+Epoch 99/100, Average Training Loss: 2.4467, Role Prediction Accuracy: 51.67%
+Epoch 99/100, Validation Loss: 2.4009, Validation Role Accuracy: 51.88%
+Epoch 100/100, Average Training Loss: 2.5153, Role Prediction Accuracy: 53.23%
+Epoch 100/100, Validation Loss: 2.3073, Validation Role Accuracy: 52.50%
+Training completed. Best model at Epoch 94, Validation loss: 2.2497
+==================== Stage 3: Aqua Finetuning Complete ====================
+
+Aqua pipeline complete! Final efficient model at: output/aqua_sync20_model_20260707-230509

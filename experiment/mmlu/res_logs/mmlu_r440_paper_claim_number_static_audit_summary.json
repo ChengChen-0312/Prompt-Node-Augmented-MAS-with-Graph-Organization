@@ -1,0 +1,119 @@
+{
+  "run_id": "R440",
+  "title": "Paper claim number static audit",
+  "claim_boundary": "R440 checks paper numbers against known result files deterministically. It does not replace a fresh zero-context paper-claim audit.",
+  "no_api": true,
+  "broad_api": false,
+  "claim_count": 20,
+  "verified_claims": [
+    {
+      "id": "aqua_arg_clean",
+      "paper_pattern": "28/31",
+      "evidence_value": "28/31"
+    },
+    {
+      "id": "aqua_pn_clean",
+      "paper_pattern": "31/31",
+      "evidence_value": "31/31"
+    },
+    {
+      "id": "aqua_arg_tail30",
+      "paper_pattern": "28/30",
+      "evidence_value": "28/30"
+    },
+    {
+      "id": "aqua_pn_tail30",
+      "paper_pattern": "30/30",
+      "evidence_value": "30/30"
+    },
+    {
+      "id": "mmlu_stem_arg",
+      "paper_pattern": "88/97",
+      "evidence_value": "88/97"
+    },
+    {
+      "id": "mmlu_stem_pn",
+      "paper_pattern": "95/97",
+      "evidence_value": "95/97"
+    },
+    {
+      "id": "mmlu_stem_fix_harm",
+      "paper_pattern": "7/0",
+      "evidence_value": "7/0"
+    },
+    {
+      "id": "mmlu_stem_cost",
+      "paper_pattern": "0.676454",
+      "evidence_value": "0.676454"
+    },
+    {
+      "id": "mixed_arg",
+      "paper_pattern": "41/48",
+      "evidence_value": "41/48"
+    },
+    {
+      "id": "mixed_hybrid",
+      "paper_pattern": "41/48",
+      "evidence_value": "41/48"
+    },
+    {
+      "id": "definition_arg",
+      "paper_pattern": "21/24",
+      "evidence_value": "21/24"
+    },
+    {
+      "id": "definition_hybrid",
+      "paper_pattern": "22/24",
+      "evidence_value": "22/24"
+    },
+    {
+      "id": "definition_candidate",
+      "paper_pattern": "21/24",
+      "evidence_value": "21/24"
+    },
+    {
+      "id": "definition_fix_harm_wrong",
+      "paper_pattern": "1/0/0",
+      "evidence_value": "1/0/0"
+    },
+    {
+      "id": "plain_requery_score",
+      "paper_pattern": "37/40",
+      "evidence_value": "37/40"
+    },
+    {
+      "id": "plain_requery_fix_harm",
+      "paper_pattern": "1/1",
+      "evidence_value": "1/1"
+    },
+    {
+      "id": "lifecycle_events",
+      "paper_pattern": "121",
+      "evidence_value": "121"
+    },
+    {
+      "id": "lifecycle_forward",
+      "paper_pattern": "11 forward",
+      "evidence_value": "11"
+    },
+    {
+      "id": "lifecycle_prune",
+      "paper_pattern": "13 prune",
+      "evidence_value": "13"
+    },
+    {
+      "id": "lifecycle_upgrade",
+      "paper_pattern": "one upgrade",
+      "evidence_value": "1"
+    }
+  ],
+  "mismatches": [],
+  "unsupported_claims": [],
+  "static_number_audit_pass": true,
+  "external_paper_claim_audit_required": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R441_external_audit_package_refresh",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r440_paper_claim_number_static_audit_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r440_paper_claim_number_static_audit_report.md"
+}

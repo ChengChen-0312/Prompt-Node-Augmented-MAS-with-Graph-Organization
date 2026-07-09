@@ -1,0 +1,55 @@
+{
+  "records": 32,
+  "evaluated_records": 32,
+  "correct": 17,
+  "accuracy": 0.53125,
+  "fixes": 1,
+  "harms": 0,
+  "api_required": 16,
+  "api_executed": 16,
+  "api_errors": 0,
+  "api_cost": 0.05003,
+  "prompt_tokens": 5398,
+  "completion_tokens": 1536,
+  "variant_counts": {
+    "arg_baseline_fixed": 16,
+    "proposed_v2_independent_guarded_pnpe": 16
+  },
+  "by_variant": {
+    "arg_baseline_fixed": {
+      "records": 16,
+      "evaluated_records": 16,
+      "correct": 8,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0,
+      "switches": 0,
+      "api_required": 0,
+      "api_executed": 0,
+      "api_errors": 0
+    },
+    "proposed_v2_independent_guarded_pnpe": {
+      "records": 16,
+      "evaluated_records": 16,
+      "correct": 9,
+      "accuracy": 0.5625,
+      "fixes": 1,
+      "harms": 0,
+      "switches": 1,
+      "api_required": 16,
+      "api_executed": 16,
+      "api_errors": 0
+    }
+  },
+  "run_id": "R259",
+  "title": "PromptNode/PromptEdge v2 tiny API diagnostic",
+  "claim_boundary": "Tiny same-model v2 diagnostic only; not a broad held-out result, transfer proof, or SCI-Q2 readiness claim.",
+  "model": "gpt-4o-2024-08-06",
+  "records_jsonl": "experiment/mmlu/run_logs/mmlu_r258_promptnode_v2_preflight_records.jsonl",
+  "preflight_json": "experiment/mmlu/res_logs/mmlu_r258_promptnode_v2_preflight_summary.json",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r259_promptnode_v2_api_results.jsonl",
+  "env_file": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/benchmark_config/.env",
+  "env_values_logged": false,
+  "no_api": false,
+  "broad_api": false
+}

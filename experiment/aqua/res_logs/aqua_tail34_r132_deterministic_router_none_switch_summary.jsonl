@@ -1,0 +1,1 @@
+{"timestamp": "2026-07-08T21:12:51.222265", "dataset": "aqua", "model_path": "output/xxxxforced_template_rank5", "llm_name": "gpt-4o-2024-08-06", "total_tasks": 2, "solved_tasks": 1, "pass_at_1": 50.0, "cost": 0.06992000000000001, "prompt_tokens": 6628.0, "completion_tokens": 2452.0, "detail_file": "experiment/aqua/aqua_tail34_r132_deterministic_router_none_switch_results.jsonl"}

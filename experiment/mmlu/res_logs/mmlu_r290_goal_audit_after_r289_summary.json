@@ -1,0 +1,47 @@
+{
+  "run_id": "R290",
+  "title": "Goal audit after R289 constrained PromptNode API replay",
+  "claim_boundary": "Goal/result audit only. R289 is compared to the existing R162 ARG transfer records on matched task_ids; R282 retrained ARG baseline is still required.",
+  "no_api": true,
+  "broad_api": false,
+  "goal_alignment": "aligned_negative_transfer_result",
+  "r287_selected_contract_ready_rate": 0.8333333333333334,
+  "matched_tasks": 24,
+  "r289_records": 24,
+  "r289_correct": 19,
+  "r289_accuracy": 0.7916666666666666,
+  "baseline_correct_on_matched_tasks": 22,
+  "baseline_accuracy_on_matched_tasks": 0.9166666666666666,
+  "fixes_vs_baseline": 0,
+  "harms_vs_baseline": 3,
+  "fix_task_ids": [],
+  "harm_task_ids": [
+    "MMLU-college_computer_science_test-2",
+    "MMLU-high_school_computer_science_test-75",
+    "MMLU-high_school_mathematics_test-63"
+  ],
+  "wrong_task_ids": [
+    "MMLU-high_school_statistics_test-32",
+    "MMLU-college_computer_science_test-2",
+    "MMLU-high_school_computer_science_test-75",
+    "MMLU-high_school_mathematics_test-63",
+    "MMLU-high_school_physics_test-67"
+  ],
+  "transfer_superiority_claim_supported": false,
+  "sci_q2_ready": false,
+  "main_decision": "Do not claim MMLU transfer improvement. The graph structure gate improved, but terminal-only router replay underperforms the existing ARG transfer baseline on matched tasks.",
+  "next_runs": [
+    "R291_all_exposure_replay",
+    "R292_r282_arg_retrain_first24_api_baseline",
+    "R293_failure_analysis_terminal_router_harms",
+    "R294_decision_policy_revision",
+    "R295_goal_audit"
+  ],
+  "source_files": {
+    "r287": "experiment/mmlu/res_logs/mmlu_r287_constrained_promptnode_decoding_c64_summary.json",
+    "r289_rows": "experiment/mmlu/run_logs/mmlu_r289_constrained_graph_api_full24_results.jsonl",
+    "baseline_rows": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl"
+  },
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r290_goal_audit_after_r289_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r290_goal_audit_after_r289_report.md"
+}

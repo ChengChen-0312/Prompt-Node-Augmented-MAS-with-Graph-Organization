@@ -1,0 +1,41 @@
+{
+  "run_id": "R461",
+  "title": "Five-run goal audit after polish",
+  "claim_boundary": "R461 audits R457-R461 for drift after manuscript polish. It does not execute external audits, compile PDF, or authorize submission claims.",
+  "no_api": true,
+  "broad_api": false,
+  "audited_runs": [
+    "R457",
+    "R458",
+    "R459",
+    "R460",
+    "R461"
+  ],
+  "audited_summary_paths": {
+    "R457": "experiment/mmlu/res_logs/mmlu_r457_static_manuscript_audit_after_appendix_summary.json",
+    "R458": "experiment/mmlu/res_logs/mmlu_r458_caption_table_reference_polish_summary.json",
+    "R459": "experiment/mmlu/res_logs/mmlu_r459_updated_full_local_smoke_after_polish_summary.json",
+    "R460": "experiment/mmlu/res_logs/mmlu_r460_manuscript_status_snapshot_after_polish_summary.json"
+  },
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "promptnode_remains_graph_organization_method": true,
+    "audit_clean_policy_documented": true,
+    "reproducibility_artifacts_indexed": true,
+    "claim_boundaries_not_overstated": true
+  },
+  "unauthorized_claim_runs": [],
+  "deviation_detected": false,
+  "local_manuscript_artifacts_ready": true,
+  "remaining_submission_blockers": [
+    "external_audits_pending",
+    "pdf_compile_pending",
+    "journal_formatting_pending",
+    "official_jcr_quartile_verification_pending"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R462_journal_template_probe",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r461_five_run_goal_audit_after_polish_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r461_five_run_goal_audit_after_polish_report.md"
+}

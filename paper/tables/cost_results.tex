@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Cost evidence rows. Direct or existing-summary costs are separated from the MMLU STEM probe estimate, which is not exact original R306 accounting.}
+\label{tab:cost-results}
+\begin{tabular}{lcccl}
+\toprule
+Row & Score & Cost & Cost/task & Evidence \\
+\midrule
+AQuA\_ARG\_baseline & 28/34 & 0.93285 & 0.027437 & direct\_or\_existing\_summary \\
+AQuA\_R068\_cost\_reduced & 31/34 & 3.597409 & 0.105806 & direct\_or\_existing\_summary \\
+AQuA\_R267\_safety\_cost & 31/31 & 3.597409 & 0.116045 & direct\_or\_existing\_summary \\
+MMLU\_STEM\_R306\_probe\_estimate & 95/97 & 0.676454 & 0.006974 & probe\_estimate\_not\_exact \\
+MMLU\_DefinitionChallenge\_R413 & 22/24 & 0.220095 & 0.009171 & direct\_or\_existing\_summary \\
+MMLU\_plain\_requery\_R316 & 37/40 & 0.11794 & 0.002949 & direct\_or\_existing\_summary \\
+\bottomrule
+\end{tabular}
+\end{table}

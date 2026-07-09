@@ -1,0 +1,22 @@
+{
+  "rule": "r149_transfer_checkpoint_or_aqua_replicate_protocol",
+  "claim_boundary": "checkpoint-or-replicate protocol only; AQuA next100 is PromptNode-family evidence, not same-method significance evidence for R147",
+  "transfer_checkpoint_available": false,
+  "transfer_branch_allowed": false,
+  "transfer_blocker": "missing_compatible_mmlu_arg_checkpoint",
+  "aqua_next100_replicate_available": true,
+  "next100_selector": "multi_contract_union",
+  "next100_total_tasks": 100,
+  "next100_baseline_accuracy": "82/100",
+  "next100_selected_accuracy": "87/100",
+  "next100_delta_vs_baseline": 5,
+  "next100_fix_harm": "5/0",
+  "next100_mcnemar_exact_p_two_sided": 0.0625,
+  "next100_significant_at_0_05": false,
+  "same_method_as_r147": false,
+  "combined_significance_claim_allowed": false,
+  "family_replicate_claim_allowed": true,
+  "r150_goal_audit_required_next": true,
+  "broad_api_allowed_next": false,
+  "next_protocol": "r150_goal_audit_before_any_more_api"
+}

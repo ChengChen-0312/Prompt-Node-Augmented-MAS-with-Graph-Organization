@@ -1,0 +1,31 @@
+{
+  "run_id": "R371",
+  "title": "Adversarial probe hard-negative update",
+  "claim_boundary": "R371 adds R369 wrong verifier candidates as hard negatives and the two history passage successes as positive training rows. It does not authorize API execution.",
+  "no_api": true,
+  "broad_api": false,
+  "base_records": 334,
+  "r369_added_records": 9,
+  "r369_hard_negative_records": 7,
+  "r369_positive_records": 2,
+  "manifest_records": 343,
+  "source_run_counts": {
+    "R304": 97,
+    "R306": 97,
+    "R312": 40,
+    "R325": 4,
+    "R352": 48,
+    "R354": 48,
+    "R369": 9
+  },
+  "feature_leakage_pass": true,
+  "feature_leakage_violations": [],
+  "api_execution_authorized_next": false,
+  "offline_retraining_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R372_goal_audit_after_adversarial_probe_update",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r371_graph_policy_manifest_with_r369_hard_negatives.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r371_adversarial_probe_hard_negative_update_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r371_adversarial_probe_hard_negative_update_report.md"
+}

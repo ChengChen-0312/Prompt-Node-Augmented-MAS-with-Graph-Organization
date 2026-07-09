@@ -1,0 +1,16 @@
+{
+  "run_id": "R275",
+  "title": "MMLU full24 result analysis and goal audit",
+  "claim_boundary": "Goal audit plus result analysis; not a final transfer superiority claim.",
+  "aligned_with_goal": true,
+  "goal_drift_detected": false,
+  "sci_q2_ready": false,
+  "full24_rows": 120,
+  "proposed_correct": 13,
+  "arg_baseline_correct": 12,
+  "plain_requery_correct": 15,
+  "node_only_correct": 13,
+  "transfer_superiority_supported": false,
+  "next": "R276_edge_gated_selector_replay",
+  "audit_reason": "Still aligned: this extends transfer beyond tiny16 and keeps ARG-Designer, same model, PromptNode identities, PromptEdge permissions, and lifecycle actions visible. Not SCI-Q2-ready until transfer beats or matches strong controls with a non-overfit selector."
+}

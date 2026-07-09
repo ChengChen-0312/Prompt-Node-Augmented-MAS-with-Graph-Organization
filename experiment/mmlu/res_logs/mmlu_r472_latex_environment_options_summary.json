@@ -1,0 +1,43 @@
+{
+  "run_id": "R472",
+  "title": "LaTeX environment options",
+  "claim_boundary": "R472 probes local TeX engines and records install options. It does not install software or compile PDF.",
+  "no_api": true,
+  "broad_api": false,
+  "options_md": "paper/artifacts/latex_environment_options.md",
+  "engine_probe": {
+    "latexmk": null,
+    "pdflatex": null,
+    "tectonic": null
+  },
+  "engine_available": false,
+  "installation_performed": false,
+  "compile_status": "blocked_no_latex_engine",
+  "install_options": [
+    {
+      "name": "MacTeX",
+      "command_or_source": "Install MacTeX from tug.org/mactex or Homebrew cask if acceptable locally.",
+      "tradeoff": "Most complete and least likely to miss packages; large install."
+    },
+    {
+      "name": "TinyTeX",
+      "command_or_source": "Install TinyTeX, then add missing packages on demand.",
+      "tradeoff": "Smaller footprint; may need iterative package installs."
+    },
+    {
+      "name": "Tectonic",
+      "command_or_source": "Install tectonic for self-contained compilation.",
+      "tradeoff": "Convenient for many papers, but journal-specific style compatibility should be checked."
+    }
+  ],
+  "future_compile_commands": [
+    "cd paper && latexmk -pdf -interaction=nonstopmode main.tex",
+    "cd paper && pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex",
+    "cd paper && tectonic main.tex"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R473_compile_command_harness",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r472_latex_environment_options_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r472_latex_environment_options_report.md"
+}

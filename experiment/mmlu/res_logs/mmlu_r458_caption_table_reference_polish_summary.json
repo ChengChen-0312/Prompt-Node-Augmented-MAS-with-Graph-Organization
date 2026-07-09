@@ -1,0 +1,15 @@
+{
+  "run_id": "R458",
+  "title": "Caption table reference polish",
+  "claim_boundary": "R458 tightens table captions and cross-references to reduce overclaim risk. It does not change result values or authorize paper claims.",
+  "no_api": true,
+  "broad_api": false,
+  "main_caption_changed": false,
+  "cost_caption_changed": false,
+  "result_reference_inserted": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R459_updated_full_local_smoke_after_polish",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r458_caption_table_reference_polish_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r458_caption_table_reference_polish_report.md"
+}

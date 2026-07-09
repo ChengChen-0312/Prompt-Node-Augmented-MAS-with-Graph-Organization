@@ -1,0 +1,84 @@
+{
+  "rule": "r100_task250_template_rank_sweep_report",
+  "task_id": "task_250",
+  "desired_prediction": "E",
+  "sweep_ranks": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "matching_ranks": [
+    2,
+    5
+  ],
+  "nonmatching_ranks": [
+    3,
+    4
+  ],
+  "best_matching_rank": 2,
+  "num_matching_ranks": 2,
+  "total_cost": 0.14663,
+  "total_prompt_tokens": 12457,
+  "total_completion_tokens": 5623,
+  "rows": [
+    {
+      "task_id": "task_250",
+      "rank": 2,
+      "predicted_answer": "E",
+      "desired_prediction": "E",
+      "matches_desired_prediction": true,
+      "is_solved": true,
+      "true_answer": "E",
+      "cost": 0.038215000000000006,
+      "prompt_tokens": 2858,
+      "completion_tokens": 1595,
+      "result_path": "experiment/aqua/aqua_tail34_r100_forced_template_rank2_task250_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank2_task250_summary.jsonl"
+    },
+    {
+      "task_id": "task_250",
+      "rank": 3,
+      "predicted_answer": "A",
+      "desired_prediction": "E",
+      "matches_desired_prediction": false,
+      "is_solved": false,
+      "true_answer": "E",
+      "cost": 0.03671,
+      "prompt_tokens": 2866,
+      "completion_tokens": 1492,
+      "result_path": "experiment/aqua/aqua_tail34_r100_forced_template_rank3_task250_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank3_task250_summary.jsonl"
+    },
+    {
+      "task_id": "task_250",
+      "rank": 4,
+      "predicted_answer": "A",
+      "desired_prediction": "E",
+      "matches_desired_prediction": false,
+      "is_solved": false,
+      "true_answer": "E",
+      "cost": 0.03487,
+      "prompt_tokens": 3146,
+      "completion_tokens": 1276,
+      "result_path": "experiment/aqua/aqua_tail34_r100_forced_template_rank4_task250_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank4_task250_summary.jsonl"
+    },
+    {
+      "task_id": "task_250",
+      "rank": 5,
+      "predicted_answer": "E",
+      "desired_prediction": "E",
+      "matches_desired_prediction": true,
+      "is_solved": true,
+      "true_answer": "E",
+      "cost": 0.03683500000000001,
+      "prompt_tokens": 3587,
+      "completion_tokens": 1260,
+      "result_path": "experiment/aqua/aqua_tail34_r100_forced_template_rank5_task250_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank5_task250_summary.jsonl"
+    }
+  ],
+  "claim_boundary": "one-task task250 rank sweep; not held-out accuracy",
+  "combined_jsonl": "experiment/aqua/aqua_tail34_r100_task250_template_rank_sweep_rows.jsonl"
+}

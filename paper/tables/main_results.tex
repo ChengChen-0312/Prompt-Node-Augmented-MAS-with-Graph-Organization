@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Main split-scoped results. Rows are evidence for the stated slices, not universal benchmark claims. Fix/harm/wrong-forward is reported where available; a dash denotes an audit-clean aggregate without per-item switch accounting in the table source.}
+\label{tab:main-results}
+\begin{tabular}{lcccll}
+\toprule
+Slice & ARG & PromptNode & $\Delta$ & Fix/Harm & Claim role \\
+\midrule
+AQuA\_audit\_clean\_tail31 & 28/31 & 31/31 & 3 & - & positive\_clean\_improvement \\
+AQuA\_conservative\_remove\_114\_tail30 & 28/30 & 30/30 & 2 & - & positive\_under\_boundary\_label\_removal \\
+MMLU\_STEM\_main97 & 88/97 & 95/97 & 7 & 7/0 & positive\_with\_completed\_controls \\
+MMLU\_nonSTEM40\_safety\_replay & 37/40 & 37/40 & 0 & 0/0 & no\_harm\_boundary\_only \\
+MMLU\_nonSTEM40\_raw\_warning\_override & 37/40 & 34/40 & -3 & 0/3 & negative\_transfer\_limitation \\
+MMLU\_DefinitionChallenge\_fresh24 & 21/24 & 22/24 & 1 & 1/0/0 & targeted\_nonmath\_positive\_no\_harm \\
+\bottomrule
+\end{tabular}
+\end{table}

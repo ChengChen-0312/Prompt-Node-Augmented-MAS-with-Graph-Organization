@@ -1,0 +1,72 @@
+{
+  "run_id": "R452",
+  "title": "Five-run goal audit and compile probe",
+  "claim_boundary": "R452 audits R447-R451 for drift against the SCI-Q2 PromptNode goal and probes local LaTeX availability. It does not compile the paper or execute external audits.",
+  "no_api": true,
+  "broad_api": false,
+  "audited_runs": [
+    "R447",
+    "R448",
+    "R449",
+    "R450",
+    "R451"
+  ],
+  "audited_summary_paths": {
+    "R447": "experiment/mmlu/res_logs/mmlu_r447_local_smoke_after_tables_summary.json",
+    "R448": "experiment/mmlu/res_logs/mmlu_r448_manuscript_snapshot_after_tables_summary.json",
+    "R449": "experiment/mmlu/res_logs/mmlu_r449_next_local_improvement_or_external_audit_summary.json",
+    "R450": "experiment/mmlu/res_logs/mmlu_r450_submission_gap_backlog_summary.json",
+    "R451": "experiment/mmlu/res_logs/mmlu_r451_journal_scope_gap_matrix_summary.json"
+  },
+  "goal_alignment_tags": [
+    "sci_q2_submission",
+    "promptnode_graph_organization",
+    "claim_integrity",
+    "external_audit_safety",
+    "transfer_and_generality_boundary"
+  ],
+  "alignment_findings": [
+    {
+      "tag": "sci_q2_submission",
+      "finding": "Recent runs moved from table integration to journal targets, submission blockers, and scope fit.",
+      "status": "aligned"
+    },
+    {
+      "tag": "promptnode_graph_organization",
+      "finding": "R451 keeps the JAIR framing on first-class PromptNodes and typed PromptEdges rather than answer patches.",
+      "status": "aligned"
+    },
+    {
+      "tag": "claim_integrity",
+      "finding": "R447-R451 keep paper_claim_authorized=false and sci_q2_ready=false.",
+      "status": "aligned"
+    },
+    {
+      "tag": "external_audit_safety",
+      "finding": "R450 requires user confirmation before transmitting unpublished local audit payloads.",
+      "status": "aligned"
+    },
+    {
+      "tag": "transfer_and_generality_boundary",
+      "finding": "R451 explicitly forbids broad nonmath improvement claims and preserves no-harm framing.",
+      "status": "aligned"
+    }
+  ],
+  "unauthorized_claim_runs": [],
+  "deviation_detected": false,
+  "latexmk": null,
+  "pdflatex": null,
+  "latex_engine_available": false,
+  "compile_probe_status": "not_run_no_latex_engine",
+  "corrective_actions": [
+    "continue_external_audit_before_claim_authorization",
+    "complete_audit_clean_appendix",
+    "compile_pdf_when_latex_engine_available",
+    "keep_primary_target_jair_unless_external_audit_changes_claim_scope"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R453_appendix_noise_audit_pack",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r452_five_run_goal_audit_and_compile_probe_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r452_five_run_goal_audit_and_compile_probe_report.md"
+}

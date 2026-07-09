@@ -1,0 +1,38 @@
+{
+  "run_id": "R219",
+  "title": "Router-final negative-control and cost protocol",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "Protocol only; no evaluation and no accuracy claim.",
+  "input_manifest": "experiment/mmlu/promptedge_targets/mmlu_r218_router_final_mini_manifest.jsonl",
+  "mini_manifest": {
+    "records": 67,
+    "train_records": 33,
+    "frozen_eval_records": 34,
+    "switch_labels": 13
+  },
+  "negative_controls": [
+    "abstain_only_router",
+    "random_switch_labels_same_rate",
+    "shuffled_promptedge_order",
+    "node_only_no_promptedge_text",
+    "edge_text_only_no_router_target",
+    "always_switch_to_objective",
+    "cost_matched_arg_requery"
+  ],
+  "cost_protocol": {
+    "future_api_allowed_now": false,
+    "pre_api_audit_required": "R220",
+    "max_future_tasks": 4,
+    "max_cost_usd": 0.45,
+    "cost_matched_baseline": "ARG re-query with same number of LLM calls or same token budget, whichever is lower"
+  },
+  "success_conditions_before_claim": [
+    "proposed router-final beats abstain-only and random-switch controls",
+    "no clean/control harms",
+    "cost-normalized result beats cost-matched ARG re-query",
+    "all model-visible fields pass leakage scan",
+    "held-out/random evaluation improves over ARG"
+  ],
+  "decision": "api_blocked_until_R220_and_control_implementation"
+}

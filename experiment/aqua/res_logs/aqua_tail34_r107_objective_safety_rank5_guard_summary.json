@@ -1,0 +1,113 @@
+{
+  "rule": "r107_objective_safety_rank5_guard_replay",
+  "num_tasks": 4,
+  "baseline_solved": 2,
+  "rank5_solved": 3,
+  "guarded_solved": 4,
+  "switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "fallback_tasks": [
+    "task_8",
+    "task_188"
+  ],
+  "fix_harm": "2/0",
+  "clean_fix_harm": "1/0",
+  "noisy_fix_harm": "1/0",
+  "suppressed_rank5_harm_tasks": [
+    "task_8"
+  ],
+  "selector_input_field_violations": 0,
+  "rows": [
+    {
+      "task_id": "task_8",
+      "selector_inputs": {
+        "baseline_direct_votes_split": false,
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "objective_prediction_differs_from_baseline": false,
+        "objective_top_score": 2
+      },
+      "action": "fallback_to_arg",
+      "baseline_prediction": "E",
+      "rank5_prediction": "C",
+      "guarded_prediction": "E",
+      "true_answer": "E",
+      "baseline_is_solved": true,
+      "rank5_is_solved": false,
+      "guarded_is_solved": true,
+      "fix": false,
+      "harm": false,
+      "rank5_harm": true,
+      "clean_label": "clean"
+    },
+    {
+      "task_id": "task_108",
+      "selector_inputs": {
+        "baseline_direct_votes_split": true,
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 2,
+        "objective_prediction_differs_from_baseline": true,
+        "objective_top_score": 2
+      },
+      "action": "accept_rank5",
+      "baseline_prediction": "B",
+      "rank5_prediction": "D",
+      "guarded_prediction": "D",
+      "true_answer": "D",
+      "baseline_is_solved": false,
+      "rank5_is_solved": true,
+      "guarded_is_solved": true,
+      "fix": true,
+      "harm": false,
+      "rank5_harm": false,
+      "clean_label": "noisy"
+    },
+    {
+      "task_id": "task_188",
+      "selector_inputs": {
+        "baseline_direct_votes_split": false,
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "objective_prediction_differs_from_baseline": false,
+        "objective_top_score": 1
+      },
+      "action": "fallback_to_arg",
+      "baseline_prediction": "D",
+      "rank5_prediction": "D",
+      "guarded_prediction": "D",
+      "true_answer": "D",
+      "baseline_is_solved": true,
+      "rank5_is_solved": true,
+      "guarded_is_solved": true,
+      "fix": false,
+      "harm": false,
+      "rank5_harm": false,
+      "clean_label": "clean"
+    },
+    {
+      "task_id": "task_250",
+      "selector_inputs": {
+        "baseline_direct_votes_split": false,
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "objective_prediction_differs_from_baseline": true,
+        "objective_top_score": 3
+      },
+      "action": "accept_rank5",
+      "baseline_prediction": "A",
+      "rank5_prediction": "E",
+      "guarded_prediction": "E",
+      "true_answer": "E",
+      "baseline_is_solved": false,
+      "rank5_is_solved": true,
+      "guarded_is_solved": true,
+      "fix": true,
+      "harm": false,
+      "rank5_harm": false,
+      "clean_label": "clean"
+    }
+  ],
+  "claim_boundary": "four-task replay over R106 rank5 outputs and R095 objective-safety features"
+}

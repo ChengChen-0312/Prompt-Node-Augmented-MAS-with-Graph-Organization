@@ -1,0 +1,20 @@
+{
+  "run_id": "R280",
+  "title": "V3 prospective full24 result and goal audit",
+  "claim_boundary": "Goal audit and transfer result boundary; not SCI-Q2-ready unless prospective v3 beats strong controls.",
+  "aligned_with_goal": true,
+  "goal_drift_detected": false,
+  "sci_q2_ready": false,
+  "arg_baseline_correct": 12,
+  "plain_requery_correct": 15,
+  "node_only_correct": 13,
+  "proposed_promptnode_promptedge_correct": 13,
+  "proposed_v3_edge_gated_correct": 14,
+  "proposed_v3_fix_harm": "3/1",
+  "v3_beats_arg": true,
+  "v3_beats_plain": false,
+  "v3_beats_node_only": true,
+  "v3_beats_prior_proposed": true,
+  "transfer_superiority_supported": false,
+  "next": "If transfer superiority is false, use R280 as limitation and move to split-heldout selector training rather than more prompt tweaking."
+}

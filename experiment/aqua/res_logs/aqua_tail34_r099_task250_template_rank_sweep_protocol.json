@@ -1,0 +1,57 @@
+{
+  "rule": "r099_task250_template_rank_sweep_protocol",
+  "task_id": "task_250",
+  "task_split_path": "experiment/aqua/task_split_aqua_tail34_task250_smoke.json",
+  "task_split_indices": [
+    250
+  ],
+  "num_tasks": 1,
+  "is_full_tail34": false,
+  "model": "gpt-4o-2024-08-06",
+  "forced_template_candidate_jsonl": "experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl",
+  "sweep_ranks": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "excluded_ranks": [
+    1
+  ],
+  "excluded_rank_reason": "R098 shows rank1 predicts A and does not reproduce the clean task250 target.",
+  "desired_prediction": "E",
+  "success_gate": {
+    "minimum_matching_rank_count": 1,
+    "required_prediction": "E",
+    "no_full_tail34_claim": true,
+    "next_step_if_success": "freeze matching rank for a tiny clean-safe smoke before broader validation",
+    "next_step_if_fail": "return to graph-policy/template generation; do not run full tail34"
+  },
+  "claim_boundary": "pre-registered task250 rank2-5 template sweep; no result or accuracy claim",
+  "rank_outputs": [
+    {
+      "rank": 2,
+      "output_file": "experiment/aqua/aqua_tail34_r100_forced_template_rank2_task250_results.jsonl",
+      "summary_log_file": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank2_task250_summary.jsonl",
+      "command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_task250_smoke.json --llm_name gpt-4o-2024-08-06 --decision_method RouterContractFinalRefer --output_file experiment/aqua/aqua_tail34_r100_forced_template_rank2_task250_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank2_task250_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 2"
+    },
+    {
+      "rank": 3,
+      "output_file": "experiment/aqua/aqua_tail34_r100_forced_template_rank3_task250_results.jsonl",
+      "summary_log_file": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank3_task250_summary.jsonl",
+      "command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_task250_smoke.json --llm_name gpt-4o-2024-08-06 --decision_method RouterContractFinalRefer --output_file experiment/aqua/aqua_tail34_r100_forced_template_rank3_task250_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank3_task250_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 3"
+    },
+    {
+      "rank": 4,
+      "output_file": "experiment/aqua/aqua_tail34_r100_forced_template_rank4_task250_results.jsonl",
+      "summary_log_file": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank4_task250_summary.jsonl",
+      "command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_task250_smoke.json --llm_name gpt-4o-2024-08-06 --decision_method RouterContractFinalRefer --output_file experiment/aqua/aqua_tail34_r100_forced_template_rank4_task250_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank4_task250_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 4"
+    },
+    {
+      "rank": 5,
+      "output_file": "experiment/aqua/aqua_tail34_r100_forced_template_rank5_task250_results.jsonl",
+      "summary_log_file": "experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank5_task250_summary.jsonl",
+      "command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_task250_smoke.json --llm_name gpt-4o-2024-08-06 --decision_method RouterContractFinalRefer --output_file experiment/aqua/aqua_tail34_r100_forced_template_rank5_task250_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r100_forced_template_rank5_task250_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 5"
+    }
+  ]
+}

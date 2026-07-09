@@ -1,0 +1,73 @@
+{
+  "run_id": "R455",
+  "title": "Full local smoke after appendix and artifact index",
+  "claim_boundary": "R455 runs recent local tests and a lightweight secret-pattern scan. It does not execute API calls, external audits, or PDF compilation.",
+  "no_api": true,
+  "broad_api": false,
+  "tested_modules": [
+    "tests.test_r449_next_local_improvement_or_external_audit",
+    "tests.test_r450_submission_gap_backlog",
+    "tests.test_r451_journal_scope_gap_matrix",
+    "tests.test_r452_five_run_goal_audit_and_compile_probe",
+    "tests.test_r453_appendix_noise_audit_pack",
+    "tests.test_r454_reproducibility_artifact_index"
+  ],
+  "test_results": [
+    {
+      "module": "tests.test_r449_next_local_improvement_or_external_audit",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r450_submission_gap_backlog",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r451_journal_scope_gap_matrix",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r452_five_run_goal_audit_and_compile_probe",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r453_appendix_noise_audit_pack",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r454_reproducibility_artifact_index",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nOK\n"
+    }
+  ],
+  "failed_modules": [],
+  "local_smoke_pass": true,
+  "secret_scan_paths": [
+    "paper",
+    "experiment/mmlu/res_logs",
+    "experiment/mmlu/run_logs"
+  ],
+  "secret_scan_patterns": [
+    "openai_key_value",
+    "openai_key_assignment",
+    "anthropic_key_assignment",
+    "azure_openai_key_assignment"
+  ],
+  "secret_scan_hits": [],
+  "secret_scan_pass": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R456_next_goal_audit_or_external_review_decision",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r455_full_local_smoke_after_appendix_artifact_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r455_full_local_smoke_after_appendix_artifact_report.md"
+}

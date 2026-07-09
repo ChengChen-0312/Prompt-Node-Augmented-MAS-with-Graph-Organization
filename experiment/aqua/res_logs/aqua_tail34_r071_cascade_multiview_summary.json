@@ -1,0 +1,95 @@
+{
+  "claim_boundary": "cascade_replay_over_r069_fresh_traces_not_new_api_run",
+  "r069_records_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_tail34_r069_integrated_selective_multiview_results.jsonl",
+  "cascade_order": [
+    "router",
+    "conservative",
+    "calibrated",
+    "candidate"
+  ],
+  "summary": {
+    "rule": "r071_cascade_multiview_over_r069_fresh_traces",
+    "claim_boundary": "cascade_replay_over_r069_fresh_traces_not_new_api_run",
+    "total_tasks": 34,
+    "solved_tasks": 29,
+    "baseline_solved_tasks": 26,
+    "overall": "29/34",
+    "baseline": "26/34",
+    "delta_vs_baseline": 3,
+    "multiview_run_count": 25,
+    "multiview_run": "25/34",
+    "cascade_view_calls": 56,
+    "full_view_calls": 100,
+    "switches": 3,
+    "switch_tasks": [
+      "task_56",
+      "task_8",
+      "task_188"
+    ],
+    "fixes": 3,
+    "harms": 0,
+    "fix_harm": "3/0",
+    "fix_tasks": [
+      "task_56",
+      "task_8",
+      "task_188"
+    ],
+    "harm_tasks": [],
+    "posthoc_audit_summary": {
+      "variant": "r071_cascade_multiview_over_r069_fresh_traces",
+      "total": 34,
+      "solved": 29,
+      "overall": "29/34",
+      "clean_total": 28,
+      "clean_solved": 27,
+      "clean": "27/28",
+      "noisy_or_ambiguous_total": 6,
+      "noisy_or_ambiguous_solved": 2,
+      "noisy_or_ambiguous": "2/6",
+      "baseline_solved": 26,
+      "delta_vs_baseline": 3,
+      "fixes": 3,
+      "harms": 0,
+      "fix_harm": "3/0",
+      "clean_fixes": 3,
+      "clean_harms": 0,
+      "clean_fix_harm": "3/0",
+      "noisy_fixes": 0,
+      "noisy_harms": 0,
+      "noisy_fix_harm": "0/0",
+      "switches": 23,
+      "switch_sources": {
+        "baseline_early_accept": 20,
+        "cascade_objective": 3
+      },
+      "notes": ""
+    },
+    "clean": "27/28",
+    "noisy_or_ambiguous": "2/6",
+    "clean_fix_harm": "3/0",
+    "noisy_fix_harm": "0/0"
+  },
+  "cost_estimate": {
+    "cost_model": "historical_arg_baseline_cost_plus_r069_view_cost_scaled_by_cascade_view_calls",
+    "baseline_cost": 0.9328499999999998,
+    "r069_full_integrated_cost": 3.908995000000001,
+    "r069_estimated_view_cost": 2.976145000000001,
+    "full_view_calls": 100,
+    "cascade_view_calls": 56,
+    "view_call_fraction": 0.56,
+    "view_call_reduction": 0.43999999999999995,
+    "estimated_cost": 2.5994912000000006,
+    "estimated_cost_saving_vs_r069": 1.3095038000000003,
+    "relative_cost_vs_r069": 0.6650024366876908,
+    "relative_cost_vs_arg": 2.7866122098944106
+  },
+  "trigger_excludes": [
+    "true_answer",
+    "is_solved",
+    "clean_label",
+    "audit_label",
+    "task_id-specific rules"
+  ],
+  "interpretation": "Replay estimate over R069 fresh traces: run views sequentially, early-accept a valid ARG baseline after two supporting views, and switch only when the objective selector plus view support threshold is satisfied.",
+  "output_jsonl": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_tail34_r071_cascade_multiview_results.jsonl"
+}

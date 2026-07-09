@@ -1,0 +1,26 @@
+{
+  "run_id": "R257",
+  "title": "PromptNode/PromptEdge v2 design",
+  "claim_boundary": "Design only; no API, no accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "input_diagnosis": {
+    "proposed_v1": "10/16, fix/harm 3/1",
+    "node_only": "11/16, fix/harm 4/1",
+    "plain_requery": "12/16, fix/harm 4/0",
+    "main_failure_modes": {
+      "plain_fix_lost_by_proposed": 2,
+      "node_fix_lost_by_promptedge": 1,
+      "proposed_control_harm": 1
+    }
+  },
+  "v2_variant": "proposed_v2_independent_guarded_pnpe",
+  "v2_core": "independent Memory candidate before ARG exposure; verifier requires two concrete checks; router keeps ARG unless high-confidence verified conflict exists",
+  "edge_policy": {
+    "item_to_memory": "read: solve independently; do not inspect ARG initial choice",
+    "memory_to_verifier": "write: candidate label plus exactly two evidence checks",
+    "verifier_to_router": "forward: candidate only if high confidence; otherwise KEEP_ARG"
+  },
+  "lifecycle_policy": ["update", "compress", "prune", "merge", "upgrade"],
+  "next": "R258 preflight v2 on tiny16, no API"
+}

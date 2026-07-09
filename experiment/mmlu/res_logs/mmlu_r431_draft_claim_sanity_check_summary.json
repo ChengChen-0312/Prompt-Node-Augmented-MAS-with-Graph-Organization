@@ -1,0 +1,45 @@
+{
+  "run_id": "R431",
+  "title": "Draft claim sanity check",
+  "claim_boundary": "R431 sanitizes bounded paper draft language and performs the five-run goal audit. It does not authorize final paper claims.",
+  "no_api": true,
+  "broad_api": false,
+  "scanned_files": [
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex"
+  ],
+  "pre_sanitize_forbidden_hits": [],
+  "remaining_forbidden_hits": [],
+  "replacements_applied": [
+    "submission-ready"
+  ],
+  "draft_sanity_pass": true,
+  "iterations_since_last_goal_check": [
+    "R427",
+    "R428",
+    "R429",
+    "R430",
+    "R431"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "arg_designer_remains_main_baseline": true,
+    "promptnode_promptedge_method_boundary_preserved": true,
+    "draft_language_remains_claim_bounded": true,
+    "external_audit_still_required": true,
+    "overclaiming_blocked": true,
+    "paper_safe_to_scaffold": true
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R432_paper_main_tex_scaffold",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r431_draft_claim_sanity_check_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r431_draft_claim_sanity_check_report.md"
+}

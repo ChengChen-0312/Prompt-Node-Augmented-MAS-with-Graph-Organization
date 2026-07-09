@@ -1,0 +1,175 @@
+{
+  "rule": "r118_lightweight_objective_probe_replay",
+  "replay_only": true,
+  "candidate_subset_count": 10,
+  "one_view_success_count": 1,
+  "two_view_success_count": 3,
+  "best_min_view_subset": [
+    "calibrated"
+  ],
+  "best_min_view_count": 1,
+  "best_min_view_target_agreement": "34/34",
+  "best_min_view_switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "best_min_view_false_switch_tasks": [],
+  "best_min_view_missed_switch_tasks": [],
+  "recommended_probe_protocol": "calibrated_single_view_probe",
+  "api_result_ready": false,
+  "subset_results": [
+    {
+      "subset": [
+        "router"
+      ],
+      "view_count": 1,
+      "target_agreement": "33/34",
+      "target_agreement_count": 33,
+      "switch_tasks": [
+        "task_108"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": [
+        "task_250"
+      ]
+    },
+    {
+      "subset": [
+        "candidate"
+      ],
+      "view_count": 1,
+      "target_agreement": "33/34",
+      "target_agreement_count": 33,
+      "switch_tasks": [
+        "task_108"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": [
+        "task_250"
+      ]
+    },
+    {
+      "subset": [
+        "conservative"
+      ],
+      "view_count": 1,
+      "target_agreement": "33/34",
+      "target_agreement_count": 33,
+      "switch_tasks": [
+        "task_108"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": [
+        "task_250"
+      ]
+    },
+    {
+      "subset": [
+        "calibrated"
+      ],
+      "view_count": 1,
+      "target_agreement": "34/34",
+      "target_agreement_count": 34,
+      "switch_tasks": [
+        "task_108",
+        "task_250"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": []
+    },
+    {
+      "subset": [
+        "router",
+        "candidate"
+      ],
+      "view_count": 2,
+      "target_agreement": "33/34",
+      "target_agreement_count": 33,
+      "switch_tasks": [
+        "task_108"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": [
+        "task_250"
+      ]
+    },
+    {
+      "subset": [
+        "router",
+        "conservative"
+      ],
+      "view_count": 2,
+      "target_agreement": "33/34",
+      "target_agreement_count": 33,
+      "switch_tasks": [
+        "task_108"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": [
+        "task_250"
+      ]
+    },
+    {
+      "subset": [
+        "router",
+        "calibrated"
+      ],
+      "view_count": 2,
+      "target_agreement": "34/34",
+      "target_agreement_count": 34,
+      "switch_tasks": [
+        "task_108",
+        "task_250"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": []
+    },
+    {
+      "subset": [
+        "candidate",
+        "conservative"
+      ],
+      "view_count": 2,
+      "target_agreement": "33/34",
+      "target_agreement_count": 33,
+      "switch_tasks": [
+        "task_108"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": [
+        "task_250"
+      ]
+    },
+    {
+      "subset": [
+        "candidate",
+        "calibrated"
+      ],
+      "view_count": 2,
+      "target_agreement": "34/34",
+      "target_agreement_count": 34,
+      "switch_tasks": [
+        "task_108",
+        "task_250"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": []
+    },
+    {
+      "subset": [
+        "conservative",
+        "calibrated"
+      ],
+      "view_count": 2,
+      "target_agreement": "34/34",
+      "target_agreement_count": 34,
+      "switch_tasks": [
+        "task_108",
+        "task_250"
+      ],
+      "false_switch_tasks": [],
+      "missed_switch_tasks": []
+    }
+  ],
+  "claim_boundary": "offline probe replay only; no new API, measured cost, or accuracy claim"
+}

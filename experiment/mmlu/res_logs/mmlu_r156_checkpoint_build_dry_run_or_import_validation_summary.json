@@ -1,0 +1,29 @@
+{
+  "rule": "r156_mmlu_checkpoint_build_dry_run_or_import_validation",
+  "claim_boundary": "checkpoint build dry-run/import validation only; no API run, no checkpoint training, no transfer result, and no SCI-Q2 readiness claim",
+  "source_goal_audit": "experiment/aqua/res_logs/aqua_tail34_r155_goal_audit_summary.json",
+  "no_api_run": true,
+  "mmlu_data_root": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/datasets/MMLU",
+  "mmlu_data_root_exists": true,
+  "local_dev_rows": 285,
+  "task_split": "experiment/mmlu/task_split_mmlu.json",
+  "task_split_exists": true,
+  "base_task_count": 16,
+  "finetune_task_count": 24,
+  "split_indices_valid": true,
+  "cold_start_dry_run_ready": true,
+  "finetune_dry_run_ready": false,
+  "finetune_blockers": [
+    "/root/ARG-Designer",
+    "FINETUNE_DATA_DIR",
+    "COLD_START_DIR"
+  ],
+  "import_validation_ready": true,
+  "checkpoint_dir_checked": "",
+  "compatible_checkpoint_imported": false,
+  "cold_start_command_template": "cd experiment/mmlu && MMLU_DATA_ROOT=/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/datasets/MMLU ../../.venv/bin/python cold_start_mmlu.py --llm_name gpt-4o-2024-08-06 --batch_size 4 --num_iterations 10",
+  "finetune_command_status": "blocked_until_local_path_patch",
+  "transfer_api_allowed_next": false,
+  "broad_api_allowed_next": false,
+  "next_protocol": "r157_mmlu_finetune_local_path_patch"
+}

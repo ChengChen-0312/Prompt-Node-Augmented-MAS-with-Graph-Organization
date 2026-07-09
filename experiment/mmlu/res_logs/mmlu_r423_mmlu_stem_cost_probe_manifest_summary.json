@@ -1,0 +1,22 @@
+{
+  "run_id": "R423",
+  "title": "MMLU STEM cost probe manifest",
+  "claim_boundary": "R423 freezes a small cost probe for MMLU STEM. It measures token/cost only and cannot create a new accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "tasks": 12,
+  "api_records": 24,
+  "variant_counts": {
+    "arg_direct_cost_probe": 12,
+    "promptnode_stack_cost_probe": 12
+  },
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "cost_probe_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R424_mmlu_stem_cost_probe_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r423_mmlu_stem_cost_probe_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r423_mmlu_stem_cost_probe_manifest_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r423_mmlu_stem_cost_probe_manifest_report.md"
+}

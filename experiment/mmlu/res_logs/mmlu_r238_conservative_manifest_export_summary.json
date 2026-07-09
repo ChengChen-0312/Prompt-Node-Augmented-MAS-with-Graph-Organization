@@ -1,0 +1,62 @@
+{
+  "records": 335,
+  "switches": 97,
+  "variant_counts": {
+    "abstain_only_router": 67,
+    "always_switch_to_objective": 67,
+    "node_only_no_promptedge_text": 67,
+    "proposed_conservative_router": 67,
+    "random_switch_labels_same_rate": 67
+  },
+  "switch_counts_by_variant": {
+    "always_switch_to_objective": 67,
+    "node_only_no_promptedge_text": 10,
+    "proposed_conservative_router": 10,
+    "random_switch_labels_same_rate": 10
+  },
+  "run_id": "R238",
+  "title": "Conservative router-final manifest export",
+  "claim_boundary": "Manifest export only; no API, no accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "policy": "baseline_consensus_guard_top3",
+  "input_jsonl": "experiment/mmlu/promptedge_targets/mmlu_r218_router_final_mini_manifest.jsonl",
+  "output_dir": "experiment/mmlu/promptedge_targets/r238_conservative",
+  "paths": {
+    "proposed_conservative_router": "experiment/mmlu/promptedge_targets/r238_conservative/mmlu_r238_proposed_conservative_router.jsonl",
+    "controls_all": "experiment/mmlu/promptedge_targets/r238_conservative/mmlu_r238_conservative_controls_all.jsonl",
+    "abstain_only_router": "experiment/mmlu/promptedge_targets/r238_conservative/mmlu_r238_abstain_only_router.jsonl",
+    "always_switch_to_objective": "experiment/mmlu/promptedge_targets/r238_conservative/mmlu_r238_always_switch_to_objective.jsonl",
+    "node_only_no_promptedge_text": "experiment/mmlu/promptedge_targets/r238_conservative/mmlu_r238_node_only_no_promptedge_text.jsonl",
+    "random_switch_labels_same_rate": "experiment/mmlu/promptedge_targets/r238_conservative/mmlu_r238_random_switch_labels_same_rate.jsonl"
+  },
+  "seed": 20260709,
+  "proposed_summary": {
+    "records": 67,
+    "switches": 10,
+    "variant_counts": {
+      "proposed_conservative_router": 67
+    },
+    "switch_counts_by_variant": {
+      "proposed_conservative_router": 10
+    }
+  },
+  "control_summary": {
+    "records": 268,
+    "switches": 87,
+    "variant_counts": {
+      "abstain_only_router": 67,
+      "always_switch_to_objective": 67,
+      "node_only_no_promptedge_text": 67,
+      "random_switch_labels_same_rate": 67
+    },
+    "switch_counts_by_variant": {
+      "always_switch_to_objective": 67,
+      "node_only_no_promptedge_text": 10,
+      "random_switch_labels_same_rate": 10
+    }
+  },
+  "tests": {
+    "tests.test_r238_conservative_manifest_export": "4/4 passed",
+    "tests.test_r237_apply_conservative_policy": "3/3 passed"
+  }
+}

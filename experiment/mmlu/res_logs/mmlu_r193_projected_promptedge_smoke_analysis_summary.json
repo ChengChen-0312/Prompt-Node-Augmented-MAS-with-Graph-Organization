@@ -1,0 +1,33 @@
+{
+  "run_id": "R193",
+  "title": "Projected PromptEdge MMLU smoke analysis",
+  "claim_boundary": "Diagnostic analysis only. This first4 smoke is not a paper-level accuracy result and does not prove superiority over ARG-Designer.",
+  "source_run": "R192",
+  "no_api": true,
+  "broad_api": false,
+  "selection_policy": "first_n_no_answer_filter",
+  "tasks": 4,
+  "baseline_correct": 4,
+  "projected_correct": 4,
+  "fixes": 0,
+  "harms": 0,
+  "accuracy_delta": 0,
+  "raw_contract_ready": "0/4",
+  "projected_contract_ready": "4/4",
+  "cost": 0.40109,
+  "prompt_tokens": 41962,
+  "completion_tokens": 12752,
+  "diagnosis": {
+    "safety_smoke_passed": true,
+    "improvement_signal": false,
+    "graph_projection_necessary": true,
+    "paper_claim_supported": false,
+    "reason": "The first four MMLU transfer tasks were already correct under R162 ARG baseline. Projected PromptEdge preserved accuracy but did not fix any error."
+  },
+  "next_options": [
+    "Run a tiny diagnostic on baseline-wrong R162 tasks, explicitly marked as error-analysis only.",
+    "Run a small random slice if the goal is unbiased harm-rate estimation.",
+    "Return to training/decoder design if the goal is learned edge-linking rather than hybrid projection."
+  ],
+  "recommended_next": "R194 should choose a diagnostic baseline-wrong slice only for mechanism debugging, while preserving the rule that paper claims require random/held-out evaluation."
+}

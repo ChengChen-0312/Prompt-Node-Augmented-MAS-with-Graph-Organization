@@ -1,0 +1,28 @@
+{
+  "baseline_jsonl": "experiment/aqua/aqua_tail34_arg_baseline_results.jsonl",
+  "promptnode_jsonl": "experiment/aqua/aqua_tail34_r058_router_contract_terminal_results.jsonl",
+  "model_summary_json": "experiment/aqua/res_logs/aqua_first200_r078_clean_fix_selector_summary.json",
+  "rule": "r080_r078_selector_on_r058_metadata",
+  "timestamp": "2026-07-08T16:57:59.217211",
+  "total_tasks": 34,
+  "overall": {
+    "total_tasks": 34,
+    "solved_tasks": 25,
+    "baseline_solved_tasks": 28,
+    "overall": "25/34",
+    "baseline": "28/34",
+    "delta_vs_baseline": -3,
+    "fixes": 0,
+    "harms": 3,
+    "fix_harm": "0/3",
+    "switches": 3,
+    "selected_source_counts": {
+      "baseline": 31,
+      "r078_on_r058_promptnode": 3
+    }
+  },
+  "generated_promptnode_graph_records": 34,
+  "promptnode_spec_records": 34,
+  "selector_feature_violations": 0,
+  "claim_boundary": "R080 is a negative metadata-compatible replay: R058 contains explicit PromptNode graphs, but applying the R078 selector to this dense PromptNode candidate pool harms tail34. This shows metadata alone is insufficient; the generated graph candidates and selector objective must be aligned."
+}

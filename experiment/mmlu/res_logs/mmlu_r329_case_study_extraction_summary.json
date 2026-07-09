@@ -1,0 +1,89 @@
+{
+  "run_id": "R329",
+  "title": "Case study extraction",
+  "claim_boundary": "R329 extracts paper-facing mechanism cases from existing logs. The cases explain the method but do not change quantitative claims.",
+  "no_api": true,
+  "broad_api": false,
+  "case_studies": [
+    {
+      "mechanism": "verifier_repair",
+      "source_run": "R306",
+      "task_id": "MMLU-machine_learning_test-81",
+      "subject": "machine_learning",
+      "baseline_answer": "A",
+      "promptnode_answer": "C",
+      "outcome": "fix",
+      "promptnode_roles": [
+        "PN_OptionSemanticConsistency",
+        "PN_InstructionVerifier",
+        "PN_SafetyGate"
+      ],
+      "promptedge_permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "lifecycle_actions": [
+        "write",
+        "forward"
+      ],
+      "paper_use": "Main case study: semantic verifier forwards a concrete answer only when evidence count and confidence are high."
+    },
+    {
+      "mechanism": "memory_bridge_prune",
+      "source_run": "R306",
+      "task_id": "MMLU-elementary_mathematics_test-222",
+      "subject": "elementary_mathematics",
+      "baseline_answer": "A",
+      "promptnode_answer": "A",
+      "outcome": "unresolved_signal_pruned",
+      "promptnode_roles": [
+        "PN_MemoryBridge",
+        "PN_InstructionVerifier"
+      ],
+      "promptedge_permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "lifecycle_actions": [
+        "write",
+        "compress",
+        "prune"
+      ],
+      "paper_use": "Boundary case: MemoryBridge identifies missing/truncated context, writes and compresses the signal, then prunes answer override."
+    },
+    {
+      "mechanism": "promptedge_false_forward_block",
+      "source_run": "R327",
+      "source_variant": "node_only_no_promptedge_text",
+      "source_ref_hash": "8e2b8ced9c6ea4eb",
+      "outcome": "hard_negative_blocked",
+      "promptnode_family": "answer_bearing_no_promptedge_text",
+      "promptedge_text_present": 0,
+      "target_forward": false,
+      "predicted_forward": false,
+      "paper_use": "Safety case: answer-bearing no-edge candidate is blocked after hard-negative augmentation."
+    },
+    {
+      "mechanism": "lifecycle_cost_control",
+      "source_run": "R309",
+      "baseline_forwarded": 2,
+      "no_lifecycle_forwarded": 15,
+      "baseline_cost_normalized_correct": 0.9595959595959596,
+      "no_lifecycle_cost_normalized_correct": 0.8482142857142857,
+      "outcome": "accuracy_ties_but_cost_worse_without_prune",
+      "lifecycle_actions": [
+        "compress",
+        "prune"
+      ],
+      "paper_use": "Efficiency case: lifecycle pruning preserves accuracy while avoiding always-forward cost."
+    }
+  ],
+  "paper_case_study_count": 4,
+  "includes_required_mechanisms": true,
+  "sci_q2_ready": false,
+  "next_required_run": "R330_paper_tables_and_figures_plan",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r329_case_study_extraction_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r329_case_study_extraction_report.md"
+}

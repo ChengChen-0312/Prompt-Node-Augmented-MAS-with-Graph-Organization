@@ -1,0 +1,40 @@
+{
+  "run_id": "R471",
+  "title": "Five-run goal audit after readiness planning",
+  "claim_boundary": "R471 audits R467-R471 for drift after readiness planning. It does not execute blocked steps.",
+  "no_api": true,
+  "broad_api": false,
+  "audited_runs": [
+    "R467",
+    "R468",
+    "R469",
+    "R470",
+    "R471"
+  ],
+  "audited_summary_paths": {
+    "R467": "experiment/mmlu/res_logs/mmlu_r467_jcr_quartile_verification_plan_summary.json",
+    "R468": "experiment/mmlu/res_logs/mmlu_r468_submission_readiness_matrix_summary.json",
+    "R469": "experiment/mmlu/res_logs/mmlu_r469_local_smoke_after_jcr_readiness_summary.json",
+    "R470": "experiment/mmlu/res_logs/mmlu_r470_current_status_digest_summary.json"
+  },
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "readiness_matrix_keeps_blockers_visible": true,
+    "public_jcr_evidence_not_overclaimed": true,
+    "current_status_digest_created": true
+  },
+  "unauthorized_claim_runs": [],
+  "deviation_detected": false,
+  "visible_blockers": [
+    "external audits pending",
+    "pdf compile pending",
+    "official jcr verification pending",
+    "journal template conversion pending"
+  ],
+  "current_status_digest_exists": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R472_latex_environment_options",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r471_five_run_goal_audit_after_readiness_planning_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r471_five_run_goal_audit_after_readiness_planning_report.md"
+}

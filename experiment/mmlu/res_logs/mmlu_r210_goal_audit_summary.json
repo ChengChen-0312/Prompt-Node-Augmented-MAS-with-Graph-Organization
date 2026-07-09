@@ -1,0 +1,44 @@
+{
+  "run_id": "R210",
+  "title": "Five-iteration SCI-Q2 goal audit after R206-R209",
+  "date": "2026-07-09",
+  "no_api": true,
+  "goal_status_from_system": "blocked",
+  "goal_used_as_audit_benchmark": true,
+  "window": ["R206", "R207", "R208", "R209"],
+  "drift_detected": false,
+  "sci_q2_ready": false,
+  "alignment": {
+    "arg_designer_as_baseline": true,
+    "same_model_discipline": true,
+    "sync20_not_main_result": true,
+    "first_class_promptnode_promptedge_direction": true,
+    "claims_not_overstated": true,
+    "negative_controls_planned": true,
+    "paper_plan_created": true
+  },
+  "blocking_gaps": [
+    "MMLU transfer improvement is not supported by R202 random12.",
+    "Raw learned PN/PE edge topology is weak: R188 contract-ready only 2/50.",
+    "AQuA R065 accuracy signal is replay/multi-view and high cost.",
+    "R208 negative controls are designed but not executed.",
+    "Tool/Resource PromptNode identity and lifecycle actions are not yet empirically demonstrated.",
+    "Cost-matched ARG re-query baseline is not yet run.",
+    "External result-to-claim review and citation audit are still pending."
+  ],
+  "decision": "aligned_but_not_sci_q2_ready_authorize_no_api_router_final_preflight",
+  "authorized_next": [
+    "R211: implement or specify router-final PN/PE target schema and dry-run checks without API.",
+    "R212: leakage scan for router-final/objective-safety features.",
+    "R213: dry-run projected/raw graph logging for the next evaluator.",
+    "R214: pre-register a tiny cost-capped evaluation protocol if R211-R213 pass.",
+    "R215: next mandatory goal audit before any new API."
+  ],
+  "forbidden_next": [
+    "No broad MMLU API run before R215.",
+    "No claim that MMLU transfer improves over ARG.",
+    "No claim of fully learned edge linking while projection is required.",
+    "No paper draft that treats the current system as submission-ready.",
+    "No use of sync20 as the main success result."
+  ]
+}

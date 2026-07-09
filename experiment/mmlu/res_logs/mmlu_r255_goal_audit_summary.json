@@ -1,0 +1,28 @@
+{
+  "run_id": "R255",
+  "title": "Five-iteration SCI-Q2 goal audit",
+  "claim_boundary": "Audit only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "audit_window": ["R251", "R252", "R253", "R254"],
+  "goal_status_from_tool": "blocked_metadata_but_objective_used_as_active_reference",
+  "drift_detected": false,
+  "sci_q2_ready": false,
+  "decision_status": "aligned_but_redirect_from_current_transfer_prompt",
+  "key_result": {
+    "arg_baseline_fixed": "8/16",
+    "plain_requery": "12/16",
+    "node_only_no_promptedge_text": "11/16",
+    "proposed_promptnode_promptedge": "10/16",
+    "proposed_fix_harm": "3/1",
+    "api_cost": 0.10905
+  },
+  "api_status": "broad_api_blocked; tiny_api_allowed_only_after_R258_preflight_passes",
+  "authorized_next": {
+    "R256": "no-API failure mechanism analysis comparing plain, node-only, and proposed responses",
+    "R257": "design PN/PE v2 with safer edge policy and selector gate, no API",
+    "R258": "preflight PN/PE v2 tiny diagnostic with leakage/cost checks, no API",
+    "R259": "only if R258 passes, run tiny same-model v2 diagnostic",
+    "R260": "mandatory goal audit"
+  }
+}

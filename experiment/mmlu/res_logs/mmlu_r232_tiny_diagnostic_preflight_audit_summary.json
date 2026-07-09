@@ -1,0 +1,56 @@
+{
+  "records": 20,
+  "api_required": 8,
+  "deterministic_records": 12,
+  "variant_counts": {
+    "abstain_only_router": 4,
+    "always_switch_to_objective": 4,
+    "node_only_no_promptedge_text": 4,
+    "proposed_router_final": 4,
+    "random_switch_labels_same_rate": 4
+  },
+  "api_variant_counts": {
+    "node_only_no_promptedge_text": 4,
+    "proposed_router_final": 4
+  },
+  "estimated_cost": 0.01895,
+  "cost_cap": 0.45,
+  "env_key_status": {
+    "loaded_keys": [
+      "API_KEY",
+      "BASE_URL",
+      "DEFAULT_LLM_NAME",
+      "DEFAULT_PRIMARY_DATASETS",
+      "OPENAI_API_KEY",
+      "OPEN_GMAS_COMPLETION_USD_PER_1M_TOKENS",
+      "OPEN_GMAS_PREFLIGHT_COMPLETION_TOKENS_PER_CALL",
+      "OPEN_GMAS_PROMPT_USD_PER_1M_TOKENS"
+    ],
+    "has_api_key": true,
+    "has_base_url": true
+  },
+  "required_model": "gpt-4o-2024-08-06",
+  "preflight_pass": true,
+  "api_status": "authorized_tiny_diagnostic",
+  "blockers": [],
+  "warnings": [],
+  "source_missing": 0,
+  "model_mismatch": 0,
+  "leakage_rows": 0,
+  "prompt_marker_violations": [],
+  "prompt_sha_mismatches": 0,
+  "api_missing_messages": 0,
+  "run_id": "R232",
+  "title": "Tiny diagnostic preflight audit",
+  "claim_boundary": "Preflight audit only; no API, no accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "records_jsonl": "experiment/mmlu/run_logs/mmlu_r231_tiny_diagnostic_preflight_records.jsonl",
+  "r231_summary_json": "experiment/mmlu/res_logs/mmlu_r231_tiny_diagnostic_preflight_summary.json",
+  "r231_reported_cost": 0.01895,
+  "env_file": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/benchmark_config/.env",
+  "env_values_logged": false,
+  "tests": {
+    "tests.test_r232_tiny_diagnostic_preflight_audit": "6/6 passed",
+    "tests.test_r231_tiny_diagnostic_runner": "7/7 passed"
+  }
+}

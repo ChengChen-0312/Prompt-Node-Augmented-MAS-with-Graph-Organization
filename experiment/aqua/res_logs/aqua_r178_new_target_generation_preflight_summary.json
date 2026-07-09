@@ -1,0 +1,33 @@
+{
+  "rule": "r178_new_target_generation_preflight",
+  "aqua_total_rows": 254,
+  "aqua_first200_rows": 200,
+  "aqua_tail34_rows": 34,
+  "aqua_remaining_after_first200_equals_tail34": true,
+  "extra_local_aqua_train_rows_available": 0,
+  "aqua_target_generation_route_allowed": false,
+  "mmlu_transfer_baseline_available": true,
+  "mmlu_transfer_baseline_accuracy": 0.88,
+  "mmlu_transfer_baseline_correct": 88,
+  "mmlu_transfer_total": 100,
+  "mmlu_promptnode_ready": false,
+  "mmlu_blockers": [
+    "evaluate_mmlu.py has no prompt_node_policy or prompt_node_topology_policy path",
+    "mmlu_prompt_set.py role map has no PN_Memory/PN_Verifier/PN_Router roles",
+    "mmlu_arg_base_model_r159 role mapping was trained on six MMLU roles, not PN/PE roles",
+    "no MMLU PN/PE graph-policy target export exists yet"
+  ],
+  "recommended_next_run": {
+    "run": "R179",
+    "type": "MMLU PN/PE engineering preflight without API",
+    "steps": [
+      "add MMLU-safe PN role descriptions or a generic shared PN role registry",
+      "verify convert_to_pyg/TestGraph can execute MMLU PN roles",
+      "build a tiny synthetic MMLU PN/PE graph smoke with mock/no API",
+      "only after that design target export or bounded API smoke"
+    ]
+  },
+  "broad_api_allowed": false,
+  "bounded_accuracy_api_allowed": false,
+  "claim_boundary": "R178 is a route preflight only. It blocks further AQuA target mining from local data and identifies MMLU PN/PE engineering prerequisites before any accuracy API."
+}

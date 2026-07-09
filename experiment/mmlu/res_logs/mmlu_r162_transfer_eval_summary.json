@@ -1,0 +1,157 @@
+{
+  "rule": "r162_mmlu_arg_transfer_eval",
+  "claim_boundary": "same-model ARG-Designer checkpoint transfer evaluation on MMLU STEM transfer100 only; this run establishes a migration/robustness baseline and does not evaluate the PromptNode/PromptEdge method, AQuA sync20 accuracy, or SCI-Q2 readiness",
+  "summary_jsonl": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/res_logs/mmlu_r162_transfer_eval_summary.jsonl",
+  "results_jsonl": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "log_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/run_logs/mmlu_r162_transfer_eval.log",
+  "transfer_result": true,
+  "promptnode_result": false,
+  "same_model_as_argdesigner": true,
+  "checkpoint_loaded": true,
+  "dataset": "mmlu",
+  "model_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159ef_best",
+  "llm_name": "gpt-4o-2024-08-06",
+  "total_tasks": 100,
+  "result_rows": 100,
+  "correct": 88,
+  "pass_at_1": 0.88,
+  "accuracy_percent": 88.0,
+  "cost": 3.042140000000001,
+  "prompt_tokens": 301696,
+  "completion_tokens": 102244,
+  "decision_method": "FinalRefer",
+  "subject_results": [
+    {
+      "subject": "college_mathematics",
+      "correct": 7,
+      "total": 10,
+      "accuracy_percent": 70.0
+    },
+    {
+      "subject": "college_chemistry",
+      "correct": 6,
+      "total": 8,
+      "accuracy_percent": 75.0
+    },
+    {
+      "subject": "high_school_statistics",
+      "correct": 6,
+      "total": 8,
+      "accuracy_percent": 75.0
+    },
+    {
+      "subject": "abstract_algebra",
+      "correct": 3,
+      "total": 4,
+      "accuracy_percent": 75.0
+    },
+    {
+      "subject": "high_school_physics",
+      "correct": 3,
+      "total": 4,
+      "accuracy_percent": 75.0
+    },
+    {
+      "subject": "machine_learning",
+      "correct": 7,
+      "total": 8,
+      "accuracy_percent": 87.5
+    },
+    {
+      "subject": "conceptual_physics",
+      "correct": 11,
+      "total": 12,
+      "accuracy_percent": 91.66666666666666
+    },
+    {
+      "subject": "elementary_mathematics",
+      "correct": 11,
+      "total": 12,
+      "accuracy_percent": 91.66666666666666
+    },
+    {
+      "subject": "high_school_mathematics",
+      "correct": 12,
+      "total": 12,
+      "accuracy_percent": 100.0
+    },
+    {
+      "subject": "high_school_chemistry",
+      "correct": 7,
+      "total": 7,
+      "accuracy_percent": 100.0
+    },
+    {
+      "subject": "college_computer_science",
+      "correct": 4,
+      "total": 4,
+      "accuracy_percent": 100.0
+    },
+    {
+      "subject": "electrical_engineering",
+      "correct": 4,
+      "total": 4,
+      "accuracy_percent": 100.0
+    },
+    {
+      "subject": "astronomy",
+      "correct": 3,
+      "total": 3,
+      "accuracy_percent": 100.0
+    },
+    {
+      "subject": "college_physics",
+      "correct": 2,
+      "total": 2,
+      "accuracy_percent": 100.0
+    },
+    {
+      "subject": "high_school_computer_science",
+      "correct": 2,
+      "total": 2,
+      "accuracy_percent": 100.0
+    }
+  ],
+  "weakest_subjects": [
+    {
+      "subject": "college_mathematics",
+      "correct": 7,
+      "total": 10,
+      "accuracy_percent": 70.0
+    },
+    {
+      "subject": "college_chemistry",
+      "correct": 6,
+      "total": 8,
+      "accuracy_percent": 75.0
+    },
+    {
+      "subject": "high_school_statistics",
+      "correct": 6,
+      "total": 8,
+      "accuracy_percent": 75.0
+    },
+    {
+      "subject": "abstract_algebra",
+      "correct": 3,
+      "total": 4,
+      "accuracy_percent": 75.0
+    },
+    {
+      "subject": "high_school_physics",
+      "correct": 3,
+      "total": 4,
+      "accuracy_percent": 75.0
+    }
+  ],
+  "log_final_accuracy_display": "0.88%",
+  "log_final_accuracy_interpretation": "display_bug_ratio_0.88_equals_88.0_percent",
+  "errors_detected": [],
+  "mmlu_transfer_accuracy_claim_supported": true,
+  "aqua_accuracy_claim_supported": false,
+  "promptnode_accuracy_claim_supported": false,
+  "robustness_claim_supported": false,
+  "sci_q2_ready": false,
+  "next_protocol": "r163_promptnode_promptedge_transfer_or_aqua_matched_comparison",
+  "next_goal_audit_due": "R165"
+}

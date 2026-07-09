@@ -1,0 +1,41 @@
+{
+  "run_id": "R366",
+  "title": "Goal audit after source-invariant fresh eval",
+  "claim_boundary": "R366 audits the R362-R365 fresh evaluation cycle. The source-invariant policy has a real no-harm positive delta, but the gain is too small for an SCI-Q2 main claim.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R362",
+    "R363",
+    "R364",
+    "R365"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "fresh_eval_positive_no_harm": true,
+    "gain_insufficient_for_sci_q2": true,
+    "candidate_quality_bottleneck_identified": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "fresh_positive_delta_no_harm_claim_allowed": true,
+    "api_execution_allowed_now": false,
+    "candidate_quality_iteration_allowed": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Improve candidate quality with adversarial and domain-specific verifier edges before another API run.",
+    "Keep source-invariant gate and conservative threshold; do not relax gate to chase coverage.",
+    "Use R363/R365 as fresh evidence and diagnostic data, not as final main-result evidence."
+  ],
+  "evidence_snapshot": {
+    "r364_arg_vs_hybrid": "36/48 -> 37/48",
+    "r364_fix_harm": "1/0",
+    "r365_wrong_forward_count": 1,
+    "r365_missed_fix_count": 10
+  },
+  "next_required_run": "R367_adversarial_candidate_verifier_design",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r366_goal_audit_after_source_invariant_fresh_eval_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r366_goal_audit_after_source_invariant_fresh_eval_report.md"
+}

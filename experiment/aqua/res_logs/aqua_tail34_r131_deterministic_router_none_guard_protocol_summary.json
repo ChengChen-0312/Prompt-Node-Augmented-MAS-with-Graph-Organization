@@ -1,0 +1,51 @@
+{
+  "rule": "r131_deterministic_router_none_guard_protocol",
+  "timestamp": "2026-07-08T20:56:57.858382",
+  "implementation_only": true,
+  "no_api_run": true,
+  "decision_method": "DeterministicRouterContractFinalRefer",
+  "decision_method_registered": true,
+  "router_none_terminal_guard_predictions": "3/3",
+  "forced_option_after_router_none_prevented": "3/3",
+  "parser_prediction_for_abstain": "None.",
+  "r129_source": "experiment/aqua/aqua_tail34_r129_task250_router_none_failure_diagnosis.jsonl",
+  "broad_api_allowed_next": false,
+  "same_four_task_smoke_allowed_next": true,
+  "next_protocol": "same_four_task_deterministic_router_none_smoke",
+  "rows": [
+    {
+      "run_name": "R128",
+      "task_id": "task_250",
+      "source_prediction": "A",
+      "source_router_supported_option": "NONE",
+      "source_router_binding_status": "NO_EXACT_OPTION",
+      "guard_raw_response": "no valid option is supported",
+      "guard_prediction": "None.",
+      "prevents_forced_option_after_router_none": true,
+      "claim_boundary": "implementation and offline guard protocol only; no API, cost, or accuracy result"
+    },
+    {
+      "run_name": "R100",
+      "task_id": "task_250",
+      "source_prediction": "E",
+      "source_router_supported_option": "NONE",
+      "source_router_binding_status": "NO_EXACT_OPTION",
+      "guard_raw_response": "no valid option is supported",
+      "guard_prediction": "None.",
+      "prevents_forced_option_after_router_none": true,
+      "claim_boundary": "implementation and offline guard protocol only; no API, cost, or accuracy result"
+    },
+    {
+      "run_name": "R106",
+      "task_id": "task_250",
+      "source_prediction": "E",
+      "source_router_supported_option": "NONE",
+      "source_router_binding_status": "NO_EXACT_OPTION",
+      "guard_raw_response": "no valid option is supported",
+      "guard_prediction": "None.",
+      "prevents_forced_option_after_router_none": true,
+      "claim_boundary": "implementation and offline guard protocol only; no API, cost, or accuracy result"
+    }
+  ],
+  "claim_boundary": "implementation and offline guard protocol only; no API, cost, or accuracy result"
+}

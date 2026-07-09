@@ -1,0 +1,31 @@
+{
+  "run_id": "R432",
+  "title": "Paper main.tex scaffold",
+  "claim_boundary": "R432 creates a compile-oriented LaTeX scaffold around the bounded draft sections. It does not create a complete paper draft or authorize paper claims.",
+  "no_api": true,
+  "broad_api": false,
+  "paper_dir": "paper",
+  "main_tex": "paper/main.tex",
+  "math_commands_tex": "paper/math_commands.tex",
+  "references_bib": "paper/references.bib",
+  "referenced_sections": [
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex"
+  ],
+  "stale_section_files": [],
+  "scaffold_links_all_existing_sections": true,
+  "complete_paper_draft": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R433_front_matter_and_related_work_preflight",
+  "backup_created": "paper-backup-r432-20260709-203153-937863",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r432_paper_main_tex_scaffold_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r432_paper_main_tex_scaffold_report.md"
+}

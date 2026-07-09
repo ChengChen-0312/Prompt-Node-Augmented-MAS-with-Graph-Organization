@@ -1,0 +1,33 @@
+{
+  "rule": "r062_integrated_selective_promptnode",
+  "total_tasks": 34,
+  "solved_tasks": 28,
+  "pass_at_1": 82.35294117647058,
+  "baseline_solved_tasks": 28,
+  "baseline_pass_at_1": 82.35294117647058,
+  "promptnode_solved_tasks_among_all_tasks": 1,
+  "promptnode_run_count": 1,
+  "promptnode_switch_count": 1,
+  "promptnode_run_rate": 0.029411764705882353,
+  "delta_vs_baseline": 0,
+  "fixes_vs_baseline": 0,
+  "harms_vs_baseline": 0,
+  "promptnode_run_tasks": [
+    "task_108"
+  ],
+  "switch_tasks": [
+    "task_108"
+  ],
+  "fix_tasks": [],
+  "harm_tasks": [],
+  "timestamp": "2026-07-08T10:51:24.772049",
+  "split_name": "tail34",
+  "llm_name": "gpt-4o-2024-08-06",
+  "baseline_model_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/output/aqua_sync20_model_20260707-230509",
+  "promptnode_model_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/output/aqua_pn_graph_policy_r055_full",
+  "output_file": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_tail34_r062_integrated_selective_results.jsonl",
+  "cost": 0.970595,
+  "prompt_tokens": 69448.0,
+  "completion_tokens": 41557.0,
+  "boundary": "fresh_integrated_selective_promptnode_run"
+}

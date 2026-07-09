@@ -1,0 +1,61 @@
+{
+  "run_id": "R387",
+  "title": "Equal-contract plain control analysis",
+  "claim_boundary": "R387 analyzes R386. R380's PromptEdge graph path remains better than a same-task plain prompt with the same structured output contract, mainly because the plain control often fails to bind a label.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 24,
+  "arg_correct": 21,
+  "equal_contract_strict_correct": 10,
+  "equal_contract_explicit_fallback_correct": 16,
+  "option_binding_correct": 24,
+  "equal_contract_empty_label_count": 14,
+  "option_binding_delta_vs_equal_contract_strict": 14,
+  "option_binding_delta_vs_equal_contract_fallback": 8,
+  "equal_contract_empty_label_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-29",
+    "MMLU-nonstem-high_school_us_history_test-30",
+    "MMLU-nonstem-high_school_us_history_test-32",
+    "MMLU-nonstem-high_school_us_history_test-34",
+    "MMLU-nonstem-high_school_us_history_test-38",
+    "MMLU-nonstem-high_school_us_history_test-39",
+    "MMLU-nonstem-high_school_us_history_test-41",
+    "MMLU-nonstem-high_school_us_history_test-42",
+    "MMLU-nonstem-high_school_us_history_test-43",
+    "MMLU-nonstem-high_school_us_history_test-44",
+    "MMLU-nonstem-high_school_us_history_test-46",
+    "MMLU-nonstem-high_school_us_history_test-47",
+    "MMLU-nonstem-high_school_us_history_test-48",
+    "MMLU-nonstem-high_school_us_history_test-52"
+  ],
+  "option_binding_only_vs_equal_contract_fallback_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-29",
+    "MMLU-nonstem-high_school_us_history_test-30",
+    "MMLU-nonstem-high_school_us_history_test-32",
+    "MMLU-nonstem-high_school_us_history_test-34",
+    "MMLU-nonstem-high_school_us_history_test-38",
+    "MMLU-nonstem-high_school_us_history_test-39",
+    "MMLU-nonstem-high_school_us_history_test-46",
+    "MMLU-nonstem-high_school_us_history_test-47"
+  ],
+  "claim_permissions": {
+    "same_task_control_survived": true,
+    "mixed_nonmath_preflight_allowed_next": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "claim_risks": {
+    "same_task_control_not_independent_fresh_split": true,
+    "history_subject_only": true,
+    "needs_mixed_nonmath_transfer": true
+  },
+  "api_cost": 0.091285,
+  "prompt_tokens": 9791,
+  "completion_tokens": 2822,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R388_mixed_nonmath_option_binding_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r387_equal_contract_plain_control_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r387_equal_contract_plain_control_analysis_report.md"
+}

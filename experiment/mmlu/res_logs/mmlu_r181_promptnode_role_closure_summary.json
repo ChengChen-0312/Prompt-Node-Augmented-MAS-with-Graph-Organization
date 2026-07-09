@@ -1,0 +1,30 @@
+{
+  "run_id": "R181",
+  "title": "MMLU PromptNode role registry and constructor closure",
+  "claim_boundary": "Engineering closure only. No API evaluation, no MMLU accuracy claim, and no claim that the old MMLU ARG checkpoint can generate PN roles.",
+  "no_api": true,
+  "broad_api": false,
+  "changes": [
+    "Added PN_Memory, PN_Verifier, and PN_Router descriptions to mas_framework/prompt/mmlu_prompt_set.py.",
+    "Added the same PN roles to experiment/mmlu/mmlu_prompt_set.py so training/evaluation role constraints can see them.",
+    "Allowed PromptNode to accept an optional constraint argument passed by MMLU TestGraph.",
+    "Added constructor tests for MMLU PN graph creation without API execution."
+  ],
+  "tests": {
+    "tests.test_r181_mmlu_promptnode_roles": "2/2 passed",
+    "adjacent_aqua_selector_tests": "9/9 passed"
+  },
+  "engineering_result": {
+    "mmlu_prompt_registries_expose_pn_roles": true,
+    "mmlu_testgraph_constructs_pn_graph_without_api": true,
+    "promptnode_accepts_mmlu_constraint": true,
+    "old_mmlu_checkpoint_can_generate_pn_roles": false
+  },
+  "remaining_blockers": [
+    "MMLU evaluator still has no explicit PN/PE topology adapter or policy flag.",
+    "MMLU old checkpoint role mapping still has six non-PN roles.",
+    "No non-leaky MMLU PN/PE target export manifest exists yet.",
+    "PromptNode router contract still uses A-E labels and should be made option-label aware before MMLU transfer evaluation."
+  ],
+  "next_action": "R182 should add a MMLU PN/PE topology adapter/export path and option-label-aware PromptNode contract tests, still without API."
+}

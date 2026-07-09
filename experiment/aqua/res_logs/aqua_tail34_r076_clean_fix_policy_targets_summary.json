@@ -1,0 +1,25 @@
+{
+  "rule": "r076_clean_fix_preserving_policy_targets",
+  "timestamp": "2026-07-08T16:37:28.752284",
+  "total_targets": 5,
+  "clean_positive_tasks": [
+    "task_188",
+    "task_56",
+    "task_8"
+  ],
+  "noisy_optional_tasks": [
+    "task_108"
+  ],
+  "unstable_boundary_tasks": [
+    "task_59"
+  ],
+  "forbidden_policy_input_fields": [
+    "true_answer",
+    "is_solved",
+    "baseline_is_solved",
+    "clean_label",
+    "audit_label",
+    "task_id"
+  ],
+  "claim_boundary": "Distillation target export only; not a new answer-accuracy result."
+}

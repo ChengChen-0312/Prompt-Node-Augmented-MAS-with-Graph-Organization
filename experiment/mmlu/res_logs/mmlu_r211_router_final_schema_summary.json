@@ -1,0 +1,41 @@
+{
+  "run_id": "R211",
+  "title": "Router-final PromptEdge target schema dry-run",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "Schema and dry-run only; no accuracy claim and no router-final improvement claim.",
+  "code_changed": [
+    "experiment/mmlu/export_promptedge_targets.py",
+    "tests/test_r211_mmlu_router_final_schema.py"
+  ],
+  "target_manifest": "experiment/mmlu/promptedge_targets/mmlu_r211_router_final_targets.jsonl",
+  "exported_rows": 403,
+  "missing_schema": 0,
+  "schema_versions": {
+    "r211_router_final_v1": 403
+  },
+  "router_actions": {
+    "abstain": 403
+  },
+  "allowed_option_label_sets": {
+    "A/B/C/D/NONE": 403
+  },
+  "leakage_violations": 0,
+  "tests": {
+    "tests.test_r211_mmlu_router_final_schema": "2/2 passed",
+    "tests.test_r183_mmlu_promptedge_target_export": "3/3 passed",
+    "tests.test_r182_mmlu_promptedge_topology": "3/3 passed"
+  },
+  "supported_now": [
+    "Router-final training target schema exists.",
+    "PromptEdge text can be represented as edge-level prompt metadata.",
+    "Model-visible router fields exclude gold answer, correctness, task id, and audit labels.",
+    "Current exported labels are preserve-safe abstain labels only."
+  ],
+  "not_supported_yet": [
+    "Learned answer-changing router-final decisions.",
+    "MMLU transfer improvement.",
+    "Fully learned edge-linking without projection."
+  ],
+  "next": "R212 leakage scan for router-final/objective-safety features."
+}

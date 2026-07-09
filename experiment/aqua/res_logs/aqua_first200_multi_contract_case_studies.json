@@ -1,0 +1,47 @@
+{
+  "count": 3,
+  "case_studies": [
+    {
+      "task_id": "task_122",
+      "slice_prefix": "aqua_100",
+      "case_type": "clean_fix",
+      "audit_label": "clean",
+      "true_answer": "A",
+      "baseline_prediction": "C",
+      "ensemble_prediction": "A",
+      "selected_prediction": "A",
+      "selected_source": "multi_contract_union",
+      "rule_evidence": "strong A=3, E=1",
+      "method_contracts": "router:A/EXACT_MATCH/direct=0/match=no; candidate:A/EXACT_MATCH/direct=1/match=yes; conservative:A/EXACT_MATCH/direct=0/match=no; calibrated:E/EXACT_MATCH/direct=0/match=no",
+      "question_short": "Kevin drove from A to B at a constant speed of 70 mph. Once he reached B, he turned right around with pause, and returned to A at a constant speed of 90 mph. Exactly 3 hours bef..."
+    },
+    {
+      "task_id": "task_197",
+      "slice_prefix": "aqua_next100",
+      "case_type": "clean_fix",
+      "audit_label": "clean",
+      "true_answer": "C",
+      "baseline_prediction": "A",
+      "ensemble_prediction": "A",
+      "selected_prediction": "C",
+      "selected_source": "multi_contract_union",
+      "rule_evidence": "direct-consensus C=2; strong A=2, C=2",
+      "method_contracts": "router:C/EXACT_MATCH/direct=2/match=yes; candidate:A/EXACT_MATCH/direct=1/match=no; conservative:A/EXACT_MATCH/direct=1/match=yes; calibrated:C/EXACT_MATCH/direct=2/match=yes",
+      "question_short": "In the coordinate plane, a triangle has vertices at (a,0), (b,0), and (x,y). If a>x>b>0>y, which of the following represents the area of that triangle? Choices: A)(ay−by)/2 B)(a..."
+    },
+    {
+      "task_id": "task_67",
+      "slice_prefix": "aqua_next100",
+      "case_type": "clean_fix",
+      "audit_label": "clean",
+      "true_answer": "B",
+      "baseline_prediction": "A",
+      "ensemble_prediction": "B",
+      "selected_prediction": "B",
+      "selected_source": "multi_contract_union",
+      "rule_evidence": "direct-consensus B=2; strong B=2",
+      "method_contracts": "router:B/EQUIVALENT_FORM/direct=2/match=yes; candidate:-/WEAK/direct=1/match=no; conservative:-/WEAK/direct=2/match=no; calibrated:B/EXACT_MATCH/direct=2/match=yes",
+      "question_short": "Assistants are needed to prepare for preparation. Each helper can make either 2 large cakes or 35 small cakes/hr. The kitchen is available for 3 hours and 20 large cakes & 700 s..."
+    }
+  ]
+}

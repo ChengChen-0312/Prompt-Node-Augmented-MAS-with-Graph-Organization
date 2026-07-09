@@ -1,0 +1,23 @@
+{
+  "run_id": "R446",
+  "title": "Local tables and submission gaps",
+  "claim_boundary": "R446 creates local LaTeX result tables from result files. It does not replace external audits or PDF compilation.",
+  "no_api": true,
+  "broad_api": false,
+  "tables_created": [
+    "paper/tables/main_results.tex",
+    "paper/tables/cost_results.tex"
+  ],
+  "main_result_rows": 6,
+  "cost_rows": 6,
+  "submission_gaps": [
+    "external_audits_pending",
+    "latex_compile_pending",
+    "final_caption_polish_pending"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R447_local_smoke_after_tables",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r446_local_tables_and_submission_gaps_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r446_local_tables_and_submission_gaps_report.md"
+}

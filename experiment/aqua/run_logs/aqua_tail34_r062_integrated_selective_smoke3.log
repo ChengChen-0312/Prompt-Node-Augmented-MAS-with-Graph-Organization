@@ -1,0 +1,42 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Loading baseline and PromptNode models...
+Loaded precomputed embeddings: 7 entries
+Using provided role mapping: 4 roles
+TOKENS: START=4, END=5
+Loaded precomputed embeddings: 7 entries
+Using provided role mapping: 7 roles
+TOKENS: START=7, END=8
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19518.97it/s]
+2026-07-08 10:41:36.697 | INFO     | mas_framework.tools.reader.readers:parse_file:106 - Reading JSON Lines file from /Users/chencheng/Downloads/论文/ARG-Designer-main/datasets/AQuA/AQuA.jsonl.
+Loaded 3 AQuA tasks for integrated selective evaluation.
+Integrated selective eval:   0%|          | 0/3 [00:00<?, ?it/s]Integrated selective eval:   0%|          | 0/3 [00:19<?, ?it/s, Accuracy=0.00% (0/1), PN=0/1]Integrated selective eval:  33%|███▎      | 1/3 [00:19<00:38, 19.42s/it, Accuracy=0.00% (0/1), PN=0/1]Integrated selective eval:  33%|███▎      | 1/3 [00:37<00:38, 19.42s/it, Accuracy=0.00% (0/2), PN=0/2]Integrated selective eval:  67%|██████▋   | 2/3 [00:37<00:18, 18.76s/it, Accuracy=0.00% (0/2), PN=0/2]Integrated selective eval:  67%|██████▋   | 2/3 [00:53<00:18, 18.76s/it, Accuracy=33.33% (1/3), PN=0/3]Integrated selective eval: 100%|██████████| 3/3 [00:53<00:00, 17.59s/it, Accuracy=33.33% (1/3), PN=0/3]Integrated selective eval: 100%|██████████| 3/3 [00:53<00:00, 17.97s/it, Accuracy=33.33% (1/3), PN=0/3]
+{
+  "rule": "r062_integrated_selective_promptnode",
+  "total_tasks": 3,
+  "solved_tasks": 1,
+  "pass_at_1": 33.33333333333333,
+  "baseline_solved_tasks": 1,
+  "baseline_pass_at_1": 33.33333333333333,
+  "promptnode_solved_tasks_among_all_tasks": 0,
+  "promptnode_run_count": 0,
+  "promptnode_switch_count": 0,
+  "promptnode_run_rate": 0.0,
+  "delta_vs_baseline": 0,
+  "fixes_vs_baseline": 0,
+  "harms_vs_baseline": 0,
+  "promptnode_run_tasks": [],
+  "switch_tasks": [],
+  "fix_tasks": [],
+  "harm_tasks": [],
+  "timestamp": "2026-07-08T10:42:30.620883",
+  "split_name": "tail34_smoke3",
+  "llm_name": "gpt-4o-2024-08-06",
+  "baseline_model_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/output/aqua_sync20_model_20260707-230509",
+  "promptnode_model_path": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/output/aqua_pn_graph_policy_r055_full",
+  "output_file": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_tail34_r062_integrated_selective_smoke3_results.jsonl",
+  "cost": 0.086585,
+  "prompt_tokens": 5887.0,
+  "completion_tokens": 3810.0,
+  "boundary": "fresh_integrated_selective_promptnode_run"
+}

@@ -1,0 +1,25 @@
+{
+  "run_id": "R374",
+  "title": "History-guarded fresh eval preflight",
+  "claim_boundary": "R374 builds a narrow fresh preflight for the history-passage verifier signal preserved by R370/R373. It does not execute API or support a broad claim.",
+  "no_api": true,
+  "broad_api": false,
+  "subject": "high_school_us_history",
+  "tasks": 12,
+  "api_records": 24,
+  "planned_arg_baseline_calls": 12,
+  "planned_history_candidate_calls": 12,
+  "variant_counts": {
+    "arg_baseline_direct_api": 12,
+    "history_passage_candidate_api": 12
+  },
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R375_history_guarded_fresh_eval_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r374_history_guarded_fresh_eval_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r374_history_guarded_fresh_eval_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r374_history_guarded_fresh_eval_preflight_report.md"
+}

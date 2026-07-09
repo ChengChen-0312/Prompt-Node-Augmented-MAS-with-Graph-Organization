@@ -1,0 +1,89 @@
+{
+  "run_id": "R429",
+  "title": "Paper method/results draft preflight",
+  "claim_boundary": "R429 authorizes drafting bounded method/results prose from locally verified assets. It does not authorize final claims before external integrity audit.",
+  "no_api": true,
+  "broad_api": false,
+  "paper_draft_authorized_next": true,
+  "paper_claim_authorized": false,
+  "external_integrity_audit_required": true,
+  "draft_sections_allowed": [
+    "Method",
+    "Experimental Setup",
+    "Results",
+    "Cost Analysis",
+    "Case Studies",
+    "Limitations"
+  ],
+  "draft_sources": {
+    "paper_assets": [
+      {
+        "asset_type": "main_result_table",
+        "title": "AQuA/MMLU main result table",
+        "source": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+        "paper_section": "Results",
+        "status": "ready_with_claim_boundaries",
+        "note": "Use together with R415 claim update; broad claims remain disabled."
+      },
+      {
+        "asset_type": "claim_matrix",
+        "title": "Updated claim-evidence matrix",
+        "source": "experiment/mmlu/res_logs/mmlu_r415_update_claim_matrix_after_nonmath_positive_summary.json",
+        "paper_section": "Experimental Setup / Results",
+        "status": "ready_provisional",
+        "note": "Includes C6 narrow DefinitionChallenge positive result."
+      },
+      {
+        "asset_type": "cost_table",
+        "title": "Cost-normalized result table",
+        "source": "experiment/mmlu/res_logs/mmlu_r416_cost_normalized_claim_table_and_goal_audit_summary.json",
+        "paper_section": "Results / Cost Analysis",
+        "status": "incomplete_for_submission",
+        "note": "MMLU STEM cost and external integrity audit are missing."
+      },
+      {
+        "asset_type": "case_study_pack",
+        "title": "Mechanism case studies",
+        "source": "experiment/mmlu/res_logs/mmlu_r417_case_study_evidence_pack_summary.json",
+        "paper_section": "Case Studies",
+        "status": "ready_with_caveats",
+        "note": "3 reproducible case-study entries."
+      },
+      {
+        "asset_type": "lifecycle_trace",
+        "title": "PromptNode lifecycle trace",
+        "source": "experiment/mmlu/res_logs/mmlu_r419_lifecycle_trace_replay_summary.json",
+        "paper_section": "Method / Case Studies",
+        "status": "ready_for_visualization",
+        "note": "121 lifecycle events from R413 replay."
+      },
+      {
+        "asset_type": "paper_plan",
+        "title": "Paper plan with claim updates",
+        "source": "PAPER_PLAN.md",
+        "paper_section": "All sections",
+        "status": "updated",
+        "note": "Contains R402 and R415 claim-boundary updates."
+      }
+    ],
+    "local_precheck": "experiment/mmlu/res_logs/mmlu_r428_updated_local_claim_integrity_precheck_summary.json"
+  },
+  "required_qualifiers": [
+    "MMLU STEM cost is probe-estimated, not exact original R306 accounting.",
+    "DefinitionChallenge nonmath result is targeted/narrow.",
+    "Lifecycle trace is replayed from R413 outputs, not new accuracy evidence.",
+    "External experiment integrity audit is pending."
+  ],
+  "forbidden_phrases": [
+    "broad nonmath improvement",
+    "universal multiple-choice improvement",
+    "submission-ready",
+    "exact MMLU STEM cost",
+    "external audit passed"
+  ],
+  "paper_claim_authorized_reason": "external_integrity_audit_pending",
+  "sci_q2_ready": false,
+  "next_required_run": "R430_draft_method_results_sections",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r429_paper_method_results_draft_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r429_paper_method_results_draft_preflight_report.md"
+}

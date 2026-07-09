@@ -1,0 +1,95 @@
+{
+  "run_id": "R281",
+  "title": "MMLU ARG vs PromptNode retrain protocol freeze",
+  "claim_boundary": "Protocol freeze only; no training launched, no API call, no transfer superiority claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "torch_version": "2.8.0",
+  "mps_available": true,
+  "cuda_available": false,
+  "arg_training_path": {
+    "path": "experiment/mmlu/output/mmlu_arg_base_model_r159",
+    "checkpoint_exists": true,
+    "configuration_exists": true,
+    "best_model_exists": true,
+    "ef_best_model_exists": true,
+    "role_mapping_size": 6,
+    "role_mapping_keys": [
+      "Critic",
+      "Doctor",
+      "Historian",
+      "Knowlegable Expert",
+      "Mathematician",
+      "Psychologist"
+    ],
+    "pn_roles_present": [],
+    "expected_pn_roles": false,
+    "role_mapping_compatible_with_promptnodes": true,
+    "epochs": 10,
+    "batch_size": 4,
+    "device": "cpu"
+  },
+  "promptnode_training_path": {
+    "path": "experiment/mmlu/output/mmlu_promptedge_pn_graph_policy_r188_e5",
+    "checkpoint_exists": true,
+    "configuration_exists": true,
+    "best_model_exists": true,
+    "ef_best_model_exists": false,
+    "role_mapping_size": 9,
+    "role_mapping_keys": [
+      "Critic",
+      "Doctor",
+      "Historian",
+      "Knowlegable Expert",
+      "Mathematician",
+      "PN_Memory",
+      "PN_Router",
+      "PN_Verifier",
+      "Psychologist"
+    ],
+    "pn_roles_present": [
+      "PN_Memory",
+      "PN_Router",
+      "PN_Verifier"
+    ],
+    "expected_pn_roles": true,
+    "role_mapping_compatible_with_promptnodes": true,
+    "epochs": 5,
+    "batch_size": 8,
+    "device": "cpu"
+  },
+  "splits": {
+    "tiny16_probe_exists": true,
+    "full24_probe_exists": true,
+    "transfer100_exists": true,
+    "mmlu_task_split_exists": true,
+    "transfer_eval_results_exists": true
+  },
+  "scripts": {
+    "finetune_mmlu_exists": true,
+    "train_argdesigner_exists": true,
+    "evaluate_mmlu_exists": true,
+    "promptedge_training_dry_run_exists": true
+  },
+  "fairness_requirements": [
+    "same held-out full24 and transfer100 evaluation items",
+    "same evaluation LLM gpt-4o-2024-08-06",
+    "same decision method FinalRefer",
+    "PromptNode roles must be present in training graph data before checkpoint training",
+    "old ARG checkpoint cannot be directly finetuned into PN role mapping",
+    "plain requery remains a strong control and must be reported"
+  ],
+  "claim_permissions": {
+    "training_launch_allowed": true,
+    "api_evaluation_allowed": false,
+    "transfer_superiority_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "training_authorized_next": true,
+  "next_runs": [
+    "R282_ARG_retrain",
+    "R283_PromptNode_retrain"
+  ],
+  "next_goal_audit_due": "R285"
+}

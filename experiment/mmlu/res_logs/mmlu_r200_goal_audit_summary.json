@@ -1,0 +1,59 @@
+{
+  "run_id": "R200",
+  "title": "Five-iteration SCI-Q2 goal audit after R196-R199",
+  "claim_boundary": "Audit only. No API evaluation, no new accuracy claim, and no claim that PromptNode/PromptEdge exceeds ARG-Designer.",
+  "audited_runs": [
+    "R196",
+    "R197",
+    "R198",
+    "R199"
+  ],
+  "no_api": true,
+  "broad_api": false,
+  "drift_from_goal": false,
+  "goal_status_seen_by_tool": "blocked",
+  "evidence_since_last_audit": {
+    "r196_baseline_wrong_diagnostic": {
+      "baseline": "0/4",
+      "projected": "2/4",
+      "fixes": 2,
+      "harms": 0,
+      "biased_selection": true
+    },
+    "r197_analysis": {
+      "mechanism_signal_positive": true,
+      "paper_claim_supported": false
+    },
+    "r198_random_protocol": {
+      "sample_size": 12,
+      "answer_based_selection": false,
+      "r162_baseline_after_selection": "11/12",
+      "estimated_cost": 1.186
+    },
+    "r199_claim_matrix": {
+      "first_class_pnpe_supported": true,
+      "fully_learned_edge_linking_supported": false,
+      "hybrid_projection_supported": true,
+      "mmlu_accuracy_improvement_supported": false
+    }
+  },
+  "audit_decision": {
+    "status": "aligned_authorize_random_slice_diagnostic",
+    "sci_q2_ready": false,
+    "reason": "The method has positive biased diagnostic evidence and a prepared unbiased random protocol. A small random slice is now the next necessary evidence step, but it remains diagnostic until larger held-out evidence exists.",
+    "next_audit": "R205"
+  },
+  "authorized_next_steps": [
+    "R201: dry-run the R198 12-task random slice to verify projected graph readiness and R162 baseline lookup.",
+    "R202: if R201 passes, run the 12-task random-slice API diagnostic with the same gpt-4o-2024-08-06 model.",
+    "R203: analyze unbiased fix/harm, cost-normalized accuracy, and graph readiness.",
+    "R204: update claim-evidence matrix and decide whether to scale or redesign.",
+    "R205: mandatory goal audit before any broader evaluation."
+  ],
+  "forbidden_next_steps": [
+    "Do not call the 12-task slice the final paper result.",
+    "Do not run more than the R198 12-task slice before R205.",
+    "Do not claim fully learned edge-linking.",
+    "Do not omit cost and harm accounting."
+  ]
+}

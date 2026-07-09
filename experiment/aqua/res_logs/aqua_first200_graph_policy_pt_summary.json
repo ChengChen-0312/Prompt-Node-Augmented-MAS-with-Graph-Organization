@@ -1,0 +1,29 @@
+{
+  "input_jsonl": "experiment/aqua/aqua_first200_graph_policy_distill_rows.jsonl",
+  "manifest_jsonl": "experiment/aqua/aqua_first200_graph_policy_pt_manifest.jsonl",
+  "source_policy_rows": 800,
+  "exported_pt_files": 76,
+  "skipped_non_positive_rows": 724,
+  "promptnode_pt_files": 76,
+  "promptnode_spec_pt_files": 76,
+  "promptnode_edge_permission_pt_files": 76,
+  "positive_prompt_node_role_counts": {
+    "PN_Memory": 76,
+    "PN_Router": 76,
+    "PN_Verifier": 76
+  },
+  "unique_positive_graph_signatures": 17,
+  "output_dir": "experiment/FinetuneData_AQuA_PN_GraphPolicy_R053",
+  "outcome_field_violations": 0,
+  "excluded_pt_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "direct_majority",
+    "is_solved",
+    "predicted_answer",
+    "router_option",
+    "true_answer"
+  ],
+  "claim_boundary": "ARGDesigner-compatible PyG finetune files generated from positive label-free PromptNode graph-policy targets. Files contain graph roles/edges and task text, not gold answers, predictions, router options, audit labels, or correctness fields."
+}

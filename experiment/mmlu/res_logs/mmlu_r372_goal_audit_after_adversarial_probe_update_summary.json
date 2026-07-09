@@ -1,0 +1,35 @@
+{
+  "run_id": "R372",
+  "title": "Goal audit after adversarial probe update",
+  "claim_boundary": "R372 audits R367-R371. The adversarial/domain probe failed safely, and its outputs were converted into hard negatives before any broad API run.",
+  "no_api": true,
+  "broad_api": false,
+  "iterations_since_last_goal_check": [
+    "R367",
+    "R368",
+    "R369",
+    "R370",
+    "R371"
+  ],
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "adversarial_probe_failed_safely": true,
+    "hard_negative_update_done": true,
+    "history_signal_preserved": true,
+    "overclaiming_blocked": true
+  },
+  "claim_permissions": {
+    "offline_retraining_allowed": true,
+    "api_execution_allowed_now": false,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "course_correction": [
+    "Retrain source-invariant gate with R369 hard negatives before another fresh API run.",
+    "Do not integrate unconstrained domain verifiers directly.",
+    "Keep history-passage verifier as a guarded candidate family requiring fresh validation."
+  ],
+  "next_required_run": "R373_retrain_after_r369_hard_negatives",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r372_goal_audit_after_adversarial_probe_update_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r372_goal_audit_after_adversarial_probe_update_report.md"
+}

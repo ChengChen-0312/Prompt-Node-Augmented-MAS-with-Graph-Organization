@@ -1,0 +1,39 @@
+{
+  "rule": "r153_mmlu_checkpoint_build_or_import_protocol",
+  "claim_boundary": "checkpoint build/import protocol only; no API run, no checkpoint produced, no transfer result, and no SCI-Q2 readiness claim",
+  "source_preflight": "experiment/aqua/res_logs/aqua_tail34_r152_mmlu_checkpoint_or_aqua_replicate_preflight_summary.json",
+  "no_api_run": true,
+  "compatible_checkpoint_present": false,
+  "compatible_checkpoint_dirs": [],
+  "mmlu_finetune_script_exists": true,
+  "mmlu_cold_start_script_exists": true,
+  "mmlu_evaluator_exists": true,
+  "hardcoded_root_paths_detected": true,
+  "hardcoded_path_markers": [
+    "/root/ARG-Designer",
+    "../ColdStartData_mmlu",
+    "./task_split_mmlu.json"
+  ],
+  "local_task_split_exists": false,
+  "local_task_split_candidates": [
+    "task_split_mmlu.json",
+    "experiment/mmlu/task_split_mmlu.json"
+  ],
+  "import_route_supported": true,
+  "required_import_files": [
+    "configuration.txt",
+    "ef_best_model.pth or best_model.pth"
+  ],
+  "build_route": "patch_local_paths_then_coldstart_pretrain_finetune",
+  "build_route_required_steps": [
+    "replace hardcoded /root paths with CLI-configurable local paths",
+    "generate or provide task_split_mmlu.json for dev base/finetune split",
+    "run cold_start_mmlu.py with gpt-4o-2024-08-06 only after API budget is approved",
+    "run finetune_mmlu.py with local data dirs and model output dir",
+    "verify configuration.txt plus ef_best_model.pth before transfer evaluation"
+  ],
+  "transfer_api_allowed_next": false,
+  "broad_api_allowed_next": false,
+  "next_protocol": "r154_local_mmlu_checkpoint_path_patch_or_import_stub",
+  "next_goal_audit_due": "R155"
+}

@@ -1,0 +1,48 @@
+\section{Audit-Clean Evaluation Details}
+\label{app:label-audit}
+
+We do not silently rewrite benchmark files or train on corrected test labels. The main text reports official and audit-clean columns side by side, while this appendix records which records were excluded or used only for sensitivity analysis.
+
+\subsection{AQuA Tail34}
+
+For AQuA, the audit-clean tail31 result removes task\_59, task\_139, and task\_228. The conservative tail30 sensitivity result additionally removes task\_114 as a boundary-label case. The official labels remain unchanged in the benchmark files.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Task & Status & Paper use & Reason \\
+\midrule
+task\_59 & excluded\_from\_audit\_clean & appendix\_only & dataset-disagreement/bad-option boundary identified during tail34 audit; kept out of clean claims. \\
+task\_139 & excluded\_from\_audit\_clean & appendix\_only & dataset-disagreement flag from R264/R266; kept out of clean claims. \\
+task\_228 & excluded\_from\_audit\_clean & appendix\_only & dataset-disagreement flag from R264/R266; kept out of clean claims. \\
+task\_114 & sensitivity\_boundary & sensitivity\_only & official label D is not strictly supported under the deterministic interval check; R266 deterministic label is C. \\
+\bottomrule
+\end{tabular}
+\caption{AQuA records handled outside the primary audit-clean claim.}
+\label{tab:aqua-label-audit}
+\end{table}
+
+\subsection{MMLU STEM Transfer}
+
+For MMLU, three records are excluded from further training, distillation, and main97 aggregation. Two are wrong-groundtruth items identified by the audit protocol; the statistics item is a known ARG failure used during gate discovery and is therefore appendix-only to avoid tuning to one case.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Task & Status & Clean answer & Paper use \\
+\midrule
+MMLU-college\_chemistry\_test-62 & dataset\_label\_wrong\_groundtruth & A & excluded\_from\_training\_distillation\_and\_main97 \\
+MMLU-high\_school\_physics\_test-67 & dataset\_label\_wrong\_groundtruth & C & excluded\_from\_training\_distillation\_and\_main97 \\
+MMLU-high\_school\_statistics\_test-32 & label\_correct\_after\_option\_compression & D & excluded\_from\_training\_distillation\_and\_main97 \\
+\bottomrule
+\end{tabular}
+\caption{MMLU records excluded from main97 training/distillation and kept for appendix sensitivity.}
+\label{tab:mmlu-label-audit}
+\end{table}
+
+\paragraph{Reporting policy.}
+Official and audit-clean numbers must remain paired. The audit-clean column is used to avoid rewarding systems for matching unsupported labels, but the official benchmark is not edited.

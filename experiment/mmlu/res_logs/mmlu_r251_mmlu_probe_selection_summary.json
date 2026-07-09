@@ -1,0 +1,136 @@
+{
+  "run_id": "R251",
+  "title": "MMLU transfer probe selection",
+  "claim_boundary": "Probe selection only; no API, no transfer accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "feature_table_jsonl": "experiment/mmlu/run_logs/mmlu_r248_mmlu_transfer_feature_table.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r251_mmlu_transfer_probe_full24.jsonl",
+  "tiny_output_jsonl": "experiment/mmlu/run_logs/mmlu_r251_mmlu_transfer_probe_tiny16.jsonl",
+  "tiny_error_cap": 8,
+  "full24": {
+    "rows": 24,
+    "role_counts": {
+      "arg_error": 12,
+      "matched_control": 12
+    },
+    "subjects": {
+      "abstract_algebra": 2,
+      "college_chemistry": 4,
+      "college_mathematics": 6,
+      "conceptual_physics": 2,
+      "elementary_mathematics": 2,
+      "high_school_physics": 2,
+      "high_school_statistics": 4,
+      "machine_learning": 2
+    },
+    "subject_role_counts": {
+      "abstract_algebra": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "college_chemistry": {
+        "arg_error": 2,
+        "matched_control": 2
+      },
+      "college_mathematics": {
+        "arg_error": 3,
+        "matched_control": 3
+      },
+      "conceptual_physics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "elementary_mathematics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "high_school_physics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "high_school_statistics": {
+        "arg_error": 2,
+        "matched_control": 2
+      },
+      "machine_learning": {
+        "arg_error": 1,
+        "matched_control": 1
+      }
+    },
+    "balanced_error_control": true,
+    "subjects_with_errors": [
+      "abstract_algebra",
+      "college_chemistry",
+      "college_mathematics",
+      "conceptual_physics",
+      "elementary_mathematics",
+      "high_school_physics",
+      "high_school_statistics",
+      "machine_learning"
+    ]
+  },
+  "tiny16": {
+    "rows": 16,
+    "role_counts": {
+      "arg_error": 8,
+      "matched_control": 8
+    },
+    "subjects": {
+      "abstract_algebra": 2,
+      "college_chemistry": 2,
+      "college_mathematics": 2,
+      "conceptual_physics": 2,
+      "elementary_mathematics": 2,
+      "high_school_physics": 2,
+      "high_school_statistics": 2,
+      "machine_learning": 2
+    },
+    "subject_role_counts": {
+      "abstract_algebra": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "college_chemistry": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "college_mathematics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "conceptual_physics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "elementary_mathematics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "high_school_physics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "high_school_statistics": {
+        "arg_error": 1,
+        "matched_control": 1
+      },
+      "machine_learning": {
+        "arg_error": 1,
+        "matched_control": 1
+      }
+    },
+    "balanced_error_control": true,
+    "subjects_with_errors": [
+      "abstract_algebra",
+      "college_chemistry",
+      "college_mathematics",
+      "conceptual_physics",
+      "elementary_mathematics",
+      "high_school_physics",
+      "high_school_statistics",
+      "machine_learning"
+    ]
+  },
+  "selection_policy": "full set uses all ARG errors with same-subject controls; tiny set uses subject-diverse ARG errors with same-subject controls"
+}

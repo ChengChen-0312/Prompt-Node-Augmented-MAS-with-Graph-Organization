@@ -1,0 +1,65 @@
+{
+  "run": "R170",
+  "rule": "five_iteration_sci_q2_goal_audit",
+  "window": "R166-R170",
+  "status": "aligned_allow_bounded_smoke_only",
+  "drift": false,
+  "sci_q2_ready": false,
+  "broad_api_allowed": false,
+  "bounded_smoke_allowed": true,
+  "max_next_api_tasks": 4,
+  "next_audit": "R175",
+  "goal_checks": {
+    "r001_training_paradigm_preserved": true,
+    "promptnode_first_class_graph_semantics_preserved": true,
+    "promptedge_alignment_preserved": true,
+    "selector_boundary_added": true,
+    "sync20_noise_overclaim_avoided": true,
+    "heldout_or_transfer_improvement_proven": false,
+    "broad_api_blocked": true
+  },
+  "window_evidence": {
+    "R166": {
+      "type": "expanded target export",
+      "positive_graph_rows": 76,
+      "switch_critical_insert_rows": 4,
+      "preserve_safe_insert_rows": 72,
+      "suppress_or_fallback_rows": 724,
+      "violations": 0
+    },
+    "R167": {
+      "type": "short finetune and generation audit",
+      "epochs": 3,
+      "best_val_loss": 10.329,
+      "promptnode_graph_rate": 1.0,
+      "dag_rate": 1.0,
+      "overgeneration_risk": true
+    },
+    "R168": {
+      "type": "selector target agreement",
+      "eval_agreement": 0.995,
+      "eval_positive_recall": 0.9714285714285714,
+      "input_field_violations": 0
+    },
+    "R169": {
+      "type": "deployment protocol",
+      "default_action": "fallback_to_arg",
+      "max_next_smoke_tasks": 4,
+      "broad_api_allowed": false
+    }
+  },
+  "allowed_next_run": {
+    "run": "R171",
+    "type": "bounded selector-gated PromptNode/PromptEdge smoke",
+    "max_api_tasks": 4,
+    "requirements": [
+      "report internal ARG baseline",
+      "report selector decision",
+      "report generated PromptNode graph evidence",
+      "report fix/harm and cost",
+      "stop if clean harm appears",
+      "do not claim SCI-Q2 readiness"
+    ]
+  },
+  "claim_boundary": "Goal audit only. Allows only a bounded smoke; no broad evaluation, no answer-accuracy result, and no SCI-Q2 readiness claim."
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "arg_designer",
+    "bib_key": "li2026argdesigner",
+    "title": "Assemble Your Crew: Automatic Multi-agent Communication Topology Design via Autoregressive Graph Generation",
+    "source_url": "https://arxiv.org/bibtex/2507.18224",
+    "source_type": "arxiv_metadata",
+    "arxiv_id": "2507.18224",
+    "status": "fetched_needs_citation_audit"
+  },
+  {
+    "id": "agent_dropout",
+    "bib_key": "wang2025agentdropout",
+    "title": "AgentDropout: Dynamic Agent Elimination for Token-Efficient and High-Performance LLM-Based Multi-Agent Collaboration",
+    "source_url": "https://aclanthology.org/2025.acl-long.1170.bib",
+    "source_type": "preferred_published_metadata",
+    "arxiv_id": "2503.18891",
+    "status": "fetched_needs_citation_audit"
+  },
+  {
+    "id": "eib_learner",
+    "bib_key": "shen2025eiblearner",
+    "title": "Understanding the Information Propagation Effects of Communication Topologies in LLM-based Multi-Agent Systems",
+    "source_url": "https://aclanthology.org/2025.emnlp-main.623.bib",
+    "source_type": "preferred_published_metadata",
+    "arxiv_id": "2505.23352",
+    "status": "fetched_needs_citation_audit"
+  },
+  {
+    "id": "agent_prune",
+    "bib_key": "zhang2025agentprune",
+    "title": "Cut the Crap: An Economical Communication Pipeline for LLM-Based Multi-Agent Systems",
+    "source_url": "https://dblp.org/rec/conf/iclr/ZhangYLYWWCY025.bib",
+    "source_type": "preferred_published_metadata",
+    "arxiv_id": "2410.02506",
+    "status": "fetched_needs_citation_audit"
+  },
+  {
+    "id": "goa",
+    "bib_key": "yun2026goa",
+    "title": "Graph-of-Agents: A Graph-based Framework for Multi-Agent LLM Collaboration",
+    "source_url": "https://arxiv.org/bibtex/2604.17148",
+    "source_type": "arxiv_metadata",
+    "arxiv_id": "2604.17148",
+    "status": "fetched_needs_citation_audit"
+  },
+  {
+    "id": "mas2",
+    "bib_key": "wang2026mas2",
+    "title": "MAS2: Self-Generative, Self-Configuring, Self-Rectifying Multi-Agent Systems",
+    "source_url": "https://arxiv.org/bibtex/2509.24323",
+    "source_type": "arxiv_metadata",
+    "arxiv_id": "2509.24323",
+    "status": "fetched_needs_citation_audit"
+  },
+  {
+    "id": "prog",
+    "bib_key": "zi2024prog",
+    "title": "ProG: A Graph Prompt Learning Benchmark",
+    "source_url": "https://arxiv.org/bibtex/2406.05346",
+    "source_type": "arxiv_metadata",
+    "arxiv_id": "2406.05346",
+    "status": "fetched_needs_citation_audit"
+  },
+  {
+    "id": "goagent",
+    "bib_key": "chen2026goagent",
+    "title": "GoAgent: Group-of-Agents Communication Topology Generation for LLM-based Multi-Agent Systems",
+    "source_url": "https://arxiv.org/bibtex/2603.19677",
+    "source_type": "arxiv_metadata",
+    "arxiv_id": "2603.19677",
+    "status": "fetched_needs_citation_audit"
+  }
+]

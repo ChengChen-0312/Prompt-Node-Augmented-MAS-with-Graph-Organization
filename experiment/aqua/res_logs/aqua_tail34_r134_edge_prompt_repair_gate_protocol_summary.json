@@ -1,0 +1,20 @@
+{
+  "rule": "r134_edge_prompt_repair_gate_protocol",
+  "implementation_only": true,
+  "no_api_run": true,
+  "decision_method": "EdgePromptRepairContractFinalRefer",
+  "decision_method_registered": true,
+  "explicit_repair_candidate_count": 1,
+  "explicit_repair_prediction": "The answer is E",
+  "explicit_repair_parser_prediction": "E",
+  "missing_repair_prediction": "no valid option is supported",
+  "missing_repair_parser_prediction": "None.",
+  "low_confidence_rejected": true,
+  "large_distance_rejected": true,
+  "r132_task250_has_repair_fields": false,
+  "r132_task250_repair_gate_prediction": "no valid option is supported",
+  "r132_task250_repair_gate_parser_prediction": "None.",
+  "broad_api_allowed_next": false,
+  "next_protocol": "edge_prompt_repair_field_prompting_presmoke",
+  "claim_boundary": "implementation/offline repair gate only; no API, accuracy, cost, transfer, or robustness result"
+}

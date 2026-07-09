@@ -1,0 +1,38 @@
+{
+  "run_id": "R462",
+  "title": "Journal template probe",
+  "claim_boundary": "R462 records official template sources and conversion policy. It does not convert the manuscript, compile PDF, or certify journal readiness.",
+  "no_api": true,
+  "broad_api": false,
+  "primary_template_target": "JAIR",
+  "backup_template_target": "KAIS",
+  "template_sources": {
+    "JAIR": {
+      "journal": "Journal of Artificial Intelligence Research",
+      "template": "JAIR Author Kit / new JAIR LaTeX style, also available through the official Overleaf template.",
+      "source_url": "https://www.jair.org/index.php/jair/formatting",
+      "submission_url": "https://jair.org/index.php/jair/about/submissions",
+      "local_action": "Keep current article scaffold until external audits are resolved; then convert to JAIR Author Kit."
+    },
+    "KAIS": {
+      "journal": "Knowledge and Information Systems",
+      "template": "Springer Nature LaTeX template; submission should include source and compiled PDF.",
+      "source_url": "https://link.springer.com/journal/10115/submission-guidelines",
+      "template_url": "https://www.springernature.com/gp/authors/campaigns/latex-author-support",
+      "local_action": "Use as backup template path if JAIR framing is rejected or scope fit changes."
+    }
+  },
+  "template_plan_md": "paper/artifacts/journal_template_probe.md",
+  "template_conversion_performed": false,
+  "conversion_policy": [
+    "Do not convert the full manuscript before external experiment/citation/claim audits are resolved.",
+    "Preserve the current article scaffold as the editable working source.",
+    "When converting to JAIR, start from the JAIR Author Kit and port sections/tables/appendix with labels preserved.",
+    "If switching to KAIS, use Springer Nature article template and keep source plus compiled PDF package."
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R463_source_package_manifest",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r462_journal_template_probe_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r462_journal_template_probe_report.md"
+}

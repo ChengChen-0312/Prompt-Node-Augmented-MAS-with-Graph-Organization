@@ -1,0 +1,48 @@
+{
+  "run_id": "R227",
+  "title": "Runtime integration contract for router-final proposed/control decisions",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "Contract only; no implementation in TestGraph, no API, and no accuracy claim.",
+  "required_inputs": [
+    "task_id",
+    "raw_graph",
+    "projected_graph",
+    "promptedge_meta",
+    "promptedge_permissions",
+    "router_final_schema",
+    "control_variant",
+    "router_action",
+    "target_option_label",
+    "model_visible_input"
+  ],
+  "required_outputs": [
+    "baseline_answer",
+    "router_final_answer",
+    "control_variant",
+    "would_switch",
+    "selected_label",
+    "fallback_reason",
+    "cost",
+    "prompt_tokens",
+    "completion_tokens",
+    "leakage_pass"
+  ],
+  "fallback_rules": [
+    "If router_action is abstain, keep baseline answer.",
+    "If target_option_label is not in allowed option labels, keep baseline answer.",
+    "If leakage_pass is false, reject the row.",
+    "If control_variant is cost_matched_arg_requery, do not apply PN/PE router labels.",
+    "Log raw and projected graph audits for every row."
+  ],
+  "variants_required": [
+    "proposed_router_final",
+    "abstain_only_router",
+    "random_switch_labels_same_rate",
+    "always_switch_to_objective",
+    "node_only_no_promptedge_text",
+    "cost_matched_arg_requery"
+  ],
+  "api_status": "blocked_until_dry_run_contract_is_implemented",
+  "next": "R228 dry-run integration logs against proposed/control manifests"
+}

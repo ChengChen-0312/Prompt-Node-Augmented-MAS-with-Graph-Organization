@@ -1,0 +1,37 @@
+{
+  "run_id": "R245",
+  "title": "Five-iteration SCI-Q2 goal audit",
+  "claim_boundary": "Audit only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "audit_window": ["R241", "R242", "R243", "R244"],
+  "goal_status_seen": "blocked",
+  "goal_used_as_benchmark": true,
+  "drift_detected": false,
+  "status": "aligned_continue_transfer_and_lifecycle_evidence_no_api",
+  "sci_q2_ready": false,
+  "api_status": "blocked_until_transfer_or_live_graph_preflight",
+  "key_evidence": {
+    "r241_feature_table": "67 rows, train/frozen 33/34, feature/label separation",
+    "r242_fitted_policy": "score>=3 & majority_count<3; frozen 29/34 vs baseline 28/34; fix/harm 1/0",
+    "r243_controls": "proposed beats abstain/random and lower harm than always, but equals node-only",
+    "r244_cases": "frozen fix task_250, clean protection task_95, no-fix task_152"
+  },
+  "decision_reason": [
+    "The work is aligned with the user's train-time graph-policy goal.",
+    "The fitted policy has a small frozen AQuA replay gain and zero harm, but it is not enough for SCI-Q2.",
+    "PromptEdge text-specific benefit is not supported because node-only matches proposed.",
+    "The next gap is transfer and lifecycle evidence, not more prompt-router API."
+  ],
+  "authorized_next": {
+    "R246": "define transfer/lifecycle evidence plan and select target artifacts, no API",
+    "R247": "build lifecycle-state annotations for PromptNode update/compress/prune/merge/upgrade cases, no API",
+    "R248": "prepare transfer feature-table or MMLU analog for abstention policy, no API",
+    "R249": "update result-to-claim matrix with AQuA fitted-policy, controls, lifecycle, and transfer gaps, no API",
+    "R250": "mandatory goal audit"
+  },
+  "forbidden": [
+    "no broad API",
+    "no SCI-Q2 readiness claim",
+    "no PromptEdge-text gain claim",
+    "no final paper main result from R242 offline replay alone"
+  ]
+}

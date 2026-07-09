@@ -1,0 +1,49 @@
+{
+  "run_id": "R226",
+  "title": "Cost-matched ARG re-query protocol",
+  "no_api": true,
+  "task_source": "R214_candidate_protocol",
+  "requested_task_count": 4,
+  "max_tasks": 4,
+  "cost_cap": 0.45,
+  "arg_cost_per_task": 0.030421,
+  "allowed_requeries": 4,
+  "estimated_total_cost": 0.121684,
+  "api_executed": false,
+  "tasks": [
+    {
+      "task_id": "MMLU-high_school_statistics_test-32",
+      "baseline_variant": "cost_matched_arg_requery",
+      "api_executed": false,
+      "estimated_cost": 0.030421,
+      "source": "R214_candidate_protocol"
+    },
+    {
+      "task_id": "MMLU-high_school_physics_test-67",
+      "baseline_variant": "cost_matched_arg_requery",
+      "api_executed": false,
+      "estimated_cost": 0.030421,
+      "source": "R214_candidate_protocol"
+    },
+    {
+      "task_id": "MMLU-college_computer_science_test-53",
+      "baseline_variant": "cost_matched_arg_requery",
+      "api_executed": false,
+      "estimated_cost": 0.030421,
+      "source": "R214_candidate_protocol"
+    },
+    {
+      "task_id": "MMLU-conceptual_physics_test-103",
+      "baseline_variant": "cost_matched_arg_requery",
+      "api_executed": false,
+      "estimated_cost": 0.030421,
+      "source": "R214_candidate_protocol"
+    }
+  ],
+  "claim_boundary": "Cost-matched ARG protocol only; no API and no accuracy claim.",
+  "output_json": "experiment/mmlu/res_logs/mmlu_r226_cost_matched_arg_protocol_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r226_cost_matched_arg_protocol.md",
+  "tests": {
+    "tests.test_r226_cost_matched_arg_protocol": "2/2 passed"
+  }
+}

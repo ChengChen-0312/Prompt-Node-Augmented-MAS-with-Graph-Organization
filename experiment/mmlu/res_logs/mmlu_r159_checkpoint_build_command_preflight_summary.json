@@ -1,0 +1,35 @@
+{
+  "rule": "r159_mmlu_checkpoint_build_command_preflight",
+  "claim_boundary": "checkpoint build command preflight only; no API run, no checkpoint training, no transfer result, and no SCI-Q2 readiness claim",
+  "source_dry_run": "experiment/mmlu/res_logs/mmlu_r158_checkpoint_build_dry_run_after_path_patch_summary.json",
+  "no_api_run": true,
+  "r158_finetune_dry_run_ready": true,
+  "llm_name": "gpt-4o-2024-08-06",
+  "num_iterations": 10,
+  "batch_size": 4,
+  "planned_training_sample_count": 40,
+  "uses_local_mmlu_data_root": true,
+  "mmlu_data_root": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/datasets/MMLU",
+  "model_output_dir": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159",
+  "cold_start_dir": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/ColdStartData_mmlu",
+  "finetune_data_dir": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/FinetuneData_mmlu",
+  "task_split_file": "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/task_split_mmlu.json",
+  "build_command": "MMLU_DATA_ROOT=/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/datasets/MMLU .venv/bin/python experiment/mmlu/finetune_mmlu.py --pretrain --llm_name gpt-4o-2024-08-06 --num_iterations 10 --batch_size 4 --model_output_dir /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159 --no_timestamp_output_dir --cold_start_dir /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/ColdStartData_mmlu --finetune_data_dir /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/FinetuneData_mmlu --task_split_file /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/task_split_mmlu.json",
+  "expected_checkpoint_artifacts": [
+    "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/configuration.txt",
+    "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/best_model.pth",
+    "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth"
+  ],
+  "success_gate": "configuration.txt plus best_model.pth and ef_best_model.pth exist",
+  "stop_conditions": [
+    "API quota or authentication failure",
+    "MMLU dev data root unavailable",
+    "task split invalid",
+    "pretrain or finetune loss becomes NaN",
+    "expected checkpoint artifacts missing after run"
+  ],
+  "checkpoint_training_run": false,
+  "transfer_api_allowed_next": false,
+  "broad_api_allowed_next": false,
+  "next_protocol": "r160_goal_audit_r156_r160"
+}

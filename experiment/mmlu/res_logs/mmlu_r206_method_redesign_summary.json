@@ -1,0 +1,71 @@
+{
+  "run_id": "R206",
+  "title": "Method redesign after MMLU random12 neutral result",
+  "date": "2026-07-09",
+  "no_api": true,
+  "claim_boundary": "design memo only; no new accuracy claim",
+  "inputs": {
+    "aqua_r065": {
+      "result": "31/34 vs ARG 28/34",
+      "clean_result": "28/28",
+      "fix_harm": "3/0",
+      "limitation": "positive but replay/multi-view and no explicit PromptNode graph markers"
+    },
+    "mmlu_r188": {
+      "raw_contract_ready": "2/50",
+      "raw_pn_chain": "2/50",
+      "limitation": "learned generator emits PN roles but does not reliably learn ordered PN/PE topology"
+    },
+    "mmlu_r189": {
+      "projected_contract_ready": "50/50",
+      "claim": "hybrid constrained decoder is structurally valid"
+    },
+    "mmlu_r202": {
+      "baseline_projected": "11/12 vs 11/12",
+      "fix_harm": "0/0",
+      "conclusion": "safe on the small random slice but no transfer improvement signal"
+    }
+  },
+  "diagnosis": [
+    "AQuA improvement comes from objective-guided multi-view evidence, not from a train-time first-class PromptNode graph policy.",
+    "MMLU engineering makes PromptNodes and PromptEdges executable before inference, but the learned policy is currently too weak and must be projected into a canonical topology.",
+    "Projection alone improves graph validity but does not create enough new answer-changing evidence on random MMLU tasks.",
+    "The current MMLU targets are preserve-safe insertions and contain no learned override/fix labels, so the policy learns structure more than when-to-change decisions."
+  ],
+  "redesign": {
+    "method_name": "PromptNode-PromptEdge Constrained Graph Policy",
+    "core_change": "Treat PromptNode and PromptEdge as first-class graph primitives before execution, while constraining only the safety-critical topology and learning task-conditioned activation, role ordering, and routing evidence.",
+    "components": [
+      "PN_Memory: extracts option/evidence constraints and keeps predecessor claims.",
+      "PN_Verifier: checks arithmetic/logical consistency and contradiction.",
+      "PN_Router: emits an option-label-aware final recommendation or abstains.",
+      "PromptEdge: stores read/write/forward permissions and can carry prompt text as edge-level routing instruction."
+    ],
+    "learning_targets": [
+      "insert_none_or_insert_promptedge_chain",
+      "router_final_or_abstain",
+      "edge_permission_mask",
+      "objective_safety_switch"
+    ],
+    "required_ablations": [
+      "ARG baseline",
+      "raw learned graph without projection",
+      "projected PN/PE graph without answer-changing router",
+      "projected PN/PE graph with router-final",
+      "objective-safety selector distilled from AQuA R065/R095 features",
+      "PromptEdge-as-edge-text ablation"
+    ]
+  },
+  "next_actions": [
+    "R207: consolidate AQuA and MMLU evidence into a claim/evidence table.",
+    "R208: design negative controls and ablations before any new API.",
+    "R209: prepare SCI-Q2 paper outline with AQuA as current main accuracy evidence and MMLU as transfer/safety evidence.",
+    "R210: goal audit before new API or paper-scale drafting."
+  ],
+  "verdict": {
+    "sci_q2_ready": false,
+    "mmlu_scale_now": false,
+    "best_current_main_signal": "AQuA tail34 R065/R068/R069 line",
+    "publishable_direction": "possible, but only if the next version separates learned policy, constrained topology, safety router, cost, and transfer evidence"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "prefixes": [
+    "aqua_100",
+    "aqua_next100"
+  ],
+  "min_top_score": 1,
+  "min_score_margin": 0,
+  "summary": {
+    "total_tasks": 200,
+    "solved_tasks": 172,
+    "baseline_solved_tasks": 165,
+    "overall": "172/200",
+    "baseline": "165/200",
+    "delta_vs_baseline": 7,
+    "fixes": 9,
+    "harms": 2,
+    "fix_harm": "9/2",
+    "switches": 16,
+    "selected_source_counts": {
+      "baseline": 184,
+      "objective_top": 16
+    }
+  },
+  "audit_files": [
+    "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_100_option_binding_audit.jsonl",
+    "/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/aqua/aqua_next100_option_binding_audit.jsonl"
+  ],
+  "posthoc_audit_summary": {
+    "variant": "objective_guided_selector",
+    "total": 200,
+    "solved": 172,
+    "overall": "172/200",
+    "clean_total": 167,
+    "clean_solved": 155,
+    "clean": "155/167",
+    "noisy_or_ambiguous_total": 33,
+    "noisy_or_ambiguous_solved": 17,
+    "noisy_or_ambiguous": "17/33",
+    "baseline_solved": 165,
+    "delta_vs_baseline": 7,
+    "fixes": 9,
+    "harms": 2,
+    "fix_harm": "9/2",
+    "clean_fixes": 4,
+    "clean_harms": 1,
+    "clean_fix_harm": "4/1",
+    "noisy_fixes": 5,
+    "noisy_harms": 1,
+    "noisy_fix_harm": "5/1",
+    "switches": 16,
+    "switch_sources": {
+      "objective_top": 16
+    },
+    "notes": ""
+  },
+  "diagnostic_note": "This selector is label-free at selection time, but the summary uses true_answer for post-hoc evaluation."
+}

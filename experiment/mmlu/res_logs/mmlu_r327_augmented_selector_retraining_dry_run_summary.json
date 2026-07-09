@@ -1,0 +1,108 @@
+{
+  "run_id": "R327",
+  "title": "Augmented selector retraining dry run",
+  "claim_boundary": "R327 retrains the transparent selector on the hard-negative augmented manifest. It identifies PromptEdge text as a safety feature in the offline manifest, but it is still not an API or paper-result claim.",
+  "no_api": true,
+  "broad_api": false,
+  "manifest_records": 238,
+  "hard_negative_records": 4,
+  "learned_policy": {
+    "model_type": "augmented_promptedge_aware_family_selector",
+    "allowed_promptnode_families": [
+      "nonmath_semantic",
+      "symbolic_verifier"
+    ],
+    "min_candidate_confidence": 0.95,
+    "requires_candidate_answer_label": true,
+    "requires_promptedge_text_present": true,
+    "forbidden_promptnode_families": [
+      "answer_bearing_no_promptedge_text",
+      "none",
+      "warning_only"
+    ],
+    "train_family_counts": {
+      "answer_bearing_no_promptedge_text": {
+        "negative": 2
+      },
+      "none": {
+        "negative": 143
+      },
+      "nonmath_semantic": {
+        "positive": 2
+      },
+      "symbolic_verifier": {
+        "positive": 3
+      },
+      "warning_only": {
+        "negative": 16
+      }
+    }
+  },
+  "metrics": {
+    "train": {
+      "records": 166,
+      "accuracy": 1.0,
+      "target_forward": 5,
+      "predicted_forward": 5,
+      "precision_forward": 1.0,
+      "recall_forward": 1.0,
+      "false_forward": 0,
+      "missed_forward": 0
+    },
+    "dev": {
+      "records": 25,
+      "accuracy": 1.0,
+      "target_forward": 1,
+      "predicted_forward": 1,
+      "precision_forward": 1.0,
+      "recall_forward": 1.0,
+      "false_forward": 0,
+      "missed_forward": 0
+    },
+    "test": {
+      "records": 47,
+      "accuracy": 1.0,
+      "target_forward": 1,
+      "predicted_forward": 1,
+      "precision_forward": 1.0,
+      "recall_forward": 1.0,
+      "false_forward": 0,
+      "missed_forward": 0
+    }
+  },
+  "forwarded_hard_negative_count": 0,
+  "feature_ablation_after_hard_negatives": [
+    {
+      "variant": "full_augmented_selector",
+      "test_accuracy": 1.0,
+      "test_precision_forward": 1.0,
+      "test_recall_forward": 1.0,
+      "test_false_forward": 0,
+      "test_missed_forward": 0
+    },
+    {
+      "variant": "no_family_no_promptedge_text_feature",
+      "test_accuracy": 0.9787234042553191,
+      "test_precision_forward": 0.5,
+      "test_recall_forward": 1.0,
+      "test_false_forward": 1,
+      "test_missed_forward": 0
+    },
+    {
+      "variant": "no_family_with_promptedge_text_feature",
+      "test_accuracy": 1.0,
+      "test_precision_forward": 1.0,
+      "test_recall_forward": 1.0,
+      "test_false_forward": 0,
+      "test_missed_forward": 0
+    }
+  ],
+  "promptedge_feature_contribution_identified": true,
+  "paper_claim_authorized": false,
+  "api_execution_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R328_selector_policy_claim_update",
+  "predictions_jsonl": "experiment/mmlu/run_logs/mmlu_r327_augmented_selector_retraining_dry_run_predictions.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r327_augmented_selector_retraining_dry_run_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r327_augmented_selector_retraining_dry_run_report.md"
+}

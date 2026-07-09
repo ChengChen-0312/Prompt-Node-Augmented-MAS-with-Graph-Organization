@@ -1,0 +1,82 @@
+{
+  "run_id": "R317",
+  "title": "Claim matrix after promptedge and cost controls",
+  "claim_boundary": "R317 updates R313 with R316 controls. It does not broaden claims: non-STEM remains no-harm only under warning-only lifecycle safety replay.",
+  "no_api": true,
+  "broad_api": false,
+  "evidence": {
+    "aqua_audit_clean": {
+      "baseline": "28/31",
+      "proposed": "31/31",
+      "delta_correct": 3,
+      "claim": "positive_clean_improvement"
+    },
+    "aqua_conservative_remove_114": {
+      "baseline": "28/30",
+      "proposed": "30/30",
+      "delta_correct": 2,
+      "claim": "positive_under_boundary_label_removal"
+    },
+    "mmlu_stem_main97": {
+      "baseline": "88/97",
+      "r304_symbolic": "93/97",
+      "proposed": "95/97",
+      "delta_correct": 7,
+      "fix_harm": "7/0",
+      "cheap_control_threat": false,
+      "equal_accuracy_more_cost_controls": [
+        "always_forward_candidate_nodes",
+        "no_lifecycle_prune_disabled"
+      ],
+      "claim": "positive_diagnostic_with_controls"
+    },
+    "mmlu_nonstem_raw": {
+      "baseline": "37/40",
+      "proposed": "34/40",
+      "delta_correct": -3,
+      "fix_harm": "0/3",
+      "claim": "negative_transfer_without_warning_only_gate"
+    },
+    "mmlu_nonstem_safety_replay": {
+      "baseline": "37/40",
+      "proposed": "37/40",
+      "delta_correct": 0,
+      "fix_harm": "0/0",
+      "claim": "no_harm_boundary_only"
+    },
+    "mmlu_nonstem_plain_requery": {
+      "baseline": "37/40",
+      "proposed": "37/40",
+      "delta_correct": 0,
+      "fix_harm": "1/1",
+      "claim": "cost_matched_plain_requery_ties_arg_but_not_beaten"
+    },
+    "mmlu_nonstem_node_only_no_edge_text": {
+      "baseline": "37/40",
+      "proposed": "35/40",
+      "delta_correct": -2,
+      "fix_harm": "0/2",
+      "claim": "remove_promptedge_text_harms_nonstem_safety"
+    }
+  },
+  "claim_permissions": {
+    "plain_requery_beaten_on_nonstem": false,
+    "plain_requery_tied_not_beaten_on_nonstem": true,
+    "promptedge_text_needed_for_nonstem_safety": true,
+    "mmlu_nonstem_improvement_allowed": false,
+    "mmlu_nonstem_no_harm_allowed_only_with_lifecycle_safety": true,
+    "training_authorized": false,
+    "sci_q2_ready": false
+  },
+  "paper_guidance": [
+    "Do not claim non-STEM improvement: plain requery ties ARG and raw PromptNode harms.",
+    "Use non-STEM as a boundary/no-harm result after lifecycle safety replay.",
+    "Use no-edge-text harm as evidence that PromptEdges are not just decorative text.",
+    "Keep the positive claim on AQuA audit-clean and MMLU STEM until broader held-out validation is run."
+  ],
+  "training_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R318_symbolic_family_ablation",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r317_claim_matrix_after_controls_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r317_claim_matrix_after_controls_report.md"
+}

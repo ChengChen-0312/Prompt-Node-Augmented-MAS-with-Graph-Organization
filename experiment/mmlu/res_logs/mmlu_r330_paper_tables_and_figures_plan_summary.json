@@ -1,0 +1,92 @@
+{
+  "run_id": "R330",
+  "title": "Paper tables and figures plan",
+  "claim_boundary": "R330 plans paper artifacts from existing evidence. It does not add new claims or mark the paper submission-ready.",
+  "no_api": true,
+  "broad_api": false,
+  "tables": [
+    {
+      "id": "main_results",
+      "title": "Main accuracy, clean audit, fix/harm, and cost-normalized results",
+      "source": "experiment/mmlu/res_logs/mmlu_r321_paper_evidence_table_and_training_gate_summary.json",
+      "placement": "main",
+      "purpose": "Show AQuA audit-clean and MMLU STEM gains, plus non-STEM no-harm boundary."
+    },
+    {
+      "id": "ablation_controls",
+      "title": "Component and negative-control ablations",
+      "source": "experiment/mmlu/res_logs/mmlu_r319_ablation_table_update_summary.json",
+      "placement": "main",
+      "purpose": "Answer reviewer questions about SafetyGate, lifecycle, PromptEdge text, symbolic/nonmath families, and cost-matched requery."
+    },
+    {
+      "id": "selector_training_gate",
+      "title": "Offline selector manifest, hard negatives, and PromptEdge safety feature",
+      "source": "experiment/mmlu/res_logs/mmlu_r328_selector_policy_claim_update_summary.json",
+      "placement": "main_or_appendix",
+      "purpose": "Support train-time graph-policy feasibility without overclaiming external accuracy."
+    },
+    {
+      "id": "case_studies",
+      "title": "Mechanism case studies",
+      "source": "experiment/mmlu/res_logs/mmlu_r329_case_study_extraction_summary.json",
+      "placement": "main_and_appendix",
+      "purpose": "Explain verifier repair, MemoryBridge pruning, PromptEdge false-forward block, and lifecycle cost control."
+    },
+    {
+      "id": "label_audit_appendix",
+      "title": "Audit-clean exclusions and sensitivity analysis",
+      "source": "experiment/mmlu/res_logs/mmlu_r313_claim_matrix_summary.json",
+      "placement": "appendix",
+      "purpose": "Document noisy-label exclusions for AQuA and MMLU without hiding the official-score boundary."
+    }
+  ],
+  "figures": [
+    {
+      "id": "promptnode_augmented_graph_workflow",
+      "title": "PromptNode-Augmented MAS workflow",
+      "source": "/Users/chencheng/Downloads/论文/update2.docx plus R329 cases",
+      "placement": "main",
+      "purpose": "Show PromptNode insertion, read/write/forward edges, lifecycle update/compress/prune/merge/upgrade, and final aggregation."
+    },
+    {
+      "id": "selector_training_pipeline",
+      "title": "Leakage-safe graph-policy selector training pipeline",
+      "source": "R322-R328",
+      "placement": "main",
+      "purpose": "Show manifest construction, hard-negative augmentation, transparent selector, and claim gate."
+    },
+    {
+      "id": "accuracy_cost_tradeoff",
+      "title": "Accuracy and cost-normalized control comparison",
+      "source": "R309/R315/R319",
+      "placement": "main_or_appendix",
+      "purpose": "Show why always-forward/no-lifecycle is not a good substitute for routed PromptNodes."
+    },
+    {
+      "id": "case_study_graphs",
+      "title": "Case-study graph transitions",
+      "source": "R329",
+      "placement": "appendix",
+      "purpose": "Visualize verifier repair, MemoryBridge prune, and PromptEdge block."
+    }
+  ],
+  "ready_to_draft_sections": [
+    "method",
+    "experiments",
+    "ablation",
+    "case_study",
+    "limitations"
+  ],
+  "missing_before_sci_q2_submission": [
+    "prospective selector evaluation",
+    "larger held-out transfer or a second non-AQuA dataset with positive/no-harm result",
+    "complete related-work synthesis",
+    "paper claim audit against raw logs",
+    "citation audit"
+  ],
+  "sci_q2_ready": false,
+  "next_required_run": "R331_paper_outline_scaffold",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r330_paper_tables_and_figures_plan_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r330_paper_tables_and_figures_plan_report.md"
+}

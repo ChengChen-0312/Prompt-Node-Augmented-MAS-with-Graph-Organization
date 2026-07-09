@@ -1,0 +1,22 @@
+{
+  "rule": "r154_local_mmlu_checkpoint_path_patch_or_import_stub",
+  "claim_boundary": "local dataset path patch and checkpoint import stub only; no API run, no checkpoint training, no transfer result, and no SCI-Q2 readiness claim",
+  "source_protocol": "experiment/mmlu/res_logs/mmlu_r153_checkpoint_build_or_import_protocol_summary.json",
+  "no_api_run": true,
+  "dataset_env_patch_available": true,
+  "local_mmlu_root": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/datasets/MMLU",
+  "local_mmlu_root_exists": true,
+  "local_dev_rows": 285,
+  "task_split_json": "experiment/mmlu/task_split_mmlu.json",
+  "task_split_written": true,
+  "planned_base_task_count": 16,
+  "planned_finetune_task_count": 24,
+  "planned_train_sample_count": 40,
+  "split_seed": 42,
+  "import_stub_available": true,
+  "checkpoint_dir_checked": "",
+  "compatible_checkpoint_imported": false,
+  "transfer_api_allowed_next": false,
+  "broad_api_allowed_next": false,
+  "next_protocol": "r155_goal_audit_r151_r155"
+}

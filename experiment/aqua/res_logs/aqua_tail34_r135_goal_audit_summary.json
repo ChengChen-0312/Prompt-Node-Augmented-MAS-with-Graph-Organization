@@ -1,0 +1,58 @@
+{
+  "rule": "r135_goal_audit_r131_r135",
+  "status": "aligned_continue_without_broad_api",
+  "goal_window": [
+    "R131",
+    "R132",
+    "R133",
+    "R134",
+    "R135"
+  ],
+  "goal_reference": "SCI-Q2 PromptNode first-class graph goal with update2 node+edge virtual graph organization and robustness boundary",
+  "drift_detected": false,
+  "drift_type": "none_after_edge_prompt_and_repair_gate_correction",
+  "maintained_update2_alignment": true,
+  "maintained_robustness_alignment": true,
+  "prompt_as_edge_correction_made": true,
+  "final_layer_no_longer_invents_repair": true,
+  "clean_gate_still_not_met": true,
+  "r131_forced_option_after_router_none_prevented": "3/3",
+  "r132_selected_accuracy": "3/4",
+  "r132_clean_fix_harm": "0/0",
+  "r132_noisy_fix_harm": "1/0",
+  "r132_smoke_gate_passed": false,
+  "r132_router_none_abstained": "1/1",
+  "r133_prompt_as_edge_first_class": true,
+  "r133_node_only_promptnode_sufficient": false,
+  "r133_switches_with_edge_prompt_specs": "2/2",
+  "r133_switches_with_repair_edge_prompt": "2/2",
+  "r133_edge_prompt_selector_input_violations": 0,
+  "r134_decision_method": "EdgePromptRepairContractFinalRefer",
+  "r134_explicit_repair_parser_prediction": "E",
+  "r134_missing_repair_parser_prediction": "None.",
+  "r134_low_confidence_rejected": true,
+  "r134_large_distance_rejected": true,
+  "r134_r132_task250_has_repair_fields": false,
+  "r134_r132_task250_repair_gate_parser_prediction": "None.",
+  "correction": "continue the edge-prompt path, but do not claim robustness or accuracy until PN_Verifier/PN_Router emit repair fields prospectively and the same four-task clean gate passes",
+  "implementation_priorities": [
+    "edge_prompt_repair_field_prompting_presmoke",
+    "same_four_task_clean_gate_before_broad_api",
+    "transfer_validation_after_clean_gate_passes",
+    "train_time_node_and_edge_graph_policy_after_prompting_smoke"
+  ],
+  "required_clean_harm_guards": [
+    "task_8",
+    "task_188"
+  ],
+  "required_clean_recovery_targets": [
+    "task_250"
+  ],
+  "noisy_optional_targets": [
+    "task_108"
+  ],
+  "broad_api_allowed_next": false,
+  "next_protocol": "edge_prompt_repair_field_prompting_presmoke",
+  "next_goal_audit_due": "R140",
+  "claim_boundary": "five-iteration goal audit and correction, not an accuracy result"
+}

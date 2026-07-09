@@ -1,0 +1,90 @@
+{
+  "run_id": "R345",
+  "title": "Tool-backed PromptNode verifier design",
+  "claim_boundary": "R345 is a no-API design step after R343 showed prompt-only answer-bearing verifiers followed ARG errors. The new nodes are general executable PromptNodes with PromptEdge contracts, not task-specific answer patches.",
+  "no_api": true,
+  "broad_api": false,
+  "tool_backed_promptnodes": [
+    {
+      "id": "PN_CoordinateTransformer",
+      "identity": "Tool-Resource PromptNode",
+      "executor_type": "deterministic_local_tool",
+      "trigger": "Coordinate geometry item with points, vertices, reflection, rotation, translation, or line symmetry.",
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "candidate_label_with_machine_checkable_evidence",
+      "forward_scope": "forward_only_if_exact_option_match_and_consistency_checks_pass",
+      "evidence_contract": "Parse coordinate pairs, apply the named transformation, and forward only if a transformed point exactly matches one visible option.",
+      "lifecycle": [
+        "update_transformed_points",
+        "compress_duplicate_points",
+        "prune_if_parse_incomplete"
+      ]
+    },
+    {
+      "id": "PN_FiniteAbelianGroupEnumerator",
+      "identity": "Tool-Resource PromptNode",
+      "executor_type": "deterministic_local_tool",
+      "trigger": "Finite abelian group counting item with order, exponent/property, and answer options as small integers.",
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "candidate_label_with_machine_checkable_evidence",
+      "forward_scope": "forward_only_if_exact_option_match_and_consistency_checks_pass",
+      "evidence_contract": "Enumerate integer partitions/classification invariants under the visible constraint, then match the count to an option.",
+      "lifecycle": [
+        "update_group_invariants",
+        "merge_equivalent_partitions",
+        "prune_if_order_or_constraint_missing"
+      ]
+    },
+    {
+      "id": "PN_FiniteFieldDerivativeAnalyzer",
+      "identity": "Tool-Resource PromptNode",
+      "executor_type": "deterministic_local_tool",
+      "trigger": "Polynomial-over-finite-field item asking derivative/nullity/range/rank dimensions.",
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "candidate_label_with_machine_checkable_evidence",
+      "forward_scope": "forward_only_if_exact_option_match_and_consistency_checks_pass",
+      "evidence_contract": "Analyze derivative coefficients modulo field characteristic and compare the resulting dimensions with each option.",
+      "lifecycle": [
+        "update_kernel_basis",
+        "compress_range_basis",
+        "prune_if_field_or_degree_missing"
+      ]
+    },
+    {
+      "id": "PN_RedoxBalanceLinearSolver",
+      "identity": "Tool-Resource PromptNode",
+      "executor_type": "deterministic_local_tool",
+      "trigger": "Chemistry reaction item with ionic species, reaction arrow, coefficient ratios, or redox balancing.",
+      "read_scope": "visible_stem_and_options_only",
+      "write_scope": "candidate_label_with_machine_checkable_evidence",
+      "forward_scope": "forward_only_if_exact_option_match_and_consistency_checks_pass",
+      "evidence_contract": "Solve element and charge conservation equations and forward only if the balanced coefficients verify exactly one option.",
+      "lifecycle": [
+        "update_balance_equations",
+        "compress_coefficients",
+        "prune_if_species_parse_incomplete"
+      ]
+    }
+  ],
+  "promptedge_contracts": [
+    "read_visible_problem_only",
+    "write_machine_checkable_evidence",
+    "forward_exact_single_option_match_only",
+    "reject_if_unparsed_or_inconsistent",
+    "reject_if_multiple_options_or_no_option_match",
+    "record_tool_family_and_lifecycle_action"
+  ],
+  "selector_policy_change": {
+    "before": "LLM verifier could emit answer-bearing candidates from prose rationale.",
+    "after": "Selector may switch only when a tool-backed PromptNode forwards exact evidence through a PromptEdge contract."
+  },
+  "uses_true_answers": false,
+  "uses_task_ids_or_known_wrong_items": false,
+  "local_preflight_authorized_next": true,
+  "api_execution_authorized_next": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R346_tool_backed_promptnode_local_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r345_tool_backed_promptnode_verifier_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r345_tool_backed_promptnode_verifier_design_report.md"
+}

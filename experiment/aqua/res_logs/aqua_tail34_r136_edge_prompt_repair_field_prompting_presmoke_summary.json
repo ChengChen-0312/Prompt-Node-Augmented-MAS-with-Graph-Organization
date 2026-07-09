@@ -1,0 +1,30 @@
+{
+  "rule": "r136_edge_prompt_repair_field_prompting_presmoke",
+  "presmoke_only": true,
+  "no_api_run": true,
+  "pn_verifier_repair_audit_prompted": true,
+  "pn_router_repair_fields_prompted": true,
+  "repair_field_names": [
+    "REPAIR_OPTION",
+    "REPAIR_BINDING_STATUS",
+    "REPAIR_CONFIDENCE",
+    "REPAIR_DISTANCE_RATIO"
+  ],
+  "r134_repair_gate_ready": true,
+  "r135_status": "aligned_continue_without_broad_api",
+  "r135_clean_gate_still_not_met": true,
+  "decision_method": "EdgePromptRepairContractFinalRefer",
+  "switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "fallback_tasks": [
+    "task_8",
+    "task_188"
+  ],
+  "task_split_path": "experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json",
+  "evaluate_command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json --llm_name gpt-4o-2024-08-06 --decision_method EdgePromptRepairContractFinalRefer --output_file experiment/aqua/aqua_tail34_r136_edge_prompt_repair_switch_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r136_edge_prompt_repair_switch_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 5",
+  "same_four_task_smoke_allowed_next": true,
+  "broad_api_allowed_next": false,
+  "claim_boundary": "pre-smoke protocol only; prompt-field update, no API, accuracy, cost, transfer, or robustness result"
+}

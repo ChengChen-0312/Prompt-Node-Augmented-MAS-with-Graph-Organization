@@ -1,0 +1,37 @@
+{
+  "run_id": "R467",
+  "title": "JCR quartile verification plan",
+  "claim_boundary": "R467 records public planning evidence and the official quartile-verification procedure. It does not claim official JCR verification or certify SCI-Q2 readiness.",
+  "no_api": true,
+  "broad_api": false,
+  "plan_md": "paper/artifacts/jcr_quartile_verification_plan.md",
+  "target_journals": [
+    "JAIR",
+    "KAIS"
+  ],
+  "public_metric_sources": [
+    {
+      "journal": "JAIR",
+      "source_url": "https://www.journalmetrics.org/journal/journal-of-artificial-intelligence-research",
+      "planning_evidence": "Public page reports JCR Q2 in the current planning snapshot."
+    },
+    {
+      "journal": "KAIS",
+      "source_url": "https://www.journalmetrics.org/journal/knowledge-and-information-systems",
+      "planning_evidence": "Public page reports JCR Q2 in the current planning snapshot."
+    }
+  ],
+  "source_caveat": "Public metric pages are not authoritative for submission decisions; final status must be verified in official JCR or institutional Web of Science access near submission time.",
+  "official_verification_steps": [
+    "Open official Journal Citation Reports through institutional Web of Science access.",
+    "Search the full journal title and ISSN for JAIR and KAIS.",
+    "Record year, category, JIF quartile, ESCI/SCIE indexing, and screenshot or exported metadata location.",
+    "Only after this step may the manuscript package call a target venue SCI-Q2-verified."
+  ],
+  "official_jcr_verification_completed": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R468_submission_readiness_matrix",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r467_jcr_quartile_verification_plan_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r467_jcr_quartile_verification_plan_report.md"
+}

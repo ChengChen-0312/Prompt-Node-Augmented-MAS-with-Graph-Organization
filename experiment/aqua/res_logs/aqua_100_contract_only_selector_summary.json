@@ -1,0 +1,25 @@
+{
+  "total_tasks": 100,
+  "solved_tasks": 83,
+  "pass_at_1": 83.0,
+  "baseline_solved_tasks": 83,
+  "baseline_pass_at_1": 83.0,
+  "ensemble_solved_tasks": 85,
+  "ensemble_pass_at_1": 85.0,
+  "delta_vs_baseline": 0,
+  "delta_vs_ensemble": -2,
+  "fixes_vs_baseline": 0,
+  "harms_vs_baseline": 0,
+  "ensemble_switches": 0,
+  "non_baseline_switches": 0,
+  "rule": {
+    "name": "contract_consensus",
+    "method_key": "router",
+    "min_direct_majority": 2,
+    "use_invalid_fallback": false
+  },
+  "selector": "contract_consensus",
+  "train_prefix": null,
+  "test_prefix": "aqua_100",
+  "output_file": "experiment/aqua/aqua_100_contract_only_selector_results.jsonl"
+}

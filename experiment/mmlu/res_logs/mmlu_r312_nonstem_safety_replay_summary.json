@@ -1,0 +1,55 @@
+{
+  "run_id": "R312",
+  "title": "Non-STEM warning-only safety replay and claim boundary",
+  "claim_boundary": "R312 is an offline safety replay over R311 raw outputs. It supports a non-STEM no-harm boundary only; it does not support a broad non-STEM improvement claim.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 80,
+  "tasks": 40,
+  "variant_counts": {
+    "arg_baseline_fixed": 40,
+    "proposed_nonstem_promptnode_promptedge_safety_replay": 40
+  },
+  "by_variant": {
+    "arg_baseline_fixed": {
+      "records": 40,
+      "evaluated_records": 40,
+      "correct": 37,
+      "accuracy": 0.925,
+      "fixes": 0,
+      "harms": 0,
+      "switches": 0
+    },
+    "proposed_nonstem_promptnode_promptedge_safety_replay": {
+      "records": 40,
+      "evaluated_records": 40,
+      "correct": 37,
+      "accuracy": 0.925,
+      "fixes": 0,
+      "harms": 0,
+      "switches": 0
+    }
+  },
+  "arg_main": "37/40",
+  "proposed_safety_replay_main": "37/40",
+  "delta_vs_arg": 0,
+  "fix_harm_vs_arg": "0/0",
+  "no_harm": true,
+  "beats_arg": false,
+  "claim_permissions": {
+    "nonstem_no_harm_claim_allowed": true,
+    "nonstem_improvement_claim_allowed": false,
+    "broad_general_promptnode_claim_allowed": false,
+    "training_authorized": false,
+    "sci_q2_ready": false
+  },
+  "interpretation": "The current non-STEM PromptNodes are useful as warning/lifecycle nodes but not as answer-overriding nodes. Training should not learn to switch from warning-only candidates.",
+  "training_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R313_ablation_and_claim_matrix",
+  "r311_results": "experiment/mmlu/run_logs/mmlu_r311_nonstem_promptnode_results.jsonl",
+  "r310_split": "experiment/mmlu/run_logs/mmlu_r310_nonstem_transfer_preflight_records.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r312_nonstem_safety_replay_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r312_nonstem_safety_replay_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r312_nonstem_safety_replay_report.md"
+}

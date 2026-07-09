@@ -1,0 +1,40 @@
+{
+  "run_id": "R235",
+  "title": "Five-iteration SCI-Q2 goal audit",
+  "claim_boundary": "Audit only; no new API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "audit_window": ["R231", "R232", "R233", "R234"],
+  "goal_status_seen": "blocked",
+  "goal_used_as_benchmark": true,
+  "drift_detected": false,
+  "status": "aligned_redirect_to_conservative_abstention_training_no_api",
+  "sci_q2_ready": false,
+  "api_status": "blocked_until_conservative_abstention_policy_passes_offline",
+  "key_evidence": {
+    "r231_preflight_records": 20,
+    "r232_preflight_pass": true,
+    "r233_proposed_accuracy": "1/4",
+    "r233_proposed_fix_harm": "1/1",
+    "r234_proposed_matches_always": "4/4",
+    "r234_proposed_matches_node_only": "4/4",
+    "r234_clean_harms": 1
+  },
+  "decision_reason": [
+    "The current prompt-level router follows objective_prediction on every API-routed task.",
+    "It does not beat abstain, always-switch, or node-only controls.",
+    "It harms a clean task, which violates the robustness requirement for an SCI-Q2 claim.",
+    "More API with the same router would optimize a known-bad direction."
+  ],
+  "authorized_next": {
+    "R236": "derive a conservative abstention policy from existing label-free features and R234 failure constraints, no API",
+    "R237": "apply the conservative policy to R233 and R218/R221 records offline, no API",
+    "R238": "materialize updated router-final manifests and controls with conservative switch rules, no API",
+    "R239": "update claim matrix and paper plan after offline conservative-policy evidence",
+    "R240": "mandatory goal audit"
+  },
+  "forbidden": [
+    "no further API before R240 unless offline policy evidence eliminates the clean-harm failure mode",
+    "no superiority claim over ARG or controls",
+    "no SCI-Q2 readiness claim",
+    "no prompt-only router expansion without a learned or explicit abstention boundary"
+  ]
+}

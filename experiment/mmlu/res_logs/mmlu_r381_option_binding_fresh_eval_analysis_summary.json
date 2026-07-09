@@ -1,0 +1,55 @@
+{
+  "run_id": "R381",
+  "title": "OptionBinding fresh eval analysis",
+  "claim_boundary": "R381 analyzes R380. The fresh result is positive no-harm on 24 new history items, but because the candidate path forwards every item, a plain-requery control is required before attributing the gain to PromptNode/PromptEdge graph structure.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 24,
+  "arg_correct": 21,
+  "hybrid_correct": 24,
+  "delta_correct": 3,
+  "arg_accuracy": 0.875,
+  "hybrid_accuracy": 1.0,
+  "candidate_label_count": 24,
+  "option_binding_edge_applied_count": 2,
+  "gate_forward_count": 24,
+  "fixes": 3,
+  "harms": 0,
+  "wrong_forward_count": 0,
+  "fix_task_ids": [
+    "MMLU-nonstem-high_school_us_history_test-30",
+    "MMLU-nonstem-high_school_us_history_test-39",
+    "MMLU-nonstem-high_school_us_history_test-43"
+  ],
+  "harm_task_ids": [],
+  "wrong_forward_task_ids": [],
+  "candidate_type_counts": {
+    "classification": 1,
+    "option": 21,
+    "option_binding_promptedge": 2
+  },
+  "promptnode_family_counts": {
+    "OptionBinding": 7,
+    "OptionBindingPromptEdge": 15,
+    "history-passage-option-binding": 2
+  },
+  "api_cost": 0.194585,
+  "prompt_tokens": 20590,
+  "completion_tokens": 6109,
+  "claim_permissions": {
+    "fresh_positive_delta_no_harm_claim_allowed": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "claim_risks": {
+    "plain_requery_control_required": true,
+    "second_call_prompt_strength_confound": true,
+    "single_subject_history_only": true,
+    "sample_size_still_small": true
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R382_plain_requery_control_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r381_option_binding_fresh_eval_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r381_option_binding_fresh_eval_analysis_report.md"
+}

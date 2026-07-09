@@ -1,0 +1,14 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Automated multi-agent graph design.}
+Recent MAS research increasingly treats communication topology as a learnable object. ARG-Designer formulates multi-agent topology construction as autoregressive graph generation and is therefore the closest baseline for this paper \cite{li2026argdesigner}. GoAgent moves from node-centric topology generation to group-level communication units \cite{chen2026goagent}, while Graph-of-Agents selects and connects agents through graph-based message passing and pooling \cite{yun2026goa}. MAS2 studies a recursive self-generating, self-configuring, and self-rectifying MAS paradigm \cite{wang2026mas2}. PromptNode-Augmented MAS differs in the unit of graph design: instead of only adding, deleting, or connecting ordinary solver agents, it inserts typed virtual functional nodes and permissioned PromptEdges into the graph.
+
+\paragraph{Communication pruning, cost, and robustness.}
+Another line of work improves MAS efficiency by removing redundant or harmful communication. AgentDropout dynamically eliminates agents and communication edges for token-efficient collaboration \cite{wang2025agentdropout}. AgentPrune prunes redundant messages in the spatial-temporal communication graph and reports large cost reductions in LLM-based MAS settings \cite{zhang2025agentprune}. EIB-Learner analyzes information propagation effects and balances error suppression with useful insight preservation through topology design \cite{shen2025eiblearner}. These methods motivate our cost and no-harm reporting. Our method is complementary: it can prune candidate forwards, but its central operation is to add structured verifier, memory, option-binding, and conflict-resolution nodes that make forwarding decisions auditable.
+
+\paragraph{Graph prompts and prompt-as-structure.}
+Graph prompt learning provides a broader view of prompts as structural objects rather than only text prefixes. ProG organizes graph prompt methods and benchmarks prompts-as-graphs and prompts-as-tokens \cite{zi2024prog}. Our setting is different because the graph is an LLM-agent communication graph rather than a graph neural network input. Still, the distinction is useful: a PromptNode can hold prompt content, and a PromptEdge can also carry a prompt-like contract that controls read, write, and forward permissions.
+
+\paragraph{Positioning.}
+The common thread across these works is that MAS performance depends on communication structure. The gap addressed here is the lack of first-class virtual functional elements inside the graph. PromptNodes are designed to expose where verification, memory transfer, contradiction detection, and answer forwarding happen. This is why our experiments report not only accuracy, but also fix/harm, wrong-forward decisions, lifecycle traces, label audits, and cost boundaries.

@@ -1,0 +1,32 @@
+{
+  "run_id": "R434",
+  "title": "Front matter initial draft",
+  "claim_boundary": "R434 drafts abstract, introduction, and conclusion from audited local evidence. Related work remains pending citation audit.",
+  "no_api": true,
+  "broad_api": false,
+  "created_sections": [
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/8_conclusion.tex"
+  ],
+  "referenced_sections": [
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex"
+  ],
+  "abstract_word_count": 191,
+  "related_work_status": "pending_citation_audit",
+  "remaining_forbidden_hits": [],
+  "backup_created": "paper-backup-r434-20260709-203154-024294",
+  "complete_paper_draft": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R435_related_work_bibtex_audit_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r434_front_matter_initial_draft_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r434_front_matter_initial_draft_report.md"
+}

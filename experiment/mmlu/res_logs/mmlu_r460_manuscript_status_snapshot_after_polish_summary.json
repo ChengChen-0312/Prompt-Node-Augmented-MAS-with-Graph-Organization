@@ -1,0 +1,39 @@
+{
+  "run_id": "R460",
+  "title": "Manuscript status snapshot after polish",
+  "claim_boundary": "R460 summarizes the local manuscript state after appendix and caption polish. It does not execute external audits or mark the paper submission-ready.",
+  "no_api": true,
+  "broad_api": false,
+  "paper_files": [
+    "paper/main.tex",
+    "paper/sections/0_abstract.tex",
+    "paper/sections/1_introduction.tex",
+    "paper/sections/2_related_work.tex",
+    "paper/sections/3_method.tex",
+    "paper/sections/4_experimental_setup.tex",
+    "paper/sections/5_results.tex",
+    "paper/sections/6_case_studies.tex",
+    "paper/sections/7_limitations.tex",
+    "paper/sections/8_conclusion.tex",
+    "paper/appendices/label_audit.tex",
+    "paper/tables/main_results.tex",
+    "paper/tables/cost_results.tex",
+    "paper/artifacts/reproducibility_index.md"
+  ],
+  "appendix_integrated": true,
+  "artifact_index_exists": true,
+  "local_smoke_after_polish_pass": true,
+  "static_audit_after_appendix_pass": true,
+  "remaining_blockers": [
+    "external_experiment_integrity_audit_pending",
+    "external_paper_claim_audit_pending",
+    "external_citation_context_audit_pending",
+    "journal_template_formatting_pending",
+    "latex_engine_missing_for_pdf_compile"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R461_five_run_goal_audit_after_polish",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r460_manuscript_status_snapshot_after_polish_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r460_manuscript_status_snapshot_after_polish_report.md"
+}

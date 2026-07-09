@@ -1,0 +1,20 @@
+{
+  "rule": "r144_calibrated_repair_final_gate_implementation_presmoke",
+  "presmoke_only": true,
+  "no_api_run": true,
+  "decision_method": "CalibratedEdgePromptRepairContractFinalRefer",
+  "decision_method_registered": true,
+  "close_forwarded_repair_accepted": true,
+  "direct_contradiction_rejected": true,
+  "large_distance_rejected": true,
+  "r143_offline_gate_passed": true,
+  "r143_calibrated_selected_accuracy": "4/4",
+  "r143_clean_fix_harm": "1/0",
+  "task_split_path": "experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json",
+  "evaluate_command": ".venv/bin/python experiment/aqua/evaluate_aqua.py --dataset_path datasets/AQuA/AQuA.jsonl --task_split_path experiment/aqua/task_split_aqua_tail34_r136_edge_prompt_repair_switches.json --llm_name gpt-4o-2024-08-06 --decision_method CalibratedEdgePromptRepairContractFinalRefer --output_file experiment/aqua/aqua_tail34_r146_calibrated_repair_switch_results.jsonl --summary_log_file experiment/aqua/res_logs/aqua_tail34_r146_calibrated_repair_switch_summary.jsonl --eval_batch_size 1 --forced_template_candidate_jsonl experiment/aqua/aqua_tail34_r083_clean_fix_template_candidates.jsonl --forced_template_candidate_rank 5",
+  "same_two_switch_task_smoke_allowed_next": true,
+  "r145_goal_audit_required_before_api": true,
+  "broad_api_allowed_next": false,
+  "next_protocol": "r145_goal_audit_before_calibrated_api_smoke",
+  "claim_boundary": "implementation pre-smoke only; no API, accuracy, broad evaluation, transfer, robustness, or SCI-readiness claim"
+}

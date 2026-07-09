@@ -1,0 +1,43 @@
+{
+  "rule": "r111_objective_safety_proxy_feature_gap",
+  "required_feature_count": 3,
+  "existing_r078_feature_count": 22,
+  "required_rule_features": [
+    "objective_prediction_differs_from_baseline",
+    "objective_top_score",
+    "baseline_direct_votes_split"
+  ],
+  "existing_r078_features": [
+    "bias",
+    "objective_reward",
+    "score_margin_to_next",
+    "has_margin_at_least_3",
+    "objective_bucket_preferred_graph",
+    "objective_bucket_multi_view_tie",
+    "objective_bucket_low_margin_top",
+    "objective_bucket_non_positive_top",
+    "objective_bucket_non_preferred_graph",
+    "strong_contract",
+    "direct_agreement",
+    "direct_vote_support",
+    "prompt_node_graph",
+    "conflict_penalty",
+    "weak_contract_penalty",
+    "num_prompt_nodes",
+    "num_prompt_node_edges",
+    "has_promptnode_specs",
+    "has_promptnode_edge_permissions",
+    "role_count_PN_Memory",
+    "role_count_PN_Verifier",
+    "role_count_PN_Router"
+  ],
+  "directly_covered_required_features": [],
+  "missing_required_features": [
+    "objective_prediction_differs_from_baseline",
+    "objective_top_score",
+    "baseline_direct_votes_split"
+  ],
+  "proxy_training_ready": false,
+  "recommended_next_artifact": "first200_objective_safety_feature_export",
+  "claim_boundary": "feature coverage audit only; no proxy training or accuracy claim"
+}

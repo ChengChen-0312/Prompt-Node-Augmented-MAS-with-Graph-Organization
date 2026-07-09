@@ -1,0 +1,81 @@
+{
+  "run_id": "R185",
+  "title": "Five-iteration SCI-Q2 goal audit after R181-R184",
+  "claim_boundary": "Audit only. No API evaluation, no new accuracy claim, and no claim that PromptNode/PromptEdge exceeds ARG-Designer.",
+  "audited_runs": [
+    "R181",
+    "R182",
+    "R183",
+    "R184"
+  ],
+  "no_api": true,
+  "broad_api": false,
+  "drift_from_goal": false,
+  "goal_status_seen_by_tool": "blocked",
+  "alignment_checks": {
+    "arg_designer_as_baseline": true,
+    "same_model_target_preserved": true,
+    "first_class_promptnode_before_execution": true,
+    "prompt_as_edge_metadata": true,
+    "mmlu_transfer_route_active": true,
+    "avoid_aqua_tail34_sync20_training_leakage": true,
+    "avoid_transfer100_training_leakage": true,
+    "no_accuracy_overclaim": true
+  },
+  "evidence_since_last_audit": {
+    "r181_role_closure": {
+      "mmlu_pn_roles_registered": true,
+      "mmlu_testgraph_constructor_without_api": true
+    },
+    "r182_topology_adapter": {
+      "promptedge_topology_adapter": true,
+      "edge_permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "option_label_aware_contract": true
+    },
+    "r183_target_export": {
+      "source_graphs": 403,
+      "exported_targets": 403,
+      "unique_questions": 37,
+      "transfer100_exact_overlap": 0,
+      "override_labels": 0
+    },
+    "r184_training_dry_run": {
+      "materialized_pt_graphs": 403,
+      "role_mapping_size": 9,
+      "pn_roles_present": "3/3",
+      "finite_forward_loss": true,
+      "old_checkpoint_role_mapping_size": 6,
+      "direct_finetune_compatible": false
+    }
+  },
+  "current_best_supported_result": {
+    "aqua_tail34_best_prior_result": "R065 objective-guided multi-view selector 31/34 vs ARG 28/34, clean 28/28, clean fix/harm 1/0",
+    "mmlu_arg_transfer_baseline": "R162 88/100",
+    "mmlu_promptnode_accuracy_result": "not yet run",
+    "promptnode_insertion_train_path": "supported by R181-R184",
+    "learned_override_train_path": "not supported"
+  },
+  "audit_decision": {
+    "status": "aligned_authorize_short_pn_pretrain_only",
+    "sci_q2_ready": false,
+    "reason": "The MMLU route now has first-class PN/PE engineering and non-leaky insertion targets, but only dry-run evidence. A short PN-capable graph-policy pretrain is justified before any transfer API smoke.",
+    "next_audit": "R190"
+  },
+  "authorized_next_steps": [
+    "R186: run a short CPU PN-capable pretraining job from experiment/PromptEdgeData_mmlu_r183, no API.",
+    "R187: audit generated graph samples for PN role frequency, DAG validity, edge permissions, and terminal exposure.",
+    "R188: bounded no-/low-API transfer preflight comparing generated PN topology against R162 protocol.",
+    "R189: if graph audit passes, run a very small MMLU transfer API smoke only after preserving ARG baseline comparison and cost accounting.",
+    "R190: mandatory goal audit before any broad API evaluation."
+  ],
+  "forbidden_next_steps": [
+    "Do not claim SCI-Q2 readiness.",
+    "Do not claim MMLU accuracy improvement before same-model transfer evaluation.",
+    "Do not train on transfer100 labels.",
+    "Do not directly finetune the old 6-role MMLU checkpoint as if it were PN-compatible."
+  ]
+}

@@ -1,0 +1,463 @@
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'question', 'mode', 'agent_nums', 'y', 'x', 'is_correct', 'edge_attr', 'edge_index'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+Starting new run, outputs in: /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159
+
+==================== Stage 1: Pretraining ====================
+Loaded 6 precomputed embeddings
+Using all 92 graph files
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21193.75it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'question', 'mode', 'agent_nums', 'y', 'x', 'is_correct', 'edge_attr', 'edge_index'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+DAG check: 92/92 graphs are DAG
+Train set: 82, Validation set: 10
+Updating node labels using unified role mapping
+Updating node labels using unified role mapping
+Loaded precomputed embeddings: 6 entries
+Using provided role mapping: 6 roles
+TOKENS: START=6, END=7
+Training model...
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:158: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  role_embeddings[i] = torch.tensor(graph.role_embeddings[node_idx])
+Epoch 1/10, Average Training Loss: 15.3145, Role Prediction Accuracy: 19.73%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 1/10, Validation Loss: 8.0959, Validation Role Accuracy: 25.42%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/best_model.pth, Epoch 1, Validation loss: 8.0959
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 2/10, Average Training Loss: 5.4665, Role Prediction Accuracy: 19.96%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 2/10, Validation Loss: 3.5801, Validation Role Accuracy: 10.83%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/best_model.pth, Epoch 2, Validation loss: 3.5801
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 3/10, Average Training Loss: 3.3374, Role Prediction Accuracy: 24.06%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 3/10, Validation Loss: 3.0396, Validation Role Accuracy: 15.83%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/best_model.pth, Epoch 3, Validation loss: 3.0396
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 4/10, Average Training Loss: 3.0503, Role Prediction Accuracy: 22.00%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 4/10, Validation Loss: 2.9022, Validation Role Accuracy: 17.08%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/best_model.pth, Epoch 4, Validation loss: 2.9022
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 5/10, Average Training Loss: 2.9829, Role Prediction Accuracy: 25.92%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 5/10, Validation Loss: 2.8090, Validation Role Accuracy: 30.42%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/best_model.pth, Epoch 5, Validation loss: 2.8090
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 6/10, Average Training Loss: 2.9176, Role Prediction Accuracy: 27.04%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 6/10, Validation Loss: 2.7816, Validation Role Accuracy: 33.33%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/best_model.pth, Epoch 6, Validation loss: 2.7816
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 7/10, Average Training Loss: 2.9008, Role Prediction Accuracy: 27.98%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 7/10, Validation Loss: 2.9016, Validation Role Accuracy: 23.75%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 8/10, Average Training Loss: 2.9029, Role Prediction Accuracy: 29.15%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 8/10, Validation Loss: 2.8489, Validation Role Accuracy: 33.33%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 9/10, Average Training Loss: 2.8554, Role Prediction Accuracy: 33.19%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 9/10, Validation Loss: 2.7998, Validation Role Accuracy: 40.83%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 10/10, Average Training Loss: 2.7749, Role Prediction Accuracy: 33.54%
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/class_registry/entry_points.py:7: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import iter_entry_points
+Epoch 10/10, Validation Loss: 2.8808, Validation Role Accuracy: 33.33%
+Training completed. Best model at Epoch 6, Validation loss: 2.7816
+==================== Stage 1 complete ====================
+Number of topics:  57
+Total number of questions:  285
+Loaded 24 tasks for finetune data generation.
+
+==================== Stage 2a: Generate Pruned Data ====================
+Loaded precomputed embeddings: 6 entries
+Using provided role mapping: 6 roles
+TOKENS: START=6, END=7
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19511.92it/s]
+Pruning data:   0%|          | 0/24 [00:00<?, ?it/s]Pruning data:   4%|▍         | 1/24 [00:25<09:50, 25.68s/it]Pruning data:  21%|██        | 5/24 [00:48<02:46,  8.76s/it]Pruning data:  38%|███▊      | 9/24 [01:08<01:40,  6.68s/it]Pruning data:  54%|█████▍    | 13/24 [01:36<01:14,  6.80s/it]Pruning data:  71%|███████   | 17/24 [01:54<00:41,  5.90s/it]Pruning data:  88%|████████▊ | 21/24 [02:22<00:18,  6.27s/it]Pruning data: 100%|██████████| 24/24 [02:22<00:00,  5.92s/it]
+Stage 2a complete: 23 pruned graphs saved.
+
+==================== Stage 2b: Generate Simple Data ====================
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 28166.21it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18880.88it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22756.71it/s]
+Eval Star-3:   0%|          | 0/6 [00:00<?, ?it/s]Eval Star-3:  17%|█▋        | 1/6 [00:14<01:10, 14.19s/it]Eval Star-3:  33%|███▎      | 2/6 [00:27<00:53, 13.48s/it]Eval Star-3:  50%|█████     | 3/6 [00:36<00:35, 11.73s/it]Eval Star-3:  67%|██████▋   | 4/6 [00:59<00:32, 16.07s/it]Eval Star-3:  83%|████████▎ | 5/6 [01:14<00:15, 15.55s/it]Eval Star-3: 100%|██████████| 6/6 [01:33<00:00, 16.69s/it]Eval Star-3: 100%|██████████| 6/6 [01:33<00:00, 15.51s/it]
+Accuracy: 91.7% (22/24)
+Finished Star-3, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 24149.66it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21826.57it/s]
+Eval Chain-2:   0%|          | 0/6 [00:00<?, ?it/s]Eval Chain-2:  17%|█▋        | 1/6 [00:07<00:39,  7.81s/it]Eval Chain-2:  33%|███▎      | 2/6 [00:17<00:34,  8.68s/it]Eval Chain-2:  50%|█████     | 3/6 [00:23<00:23,  7.79s/it]Eval Chain-2:  67%|██████▋   | 4/6 [00:34<00:17,  8.86s/it]Eval Chain-2:  83%|████████▎ | 5/6 [00:45<00:09,  9.65s/it]Eval Chain-2: 100%|██████████| 6/6 [00:57<00:00, 10.35s/it]Eval Chain-2: 100%|██████████| 6/6 [00:57<00:00,  9.51s/it]
+Accuracy: 87.5% (21/24)
+Finished Chain-2, accuracy: 0.88%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21961.94it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20121.72it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20587.75it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18035.12it/s]
+Eval Layered-4:   0%|          | 0/6 [00:00<?, ?it/s]Eval Layered-4:  17%|█▋        | 1/6 [00:21<01:49, 22.00s/it]Eval Layered-4:  33%|███▎      | 2/6 [00:40<01:19, 19.76s/it]Eval Layered-4:  50%|█████     | 3/6 [01:03<01:04, 21.46s/it]Eval Layered-4:  67%|██████▋   | 4/6 [01:40<00:54, 27.41s/it]Eval Layered-4:  83%|████████▎ | 5/6 [02:10<00:28, 28.30s/it]Eval Layered-4: 100%|██████████| 6/6 [02:47<00:00, 31.24s/it]Eval Layered-4: 100%|██████████| 6/6 [02:47<00:00, 27.84s/it]
+Accuracy: 95.8% (23/24)
+Finished Layered-4, accuracy: 0.96%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19470.58it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20307.10it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20674.45it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20279.46it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16819.02it/s]
+Eval Chain-5:   0%|          | 0/6 [00:00<?, ?it/s]Eval Chain-5:  17%|█▋        | 1/6 [00:26<02:12, 26.44s/it]Eval Chain-5:  33%|███▎      | 2/6 [00:56<01:53, 28.38s/it]Eval Chain-5:  50%|█████     | 3/6 [01:26<01:27, 29.05s/it]Eval Chain-5:  67%|██████▋   | 4/6 [02:04<01:05, 32.81s/it]Eval Chain-5:  83%|████████▎ | 5/6 [02:37<00:32, 32.80s/it]Eval Chain-5: 100%|██████████| 6/6 [03:15<00:00, 34.72s/it]Eval Chain-5: 100%|██████████| 6/6 [03:15<00:00, 32.64s/it]
+Accuracy: 87.5% (21/24)
+Finished Chain-5, accuracy: 0.88%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19808.04it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21351.92it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21081.02it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22026.89it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19573.80it/s]
+Eval Star-5:   0%|          | 0/6 [00:00<?, ?it/s]Eval Star-5:  17%|█▋        | 1/6 [00:24<02:02, 24.42s/it]Eval Star-5:  33%|███▎      | 2/6 [00:40<01:16, 19.23s/it]Eval Star-5:  50%|█████     | 3/6 [01:00<00:59, 19.70s/it]Eval Star-5:  67%|██████▋   | 4/6 [01:28<00:45, 22.89s/it]Eval Star-5:  83%|████████▎ | 5/6 [01:47<00:21, 21.48s/it]Eval Star-5: 100%|██████████| 6/6 [02:10<00:00, 22.12s/it]Eval Star-5: 100%|██████████| 6/6 [02:10<00:00, 21.73s/it]
+Accuracy: 91.7% (22/24)
+Finished Star-5, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19957.19it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19474.09it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22401.52it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 22488.98it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19474.09it/s]
+Eval Layered-5:   0%|          | 0/6 [00:00<?, ?it/s]Eval Layered-5:  17%|█▋        | 1/6 [00:29<02:28, 29.71s/it]Eval Layered-5:  33%|███▎      | 2/6 [00:51<01:39, 24.88s/it]Eval Layered-5:  50%|█████     | 3/6 [01:13<01:11, 23.84s/it]Eval Layered-5:  67%|██████▋   | 4/6 [01:51<00:58, 29.22s/it]Eval Layered-5:  83%|████████▎ | 5/6 [02:19<00:28, 28.97s/it]Eval Layered-5: 100%|██████████| 6/6 [02:52<00:00, 30.36s/it]Eval Layered-5: 100%|██████████| 6/6 [02:52<00:00, 28.81s/it]
+Accuracy: 91.7% (22/24)
+Finished Layered-5, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6877.66it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19463.57it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23510.93it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23776.19it/s]
+Eval Chain-4:   0%|          | 0/6 [00:00<?, ?it/s]Eval Chain-4:  17%|█▋        | 1/6 [00:19<01:35, 19.16s/it]Eval Chain-4:  33%|███▎      | 2/6 [00:40<01:22, 20.71s/it]Eval Chain-4:  50%|█████     | 3/6 [01:01<01:01, 20.48s/it]Eval Chain-4:  67%|██████▋   | 4/6 [01:39<00:55, 27.59s/it]Eval Chain-4:  83%|████████▎ | 5/6 [02:12<00:29, 29.46s/it]Eval Chain-4: 100%|██████████| 6/6 [02:45<00:00, 30.64s/it]Eval Chain-4: 100%|██████████| 6/6 [02:45<00:00, 27.56s/it]
+Accuracy: 91.7% (22/24)
+Finished Chain-4, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 8989.42it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21229.16it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 24407.53it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 18477.90it/s]
+Eval Star-4:   0%|          | 0/6 [00:00<?, ?it/s]Eval Star-4:  17%|█▋        | 1/6 [00:21<01:47, 21.57s/it]Eval Star-4:  33%|███▎      | 2/6 [00:42<01:24, 21.22s/it]Eval Star-4:  50%|█████     | 3/6 [01:03<01:03, 21.22s/it]Eval Star-4:  67%|██████▋   | 4/6 [01:28<00:45, 22.59s/it]Eval Star-4:  83%|████████▎ | 5/6 [01:51<00:22, 22.61s/it]Eval Star-4: 100%|██████████| 6/6 [02:19<00:00, 24.67s/it]Eval Star-4: 100%|██████████| 6/6 [02:19<00:00, 23.30s/it]
+Accuracy: 91.7% (22/24)
+Finished Star-4, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7301.47it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23271.56it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 26037.45it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17758.59it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 27627.63it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19273.40it/s]
+Eval Layered-6:   0%|          | 0/6 [00:00<?, ?it/s]Eval Layered-6:  17%|█▋        | 1/6 [00:24<02:01, 24.34s/it]Eval Layered-6:  33%|███▎      | 2/6 [00:42<01:21, 20.42s/it]Eval Layered-6:  50%|█████     | 3/6 [01:12<01:15, 25.05s/it]Eval Layered-6:  67%|██████▋   | 4/6 [01:47<00:58, 29.03s/it]Eval Layered-6:  83%|████████▎ | 5/6 [02:23<00:31, 31.65s/it]Eval Layered-6: 100%|██████████| 6/6 [03:02<00:00, 34.04s/it]Eval Layered-6: 100%|██████████| 6/6 [03:02<00:00, 30.45s/it]
+Accuracy: 91.7% (22/24)
+Finished Layered-6, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7045.69it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23209.05it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 23858.91it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19332.91it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20603.46it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 44745.03it/s]
+Eval Chain-6:   0%|          | 0/6 [00:00<?, ?it/s]Eval Chain-6:  17%|█▋        | 1/6 [00:28<02:23, 28.77s/it]Eval Chain-6:  33%|███▎      | 2/6 [01:12<02:29, 37.32s/it]Eval Chain-6:  50%|█████     | 3/6 [01:32<01:29, 29.75s/it]Eval Chain-6:  67%|██████▋   | 4/6 [02:12<01:07, 33.56s/it]Eval Chain-6:  83%|████████▎ | 5/6 [04:32<01:11, 71.92s/it]Eval Chain-6: 100%|██████████| 6/6 [05:13<00:00, 61.60s/it]Eval Chain-6: 100%|██████████| 6/6 [05:13<00:00, 52.29s/it]
+Accuracy: 91.7% (22/24)
+Finished Chain-6, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 11951.57it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19782.64it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 24263.60it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21525.33it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21444.12it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21988.77it/s]
+Eval Star-6:   0%|          | 0/6 [00:00<?, ?it/s]Eval Star-6:  17%|█▋        | 1/6 [00:34<02:50, 34.07s/it]Eval Star-6:  33%|███▎      | 2/6 [01:00<01:57, 29.46s/it]Eval Star-6:  50%|█████     | 3/6 [01:29<01:28, 29.46s/it]Eval Star-6:  67%|██████▋   | 4/6 [02:05<01:04, 32.04s/it]Eval Star-6:  83%|████████▎ | 5/6 [02:35<00:31, 31.37s/it]Eval Star-6: 100%|██████████| 6/6 [03:15<00:00, 34.00s/it]Eval Star-6: 100%|██████████| 6/6 [03:15<00:00, 32.51s/it]
+Accuracy: 91.7% (22/24)
+Finished Star-6, accuracy: 0.92%
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7241.74it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20640.87it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 20464.87it/s]
+Eval Chain-3:   0%|          | 0/6 [00:00<?, ?it/s]Eval Chain-3:  17%|█▋        | 1/6 [00:11<00:58, 11.74s/it]Eval Chain-3:  33%|███▎      | 2/6 [00:25<00:50, 12.72s/it]Eval Chain-3:  50%|█████     | 3/6 [00:45<00:48, 16.30s/it]Eval Chain-3:  67%|██████▋   | 4/6 [00:59<00:30, 15.29s/it]Eval Chain-3:  83%|████████▎ | 5/6 [01:16<00:15, 15.83s/it]Eval Chain-3: 100%|██████████| 6/6 [01:28<00:00, 14.64s/it]Eval Chain-3: 100%|██████████| 6/6 [01:28<00:00, 14.76s/it]
+Accuracy: 83.3% (20/24)
+Finished Chain-3, accuracy: 0.83%
+Stage 2b complete.
+
+==================== Stage 2c: Generate Replay Data ====================
+Copying replay data:   0%|          | 0/27 [00:00<?, ?it/s]Copying replay data: 100%|██████████| 27/27 [00:00<00:00, 3220.42it/s]
+/Users/chencheng/Downloads/论文/ARG-Designer-main/.venv/lib/python3.12/site-packages/torch_geometric/data/data.py:187: UserWarning: Unable to accurately infer 'num_nodes' from the attribute set '{'question', 'mode', 'agent_nums', 'y', 'x', 'is_correct', 'edge_attr', 'edge_index'}'. Please explicitly set 'num_nodes' as an attribute of 'data' to suppress this warning
+  return sum([v.num_nodes for v in self.node_stores])
+/Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/model.py:158: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  role_embeddings[i] = torch.tensor(graph.role_embeddings[node_idx])
+Stage 2c complete.
+
+==================== Stage 3: Finetuning ====================
+Loaded 6 precomputed embeddings
+Using all 311 graph files
+DAG check: 311/311 graphs are DAG
+Updating node labels using unified role mapping
+Loaded precomputed embeddings: 6 entries
+Using provided role mapping: 6 roles
+TOKENS: START=6, END=7
+Loaded pretrained weights, starting finetune...
+Training model...
+Epoch 1/100, Average Training Loss: 65.2861, Role Prediction Accuracy: 16.84%
+Epoch 1/100, Validation Loss: 12.1434, Validation Role Accuracy: 25.51%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 1, Validation loss: 12.1434
+Epoch 2/100, Average Training Loss: 11.2272, Role Prediction Accuracy: 25.39%
+Epoch 2/100, Validation Loss: 10.3865, Validation Role Accuracy: 28.57%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 2, Validation loss: 10.3865
+Epoch 3/100, Average Training Loss: 10.2779, Role Prediction Accuracy: 26.59%
+Epoch 3/100, Validation Loss: 9.9605, Validation Role Accuracy: 25.49%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 3, Validation loss: 9.9605
+Epoch 4/100, Average Training Loss: 9.7160, Role Prediction Accuracy: 26.03%
+Epoch 4/100, Validation Loss: 9.0689, Validation Role Accuracy: 25.39%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 4, Validation loss: 9.0689
+Epoch 5/100, Average Training Loss: 8.8677, Role Prediction Accuracy: 25.71%
+Epoch 5/100, Validation Loss: 8.0681, Validation Role Accuracy: 25.75%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 5, Validation loss: 8.0681
+Epoch 6/100, Average Training Loss: 8.2075, Role Prediction Accuracy: 26.07%
+Epoch 6/100, Validation Loss: 7.2297, Validation Role Accuracy: 26.88%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 6, Validation loss: 7.2297
+Epoch 7/100, Average Training Loss: 7.4904, Role Prediction Accuracy: 25.00%
+Epoch 7/100, Validation Loss: 6.9098, Validation Role Accuracy: 25.72%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 7, Validation loss: 6.9098
+Epoch 8/100, Average Training Loss: 6.8370, Role Prediction Accuracy: 26.55%
+Epoch 8/100, Validation Loss: 6.3861, Validation Role Accuracy: 29.82%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 8, Validation loss: 6.3861
+Epoch 9/100, Average Training Loss: 6.6815, Role Prediction Accuracy: 27.45%
+Epoch 9/100, Validation Loss: 6.1502, Validation Role Accuracy: 28.35%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 9, Validation loss: 6.1502
+Epoch 10/100, Average Training Loss: 6.2797, Role Prediction Accuracy: 28.56%
+Epoch 10/100, Validation Loss: 6.0134, Validation Role Accuracy: 29.12%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 10, Validation loss: 6.0134
+Epoch 11/100, Average Training Loss: 6.1922, Role Prediction Accuracy: 28.82%
+Epoch 11/100, Validation Loss: 5.9725, Validation Role Accuracy: 27.67%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 11, Validation loss: 5.9725
+Epoch 12/100, Average Training Loss: 6.2310, Role Prediction Accuracy: 29.48%
+Epoch 12/100, Validation Loss: 5.9288, Validation Role Accuracy: 28.09%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 12, Validation loss: 5.9288
+Epoch 13/100, Average Training Loss: 5.8529, Role Prediction Accuracy: 31.04%
+Epoch 13/100, Validation Loss: 5.4938, Validation Role Accuracy: 31.26%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 13, Validation loss: 5.4938
+Epoch 14/100, Average Training Loss: 5.8820, Role Prediction Accuracy: 31.61%
+Epoch 14/100, Validation Loss: 5.4001, Validation Role Accuracy: 32.88%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 14, Validation loss: 5.4001
+Epoch 15/100, Average Training Loss: 5.5004, Role Prediction Accuracy: 31.35%
+Epoch 15/100, Validation Loss: 5.0521, Validation Role Accuracy: 33.39%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 15, Validation loss: 5.0521
+Epoch 16/100, Average Training Loss: 5.3478, Role Prediction Accuracy: 32.18%
+Epoch 16/100, Validation Loss: 4.9116, Validation Role Accuracy: 34.53%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 16, Validation loss: 4.9116
+Epoch 17/100, Average Training Loss: 5.2007, Role Prediction Accuracy: 32.26%
+Epoch 17/100, Validation Loss: 4.8096, Validation Role Accuracy: 36.43%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 17, Validation loss: 4.8096
+Epoch 18/100, Average Training Loss: 5.0824, Role Prediction Accuracy: 34.55%
+Epoch 18/100, Validation Loss: 5.0229, Validation Role Accuracy: 37.99%
+Epoch 19/100, Average Training Loss: 4.9229, Role Prediction Accuracy: 35.95%
+Epoch 19/100, Validation Loss: 4.9444, Validation Role Accuracy: 34.85%
+Epoch 20/100, Average Training Loss: 4.7889, Role Prediction Accuracy: 35.95%
+Epoch 20/100, Validation Loss: 4.4407, Validation Role Accuracy: 38.27%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 20, Validation loss: 4.4407
+Epoch 21/100, Average Training Loss: 4.6985, Role Prediction Accuracy: 38.74%
+Epoch 21/100, Validation Loss: 4.6724, Validation Role Accuracy: 40.65%
+Epoch 22/100, Average Training Loss: 4.5690, Role Prediction Accuracy: 40.09%
+Epoch 22/100, Validation Loss: 4.2708, Validation Role Accuracy: 41.55%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 22, Validation loss: 4.2708
+Epoch 23/100, Average Training Loss: 4.7461, Role Prediction Accuracy: 40.67%
+Epoch 23/100, Validation Loss: 4.5079, Validation Role Accuracy: 43.45%
+Epoch 24/100, Average Training Loss: 4.2729, Role Prediction Accuracy: 44.30%
+Epoch 24/100, Validation Loss: 4.0846, Validation Role Accuracy: 42.24%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 24, Validation loss: 4.0846
+Epoch 25/100, Average Training Loss: 4.3162, Role Prediction Accuracy: 42.82%
+Epoch 25/100, Validation Loss: 3.9810, Validation Role Accuracy: 50.62%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 25, Validation loss: 3.9810
+Epoch 26/100, Average Training Loss: 4.1918, Role Prediction Accuracy: 45.10%
+Epoch 26/100, Validation Loss: 4.0431, Validation Role Accuracy: 44.26%
+Epoch 27/100, Average Training Loss: 4.0608, Role Prediction Accuracy: 47.01%
+Epoch 27/100, Validation Loss: 3.7897, Validation Role Accuracy: 52.17%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 27, Validation loss: 3.7897
+Epoch 28/100, Average Training Loss: 4.0150, Role Prediction Accuracy: 49.07%
+Epoch 28/100, Validation Loss: 3.6601, Validation Role Accuracy: 48.45%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 28, Validation loss: 3.6601
+Epoch 29/100, Average Training Loss: 3.8359, Role Prediction Accuracy: 50.29%
+Epoch 29/100, Validation Loss: 3.6703, Validation Role Accuracy: 51.85%
+Epoch 30/100, Average Training Loss: 3.8227, Role Prediction Accuracy: 51.05%
+Epoch 30/100, Validation Loss: 3.4956, Validation Role Accuracy: 53.12%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 30, Validation loss: 3.4956
+Epoch 31/100, Average Training Loss: 3.6818, Role Prediction Accuracy: 50.65%
+Epoch 31/100, Validation Loss: 3.4717, Validation Role Accuracy: 53.36%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 31, Validation loss: 3.4717
+Epoch 32/100, Average Training Loss: 3.6631, Role Prediction Accuracy: 51.44%
+Epoch 32/100, Validation Loss: 3.6283, Validation Role Accuracy: 54.28%
+Epoch 33/100, Average Training Loss: 3.6571, Role Prediction Accuracy: 52.06%
+Epoch 33/100, Validation Loss: 3.5997, Validation Role Accuracy: 54.25%
+Epoch 34/100, Average Training Loss: 3.5450, Role Prediction Accuracy: 52.80%
+Epoch 34/100, Validation Loss: 3.2760, Validation Role Accuracy: 54.78%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 34, Validation loss: 3.2760
+Epoch 35/100, Average Training Loss: 3.5330, Role Prediction Accuracy: 51.92%
+Epoch 35/100, Validation Loss: 3.4497, Validation Role Accuracy: 52.78%
+Epoch 36/100, Average Training Loss: 3.5140, Role Prediction Accuracy: 51.39%
+Epoch 36/100, Validation Loss: 3.2096, Validation Role Accuracy: 55.25%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 36, Validation loss: 3.2096
+Epoch 37/100, Average Training Loss: 3.3962, Role Prediction Accuracy: 54.86%
+Epoch 37/100, Validation Loss: 3.3141, Validation Role Accuracy: 49.27%
+Epoch 38/100, Average Training Loss: 3.3370, Role Prediction Accuracy: 54.01%
+Epoch 38/100, Validation Loss: 3.1683, Validation Role Accuracy: 54.19%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 38, Validation loss: 3.1683
+Epoch 39/100, Average Training Loss: 3.3017, Role Prediction Accuracy: 52.68%
+Epoch 39/100, Validation Loss: 3.1443, Validation Role Accuracy: 54.05%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 39, Validation loss: 3.1443
+Epoch 40/100, Average Training Loss: 3.2727, Role Prediction Accuracy: 54.45%
+Epoch 40/100, Validation Loss: 3.0800, Validation Role Accuracy: 54.98%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 40, Validation loss: 3.0800
+Epoch 41/100, Average Training Loss: 3.2680, Role Prediction Accuracy: 54.68%
+Epoch 41/100, Validation Loss: 3.1848, Validation Role Accuracy: 51.76%
+Epoch 42/100, Average Training Loss: 3.2487, Role Prediction Accuracy: 54.51%
+Epoch 42/100, Validation Loss: 3.0447, Validation Role Accuracy: 55.13%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 42, Validation loss: 3.0447
+Epoch 43/100, Average Training Loss: 3.2099, Role Prediction Accuracy: 53.10%
+Epoch 43/100, Validation Loss: 3.2213, Validation Role Accuracy: 55.75%
+Epoch 44/100, Average Training Loss: 3.2368, Role Prediction Accuracy: 54.89%
+Epoch 44/100, Validation Loss: 2.9890, Validation Role Accuracy: 55.92%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 44, Validation loss: 2.9890
+Epoch 45/100, Average Training Loss: 3.1935, Role Prediction Accuracy: 54.68%
+Epoch 45/100, Validation Loss: 3.1252, Validation Role Accuracy: 55.41%
+Epoch 46/100, Average Training Loss: 3.2069, Role Prediction Accuracy: 53.95%
+Epoch 46/100, Validation Loss: 2.9552, Validation Role Accuracy: 57.08%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 46, Validation loss: 2.9552
+Epoch 47/100, Average Training Loss: 3.1492, Role Prediction Accuracy: 54.68%
+Epoch 47/100, Validation Loss: 2.9484, Validation Role Accuracy: 56.75%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 47, Validation loss: 2.9484
+Epoch 48/100, Average Training Loss: 3.2026, Role Prediction Accuracy: 53.48%
+Epoch 48/100, Validation Loss: 3.4070, Validation Role Accuracy: 56.14%
+Epoch 49/100, Average Training Loss: 3.2081, Role Prediction Accuracy: 54.87%
+Epoch 49/100, Validation Loss: 3.0440, Validation Role Accuracy: 55.64%
+Epoch 50/100, Average Training Loss: 3.0609, Role Prediction Accuracy: 55.15%
+Epoch 50/100, Validation Loss: 3.1550, Validation Role Accuracy: 55.69%
+Epoch 51/100, Average Training Loss: 3.2000, Role Prediction Accuracy: 54.47%
+Epoch 51/100, Validation Loss: 2.9282, Validation Role Accuracy: 56.47%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 51, Validation loss: 2.9282
+Epoch 52/100, Average Training Loss: 3.0964, Role Prediction Accuracy: 54.70%
+Epoch 52/100, Validation Loss: 2.9230, Validation Role Accuracy: 56.58%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 52, Validation loss: 2.9230
+Epoch 53/100, Average Training Loss: 3.0551, Role Prediction Accuracy: 53.99%
+Epoch 53/100, Validation Loss: 2.9277, Validation Role Accuracy: 57.01%
+Epoch 54/100, Average Training Loss: 3.0362, Role Prediction Accuracy: 53.61%
+Epoch 54/100, Validation Loss: 2.9058, Validation Role Accuracy: 56.58%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 54, Validation loss: 2.9058
+Epoch 55/100, Average Training Loss: 3.2079, Role Prediction Accuracy: 54.93%
+Epoch 55/100, Validation Loss: 2.8693, Validation Role Accuracy: 55.97%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 55, Validation loss: 2.8693
+Epoch 56/100, Average Training Loss: 2.9611, Role Prediction Accuracy: 54.75%
+Epoch 56/100, Validation Loss: 2.8835, Validation Role Accuracy: 56.70%
+Epoch 57/100, Average Training Loss: 3.0032, Role Prediction Accuracy: 54.89%
+Epoch 57/100, Validation Loss: 3.0708, Validation Role Accuracy: 56.44%
+Epoch 58/100, Average Training Loss: 3.1498, Role Prediction Accuracy: 55.14%
+Epoch 58/100, Validation Loss: 2.8615, Validation Role Accuracy: 56.32%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 58, Validation loss: 2.8615
+Epoch 59/100, Average Training Loss: 2.9865, Role Prediction Accuracy: 55.69%
+Epoch 59/100, Validation Loss: 2.8543, Validation Role Accuracy: 55.70%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 59, Validation loss: 2.8543
+Epoch 60/100, Average Training Loss: 2.9668, Role Prediction Accuracy: 55.50%
+Epoch 60/100, Validation Loss: 2.9336, Validation Role Accuracy: 56.49%
+Epoch 61/100, Average Training Loss: 2.9601, Role Prediction Accuracy: 54.91%
+Epoch 61/100, Validation Loss: 2.8697, Validation Role Accuracy: 56.91%
+Epoch 62/100, Average Training Loss: 2.9415, Role Prediction Accuracy: 56.53%
+Epoch 62/100, Validation Loss: 2.7750, Validation Role Accuracy: 56.94%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 62, Validation loss: 2.7750
+Epoch 63/100, Average Training Loss: 2.9810, Role Prediction Accuracy: 54.34%
+Epoch 63/100, Validation Loss: 2.9213, Validation Role Accuracy: 56.07%
+Epoch 64/100, Average Training Loss: 3.0133, Role Prediction Accuracy: 56.14%
+Epoch 64/100, Validation Loss: 2.8504, Validation Role Accuracy: 56.97%
+Epoch 65/100, Average Training Loss: 2.9450, Role Prediction Accuracy: 55.56%
+Epoch 65/100, Validation Loss: 2.7944, Validation Role Accuracy: 57.57%
+Epoch 66/100, Average Training Loss: 2.9149, Role Prediction Accuracy: 56.61%
+Epoch 66/100, Validation Loss: 2.8296, Validation Role Accuracy: 54.45%
+Epoch 67/100, Average Training Loss: 2.8874, Role Prediction Accuracy: 54.67%
+Epoch 67/100, Validation Loss: 2.8759, Validation Role Accuracy: 57.33%
+Epoch 68/100, Average Training Loss: 2.8959, Role Prediction Accuracy: 54.93%
+Epoch 68/100, Validation Loss: 2.8482, Validation Role Accuracy: 57.26%
+Epoch 69/100, Average Training Loss: 2.8758, Role Prediction Accuracy: 54.96%
+Epoch 69/100, Validation Loss: 2.7203, Validation Role Accuracy: 57.02%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 69, Validation loss: 2.7203
+Epoch 70/100, Average Training Loss: 2.8629, Role Prediction Accuracy: 55.15%
+Epoch 70/100, Validation Loss: 2.7483, Validation Role Accuracy: 56.34%
+Epoch 71/100, Average Training Loss: 2.8986, Role Prediction Accuracy: 54.92%
+Epoch 71/100, Validation Loss: 2.7765, Validation Role Accuracy: 55.06%
+Epoch 72/100, Average Training Loss: 2.9107, Role Prediction Accuracy: 57.10%
+Epoch 72/100, Validation Loss: 2.7736, Validation Role Accuracy: 54.18%
+Epoch 73/100, Average Training Loss: 2.8372, Role Prediction Accuracy: 55.45%
+Epoch 73/100, Validation Loss: 2.7425, Validation Role Accuracy: 55.49%
+Epoch 74/100, Average Training Loss: 2.8634, Role Prediction Accuracy: 55.38%
+Epoch 74/100, Validation Loss: 2.7903, Validation Role Accuracy: 56.75%
+Epoch 75/100, Average Training Loss: 2.8742, Role Prediction Accuracy: 55.40%
+Epoch 75/100, Validation Loss: 2.7507, Validation Role Accuracy: 56.99%
+Epoch 76/100, Average Training Loss: 2.9258, Role Prediction Accuracy: 56.46%
+Epoch 76/100, Validation Loss: 2.7704, Validation Role Accuracy: 57.81%
+Epoch 77/100, Average Training Loss: 2.8881, Role Prediction Accuracy: 55.49%
+Epoch 77/100, Validation Loss: 2.7776, Validation Role Accuracy: 57.56%
+Epoch 78/100, Average Training Loss: 2.8908, Role Prediction Accuracy: 56.31%
+Epoch 78/100, Validation Loss: 2.8268, Validation Role Accuracy: 56.94%
+Epoch 79/100, Average Training Loss: 2.8352, Role Prediction Accuracy: 56.66%
+Epoch 79/100, Validation Loss: 2.7480, Validation Role Accuracy: 57.43%
+Epoch 80/100, Average Training Loss: 2.8286, Role Prediction Accuracy: 56.10%
+Epoch 80/100, Validation Loss: 2.7454, Validation Role Accuracy: 56.92%
+Epoch 81/100, Average Training Loss: 2.8723, Role Prediction Accuracy: 55.65%
+Epoch 81/100, Validation Loss: 2.7352, Validation Role Accuracy: 57.05%
+Epoch 82/100, Average Training Loss: 2.8247, Role Prediction Accuracy: 55.92%
+Epoch 82/100, Validation Loss: 2.7082, Validation Role Accuracy: 56.60%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 82, Validation loss: 2.7082
+Epoch 83/100, Average Training Loss: 2.8463, Role Prediction Accuracy: 56.47%
+Epoch 83/100, Validation Loss: 2.8626, Validation Role Accuracy: 56.94%
+Epoch 84/100, Average Training Loss: 2.8005, Role Prediction Accuracy: 55.90%
+Epoch 84/100, Validation Loss: 2.7093, Validation Role Accuracy: 54.17%
+Epoch 85/100, Average Training Loss: 2.8103, Role Prediction Accuracy: 54.70%
+Epoch 85/100, Validation Loss: 3.0153, Validation Role Accuracy: 57.72%
+Epoch 86/100, Average Training Loss: 2.8129, Role Prediction Accuracy: 56.31%
+Epoch 86/100, Validation Loss: 2.6860, Validation Role Accuracy: 57.36%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 86, Validation loss: 2.6860
+Epoch 87/100, Average Training Loss: 2.8655, Role Prediction Accuracy: 55.92%
+Epoch 87/100, Validation Loss: 2.7542, Validation Role Accuracy: 57.51%
+Epoch 88/100, Average Training Loss: 2.7693, Role Prediction Accuracy: 56.50%
+Epoch 88/100, Validation Loss: 2.6960, Validation Role Accuracy: 57.68%
+Epoch 89/100, Average Training Loss: 2.7966, Role Prediction Accuracy: 55.08%
+Epoch 89/100, Validation Loss: 2.6964, Validation Role Accuracy: 57.82%
+Epoch 90/100, Average Training Loss: 2.8053, Role Prediction Accuracy: 55.09%
+Epoch 90/100, Validation Loss: 2.7120, Validation Role Accuracy: 57.44%
+Epoch 91/100, Average Training Loss: 2.8270, Role Prediction Accuracy: 55.52%
+Epoch 91/100, Validation Loss: 2.6734, Validation Role Accuracy: 57.62%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 91, Validation loss: 2.6734
+Epoch 92/100, Average Training Loss: 2.7798, Role Prediction Accuracy: 55.72%
+Epoch 92/100, Validation Loss: 2.7324, Validation Role Accuracy: 58.27%
+Epoch 93/100, Average Training Loss: 2.7877, Role Prediction Accuracy: 56.31%
+Epoch 93/100, Validation Loss: 2.6724, Validation Role Accuracy: 57.54%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 93, Validation loss: 2.6724
+Epoch 94/100, Average Training Loss: 2.7622, Role Prediction Accuracy: 56.31%
+Epoch 94/100, Validation Loss: 2.7884, Validation Role Accuracy: 54.43%
+Epoch 95/100, Average Training Loss: 2.8152, Role Prediction Accuracy: 54.85%
+Epoch 95/100, Validation Loss: 2.6520, Validation Role Accuracy: 57.93%
+Saved best model and statistics to /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159/ef_best_model.pth, Epoch 95, Validation loss: 2.6520
+Epoch 96/100, Average Training Loss: 2.7836, Role Prediction Accuracy: 56.70%
+Epoch 96/100, Validation Loss: 2.7014, Validation Role Accuracy: 58.08%
+Epoch 97/100, Average Training Loss: 2.7560, Role Prediction Accuracy: 55.90%
+Epoch 97/100, Validation Loss: 2.7270, Validation Role Accuracy: 57.63%
+Epoch 98/100, Average Training Loss: 2.7639, Role Prediction Accuracy: 56.71%
+Epoch 98/100, Validation Loss: 2.6960, Validation Role Accuracy: 57.91%
+Epoch 99/100, Average Training Loss: 2.7626, Role Prediction Accuracy: 57.65%
+Epoch 99/100, Validation Loss: 2.6520, Validation Role Accuracy: 57.00%
+Epoch 100/100, Average Training Loss: 2.7645, Role Prediction Accuracy: 55.27%
+Epoch 100/100, Validation Loss: 2.6830, Validation Role Accuracy: 57.38%
+Training completed. Best model at Epoch 95, Validation loss: 2.6520
+==================== Stage 3 complete ====================
+
+Pipeline complete. Final model at: /Users/chencheng/Downloads/论文/ARG-Designer-main/experiment/mmlu/output/mmlu_arg_base_model_r159

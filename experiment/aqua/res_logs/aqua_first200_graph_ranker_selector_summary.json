@@ -1,0 +1,80 @@
+{
+  "objective_summary_json": "experiment/aqua/res_logs/aqua_first200_contract_graph_objective_summary.json",
+  "ranker_summary_json": "experiment/aqua/res_logs/aqua_first200_graph_preference_ranker_summary.json",
+  "output_jsonl": "experiment/aqua/aqua_first200_graph_ranker_selector_results.jsonl",
+  "min_ranker_score": 0.1,
+  "min_ranker_margin": 0.1,
+  "feature_names": [
+    "strong_contract",
+    "direct_agreement",
+    "direct_vote_support",
+    "prompt_node_graph",
+    "conflict_penalty",
+    "weak_contract_penalty",
+    "strong_router_contract_count",
+    "router_matches_direct_majority",
+    "has_prompt_node_graph"
+  ],
+  "excluded_selector_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "is_solved",
+    "objective_score",
+    "predicted_answer",
+    "router_option",
+    "true_answer"
+  ],
+  "outcome_field_violations": 0,
+  "overall": {
+    "total_tasks": 200,
+    "solved_tasks": 166,
+    "baseline_solved_tasks": 165,
+    "overall": "166/200",
+    "baseline": "165/200",
+    "delta_vs_baseline": 1,
+    "fixes": 2,
+    "harms": 1,
+    "fix_harm": "2/1",
+    "switches": 5,
+    "selected_source_counts": {
+      "baseline": 195,
+      "ranker_top": 5
+    }
+  },
+  "slice_summaries": {
+    "aqua_100": {
+      "total_tasks": 100,
+      "solved_tasks": 83,
+      "baseline_solved_tasks": 83,
+      "overall": "83/100",
+      "baseline": "83/100",
+      "delta_vs_baseline": 0,
+      "fixes": 1,
+      "harms": 1,
+      "fix_harm": "1/1",
+      "switches": 3,
+      "selected_source_counts": {
+        "baseline": 97,
+        "ranker_top": 3
+      }
+    },
+    "aqua_next100": {
+      "total_tasks": 100,
+      "solved_tasks": 83,
+      "baseline_solved_tasks": 82,
+      "overall": "83/100",
+      "baseline": "82/100",
+      "delta_vs_baseline": 1,
+      "fixes": 1,
+      "harms": 0,
+      "fix_harm": "1/0",
+      "switches": 2,
+      "selected_source_counts": {
+        "baseline": 98,
+        "ranker_top": 2
+      }
+    }
+  },
+  "claim_boundary": "Ranker-guided selector replay over existing first200 traces. The selection features exclude gold answers, audit labels, correctness fields, predicted options, router options, and objective_score. true_answer is used only after selection for post-hoc answer-accuracy accounting."
+}

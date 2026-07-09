@@ -1,0 +1,41 @@
+{
+  "run_id": "R424",
+  "title": "MMLU STEM cost probe API execution",
+  "claim_boundary": "R424 measures per-call cost for a small STEM probe. Accuracy is diagnostic only.",
+  "no_api": false,
+  "broad_api": false,
+  "tasks": 12,
+  "api_executed": 24,
+  "api_errors": 0,
+  "api_cost": 0.083685,
+  "prompt_tokens": 4752,
+  "completion_tokens": 3995,
+  "by_variant": {
+    "arg_direct_cost_probe": {
+      "records": 12,
+      "api_executed": 12,
+      "api_errors": 0,
+      "correct": 7,
+      "api_cost": 0.03159,
+      "prompt_tokens": 1608,
+      "completion_tokens": 1570,
+      "cost_per_task": 0.002632
+    },
+    "promptnode_stack_cost_probe": {
+      "records": 12,
+      "api_executed": 12,
+      "api_errors": 0,
+      "correct": 5,
+      "api_cost": 0.052095,
+      "prompt_tokens": 3144,
+      "completion_tokens": 2425,
+      "cost_per_task": 0.004341
+    }
+  },
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R425_analyze_mmlu_stem_cost_probe",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r424_mmlu_stem_cost_probe_api_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r424_mmlu_stem_cost_probe_api_execution_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r424_mmlu_stem_cost_probe_api_execution_report.md"
+}

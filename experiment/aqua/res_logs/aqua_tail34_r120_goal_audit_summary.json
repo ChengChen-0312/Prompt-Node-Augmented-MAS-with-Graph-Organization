@@ -1,0 +1,29 @@
+{
+  "rule": "r120_goal_audit_r116_r120",
+  "status": "aligned_after_correction",
+  "goal_window": [
+    "R116",
+    "R117",
+    "R118",
+    "R119",
+    "R120"
+  ],
+  "drift_detected": true,
+  "drift_type": "cost_driven_single_view_shortcut_without_promptnode_graph_evidence",
+  "r119_selected_accuracy": "2/4",
+  "r119_internal_arg_accuracy": "3/4",
+  "r119_calibrated_accuracy": "2/4",
+  "r119_fix_harm": "0/1",
+  "r119_clean_fix_harm": "0/1",
+  "r119_clean_harm_tasks": [
+    "task_250"
+  ],
+  "r119_promptnode_graph_hits": "0/4",
+  "r119_strong_router_contract_rows": "0/4",
+  "r119_policy_input_violations": 0,
+  "r119_cost": 0.235285,
+  "correction": "demote calibrated_single_view_probe to negative control; require explicit PromptNode graph evidence, strong router contract evidence, guarded two-view agreement, or train-time graph-policy evidence before switching",
+  "broad_api_allowed_next": false,
+  "next_protocol": "guarded_two_view_or_graph_policy_probe_smoke",
+  "claim_boundary": "five-iteration goal audit and correction, not an accuracy result"
+}

@@ -1,0 +1,42 @@
+{
+  "run_id": "R466",
+  "title": "Five-run goal audit after package checklists",
+  "claim_boundary": "R466 audits R462-R466 for drift after template/source/audit-checklist work. It does not transmit external payloads or mark the manuscript ready.",
+  "no_api": true,
+  "broad_api": false,
+  "audited_runs": [
+    "R462",
+    "R463",
+    "R464",
+    "R465",
+    "R466"
+  ],
+  "audited_summary_paths": {
+    "R462": "experiment/mmlu/res_logs/mmlu_r462_journal_template_probe_summary.json",
+    "R463": "experiment/mmlu/res_logs/mmlu_r463_source_package_manifest_summary.json",
+    "R464": "experiment/mmlu/res_logs/mmlu_r464_external_audit_authorization_checklist_summary.json",
+    "R465": "experiment/mmlu/res_logs/mmlu_r465_local_smoke_after_source_and_audit_checklists_summary.json"
+  },
+  "goal_alignment": {
+    "still_aligned_with_sci_q2_goal": true,
+    "jair_primary_target_preserved": true,
+    "source_package_secrets_excluded": true,
+    "external_review_boundary_preserved": true,
+    "no_submission_ready_overclaim": true
+  },
+  "unauthorized_claim_runs": [],
+  "deviation_detected": false,
+  "source_package_manifested": true,
+  "external_audit_untransmitted": true,
+  "remaining_submission_blockers": [
+    "external_audits_pending",
+    "pdf_compile_pending",
+    "official_jcr_quartile_verification_pending",
+    "journal_template_conversion_pending_after_audit"
+  ],
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R467_jcr_quartile_verification_plan",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r466_five_run_goal_audit_after_package_checklists_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r466_five_run_goal_audit_after_package_checklists_report.md"
+}

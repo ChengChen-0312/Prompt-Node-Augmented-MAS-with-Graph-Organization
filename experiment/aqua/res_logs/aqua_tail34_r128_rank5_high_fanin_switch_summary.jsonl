@@ -1,0 +1,1 @@
+{"timestamp": "2026-07-08T20:42:47.777418", "dataset": "aqua", "model_path": "output/xxxxforced_template_rank5", "llm_name": "gpt-4o-2024-08-06", "total_tasks": 2, "solved_tasks": 1, "pass_at_1": 50.0, "cost": 0.07572500000000001, "prompt_tokens": 7492.0, "completion_tokens": 2551.0, "detail_file": "experiment/aqua/aqua_tail34_r128_rank5_high_fanin_switch_results.jsonl"}

@@ -1,0 +1,36 @@
+{
+  "run_id": "R229",
+  "title": "Claim matrix and paper plan update after cost/runtime readiness",
+  "claim_boundary": "Planning and claim-boundary update only; no API, no accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "inputs": {
+    "r221_controls": "4 control manifests, 268 rows",
+    "r222_leakage": "0 leakage violations across 268 control records",
+    "r226_cost_matched_arg": {
+      "cost_cap": 0.45,
+      "arg_cost_per_task": 0.030421,
+      "allowed_requeries": 4,
+      "estimated_total_cost": 0.121684
+    },
+    "r228_runtime_dry_run": {
+      "records": 335,
+      "would_switch": 106,
+      "leakage_violations": 0,
+      "missing_required_fields": 0
+    }
+  },
+  "claim_updates": {
+    "negative_controls_executable": "supported_as_artifacts",
+    "cost_matched_arg_protocol": "supported_as_protocol",
+    "runtime_integration_logging": "supported_as_dry_run",
+    "router_final_beats_controls": "not_supported",
+    "router_final_beats_arg": "not_supported",
+    "sci_q2_ready": false
+  },
+  "next_audit": "R230",
+  "recommended_next_work": [
+    "audit whether tiny API diagnostics are now justified",
+    "if authorized, run cost-capped proposed/control/cost-matched diagnostic on the pre-registered small set",
+    "keep all superiority claims blocked until answer-level results exist"
+  ]
+}

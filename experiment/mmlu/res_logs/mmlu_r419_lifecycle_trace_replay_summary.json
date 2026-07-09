@@ -1,0 +1,59 @@
+{
+  "run_id": "R419",
+  "title": "Lifecycle trace replay",
+  "claim_boundary": "R419 replays existing R413 outputs into lifecycle events. It supports case-study visualization, not new accuracy claims.",
+  "no_api": true,
+  "broad_api": false,
+  "source_jsonl": "experiment/mmlu/run_logs/mmlu_r413_definition_challenge_gate_api_results.jsonl",
+  "source_records": 24,
+  "events": 121,
+  "event_counts": {
+    "PromptEdgeForward": 11,
+    "PromptNodeCompress": 24,
+    "PromptNodeMerge": 24,
+    "PromptNodePrune": 13,
+    "PromptNodeUpdate": 24,
+    "PromptNodeUpgrade": 1,
+    "PromptNodeWrite": 24
+  },
+  "forwarded_tasks": 11,
+  "pruned_tasks": 13,
+  "upgrade_task_ids": [
+    "MMLU-nonstem-moral_disputes_test-14"
+  ],
+  "forward_task_ids": [
+    "MMLU-nonstem-logical_fallacies_test-13",
+    "MMLU-nonstem-logical_fallacies_test-23",
+    "MMLU-nonstem-moral_disputes_test-12",
+    "MMLU-nonstem-moral_disputes_test-13",
+    "MMLU-nonstem-moral_disputes_test-14",
+    "MMLU-nonstem-moral_disputes_test-15",
+    "MMLU-nonstem-philosophy_test-15",
+    "MMLU-nonstem-philosophy_test-16",
+    "MMLU-nonstem-philosophy_test-27",
+    "MMLU-nonstem-philosophy_test-28",
+    "MMLU-nonstem-philosophy_test-29"
+  ],
+  "prune_task_ids": [
+    "MMLU-nonstem-logical_fallacies_test-12",
+    "MMLU-nonstem-logical_fallacies_test-14",
+    "MMLU-nonstem-logical_fallacies_test-15",
+    "MMLU-nonstem-logical_fallacies_test-16",
+    "MMLU-nonstem-logical_fallacies_test-24",
+    "MMLU-nonstem-logical_fallacies_test-25",
+    "MMLU-nonstem-moral_disputes_test-16",
+    "MMLU-nonstem-moral_disputes_test-27",
+    "MMLU-nonstem-moral_disputes_test-28",
+    "MMLU-nonstem-moral_disputes_test-29",
+    "MMLU-nonstem-philosophy_test-12",
+    "MMLU-nonstem-philosophy_test-13",
+    "MMLU-nonstem-philosophy_test-14"
+  ],
+  "case_study_trace_available": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R420_paper_asset_table_refresh",
+  "trace_jsonl": "experiment/mmlu/run_logs/mmlu_r419_lifecycle_trace_events.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r419_lifecycle_trace_replay_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r419_lifecycle_trace_replay_report.md"
+}

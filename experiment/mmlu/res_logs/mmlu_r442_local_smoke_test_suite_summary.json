@@ -1,0 +1,83 @@
+{
+  "run_id": "R442",
+  "title": "Local smoke test suite",
+  "claim_boundary": "R442 verifies recent local scripts and tests only. It does not execute external audits or authorize submission claims.",
+  "no_api": true,
+  "broad_api": false,
+  "tested_module_count": 11,
+  "test_results": [
+    {
+      "module": "tests.test_r431_draft_claim_sanity_check",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r432_paper_main_tex_scaffold",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r433_front_matter_and_related_work_preflight",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r434_front_matter_initial_draft",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.018s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r435_related_work_bibtex_audit_preflight",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r436_citation_metadata_fetch_and_bib_skeleton",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 7.837s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r437_related_work_initial_draft",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r438_citation_context_static_audit",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r439_paper_static_integrity_precompile_audit",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r440_paper_claim_number_static_audit",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r441_external_audit_package_refresh",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+    }
+  ],
+  "failed_modules": [],
+  "local_smoke_pass": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R443_manuscript_status_snapshot",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r442_local_smoke_test_suite_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r442_local_smoke_test_suite_report.md"
+}

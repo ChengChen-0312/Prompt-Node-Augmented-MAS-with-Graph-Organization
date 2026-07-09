@@ -1,0 +1,82 @@
+{
+  "sampled_graphs": 64,
+  "promptnode_graphs": 64,
+  "promptnode_nodes": 249,
+  "promptnode_graph_rate": 1.0,
+  "avg_promptnode_nodes": 3.890625,
+  "dag_graphs": 64,
+  "dag_rate": 1.0,
+  "min_nodes": 4,
+  "max_nodes": 6,
+  "avg_nodes": 5.5,
+  "min_edges": 3,
+  "max_edges": 10,
+  "avg_edges": 6.59375,
+  "role_counts": {
+    "Inspector": 5,
+    "Math Solver": 59,
+    "Mathematical Analyst": 3,
+    "PN_Memory": 79,
+    "PN_Router": 93,
+    "PN_Verifier": 77,
+    "Programming Expert": 36
+  },
+  "model_dir": "experiment/aqua/output/aqua_r166_expanded_selective_promptedge_r167_short",
+  "model_file": "ef_best_model.pth",
+  "finetune_data_dir": "experiment/FinetuneData_AQuA_R166_expanded_selective_promptedge",
+  "sample_tasks": 8,
+  "samples_per_task": 8,
+  "batch_size": 8,
+  "seed": 20260709,
+  "task_records": [
+    {
+      "task_index": 0,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 34
+    },
+    {
+      "task_index": 1,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 32
+    },
+    {
+      "task_index": 2,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 31
+    },
+    {
+      "task_index": 3,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 33
+    },
+    {
+      "task_index": 4,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 29
+    },
+    {
+      "task_index": 5,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 31
+    },
+    {
+      "task_index": 6,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 30
+    },
+    {
+      "task_index": 7,
+      "sampled_graphs": 8,
+      "promptnode_graphs": 8,
+      "promptnode_nodes": 29
+    }
+  ],
+  "claim_boundary": "Graph-generation audit only. This samples ARGDesigner's graph generator and checks whether PromptNode roles appear before execution; it does not evaluate AQuA answer accuracy."
+}

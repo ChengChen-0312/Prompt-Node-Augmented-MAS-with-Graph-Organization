@@ -1,0 +1,26 @@
+{
+  "run_id": "R260",
+  "title": "Five-iteration SCI-Q2 goal audit",
+  "claim_boundary": "Audit only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "broad_api": false,
+  "audit_window": ["R256", "R257", "R258", "R259"],
+  "goal_status_from_tool": "blocked_metadata_but_objective_used_as_active_reference",
+  "drift_detected": false,
+  "sci_q2_ready": false,
+  "decision_status": "aligned_redirect_to_claim_package_and_aqua_selector",
+  "key_result": {
+    "v1_proposed": "10/16, fix/harm 3/1",
+    "v2_guarded": "9/16, fix/harm 1/0",
+    "plain_requery": "12/16, fix/harm 4/0",
+    "node_only": "11/16, fix/harm 4/1"
+  },
+  "api_status": "broad_api_blocked; current MMLU prompt-only transfer API blocked",
+  "authorized_next": {
+    "R261": "update result-to-claim matrix after R253-R260, no API",
+    "R262": "produce paper-ready result tables, no API",
+    "R263": "define next non-API train-time graph-policy route on AQuA",
+    "R264": "build reproducibility manifest",
+    "R265": "mandatory goal audit"
+  }
+}

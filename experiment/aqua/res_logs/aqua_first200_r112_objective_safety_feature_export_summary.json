@@ -1,0 +1,54 @@
+{
+  "rule": "r112_first200_objective_safety_feature_export",
+  "baseline_sources": [
+    "experiment/aqua/aqua_100_arg_baseline_results.jsonl",
+    "experiment/aqua/aqua_next100_arg_baseline_results.jsonl"
+  ],
+  "objective_source": "experiment/aqua/aqua_first200_objective_guided_selector_results.jsonl",
+  "target_jsonl": "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl",
+  "num_rows": 200,
+  "baseline_source_rows": 200,
+  "objective_source_rows": 200,
+  "baseline_prediction_mismatch_count": 11,
+  "required_rule_features": [
+    "objective_prediction_differs_from_baseline",
+    "objective_top_score",
+    "baseline_direct_votes_split"
+  ],
+  "required_rule_feature_count": 3,
+  "exported_required_rule_features": [
+    "objective_prediction_differs_from_baseline",
+    "objective_top_score",
+    "baseline_direct_votes_split"
+  ],
+  "missing_required_rule_features": [],
+  "uses_tail34_training_source": false,
+  "policy_input_field_violations": 0,
+  "target_action_counts": {
+    "fallback_to_arg": 189,
+    "switch_to_objective": 11
+  },
+  "target_reason_counts": {
+    "baseline_direct_split_allows_switch": 1,
+    "insufficient_safety_evidence": 9,
+    "objective_top_score_ge3": 10,
+    "same_prediction_as_arg": 180
+  },
+  "objective_prediction_differs_count": 20,
+  "baseline_direct_votes_split_count": 3,
+  "switch_target_count": 11,
+  "switch_target_tasks": [
+    "task_152",
+    "task_172",
+    "task_95",
+    "task_135",
+    "task_122",
+    "task_149",
+    "task_176",
+    "task_184",
+    "task_197",
+    "task_67",
+    "task_207"
+  ],
+  "claim_boundary": "first200 feature export and proxy target construction only; no trained proxy or accuracy claim"
+}

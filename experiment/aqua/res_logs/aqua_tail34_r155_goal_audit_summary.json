@@ -1,0 +1,40 @@
+{
+  "rule": "r155_goal_audit_r151_r155",
+  "claim_boundary": "five-iteration goal audit only; no new API run, checkpoint, transfer result, accuracy result, or SCI-Q2 readiness claim",
+  "status": "aligned_transfer_engineering_not_sci_q2_ready",
+  "goal_window": [
+    "R151",
+    "R152",
+    "R153",
+    "R154",
+    "R155"
+  ],
+  "drift_detected": false,
+  "drift_type": "none_transfer_validation_blockers_explicitly_preserved",
+  "maintained_sci_q2_focus": true,
+  "maintained_update2_alignment": true,
+  "claim_discipline_maintained": true,
+  "r151_plan_only": true,
+  "r151_blocking_gap_count": 5,
+  "r152_transfer_branch_allowed": false,
+  "r152_independent_same_method_aqua_replicate_ready": false,
+  "r153_compatible_checkpoint_present": false,
+  "r153_build_route": "patch_local_paths_then_coldstart_pretrain_finetune",
+  "r154_dataset_env_patch_available": true,
+  "r154_task_split_written": true,
+  "r154_local_dev_rows": 285,
+  "r154_compatible_checkpoint_imported": false,
+  "sci_q2_ready": false,
+  "checkpoint_build_preflight_allowed_next": true,
+  "transfer_api_allowed_next": false,
+  "broad_api_allowed_next": false,
+  "blocking_gaps": [
+    "No compatible MMLU ARG checkpoint is present or imported",
+    "No MMLU transfer API result exists",
+    "No independent same-method AQuA replicate is available because AQuA has no unseen rows",
+    "R147 tail34 evidence remains replay-level and not statistically significant",
+    "Cost-normalized superiority remains unsupported"
+  ],
+  "next_protocol": "r156_mmlu_checkpoint_build_dry_run_or_import_validation",
+  "next_goal_audit_due": "R160"
+}

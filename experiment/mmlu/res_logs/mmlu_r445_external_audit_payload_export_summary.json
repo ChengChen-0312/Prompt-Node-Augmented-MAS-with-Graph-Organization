@@ -1,0 +1,35 @@
+{
+  "run_id": "R445",
+  "title": "External audit payload export",
+  "claim_boundary": "R445 prepares local external-audit payloads. It does not transmit manuscript or result files to a browser, API, or reviewer.",
+  "no_api": true,
+  "broad_api": false,
+  "payloads_created": [
+    {
+      "audit_name": "experiment_integrity_audit",
+      "payload_md": "experiment/mmlu/run_logs/mmlu_r445_experiment_integrity_external_payload.md",
+      "bytes": 25436,
+      "expected_review_output_md": "experiment/mmlu/run_logs/mmlu_r445_experiment_integrity_external_review.md"
+    },
+    {
+      "audit_name": "paper_claim_audit",
+      "payload_md": "experiment/mmlu/run_logs/mmlu_r445_paper_claim_external_payload.md",
+      "bytes": 47256,
+      "expected_review_output_md": "experiment/mmlu/run_logs/mmlu_r445_paper_claim_external_review.md"
+    },
+    {
+      "audit_name": "citation_context_audit",
+      "payload_md": "experiment/mmlu/run_logs/mmlu_r445_citation_context_external_payload.md",
+      "bytes": 19893,
+      "expected_review_output_md": "experiment/mmlu/run_logs/mmlu_r445_citation_context_external_review.md"
+    }
+  ],
+  "external_reviews_executed": [],
+  "browser_submission_performed": false,
+  "requires_confirmation_before_transmission": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R446_local_tables_and_submission_gaps",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r445_external_audit_payload_export_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r445_external_audit_payload_export_report.md"
+}

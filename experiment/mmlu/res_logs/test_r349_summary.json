@@ -1,0 +1,32 @@
+{
+  "run_id": "R349",
+  "title": "Fresh frozen-policy tool PromptNode eval preflight",
+  "claim_boundary": "R349 builds a fresh 48-task MMLU manifest for the policy frozen at R347. It performs local tool preflight only; API execution is deferred to the next non-audit run.",
+  "no_api": true,
+  "broad_api": false,
+  "policy_frozen_after_run": "R347",
+  "tasks": 48,
+  "task_family_counts": {
+    "mmlu_nonstem": 24,
+    "mmlu_stem": 24
+  },
+  "api_manifest_records": 48,
+  "local_tool_records": 48,
+  "api_calls_planned": 48,
+  "local_tool_forwarded_candidate_count": 0,
+  "local_tool_candidate_correct_count": 0,
+  "overlap_with_excluded_task_count": 0,
+  "overlap_with_excluded_task_ids": [],
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "uses_true_answers_in_prompt": false,
+  "uses_true_answers_in_tool": false,
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R350_goal_audit_after_tool_promptnode_fresh_preflight",
+  "api_manifest_jsonl": "experiment/mmlu/run_logs/test_r349_api_manifest.jsonl",
+  "local_tool_jsonl": "experiment/mmlu/run_logs/test_r349_local_tool_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/test_r349_summary.json",
+  "report_md": "experiment/mmlu/run_logs/test_r349_report.md"
+}

@@ -1,0 +1,37 @@
+{
+  "records": 120,
+  "tasks": 24,
+  "variant_counts": {
+    "abstain_keep_arg": 24,
+    "arg_baseline_fixed": 24,
+    "node_only_no_promptedge_text": 24,
+    "plain_requery": 24,
+    "proposed_promptnode_promptedge": 24
+  },
+  "api_required": 72,
+  "deterministic_records": 48,
+  "leakage_violations": 0,
+  "leakage_pass": true,
+  "estimated_cost": 0.16473,
+  "cost_cap": 0.25,
+  "estimated_cost_within_cap": true,
+  "variant_balance_pass": true,
+  "preflight_pass": true,
+  "run_id": "R273",
+  "title": "MMLU full24 transfer preflight",
+  "claim_boundary": "Preflight only; no API execution, no transfer accuracy claim, and no SCI-Q2 readiness claim.",
+  "selection_role_counts": {
+    "arg_error": 12,
+    "matched_control": 12
+  },
+  "balanced_error_control": true,
+  "authorized_api_next": true,
+  "no_api": true,
+  "broad_api": false,
+  "model": "gpt-4o-2024-08-06",
+  "probe_jsonl": "experiment/mmlu/run_logs/mmlu_r251_mmlu_transfer_probe_full24.jsonl",
+  "transfer_results_jsonl": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "output_dir": "experiment/mmlu/manifests/r273_mmlu_transfer_full24",
+  "dryrun_jsonl": "experiment/mmlu/run_logs/mmlu_r273_full24_transfer_preflight_records.jsonl",
+  "max_completion_tokens": 64
+}

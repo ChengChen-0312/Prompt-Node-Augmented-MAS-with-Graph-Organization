@@ -1,0 +1,6 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+We use ARG-Designer as the main baseline and preserve its model setting as closely as possible. All API-based fresh runs in the current evidence set use \texttt{gpt-4o-2024-08-06}. The main evaluated slices are: audited AQuA tail34, MMLU STEM transfer, mixed MMLU non-STEM transfer, and a fresh DefinitionChallenge subset over logical fallacies, moral disputes, and philosophy. For AQuA, known noisy items are reported through official and audit-clean columns rather than silently rewritten. For MMLU, audited label issues are excluded or reported in appendix-style sensitivity analyses.
+
+Metrics are accuracy, fix/harm, wrong-forward count, and cost. Cost rows are sourced from direct API summaries when available. The MMLU STEM cost in the current draft is a probe-estimated cost from R424/R425, not exact original R306 accounting. All paper-facing claims remain provisional because the external integrity audit is pending.

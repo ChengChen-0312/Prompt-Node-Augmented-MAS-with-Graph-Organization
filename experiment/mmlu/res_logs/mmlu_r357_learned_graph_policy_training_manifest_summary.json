@@ -1,0 +1,36 @@
+{
+  "run_id": "R357",
+  "title": "Learned graph-policy training manifest",
+  "claim_boundary": "R357 creates a leakage-safe offline training manifest for graph actions. It does not train a model or authorize API execution.",
+  "no_api": true,
+  "broad_api": false,
+  "base_augmented_records": 238,
+  "r352_added_records": 48,
+  "r354_added_records": 48,
+  "manifest_records": 334,
+  "positive_forward_targets": 20,
+  "source_run_counts": {
+    "R304": 97,
+    "R306": 97,
+    "R312": 40,
+    "R325": 4,
+    "R352": 48,
+    "R354": 48
+  },
+  "split_counts": {
+    "dev": 35,
+    "test": 63,
+    "train": 236
+  },
+  "contains_first_class_graph_action_targets": true,
+  "feature_leakage_pass": true,
+  "feature_leakage_violations": [],
+  "api_execution_authorized_next": false,
+  "offline_training_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R358_learned_graph_policy_offline_training",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r357_learned_graph_policy_training_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r357_learned_graph_policy_training_manifest_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r357_learned_graph_policy_training_manifest_report.md"
+}

@@ -1,0 +1,50 @@
+{
+  "run_id": "R353",
+  "title": "Fresh eval after coverage expansion design",
+  "claim_boundary": "R353 freezes the expanded R352 PromptNode policy and designs a new fresh MMLU eval. R349/R352 are excluded because they were used for coverage development.",
+  "no_api": true,
+  "broad_api": false,
+  "policy_frozen_after_run": "R352",
+  "fresh_task_plan": {
+    "mmlu_stem": 24,
+    "mmlu_nonstem": 24
+  },
+  "exclude_prior_runs": [
+    "R304",
+    "R306",
+    "R312",
+    "R334",
+    "R337",
+    "R341",
+    "R342",
+    "R346",
+    "R347",
+    "R349",
+    "R352"
+  ],
+  "planned_variants": [
+    "arg_baseline_direct_api",
+    "expanded_tool_promptnode_local",
+    "hybrid_arg_plus_expanded_tool"
+  ],
+  "metric_plan": [
+    "accuracy",
+    "fixes",
+    "harms",
+    "forwarded_candidate_count",
+    "candidate_error_count",
+    "token_cost_for_arg_baseline",
+    "cost_normalized_accuracy"
+  ],
+  "api_calls_planned": 48,
+  "preflight_required_next": true,
+  "api_execution_authorized_next": false,
+  "claim_permissions": {
+    "fresh_eval_design_allowed": true,
+    "main_paper_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "next_required_run": "R354_fresh_eval_after_coverage_expansion_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r353_fresh_eval_after_coverage_expansion_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r353_fresh_eval_after_coverage_expansion_design_report.md"
+}

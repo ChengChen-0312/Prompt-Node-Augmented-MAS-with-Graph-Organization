@@ -1,0 +1,56 @@
+{
+  "run_id": "R398",
+  "title": "Nonmath contrastive verifier design",
+  "claim_boundary": "R398 is a design step derived from R397 error taxonomy. It adds general-purpose nonmath PromptNodes and PromptEdges, but does not execute API or support a result claim.",
+  "no_api": true,
+  "broad_api": false,
+  "promptnode_roles": {
+    "PN_ContrastiveOptionVerifier": {
+      "purpose": "Require the candidate answer to defeat the nearest plausible distractor before forwarding.",
+      "intended_errors": [
+        "wrong_forward_definition_misbinding",
+        "candidate_quality_failure"
+      ]
+    },
+    "PN_ConceptDefinitionAnchor": {
+      "purpose": "Anchor the decision in a concise concept or definition before binding an option.",
+      "intended_errors": [
+        "logical_fallacies",
+        "moral_disputes",
+        "philosophy"
+      ]
+    },
+    "PN_AbstentionRecoveryVerifier": {
+      "purpose": "Retry only abstentions by comparing options semantically; it must still leave candidate_label empty if no option is supported.",
+      "intended_errors": [
+        "abstention_or_schema_failure"
+      ]
+    },
+    "PN_ConsensusConflictResolver": {
+      "purpose": "Block candidate forwarding when the contrastive verifier cannot separate top two options.",
+      "intended_errors": [
+        "wrong_forward_definition_misbinding"
+      ]
+    }
+  },
+  "promptedge_roles": {
+    "PE_RejectNearestDistractor": "Forward only if the rationale names one plausible distractor and rejects it with a visible reason.",
+    "PE_DefinitionAnchorBinding": "Forward only if a short concept/definition anchor is present.",
+    "PE_EvidenceSpecificityGate": "Downweight generic rationales that do not quote or paraphrase a task-specific clue.",
+    "PE_AbstentionRecoveryRoute": "Route empty candidate_label cases to the abstention recovery verifier; never use gold labels."
+  },
+  "expected_policy_features": [
+    "candidate_has_rejected_distractor",
+    "candidate_has_definition_anchor",
+    "candidate_evidence_specificity",
+    "candidate_abstention_recovered",
+    "promptedge_has_contrast"
+  ],
+  "targeted_probe_authorized_next": true,
+  "api_execution_authorized_now": false,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R399_contrastive_verifier_targeted_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r398_nonmath_contrastive_verifier_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r398_nonmath_contrastive_verifier_design_report.md"
+}

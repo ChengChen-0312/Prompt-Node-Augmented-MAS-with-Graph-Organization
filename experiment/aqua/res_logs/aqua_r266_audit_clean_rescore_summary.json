@@ -1,0 +1,180 @@
+{
+  "run_id": "R266",
+  "title": "AQuA tail34 audit-clean rescore",
+  "claim_boundary": "No API; post-hoc rescore over existing ARG and R065 predictions. Original data is unchanged.",
+  "bad_tasks_removed_by_user_request": [
+    "task_139",
+    "task_228",
+    "task_59"
+  ],
+  "task114_audit": {
+    "task_id": "task_114",
+    "official_label": "D",
+    "deterministic_label": "C",
+    "official_label_supported_strict": false,
+    "deterministic_label_supported_strict": true,
+    "error_category": "official_label_boundary_error",
+    "literal_formula": "(n^2 + 2*sqrt(n)*(n+4) + 16) / (n + 4*sqrt(n) + 4)",
+    "n_range": "36 <= n <= 72",
+    "min": {
+      "n": 36.0,
+      "x": 28.0
+    },
+    "max": {
+      "n": 72.0,
+      "x": 59.029437251523
+    },
+    "option_support": {
+      "A": {
+        "strict_supported": false,
+        "lower_ok": true,
+        "upper_ok": false
+      },
+      "B": {
+        "strict_supported": false,
+        "lower_ok": true,
+        "upper_ok": false
+      },
+      "C": {
+        "strict_supported": true,
+        "lower_ok": true,
+        "upper_ok": true
+      },
+      "D": {
+        "strict_supported": false,
+        "lower_ok": false,
+        "upper_ok": true
+      }
+    },
+    "reason": "At n=36, x=28 exactly, so strict option D (28 < x < 60) is false; option C contains the full sampled range."
+  },
+  "scenarios": {
+    "official_tail34": {
+      "description": "Original AQuA labels, no exclusions.",
+      "ARG": {
+        "accuracy": "28/34",
+        "correct": 28,
+        "total": 34,
+        "rate": 0.8235294117647058,
+        "excluded_task_ids": [],
+        "corrected_labels": {}
+      },
+      "R065": {
+        "accuracy": "31/34",
+        "correct": 31,
+        "total": 34,
+        "rate": 0.9117647058823529,
+        "excluded_task_ids": [],
+        "corrected_labels": {}
+      },
+      "delta": {
+        "delta_correct": 3,
+        "delta_rate": 0.08823529411764708
+      }
+    },
+    "exclude_59_139_228": {
+      "description": "User-requested clean filter: remove task_59/task_139/task_228 only.",
+      "ARG": {
+        "accuracy": "28/31",
+        "correct": 28,
+        "total": 31,
+        "rate": 0.9032258064516129,
+        "excluded_task_ids": [
+          "task_139",
+          "task_228",
+          "task_59"
+        ],
+        "corrected_labels": {}
+      },
+      "R065": {
+        "accuracy": "31/31",
+        "correct": 31,
+        "total": 31,
+        "rate": 1.0,
+        "excluded_task_ids": [
+          "task_139",
+          "task_228",
+          "task_59"
+        ],
+        "corrected_labels": {}
+      },
+      "delta": {
+        "delta_correct": 3,
+        "delta_rate": 0.09677419354838712
+      }
+    },
+    "exclude_59_139_228_correct_114": {
+      "description": "Sensitivity: remove the three bad tasks and correct task_114 from D to C.",
+      "ARG": {
+        "accuracy": "29/31",
+        "correct": 29,
+        "total": 31,
+        "rate": 0.9354838709677419,
+        "excluded_task_ids": [
+          "task_139",
+          "task_228",
+          "task_59"
+        ],
+        "corrected_labels": {
+          "task_114": "C"
+        }
+      },
+      "R065": {
+        "accuracy": "30/31",
+        "correct": 30,
+        "total": 31,
+        "rate": 0.967741935483871,
+        "excluded_task_ids": [
+          "task_139",
+          "task_228",
+          "task_59"
+        ],
+        "corrected_labels": {
+          "task_114": "C"
+        }
+      },
+      "delta": {
+        "delta_correct": 1,
+        "delta_rate": 0.032258064516129115
+      }
+    },
+    "exclude_59_139_228_114": {
+      "description": "Conservative clean filter: remove the three bad tasks and remove task_114 as boundary-label noise.",
+      "ARG": {
+        "accuracy": "28/30",
+        "correct": 28,
+        "total": 30,
+        "rate": 0.9333333333333333,
+        "excluded_task_ids": [
+          "task_114",
+          "task_139",
+          "task_228",
+          "task_59"
+        ],
+        "corrected_labels": {}
+      },
+      "R065": {
+        "accuracy": "30/30",
+        "correct": 30,
+        "total": 30,
+        "rate": 1.0,
+        "excluded_task_ids": [
+          "task_114",
+          "task_139",
+          "task_228",
+          "task_59"
+        ],
+        "corrected_labels": {}
+      },
+      "delta": {
+        "delta_correct": 2,
+        "delta_rate": 0.06666666666666665
+      }
+    }
+  },
+  "paper_guidance": {
+    "main_text": "Report official and audit-clean scores side by side.",
+    "appendix": "Explain excluded/corrected tasks with deterministic checks and source links.",
+    "warning": "Do not silently edit the benchmark or train on corrected test labels."
+  }
+}

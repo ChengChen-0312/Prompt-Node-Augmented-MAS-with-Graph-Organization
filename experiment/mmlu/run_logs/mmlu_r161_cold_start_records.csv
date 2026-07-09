@@ -1,0 +1,729 @@
+dataset,id,question,mode,size,is_correct
+mmlu,task_0,"If the government subsidizes producers in a perfectly competitive market, then
+Option A: the demand for the product will increase
+Option B: the demand for the product will decrease
+Option C: the consumer surplus will increase
+Option D: the consumer surplus will decrease
+",FullConnected,4,True
+mmlu,task_1,"This question refers to the following information.
+""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""
+Thomas Paine, Common Sense, 1776
+Which of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?
+Option A: Organized response to Bacon's Rebellion
+Option B: Federal response to Shays's Rebellion
+Option C: Federal response to the Whiskey Rebellion
+Option D: Federal response to Pontiac's Rebellion
+",FullConnected,4,False
+mmlu,task_2,"Things that are equivalent according to the equivalence principle are
+Option A: space and time.
+Option B: a traveling twin and a stay-at-home twin.
+Option C: gravity and acceleration.
+Option D: mass and energy.
+",FullConnected,4,True
+mmlu,task_3,"What is the embryological origin of the hyoid bone?
+Option A: The first pharyngeal arch
+Option B: The first and second pharyngeal arches
+Option C: The second pharyngeal arch
+Option D: The second and third pharyngeal arches
+",FullConnected,4,True
+mmlu,task_4,"Three contrasting tactics that CSO's can engage in to meet their aims are ________ which typically involves research and communication, ________, which may involve physically attacking a company's operations or ________, often involving some form of _______.
+Option A: Non-violent direct action, Violent direct action, Indirect action, Boycott
+Option B: Indirect action, Instrumental action, Non-violent direct action, Information campaign
+Option C: Indirect action, Violent direct action, Non-violent direct-action Boycott
+Option D: Non-violent direct action, Instrumental action, Indirect action, Information campaign
+",FullConnected,4,True
+mmlu,task_5,"This question refers to the following information.
+""The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.
+Non-alignment, as practiced by Ghana and many other countries, is based on co-operation with all States whether they be capitalist, socialist or have a mixed economy. Such a policy, therefore, involves foreign investment from capitalist countries, but it must be invested in accordance with a national plan drawn up by the government of the non-aligned State with its own interests in mind. The issue is not what return the foreign investor receives on his investments…The question is one of power. A State in the grip of neo-colonialism is not master of its own destiny.""
+Kwame Nkrumah, Neo-Colonialism, 1965
+Which of the following provides the best context for Nkrumah's writings?
+Option A: The Industrial Revolution
+Option B: Decolonization
+Option C: Regional Free Trade Associations
+Option D: Autarky
+",FullConnected,4,True
+mmlu,task_6,"In a cohort study, the risk ratio of developing diabetes was 0.86 when comparing consumers of tea (the exposed) to those who did not drink tea (the unexposed). Which one statement is correct (according to knowledge in 2020)?
+
+Option A: The tea drinkers have lower risk of developing diabetes.
+Option B: The tea drinkers have higher risk of developing diabetes.
+Option C: Based on the information given we cannot tell if the observed difference in disease risk is the result of chance.
+Option D: The risk ratio is close to the value one, so there is no difference in disease risk between the two groups.
+",FullConnected,4,False
+mmlu,task_7,"Beyond the business case for engaging in CSR there are a number of moral arguments relating to: negative _______, the _______that corporations possess and the ________ of business and society.
+Option A: Externalities, Power, Independence
+Option B: Publicity, Insubstantial resources, Mutual dependence
+Option C: Publicity, Power, Independence
+Option D: Externalities, Power, Mutual dependence
+",FullConnected,4,True
+mmlu,task_8,"Which of the following regular expressions is equivalent to (describes the same set of strings as) (a* + b)*(c + d)?
+Option A: a*(c + d)+ b(c + d)
+Option B: a*(c + d)* + b(c + d)*
+Option C: a*(c + d)+ b*(c + d)
+Option D: (a + b)*c +(a + b)*d
+",FullConnected,4,True
+mmlu,task_9,"For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I really loved my newborn baby boy. Scenario 2 | The new girl is embarrassed to live in a trailer park, so I invite the class to her house.
+Option A: Wrong, Wrong
+Option B: Wrong, Not wrong
+Option C: Not wrong, Wrong
+Option D: Not wrong, Not wrong
+",FullConnected,4,False
+mmlu,task_10," What is the sign of the covenant for Jewish males?
+Option A: The rainbow
+Option B: Circumcision
+Option C: A son
+Option D: Bar mitzvah
+",FullConnected,4,True
+mmlu,task_11,"The concentration ratio for a monopoly is
+Option A: 0
+Option B: 5
+Option C: 10
+Option D: 100
+",FullConnected,4,True
+mmlu,task_12,"Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?
+Option A: 10000 times more
+Option B: 100 times more
+Option C: 1000 times more
+Option D: 10 times more
+",FullConnected,4,True
+mmlu,task_13,"Exploitation of the Heartbleed bug permits
+Option A: overwriting cryptographic keys in memory
+Option B: a kind of code injection
+Option C: a read outside bounds of a buffer
+Option D: a format string attack
+",FullConnected,4,True
+mmlu,task_14,"Morning sickness is typically a problem:
+Option A: during the first trimester
+Option B: during the second trimester
+Option C: during the third trimester
+Option D: all through the pregnancy
+",FullConnected,4,True
+mmlu,task_15,"The nature of homosexual activities that occur during preadolescence include all but which of the following?
+Option A: sexual intercourse
+Option B: circle jerks
+Option C: exhibitionism
+Option D: touching each other's genitals
+",FullConnected,4,True
+mmlu,task_0,"If the government subsidizes producers in a perfectly competitive market, then
+Option A: the demand for the product will increase
+Option B: the demand for the product will decrease
+Option C: the consumer surplus will increase
+Option D: the consumer surplus will decrease
+",Mesh,4,True
+mmlu,task_1,"This question refers to the following information.
+""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""
+Thomas Paine, Common Sense, 1776
+Which of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?
+Option A: Organized response to Bacon's Rebellion
+Option B: Federal response to Shays's Rebellion
+Option C: Federal response to the Whiskey Rebellion
+Option D: Federal response to Pontiac's Rebellion
+",Mesh,4,False
+mmlu,task_2,"Things that are equivalent according to the equivalence principle are
+Option A: space and time.
+Option B: a traveling twin and a stay-at-home twin.
+Option C: gravity and acceleration.
+Option D: mass and energy.
+",Mesh,4,True
+mmlu,task_3,"What is the embryological origin of the hyoid bone?
+Option A: The first pharyngeal arch
+Option B: The first and second pharyngeal arches
+Option C: The second pharyngeal arch
+Option D: The second and third pharyngeal arches
+",Mesh,4,True
+mmlu,task_4,"Three contrasting tactics that CSO's can engage in to meet their aims are ________ which typically involves research and communication, ________, which may involve physically attacking a company's operations or ________, often involving some form of _______.
+Option A: Non-violent direct action, Violent direct action, Indirect action, Boycott
+Option B: Indirect action, Instrumental action, Non-violent direct action, Information campaign
+Option C: Indirect action, Violent direct action, Non-violent direct-action Boycott
+Option D: Non-violent direct action, Instrumental action, Indirect action, Information campaign
+",Mesh,4,True
+mmlu,task_5,"This question refers to the following information.
+""The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.
+Non-alignment, as practiced by Ghana and many other countries, is based on co-operation with all States whether they be capitalist, socialist or have a mixed economy. Such a policy, therefore, involves foreign investment from capitalist countries, but it must be invested in accordance with a national plan drawn up by the government of the non-aligned State with its own interests in mind. The issue is not what return the foreign investor receives on his investments…The question is one of power. A State in the grip of neo-colonialism is not master of its own destiny.""
+Kwame Nkrumah, Neo-Colonialism, 1965
+Which of the following provides the best context for Nkrumah's writings?
+Option A: The Industrial Revolution
+Option B: Decolonization
+Option C: Regional Free Trade Associations
+Option D: Autarky
+",Mesh,4,True
+mmlu,task_6,"In a cohort study, the risk ratio of developing diabetes was 0.86 when comparing consumers of tea (the exposed) to those who did not drink tea (the unexposed). Which one statement is correct (according to knowledge in 2020)?
+
+Option A: The tea drinkers have lower risk of developing diabetes.
+Option B: The tea drinkers have higher risk of developing diabetes.
+Option C: Based on the information given we cannot tell if the observed difference in disease risk is the result of chance.
+Option D: The risk ratio is close to the value one, so there is no difference in disease risk between the two groups.
+",Mesh,4,False
+mmlu,task_7,"Beyond the business case for engaging in CSR there are a number of moral arguments relating to: negative _______, the _______that corporations possess and the ________ of business and society.
+Option A: Externalities, Power, Independence
+Option B: Publicity, Insubstantial resources, Mutual dependence
+Option C: Publicity, Power, Independence
+Option D: Externalities, Power, Mutual dependence
+",Mesh,4,True
+mmlu,task_8,"Which of the following regular expressions is equivalent to (describes the same set of strings as) (a* + b)*(c + d)?
+Option A: a*(c + d)+ b(c + d)
+Option B: a*(c + d)* + b(c + d)*
+Option C: a*(c + d)+ b*(c + d)
+Option D: (a + b)*c +(a + b)*d
+",Mesh,4,True
+mmlu,task_9,"For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I really loved my newborn baby boy. Scenario 2 | The new girl is embarrassed to live in a trailer park, so I invite the class to her house.
+Option A: Wrong, Wrong
+Option B: Wrong, Not wrong
+Option C: Not wrong, Wrong
+Option D: Not wrong, Not wrong
+",Mesh,4,True
+mmlu,task_10," What is the sign of the covenant for Jewish males?
+Option A: The rainbow
+Option B: Circumcision
+Option C: A son
+Option D: Bar mitzvah
+",Mesh,4,True
+mmlu,task_11,"The concentration ratio for a monopoly is
+Option A: 0
+Option B: 5
+Option C: 10
+Option D: 100
+",Mesh,4,True
+mmlu,task_12,"Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?
+Option A: 10000 times more
+Option B: 100 times more
+Option C: 1000 times more
+Option D: 10 times more
+",Mesh,4,True
+mmlu,task_13,"Exploitation of the Heartbleed bug permits
+Option A: overwriting cryptographic keys in memory
+Option B: a kind of code injection
+Option C: a read outside bounds of a buffer
+Option D: a format string attack
+",Mesh,4,True
+mmlu,task_14,"Morning sickness is typically a problem:
+Option A: during the first trimester
+Option B: during the second trimester
+Option C: during the third trimester
+Option D: all through the pregnancy
+",Mesh,4,True
+mmlu,task_15,"The nature of homosexual activities that occur during preadolescence include all but which of the following?
+Option A: sexual intercourse
+Option B: circle jerks
+Option C: exhibitionism
+Option D: touching each other's genitals
+",Mesh,4,True
+mmlu,task_0,"If the government subsidizes producers in a perfectly competitive market, then
+Option A: the demand for the product will increase
+Option B: the demand for the product will decrease
+Option C: the consumer surplus will increase
+Option D: the consumer surplus will decrease
+",FullConnected,3,True
+mmlu,task_1,"This question refers to the following information.
+""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""
+Thomas Paine, Common Sense, 1776
+Which of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?
+Option A: Organized response to Bacon's Rebellion
+Option B: Federal response to Shays's Rebellion
+Option C: Federal response to the Whiskey Rebellion
+Option D: Federal response to Pontiac's Rebellion
+",FullConnected,3,False
+mmlu,task_2,"Things that are equivalent according to the equivalence principle are
+Option A: space and time.
+Option B: a traveling twin and a stay-at-home twin.
+Option C: gravity and acceleration.
+Option D: mass and energy.
+",FullConnected,3,True
+mmlu,task_3,"What is the embryological origin of the hyoid bone?
+Option A: The first pharyngeal arch
+Option B: The first and second pharyngeal arches
+Option C: The second pharyngeal arch
+Option D: The second and third pharyngeal arches
+",FullConnected,3,True
+mmlu,task_4,"Three contrasting tactics that CSO's can engage in to meet their aims are ________ which typically involves research and communication, ________, which may involve physically attacking a company's operations or ________, often involving some form of _______.
+Option A: Non-violent direct action, Violent direct action, Indirect action, Boycott
+Option B: Indirect action, Instrumental action, Non-violent direct action, Information campaign
+Option C: Indirect action, Violent direct action, Non-violent direct-action Boycott
+Option D: Non-violent direct action, Instrumental action, Indirect action, Information campaign
+",FullConnected,3,True
+mmlu,task_5,"This question refers to the following information.
+""The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.
+Non-alignment, as practiced by Ghana and many other countries, is based on co-operation with all States whether they be capitalist, socialist or have a mixed economy. Such a policy, therefore, involves foreign investment from capitalist countries, but it must be invested in accordance with a national plan drawn up by the government of the non-aligned State with its own interests in mind. The issue is not what return the foreign investor receives on his investments…The question is one of power. A State in the grip of neo-colonialism is not master of its own destiny.""
+Kwame Nkrumah, Neo-Colonialism, 1965
+Which of the following provides the best context for Nkrumah's writings?
+Option A: The Industrial Revolution
+Option B: Decolonization
+Option C: Regional Free Trade Associations
+Option D: Autarky
+",FullConnected,3,True
+mmlu,task_6,"In a cohort study, the risk ratio of developing diabetes was 0.86 when comparing consumers of tea (the exposed) to those who did not drink tea (the unexposed). Which one statement is correct (according to knowledge in 2020)?
+
+Option A: The tea drinkers have lower risk of developing diabetes.
+Option B: The tea drinkers have higher risk of developing diabetes.
+Option C: Based on the information given we cannot tell if the observed difference in disease risk is the result of chance.
+Option D: The risk ratio is close to the value one, so there is no difference in disease risk between the two groups.
+",FullConnected,3,False
+mmlu,task_7,"Beyond the business case for engaging in CSR there are a number of moral arguments relating to: negative _______, the _______that corporations possess and the ________ of business and society.
+Option A: Externalities, Power, Independence
+Option B: Publicity, Insubstantial resources, Mutual dependence
+Option C: Publicity, Power, Independence
+Option D: Externalities, Power, Mutual dependence
+",FullConnected,3,True
+mmlu,task_8,"Which of the following regular expressions is equivalent to (describes the same set of strings as) (a* + b)*(c + d)?
+Option A: a*(c + d)+ b(c + d)
+Option B: a*(c + d)* + b(c + d)*
+Option C: a*(c + d)+ b*(c + d)
+Option D: (a + b)*c +(a + b)*d
+",FullConnected,3,True
+mmlu,task_9,"For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I really loved my newborn baby boy. Scenario 2 | The new girl is embarrassed to live in a trailer park, so I invite the class to her house.
+Option A: Wrong, Wrong
+Option B: Wrong, Not wrong
+Option C: Not wrong, Wrong
+Option D: Not wrong, Not wrong
+",FullConnected,3,False
+mmlu,task_10," What is the sign of the covenant for Jewish males?
+Option A: The rainbow
+Option B: Circumcision
+Option C: A son
+Option D: Bar mitzvah
+",FullConnected,3,True
+mmlu,task_11,"The concentration ratio for a monopoly is
+Option A: 0
+Option B: 5
+Option C: 10
+Option D: 100
+",FullConnected,3,True
+mmlu,task_12,"Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?
+Option A: 10000 times more
+Option B: 100 times more
+Option C: 1000 times more
+Option D: 10 times more
+",FullConnected,3,True
+mmlu,task_13,"Exploitation of the Heartbleed bug permits
+Option A: overwriting cryptographic keys in memory
+Option B: a kind of code injection
+Option C: a read outside bounds of a buffer
+Option D: a format string attack
+",FullConnected,3,True
+mmlu,task_14,"Morning sickness is typically a problem:
+Option A: during the first trimester
+Option B: during the second trimester
+Option C: during the third trimester
+Option D: all through the pregnancy
+",FullConnected,3,True
+mmlu,task_15,"The nature of homosexual activities that occur during preadolescence include all but which of the following?
+Option A: sexual intercourse
+Option B: circle jerks
+Option C: exhibitionism
+Option D: touching each other's genitals
+",FullConnected,3,True
+mmlu,task_0,"If the government subsidizes producers in a perfectly competitive market, then
+Option A: the demand for the product will increase
+Option B: the demand for the product will decrease
+Option C: the consumer surplus will increase
+Option D: the consumer surplus will decrease
+",FullConnected,6,True
+mmlu,task_1,"This question refers to the following information.
+""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""
+Thomas Paine, Common Sense, 1776
+Which of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?
+Option A: Organized response to Bacon's Rebellion
+Option B: Federal response to Shays's Rebellion
+Option C: Federal response to the Whiskey Rebellion
+Option D: Federal response to Pontiac's Rebellion
+",FullConnected,6,False
+mmlu,task_2,"Things that are equivalent according to the equivalence principle are
+Option A: space and time.
+Option B: a traveling twin and a stay-at-home twin.
+Option C: gravity and acceleration.
+Option D: mass and energy.
+",FullConnected,6,True
+mmlu,task_3,"What is the embryological origin of the hyoid bone?
+Option A: The first pharyngeal arch
+Option B: The first and second pharyngeal arches
+Option C: The second pharyngeal arch
+Option D: The second and third pharyngeal arches
+",FullConnected,6,True
+mmlu,task_4,"Three contrasting tactics that CSO's can engage in to meet their aims are ________ which typically involves research and communication, ________, which may involve physically attacking a company's operations or ________, often involving some form of _______.
+Option A: Non-violent direct action, Violent direct action, Indirect action, Boycott
+Option B: Indirect action, Instrumental action, Non-violent direct action, Information campaign
+Option C: Indirect action, Violent direct action, Non-violent direct-action Boycott
+Option D: Non-violent direct action, Instrumental action, Indirect action, Information campaign
+",FullConnected,6,False
+mmlu,task_5,"This question refers to the following information.
+""The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.
+Non-alignment, as practiced by Ghana and many other countries, is based on co-operation with all States whether they be capitalist, socialist or have a mixed economy. Such a policy, therefore, involves foreign investment from capitalist countries, but it must be invested in accordance with a national plan drawn up by the government of the non-aligned State with its own interests in mind. The issue is not what return the foreign investor receives on his investments…The question is one of power. A State in the grip of neo-colonialism is not master of its own destiny.""
+Kwame Nkrumah, Neo-Colonialism, 1965
+Which of the following provides the best context for Nkrumah's writings?
+Option A: The Industrial Revolution
+Option B: Decolonization
+Option C: Regional Free Trade Associations
+Option D: Autarky
+",FullConnected,6,True
+mmlu,task_6,"In a cohort study, the risk ratio of developing diabetes was 0.86 when comparing consumers of tea (the exposed) to those who did not drink tea (the unexposed). Which one statement is correct (according to knowledge in 2020)?
+
+Option A: The tea drinkers have lower risk of developing diabetes.
+Option B: The tea drinkers have higher risk of developing diabetes.
+Option C: Based on the information given we cannot tell if the observed difference in disease risk is the result of chance.
+Option D: The risk ratio is close to the value one, so there is no difference in disease risk between the two groups.
+",FullConnected,6,False
+mmlu,task_7,"Beyond the business case for engaging in CSR there are a number of moral arguments relating to: negative _______, the _______that corporations possess and the ________ of business and society.
+Option A: Externalities, Power, Independence
+Option B: Publicity, Insubstantial resources, Mutual dependence
+Option C: Publicity, Power, Independence
+Option D: Externalities, Power, Mutual dependence
+",FullConnected,6,True
+mmlu,task_8,"Which of the following regular expressions is equivalent to (describes the same set of strings as) (a* + b)*(c + d)?
+Option A: a*(c + d)+ b(c + d)
+Option B: a*(c + d)* + b(c + d)*
+Option C: a*(c + d)+ b*(c + d)
+Option D: (a + b)*c +(a + b)*d
+",FullConnected,6,True
+mmlu,task_9,"For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I really loved my newborn baby boy. Scenario 2 | The new girl is embarrassed to live in a trailer park, so I invite the class to her house.
+Option A: Wrong, Wrong
+Option B: Wrong, Not wrong
+Option C: Not wrong, Wrong
+Option D: Not wrong, Not wrong
+",FullConnected,6,False
+mmlu,task_10," What is the sign of the covenant for Jewish males?
+Option A: The rainbow
+Option B: Circumcision
+Option C: A son
+Option D: Bar mitzvah
+",FullConnected,6,True
+mmlu,task_11,"The concentration ratio for a monopoly is
+Option A: 0
+Option B: 5
+Option C: 10
+Option D: 100
+",FullConnected,6,True
+mmlu,task_12,"Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?
+Option A: 10000 times more
+Option B: 100 times more
+Option C: 1000 times more
+Option D: 10 times more
+",FullConnected,6,True
+mmlu,task_13,"Exploitation of the Heartbleed bug permits
+Option A: overwriting cryptographic keys in memory
+Option B: a kind of code injection
+Option C: a read outside bounds of a buffer
+Option D: a format string attack
+",FullConnected,6,True
+mmlu,task_14,"Morning sickness is typically a problem:
+Option A: during the first trimester
+Option B: during the second trimester
+Option C: during the third trimester
+Option D: all through the pregnancy
+",FullConnected,6,True
+mmlu,task_15,"The nature of homosexual activities that occur during preadolescence include all but which of the following?
+Option A: sexual intercourse
+Option B: circle jerks
+Option C: exhibitionism
+Option D: touching each other's genitals
+",FullConnected,6,True
+mmlu,task_0,"If the government subsidizes producers in a perfectly competitive market, then
+Option A: the demand for the product will increase
+Option B: the demand for the product will decrease
+Option C: the consumer surplus will increase
+Option D: the consumer surplus will decrease
+",Mesh,6,True
+mmlu,task_1,"This question refers to the following information.
+""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""
+Thomas Paine, Common Sense, 1776
+Which of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?
+Option A: Organized response to Bacon's Rebellion
+Option B: Federal response to Shays's Rebellion
+Option C: Federal response to the Whiskey Rebellion
+Option D: Federal response to Pontiac's Rebellion
+",Mesh,6,False
+mmlu,task_2,"Things that are equivalent according to the equivalence principle are
+Option A: space and time.
+Option B: a traveling twin and a stay-at-home twin.
+Option C: gravity and acceleration.
+Option D: mass and energy.
+",Mesh,6,True
+mmlu,task_3,"What is the embryological origin of the hyoid bone?
+Option A: The first pharyngeal arch
+Option B: The first and second pharyngeal arches
+Option C: The second pharyngeal arch
+Option D: The second and third pharyngeal arches
+",Mesh,6,True
+mmlu,task_4,"Three contrasting tactics that CSO's can engage in to meet their aims are ________ which typically involves research and communication, ________, which may involve physically attacking a company's operations or ________, often involving some form of _______.
+Option A: Non-violent direct action, Violent direct action, Indirect action, Boycott
+Option B: Indirect action, Instrumental action, Non-violent direct action, Information campaign
+Option C: Indirect action, Violent direct action, Non-violent direct-action Boycott
+Option D: Non-violent direct action, Instrumental action, Indirect action, Information campaign
+",Mesh,6,True
+mmlu,task_5,"This question refers to the following information.
+""The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.
+Non-alignment, as practiced by Ghana and many other countries, is based on co-operation with all States whether they be capitalist, socialist or have a mixed economy. Such a policy, therefore, involves foreign investment from capitalist countries, but it must be invested in accordance with a national plan drawn up by the government of the non-aligned State with its own interests in mind. The issue is not what return the foreign investor receives on his investments…The question is one of power. A State in the grip of neo-colonialism is not master of its own destiny.""
+Kwame Nkrumah, Neo-Colonialism, 1965
+Which of the following provides the best context for Nkrumah's writings?
+Option A: The Industrial Revolution
+Option B: Decolonization
+Option C: Regional Free Trade Associations
+Option D: Autarky
+",Mesh,6,True
+mmlu,task_6,"In a cohort study, the risk ratio of developing diabetes was 0.86 when comparing consumers of tea (the exposed) to those who did not drink tea (the unexposed). Which one statement is correct (according to knowledge in 2020)?
+
+Option A: The tea drinkers have lower risk of developing diabetes.
+Option B: The tea drinkers have higher risk of developing diabetes.
+Option C: Based on the information given we cannot tell if the observed difference in disease risk is the result of chance.
+Option D: The risk ratio is close to the value one, so there is no difference in disease risk between the two groups.
+",Mesh,6,False
+mmlu,task_7,"Beyond the business case for engaging in CSR there are a number of moral arguments relating to: negative _______, the _______that corporations possess and the ________ of business and society.
+Option A: Externalities, Power, Independence
+Option B: Publicity, Insubstantial resources, Mutual dependence
+Option C: Publicity, Power, Independence
+Option D: Externalities, Power, Mutual dependence
+",Mesh,6,True
+mmlu,task_8,"Which of the following regular expressions is equivalent to (describes the same set of strings as) (a* + b)*(c + d)?
+Option A: a*(c + d)+ b(c + d)
+Option B: a*(c + d)* + b(c + d)*
+Option C: a*(c + d)+ b*(c + d)
+Option D: (a + b)*c +(a + b)*d
+",Mesh,6,True
+mmlu,task_9,"For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I really loved my newborn baby boy. Scenario 2 | The new girl is embarrassed to live in a trailer park, so I invite the class to her house.
+Option A: Wrong, Wrong
+Option B: Wrong, Not wrong
+Option C: Not wrong, Wrong
+Option D: Not wrong, Not wrong
+",Mesh,6,False
+mmlu,task_10," What is the sign of the covenant for Jewish males?
+Option A: The rainbow
+Option B: Circumcision
+Option C: A son
+Option D: Bar mitzvah
+",Mesh,6,True
+mmlu,task_11,"The concentration ratio for a monopoly is
+Option A: 0
+Option B: 5
+Option C: 10
+Option D: 100
+",Mesh,6,True
+mmlu,task_12,"Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?
+Option A: 10000 times more
+Option B: 100 times more
+Option C: 1000 times more
+Option D: 10 times more
+",Mesh,6,True
+mmlu,task_13,"Exploitation of the Heartbleed bug permits
+Option A: overwriting cryptographic keys in memory
+Option B: a kind of code injection
+Option C: a read outside bounds of a buffer
+Option D: a format string attack
+",Mesh,6,True
+mmlu,task_14,"Morning sickness is typically a problem:
+Option A: during the first trimester
+Option B: during the second trimester
+Option C: during the third trimester
+Option D: all through the pregnancy
+",Mesh,6,True
+mmlu,task_15,"The nature of homosexual activities that occur during preadolescence include all but which of the following?
+Option A: sexual intercourse
+Option B: circle jerks
+Option C: exhibitionism
+Option D: touching each other's genitals
+",Mesh,6,True
+mmlu,task_0,"If the government subsidizes producers in a perfectly competitive market, then
+Option A: the demand for the product will increase
+Option B: the demand for the product will decrease
+Option C: the consumer surplus will increase
+Option D: the consumer surplus will decrease
+",FullConnected,5,True
+mmlu,task_1,"This question refers to the following information.
+""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""
+Thomas Paine, Common Sense, 1776
+Which of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?
+Option A: Organized response to Bacon's Rebellion
+Option B: Federal response to Shays's Rebellion
+Option C: Federal response to the Whiskey Rebellion
+Option D: Federal response to Pontiac's Rebellion
+",FullConnected,5,False
+mmlu,task_2,"Things that are equivalent according to the equivalence principle are
+Option A: space and time.
+Option B: a traveling twin and a stay-at-home twin.
+Option C: gravity and acceleration.
+Option D: mass and energy.
+",FullConnected,5,True
+mmlu,task_3,"What is the embryological origin of the hyoid bone?
+Option A: The first pharyngeal arch
+Option B: The first and second pharyngeal arches
+Option C: The second pharyngeal arch
+Option D: The second and third pharyngeal arches
+",FullConnected,5,True
+mmlu,task_4,"Three contrasting tactics that CSO's can engage in to meet their aims are ________ which typically involves research and communication, ________, which may involve physically attacking a company's operations or ________, often involving some form of _______.
+Option A: Non-violent direct action, Violent direct action, Indirect action, Boycott
+Option B: Indirect action, Instrumental action, Non-violent direct action, Information campaign
+Option C: Indirect action, Violent direct action, Non-violent direct-action Boycott
+Option D: Non-violent direct action, Instrumental action, Indirect action, Information campaign
+",FullConnected,5,True
+mmlu,task_5,"This question refers to the following information.
+""The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.
+Non-alignment, as practiced by Ghana and many other countries, is based on co-operation with all States whether they be capitalist, socialist or have a mixed economy. Such a policy, therefore, involves foreign investment from capitalist countries, but it must be invested in accordance with a national plan drawn up by the government of the non-aligned State with its own interests in mind. The issue is not what return the foreign investor receives on his investments…The question is one of power. A State in the grip of neo-colonialism is not master of its own destiny.""
+Kwame Nkrumah, Neo-Colonialism, 1965
+Which of the following provides the best context for Nkrumah's writings?
+Option A: The Industrial Revolution
+Option B: Decolonization
+Option C: Regional Free Trade Associations
+Option D: Autarky
+",FullConnected,5,True
+mmlu,task_6,"In a cohort study, the risk ratio of developing diabetes was 0.86 when comparing consumers of tea (the exposed) to those who did not drink tea (the unexposed). Which one statement is correct (according to knowledge in 2020)?
+
+Option A: The tea drinkers have lower risk of developing diabetes.
+Option B: The tea drinkers have higher risk of developing diabetes.
+Option C: Based on the information given we cannot tell if the observed difference in disease risk is the result of chance.
+Option D: The risk ratio is close to the value one, so there is no difference in disease risk between the two groups.
+",FullConnected,5,False
+mmlu,task_7,"Beyond the business case for engaging in CSR there are a number of moral arguments relating to: negative _______, the _______that corporations possess and the ________ of business and society.
+Option A: Externalities, Power, Independence
+Option B: Publicity, Insubstantial resources, Mutual dependence
+Option C: Publicity, Power, Independence
+Option D: Externalities, Power, Mutual dependence
+",FullConnected,5,True
+mmlu,task_8,"Which of the following regular expressions is equivalent to (describes the same set of strings as) (a* + b)*(c + d)?
+Option A: a*(c + d)+ b(c + d)
+Option B: a*(c + d)* + b(c + d)*
+Option C: a*(c + d)+ b*(c + d)
+Option D: (a + b)*c +(a + b)*d
+",FullConnected,5,True
+mmlu,task_9,"For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I really loved my newborn baby boy. Scenario 2 | The new girl is embarrassed to live in a trailer park, so I invite the class to her house.
+Option A: Wrong, Wrong
+Option B: Wrong, Not wrong
+Option C: Not wrong, Wrong
+Option D: Not wrong, Not wrong
+",FullConnected,5,True
+mmlu,task_10," What is the sign of the covenant for Jewish males?
+Option A: The rainbow
+Option B: Circumcision
+Option C: A son
+Option D: Bar mitzvah
+",FullConnected,5,True
+mmlu,task_11,"The concentration ratio for a monopoly is
+Option A: 0
+Option B: 5
+Option C: 10
+Option D: 100
+",FullConnected,5,True
+mmlu,task_12,"Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?
+Option A: 10000 times more
+Option B: 100 times more
+Option C: 1000 times more
+Option D: 10 times more
+",FullConnected,5,True
+mmlu,task_13,"Exploitation of the Heartbleed bug permits
+Option A: overwriting cryptographic keys in memory
+Option B: a kind of code injection
+Option C: a read outside bounds of a buffer
+Option D: a format string attack
+",FullConnected,5,True
+mmlu,task_14,"Morning sickness is typically a problem:
+Option A: during the first trimester
+Option B: during the second trimester
+Option C: during the third trimester
+Option D: all through the pregnancy
+",FullConnected,5,True
+mmlu,task_15,"The nature of homosexual activities that occur during preadolescence include all but which of the following?
+Option A: sexual intercourse
+Option B: circle jerks
+Option C: exhibitionism
+Option D: touching each other's genitals
+",FullConnected,5,True
+mmlu,task_0,"If the government subsidizes producers in a perfectly competitive market, then
+Option A: the demand for the product will increase
+Option B: the demand for the product will decrease
+Option C: the consumer surplus will increase
+Option D: the consumer surplus will decrease
+",Mesh,5,True
+mmlu,task_1,"This question refers to the following information.
+""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""
+Thomas Paine, Common Sense, 1776
+Which of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?
+Option A: Organized response to Bacon's Rebellion
+Option B: Federal response to Shays's Rebellion
+Option C: Federal response to the Whiskey Rebellion
+Option D: Federal response to Pontiac's Rebellion
+",Mesh,5,False
+mmlu,task_2,"Things that are equivalent according to the equivalence principle are
+Option A: space and time.
+Option B: a traveling twin and a stay-at-home twin.
+Option C: gravity and acceleration.
+Option D: mass and energy.
+",Mesh,5,True
+mmlu,task_3,"What is the embryological origin of the hyoid bone?
+Option A: The first pharyngeal arch
+Option B: The first and second pharyngeal arches
+Option C: The second pharyngeal arch
+Option D: The second and third pharyngeal arches
+",Mesh,5,True
+mmlu,task_4,"Three contrasting tactics that CSO's can engage in to meet their aims are ________ which typically involves research and communication, ________, which may involve physically attacking a company's operations or ________, often involving some form of _______.
+Option A: Non-violent direct action, Violent direct action, Indirect action, Boycott
+Option B: Indirect action, Instrumental action, Non-violent direct action, Information campaign
+Option C: Indirect action, Violent direct action, Non-violent direct-action Boycott
+Option D: Non-violent direct action, Instrumental action, Indirect action, Information campaign
+",Mesh,5,True
+mmlu,task_5,"This question refers to the following information.
+""The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.
+Non-alignment, as practiced by Ghana and many other countries, is based on co-operation with all States whether they be capitalist, socialist or have a mixed economy. Such a policy, therefore, involves foreign investment from capitalist countries, but it must be invested in accordance with a national plan drawn up by the government of the non-aligned State with its own interests in mind. The issue is not what return the foreign investor receives on his investments…The question is one of power. A State in the grip of neo-colonialism is not master of its own destiny.""
+Kwame Nkrumah, Neo-Colonialism, 1965
+Which of the following provides the best context for Nkrumah's writings?
+Option A: The Industrial Revolution
+Option B: Decolonization
+Option C: Regional Free Trade Associations
+Option D: Autarky
+",Mesh,5,True
+mmlu,task_6,"In a cohort study, the risk ratio of developing diabetes was 0.86 when comparing consumers of tea (the exposed) to those who did not drink tea (the unexposed). Which one statement is correct (according to knowledge in 2020)?
+
+Option A: The tea drinkers have lower risk of developing diabetes.
+Option B: The tea drinkers have higher risk of developing diabetes.
+Option C: Based on the information given we cannot tell if the observed difference in disease risk is the result of chance.
+Option D: The risk ratio is close to the value one, so there is no difference in disease risk between the two groups.
+",Mesh,5,False
+mmlu,task_7,"Beyond the business case for engaging in CSR there are a number of moral arguments relating to: negative _______, the _______that corporations possess and the ________ of business and society.
+Option A: Externalities, Power, Independence
+Option B: Publicity, Insubstantial resources, Mutual dependence
+Option C: Publicity, Power, Independence
+Option D: Externalities, Power, Mutual dependence
+",Mesh,5,True
+mmlu,task_8,"Which of the following regular expressions is equivalent to (describes the same set of strings as) (a* + b)*(c + d)?
+Option A: a*(c + d)+ b(c + d)
+Option B: a*(c + d)* + b(c + d)*
+Option C: a*(c + d)+ b*(c + d)
+Option D: (a + b)*c +(a + b)*d
+",Mesh,5,True
+mmlu,task_9,"For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I really loved my newborn baby boy. Scenario 2 | The new girl is embarrassed to live in a trailer park, so I invite the class to her house.
+Option A: Wrong, Wrong
+Option B: Wrong, Not wrong
+Option C: Not wrong, Wrong
+Option D: Not wrong, Not wrong
+",Mesh,5,False
+mmlu,task_10," What is the sign of the covenant for Jewish males?
+Option A: The rainbow
+Option B: Circumcision
+Option C: A son
+Option D: Bar mitzvah
+",Mesh,5,True
+mmlu,task_11,"The concentration ratio for a monopoly is
+Option A: 0
+Option B: 5
+Option C: 10
+Option D: 100
+",Mesh,5,True
+mmlu,task_12,"Say the pupil of your eye has a diameter of 5 mm and you have a telescope with an aperture of 50 cm. How much more light can the telescope gather than your eye?
+Option A: 10000 times more
+Option B: 100 times more
+Option C: 1000 times more
+Option D: 10 times more
+",Mesh,5,True
+mmlu,task_13,"Exploitation of the Heartbleed bug permits
+Option A: overwriting cryptographic keys in memory
+Option B: a kind of code injection
+Option C: a read outside bounds of a buffer
+Option D: a format string attack
+",Mesh,5,True
+mmlu,task_14,"Morning sickness is typically a problem:
+Option A: during the first trimester
+Option B: during the second trimester
+Option C: during the third trimester
+Option D: all through the pregnancy
+",Mesh,5,True
+mmlu,task_15,"The nature of homosexual activities that occur during preadolescence include all but which of the following?
+Option A: sexual intercourse
+Option B: circle jerks
+Option C: exhibitionism
+Option D: touching each other's genitals
+",Mesh,5,True

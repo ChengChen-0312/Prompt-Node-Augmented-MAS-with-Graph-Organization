@@ -1,0 +1,94 @@
+{
+  "run_id": "R310",
+  "title": "Transfer preflight after negative controls",
+  "claim_boundary": "R310 freezes transfer evidence and creates a fixed MMLU non-STEM preflight split. It does not run ARG/PromptNode inference on non-STEM and therefore does not support a non-STEM accuracy claim.",
+  "no_api": true,
+  "broad_api": false,
+  "transfer_splits": {
+    "aqua_tail34_audit_clean": {
+      "status": "positive_existing_evidence",
+      "source_run": "R266/R065",
+      "arg": "28/31",
+      "r065": "31/31",
+      "delta_correct": 3,
+      "conservative_remove_114": {
+        "arg": "28/30",
+        "r065": "30/30"
+      },
+      "correct_114_sensitivity": {
+        "arg": "29/31",
+        "r065": "30/31"
+      },
+      "claim_boundary": "Existing audit-clean AQuA evidence; no new API in R310."
+    },
+    "mmlu_stem_main97": {
+      "status": "positive_existing_evidence_with_controls",
+      "source_run": "R306/R309",
+      "arg": "88/97",
+      "r304": "93/97",
+      "r306": "95/97",
+      "r306_delta_vs_r304": 2,
+      "r306_delta_vs_arg": 7,
+      "cheap_control_matches_or_beats_r306": false,
+      "equal_accuracy_more_cost_controls": [
+        "always_forward_candidate_nodes",
+        "no_lifecycle_prune_disabled"
+      ],
+      "no_safety_gate": {
+        "main97": "83/97",
+        "fix_harm": "2/12"
+      },
+      "claim_boundary": "MMLU STEM main97 diagnostic evidence; non-STEM evaluation still required."
+    },
+    "mmlu_nonstem_preflight": {
+      "status": "prepared_no_accuracy_yet",
+      "records": 40
+    }
+  },
+  "nonstem_preflight": {
+    "status": "split_and_candidate_preflight_only",
+    "records": 40,
+    "subject_count": 8,
+    "subject_counts": {
+      "business_ethics": 5,
+      "high_school_us_history": 5,
+      "logical_fallacies": 5,
+      "moral_disputes": 5,
+      "philosophy": 5,
+      "professional_law": 5,
+      "sociology": 5,
+      "world_religions": 5
+    },
+    "candidate_records": 13,
+    "answer_candidate_records": 0,
+    "candidate_type_counts": {
+      "instruction_ambiguity_verifier": 13,
+      "none": 27
+    },
+    "accuracy_available": false,
+    "api_required_for_accuracy": true,
+    "model_required": "gpt-4o-2024-08-06",
+    "same_arg_checkpoint_required": true
+  },
+  "claim_permissions": {
+    "aqua_clean_claim_allowed": true,
+    "mmlu_stem_diagnostic_claim_allowed": true,
+    "mmlu_nonstem_accuracy_claim_allowed": false,
+    "transfer_accuracy_claim_allowed": false,
+    "training_claim_allowed": false,
+    "sci_q2_ready": false
+  },
+  "authorized_api_next": true,
+  "training_authorized_next": false,
+  "next_required_run": "R311_nonstem_arg_promptnode_eval",
+  "next_required_actions": [
+    "Run ARG baseline and expanded PromptNode/PromptEdge graph on the fixed R310 non-STEM split using gpt-4o-2024-08-06.",
+    "Score official accuracy, fix/harm, token cost, and cost-normalized accuracy.",
+    "If non-STEM is no-harm or positive, then proceed to ablations; if it is negative, narrow the paper claim to STEM/math-plus-semantic multiple choice."
+  ],
+  "mmlu_test_dir": "/Users/chencheng/Downloads/论文/OpenG-MAS_benchmark_code_release/datasets/MMLU/test",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r310_nonstem_transfer_preflight_records.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r310_transfer_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r310_transfer_preflight_report.md",
+  "max_per_subject": 5
+}

@@ -1,0 +1,83 @@
+{
+  "run_id": "R190",
+  "title": "Five-iteration SCI-Q2 goal audit after R186-R189",
+  "claim_boundary": "Audit only. No API evaluation, no new accuracy claim, and no claim that PromptNode/PromptEdge exceeds ARG-Designer.",
+  "audited_runs": [
+    "R186",
+    "R187",
+    "R188",
+    "R189"
+  ],
+  "no_api": true,
+  "broad_api": false,
+  "drift_from_goal": false,
+  "goal_status_seen_by_tool": "blocked",
+  "alignment_checks": {
+    "arg_designer_as_baseline": true,
+    "same_model_target_preserved": true,
+    "first_class_promptnode_before_execution": true,
+    "prompt_as_edge_metadata": true,
+    "mmlu_transfer_route_active": true,
+    "no_tail34_sync20_training_leakage": true,
+    "no_transfer100_label_training": true,
+    "no_accuracy_overclaim": true
+  },
+  "evidence_since_last_audit": {
+    "r186_short_pretrain": {
+      "epochs": 1,
+      "val_loss": 19.0621,
+      "val_role_accuracy": 29.92,
+      "role_mapping_size": 9
+    },
+    "r187_raw_graph_audit": {
+      "tasks": 50,
+      "contract_ready": "1/50",
+      "api_smoke_blocked": true
+    },
+    "r188_longer_pretrain_and_audit": {
+      "epochs": 5,
+      "val_loss": 11.5663,
+      "val_role_accuracy": 45.03,
+      "raw_contract_ready": "2/50",
+      "api_smoke_blocked": true
+    },
+    "r189_projection_audit": {
+      "tasks": 50,
+      "raw_contract_ready": "2/50",
+      "projected_contract_ready": "50/50",
+      "projection_pass": true
+    }
+  },
+  "claim_boundary_update": {
+    "fully_learned_edge_linking_supported": false,
+    "learned_promptnode_tendency_supported": true,
+    "hybrid_constrained_decoder_supported": true,
+    "must_ablate_projection": true,
+    "must_report_raw_vs_projected_graph_audit": true
+  },
+  "current_best_supported_result": {
+    "aqua_tail34_best_prior_result": "R065 objective-guided multi-view selector 31/34 vs ARG 28/34, clean 28/28, clean fix/harm 1/0",
+    "mmlu_arg_transfer_baseline": "R162 88/100",
+    "mmlu_promptedge_answer_accuracy": "not yet run",
+    "mmlu_projection_graph_readiness": "R189 projected 50/50 contract-ready"
+  },
+  "audit_decision": {
+    "status": "aligned_authorize_tiny_diagnostic_api_smoke_only",
+    "sci_q2_ready": false,
+    "reason": "Graph readiness is achieved only under a hybrid structural projection, not under raw learned edge generation. A tiny diagnostic API smoke can test whether the projected graph is worth further investment, but cannot support a paper-level accuracy claim.",
+    "next_audit": "R195"
+  },
+  "authorized_next_steps": [
+    "R191: implement projected-PromptEdge MMLU transfer smoke runner with same gpt-4o-2024-08-06 model, no more than 4 tasks, explicit cost accounting, and R162 baseline lookup.",
+    "R192: if R191 code preflight passes, run only the authorized 4-task diagnostic API smoke.",
+    "R193: analyze fix/harm against R162 per-task baseline and mark diagnostic-only.",
+    "R194: decide whether to expand to a random held-out slice or return to training/decoder design.",
+    "R195: mandatory goal audit before any broader API evaluation."
+  ],
+  "forbidden_next_steps": [
+    "Do not claim SCI-Q2 readiness.",
+    "Do not claim learned edge-linking from R189 projection.",
+    "Do not run broad MMLU API evaluation.",
+    "Do not select a paper main result from diagnostic baseline-wrong tasks."
+  ]
+}

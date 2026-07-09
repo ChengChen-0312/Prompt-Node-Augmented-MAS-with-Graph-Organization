@@ -1,0 +1,39 @@
+{
+  "run_id": "R465",
+  "title": "Local smoke after source and audit checklists",
+  "claim_boundary": "R465 runs local tests for template, source-manifest, and audit-authorization artifacts. It does not transmit payloads or execute external audits.",
+  "no_api": true,
+  "broad_api": false,
+  "tested_modules": [
+    "tests.test_r462_journal_template_probe",
+    "tests.test_r463_source_package_manifest",
+    "tests.test_r464_external_audit_authorization_checklist"
+  ],
+  "test_results": [
+    {
+      "module": "tests.test_r462_journal_template_probe",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r463_source_package_manifest",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_r464_external_audit_authorization_checklist",
+      "returncode": 0,
+      "passed": true,
+      "output_tail": ".\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+    }
+  ],
+  "failed_modules": [],
+  "local_smoke_pass": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R466_five_run_goal_audit_after_package_checklists",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r465_local_smoke_after_source_and_audit_checklists_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r465_local_smoke_after_source_and_audit_checklists_report.md"
+}

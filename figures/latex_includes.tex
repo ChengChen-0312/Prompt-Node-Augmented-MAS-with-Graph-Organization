@@ -1,0 +1,18 @@
+% === Fig. 3: AQuA first200 exploratory result comparison ===
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig3_aqua_first200_results.pdf}
+    \caption{Exploratory AQuA first200 accuracy under the ARG-Designer-compatible setup. The clean split contains 167 audited clean rows. R035 multi-contract only isolates the virtual PromptNode mechanism; R035 full additionally includes invalid-answer fallback.}
+    \label{fig:aqua_first200_results}
+\end{figure*}
+
+% === Fig. 4: Contract-coverage objective diagnostics ===
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.48\textwidth]{figures/fig4_contract_coverage.pdf}
+    \caption{Label-free contract-coverage objective diagnostics on AQuA first200. The objective covers all three R035 clean-switch options at the top-option level, but ties remain frequent, motivating margin-gated or trained graph selection.}
+    \label{fig:contract_coverage}
+\end{figure}
+
+% === Table: AQuA first200 main results ===
+\input{figures/TABLE_aqua_first200_main_results.tex}

@@ -1,0 +1,19 @@
+\section{Results}
+\label{sec:results}
+
+\input{tables/main_results}
+\input{tables/cost_results}
+
+Table~\ref{tab:main-results} reports split-scoped accuracy evidence rather than universal benchmark claims. Table~\ref{tab:cost-results} records cost provenance and separates direct or existing-summary costs from probe estimates.
+
+\paragraph{AQuA audited tail.}
+On the audit-clean AQuA tail31 slice, ARG obtains 28/31 while the PromptNode graph policy obtains 31/31. Under the conservative boundary that also removes task 114, ARG obtains 28/30 and the PromptNode variant obtains 30/30. These results support a scoped AQuA improvement claim, not a claim about all AQuA variants or noisy labels.
+
+\paragraph{MMLU STEM transfer.}
+On the MMLU STEM main97 slice, the PromptNode stack obtains 95/97 compared with 88/97 for ARG, with fix/harm 7/0 in the evidence table. The draft cost row is based on a 12-task cost probe: R425 estimates a combined main97 cost of 0.676454 for ARG direct plus PromptNode-stack style calls. This cost is marked as a probe estimate and must not be described as exact R306 accounting.
+
+\paragraph{Non-STEM transfer.}
+The broader mixed non-STEM result supports only a no-harm boundary: R396 reports ARG 41/48 and the retrained hybrid 41/48, with no harms but no positive delta. A targeted fresh DefinitionChallenge run gives a narrower positive result: R413/R414 reports ARG 21/24 versus DefinitionChallenge 22/24, with fix/harm/wrong-forward 1/0/0. The raw candidate pool alone is 21/24, so the improvement comes from graph selection rather than from a stronger plain requery candidate pool.
+
+\paragraph{Controls and limitations of evidence.}
+Plain requery is not enough to explain the positive targeted result: R316 plain requery on non-STEM40 has the same 37/40 accuracy as ARG and fix/harm 1/1. However, this does not yet establish broad transfer. The DefinitionChallenge result is a targeted nonmath result, the lifecycle trace is replayed from R413 outputs, and the external integrity audit is pending.

@@ -1,0 +1,19 @@
+{
+  "run_id": "R399",
+  "title": "Contrastive verifier targeted preflight",
+  "claim_boundary": "R399 builds a targeted diagnostic manifest for R397 error tasks. It is not a fresh-paper claim.",
+  "no_api": true,
+  "broad_api": false,
+  "targeted_tasks": 7,
+  "api_records": 7,
+  "planned_contrastive_candidate_calls": 7,
+  "leakage_pass": true,
+  "leakage_violations": [],
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R400_contrastive_verifier_targeted_api_execution",
+  "manifest_jsonl": "experiment/mmlu/run_logs/mmlu_r399_contrastive_verifier_targeted_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r399_contrastive_verifier_targeted_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r399_contrastive_verifier_targeted_preflight_report.md"
+}

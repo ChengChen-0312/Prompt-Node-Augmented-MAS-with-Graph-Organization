@@ -1,0 +1,49 @@
+{
+  "records": 20,
+  "task_ids": [
+    "task_135",
+    "task_152",
+    "task_172",
+    "task_95"
+  ],
+  "api_required": 8,
+  "deterministic_records": 12,
+  "source_missing": 0,
+  "leakage_violations": 0,
+  "estimated_cost": 0.01895,
+  "cost_cap": 0.45,
+  "estimated_cost_within_cap": true,
+  "variant_counts": {
+    "abstain_only_router": 4,
+    "always_switch_to_objective": 4,
+    "node_only_no_promptedge_text": 4,
+    "proposed_router_final": 4,
+    "random_switch_labels_same_rate": 4
+  },
+  "api_variant_counts": {
+    "node_only_no_promptedge_text": 4,
+    "proposed_router_final": 4
+  },
+  "run_id": "R231",
+  "title": "Tiny diagnostic runner preflight",
+  "claim_boundary": "Runner preflight only; no API, no accuracy claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "model": "gpt-4o-2024-08-06",
+  "manifest_paths": [
+    "experiment/mmlu/promptedge_targets/mmlu_r218_router_final_mini_manifest.jsonl",
+    "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_abstain_only_router.jsonl",
+    "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_always_switch_to_objective.jsonl",
+    "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_node_only_no_promptedge_text.jsonl",
+    "experiment/mmlu/promptedge_targets/r221_controls/mmlu_r221_random_switch_labels_same_rate.jsonl"
+  ],
+  "source_paths": [
+    "experiment/aqua/aqua_first200_objective_guided_selector_results.jsonl"
+  ],
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r231_tiny_diagnostic_preflight_records.jsonl",
+  "max_task_ids": 4,
+  "max_completion_tokens": 48,
+  "tests": {
+    "tests.test_r231_tiny_diagnostic_runner": "7/7 passed",
+    "tests.test_r228_runtime_integration_dry_run": "4/4 passed"
+  }
+}

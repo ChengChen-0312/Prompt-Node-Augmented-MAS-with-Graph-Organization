@@ -1,0 +1,290 @@
+{
+  "run_id": "R275-analysis",
+  "title": "MMLU tiny transfer result analysis",
+  "claim_boundary": "Full24 result analysis only; paired with R275 goal audit.",
+  "no_api": true,
+  "broad_api": false,
+  "results_jsonl": "experiment/mmlu/run_logs/mmlu_r274_full24_transfer_api_results.jsonl",
+  "api_summary_json": "experiment/mmlu/res_logs/mmlu_r274_full24_transfer_api_summary.json",
+  "api_cost": 0.163695,
+  "prompt_tokens": 19122,
+  "completion_tokens": 4539,
+  "rows": 120,
+  "by_variant": {
+    "abstain_keep_arg": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 12,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0
+    },
+    "arg_baseline_fixed": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 12,
+      "accuracy": 0.5,
+      "fixes": 0,
+      "harms": 0
+    },
+    "node_only_no_promptedge_text": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 13,
+      "accuracy": 0.5416666666666666,
+      "fixes": 3,
+      "harms": 2
+    },
+    "plain_requery": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 15,
+      "accuracy": 0.625,
+      "fixes": 3,
+      "harms": 0
+    },
+    "proposed_promptnode_promptedge": {
+      "records": 24,
+      "evaluated_records": 24,
+      "correct": 13,
+      "accuracy": 0.5416666666666666,
+      "fixes": 3,
+      "harms": 2
+    }
+  },
+  "by_variant_role": {
+    "abstain_keep_arg": {
+      "arg_error": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 0,
+        "accuracy": 0.0,
+        "fixes": 0,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 12,
+        "accuracy": 1.0,
+        "fixes": 0,
+        "harms": 0
+      }
+    },
+    "arg_baseline_fixed": {
+      "arg_error": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 0,
+        "accuracy": 0.0,
+        "fixes": 0,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 12,
+        "accuracy": 1.0,
+        "fixes": 0,
+        "harms": 0
+      }
+    },
+    "node_only_no_promptedge_text": {
+      "arg_error": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 3,
+        "accuracy": 0.25,
+        "fixes": 3,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 10,
+        "accuracy": 0.8333333333333334,
+        "fixes": 0,
+        "harms": 2
+      }
+    },
+    "plain_requery": {
+      "arg_error": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 3,
+        "accuracy": 0.25,
+        "fixes": 3,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 12,
+        "accuracy": 1.0,
+        "fixes": 0,
+        "harms": 0
+      }
+    },
+    "proposed_promptnode_promptedge": {
+      "arg_error": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 3,
+        "accuracy": 0.25,
+        "fixes": 3,
+        "harms": 0
+      },
+      "matched_control": {
+        "records": 12,
+        "evaluated_records": 12,
+        "correct": 10,
+        "accuracy": 0.8333333333333334,
+        "fixes": 0,
+        "harms": 2
+      }
+    }
+  },
+  "variant_counts": {
+    "abstain_keep_arg": 24,
+    "arg_baseline_fixed": 24,
+    "node_only_no_promptedge_text": 24,
+    "plain_requery": 24,
+    "proposed_promptnode_promptedge": 24
+  },
+  "assessment": {
+    "proposed_correct": 13,
+    "arg_baseline_correct": 12,
+    "plain_requery_correct": 15,
+    "node_only_correct": 13,
+    "proposed_net_correct_vs_arg": 1,
+    "proposed_beats_arg_baseline": true,
+    "proposed_beats_plain_requery": false,
+    "proposed_beats_node_only": false,
+    "promptedge_text_gain_supported": false,
+    "transfer_superiority_supported": false,
+    "recommended_claim": "negative_transfer_diagnostic"
+  },
+  "proposed_changed_cases": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "C",
+      "true_answer": "C",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_chemistry_test-62",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "B",
+      "true_answer": "B",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-elementary_mathematics_test-222",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-17",
+      "selection_role": "matched_control",
+      "arg_prediction": "C",
+      "predicted_answer": "A",
+      "true_answer": "C",
+      "fix": false,
+      "harm": true
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-37",
+      "selection_role": "matched_control",
+      "arg_prediction": "A",
+      "predicted_answer": "D",
+      "true_answer": "A",
+      "fix": false,
+      "harm": true
+    }
+  ],
+  "plain_changed_cases": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "C",
+      "true_answer": "C",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-26",
+      "selection_role": "arg_error",
+      "arg_prediction": "C",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-conceptual_physics_test-41",
+      "selection_role": "arg_error",
+      "arg_prediction": "B",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    }
+  ],
+  "node_only_changed_cases": [
+    {
+      "task_id": "MMLU-abstract_algebra_test-53",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "C",
+      "true_answer": "C",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_chemistry_test-62",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "B",
+      "true_answer": "B",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-elementary_mathematics_test-222",
+      "selection_role": "arg_error",
+      "arg_prediction": "A",
+      "predicted_answer": "D",
+      "true_answer": "D",
+      "fix": true,
+      "harm": false
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-17",
+      "selection_role": "matched_control",
+      "arg_prediction": "C",
+      "predicted_answer": "A",
+      "true_answer": "C",
+      "fix": false,
+      "harm": true
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-37",
+      "selection_role": "matched_control",
+      "arg_prediction": "A",
+      "predicted_answer": "D",
+      "true_answer": "A",
+      "fix": false,
+      "harm": true
+    }
+  ]
+}

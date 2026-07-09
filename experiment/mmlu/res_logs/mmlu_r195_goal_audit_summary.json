@@ -1,0 +1,67 @@
+{
+  "run_id": "R195",
+  "title": "Five-iteration SCI-Q2 goal audit after R191-R194",
+  "claim_boundary": "Audit only. No API evaluation, no new accuracy claim, and no claim that PromptNode/PromptEdge exceeds ARG-Designer.",
+  "audited_runs": [
+    "R191",
+    "R192",
+    "R193",
+    "R194"
+  ],
+  "no_api": true,
+  "broad_api": false,
+  "drift_from_goal": false,
+  "goal_status_seen_by_tool": "blocked",
+  "alignment_checks": {
+    "arg_designer_as_baseline": true,
+    "same_model_target_preserved": true,
+    "first_class_promptnode_before_execution": true,
+    "hybrid_projection_boundary_preserved": true,
+    "cost_accounting_present": true,
+    "fix_harm_present": true,
+    "no_paper_claim_from_diagnostic_smoke": true
+  },
+  "evidence_since_last_audit": {
+    "r191_dry_run": {
+      "tasks_prepared": 4,
+      "projected_contract_ready": "4/4",
+      "cost": 0
+    },
+    "r192_api_smoke": {
+      "selection": "first_n_no_answer_filter",
+      "baseline": "4/4",
+      "projected_promptedge": "4/4",
+      "fixes": 0,
+      "harms": 0,
+      "cost": 0.40109
+    },
+    "r193_analysis": {
+      "safety_smoke_passed": true,
+      "improvement_signal": false,
+      "paper_claim_supported": false
+    },
+    "r194_decision": {
+      "r162_wrong_pool": 12,
+      "recommended_next": "baseline_wrong_mechanism_diagnostic"
+    }
+  },
+  "audit_decision": {
+    "status": "aligned_authorize_baseline_wrong_diagnostic_only",
+    "sci_q2_ready": false,
+    "reason": "The first4 smoke showed no harm but no improvement. A baseline-wrong diagnostic is justified to inspect mechanisms, but it is biased and cannot be reported as main accuracy evidence.",
+    "next_audit": "R200"
+  },
+  "authorized_next_steps": [
+    "R196: run at most 4 R162 baseline-wrong transfer tasks with projected PromptEdge, same gpt-4o-2024-08-06 model, R162 lookup, raw/projected graph audit, and cost accounting.",
+    "R197: analyze fixes/harms and failure modes as mechanism evidence only.",
+    "R198: if diagnostic shows any fixes without harms, prepare a small random-slice protocol; if not, return to method/training design.",
+    "R199: create a claim-evidence matrix update.",
+    "R200: mandatory goal audit before any broader API evaluation."
+  ],
+  "forbidden_next_steps": [
+    "Do not call baseline-wrong diagnostic an accuracy improvement.",
+    "Do not run more than 4 baseline-wrong diagnostic tasks before R200.",
+    "Do not run random or broad transfer API before analyzing R196/R197.",
+    "Do not claim fully learned edge linking."
+  ]
+}

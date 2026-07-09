@@ -1,0 +1,307 @@
+{
+  "run_id": "R407",
+  "title": "Nonmath PromptNode curriculum design",
+  "claim_boundary": "R407 designs a general nonmath PromptNode/PromptEdge curriculum. It is design/preflight only; it cannot support a paper result until fresh execution and learned-gate analysis pass.",
+  "no_api": true,
+  "broad_api": false,
+  "math_patch_only": false,
+  "promptnodes": [
+    {
+      "type": "InstructionAmbiguityVerifierPN",
+      "identity": "Instruction-Verifier",
+      "purpose": "Extracts the operative instruction, scope words, negation, EXCEPT/NOT clauses, and required answer granularity.",
+      "outputs": [
+        "instruction_operator",
+        "scope_term",
+        "ambiguity_flag",
+        "abstain_reason"
+      ],
+      "insert_positions": [
+        "source-consumer",
+        "group boundary"
+      ],
+      "permissions": [
+        "read",
+        "write"
+      ],
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune"
+      ]
+    },
+    {
+      "type": "OptionSemanticConsistencyVerifierPN",
+      "identity": "Instruction-Verifier",
+      "purpose": "Checks whether each option semantically satisfies the extracted instruction instead of only sounding plausible.",
+      "outputs": [
+        "candidate_label",
+        "option_semantic_match",
+        "nearest_distractor",
+        "evidence_count"
+      ],
+      "insert_positions": [
+        "conflict center",
+        "aggregator pre-checkpoint"
+      ],
+      "permissions": [
+        "read",
+        "write"
+      ],
+      "lifecycle": [
+        "update",
+        "compress",
+        "upgrade"
+      ]
+    },
+    {
+      "type": "ConceptDefinitionAnchorPN",
+      "identity": "Memory",
+      "purpose": "Creates a compact local definition anchor for philosophy, moral, logic, religion, and social-science terms.",
+      "outputs": [
+        "key_concept",
+        "definition_anchor",
+        "distractor_boundary",
+        "definition_confidence"
+      ],
+      "insert_positions": [
+        "source-consumer",
+        "conflict center"
+      ],
+      "permissions": [
+        "read",
+        "write"
+      ],
+      "lifecycle": [
+        "write",
+        "compress",
+        "merge",
+        "prune"
+      ]
+    },
+    {
+      "type": "ContradictionDetectorPN",
+      "identity": "Verifier",
+      "purpose": "Detects when a candidate rationale contradicts the option text, the stem operator, or another node's evidence.",
+      "outputs": [
+        "contradiction_count",
+        "contradicted_node",
+        "contradiction_reason",
+        "hard_veto"
+      ],
+      "insert_positions": [
+        "conflict center",
+        "aggregator pre-checkpoint"
+      ],
+      "permissions": [
+        "read",
+        "write"
+      ],
+      "lifecycle": [
+        "update",
+        "prune",
+        "upgrade"
+      ]
+    },
+    {
+      "type": "AdversarialVerifierPN",
+      "identity": "Agent-like",
+      "purpose": "Attempts to falsify the leading candidate by defending the nearest distractor before the graph forwards an answer.",
+      "outputs": [
+        "challenge_pass",
+        "challenger_label",
+        "rejection_reason",
+        "candidate_survives"
+      ],
+      "insert_positions": [
+        "conflict center",
+        "aggregator pre-checkpoint"
+      ],
+      "permissions": [
+        "read",
+        "write"
+      ],
+      "lifecycle": [
+        "update",
+        "merge",
+        "upgrade"
+      ]
+    },
+    {
+      "type": "ConsensusConflictResolverPN",
+      "identity": "Agent-like",
+      "purpose": "Aggregates node evidence and forwards only when support, contradiction, and ambiguity contracts are jointly satisfied.",
+      "outputs": [
+        "forward_label",
+        "node_agreement_count",
+        "node_disagreement_count",
+        "forward_decision"
+      ],
+      "insert_positions": [
+        "aggregator pre-checkpoint"
+      ],
+      "permissions": [
+        "read",
+        "write"
+      ],
+      "lifecycle": [
+        "update",
+        "compress",
+        "prune",
+        "upgrade"
+      ]
+    },
+    {
+      "type": "MemoryBridgePN",
+      "identity": "Memory",
+      "purpose": "Carries a compressed task-intent and definition bridge from early verifiers to late option-binding and resolver nodes.",
+      "outputs": [
+        "bridge_summary",
+        "reusable_evidence",
+        "write_confidence",
+        "staleness_flag"
+      ],
+      "insert_positions": [
+        "source-consumer",
+        "group boundary",
+        "aggregator pre-checkpoint"
+      ],
+      "permissions": [
+        "read",
+        "write"
+      ],
+      "lifecycle": [
+        "write",
+        "compress",
+        "merge",
+        "prune"
+      ]
+    }
+  ],
+  "promptedges": [
+    {
+      "type": "OptionBindingPromptEdge",
+      "source": "OptionSemanticConsistencyVerifierPN",
+      "target": "ConsensusConflictResolverPN",
+      "prompt_as_edge": true,
+      "permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "contract": "Bind exactly one visible option label only when the rationale directly supports that option text."
+    },
+    {
+      "type": "AdversarialChallengePromptEdge",
+      "source": "AdversarialVerifierPN",
+      "target": "ConsensusConflictResolverPN",
+      "prompt_as_edge": true,
+      "permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "contract": "Forward the candidate only if the adversarial challenge fails to support the nearest distractor."
+    },
+    {
+      "type": "DefinitionAnchorPromptEdge",
+      "source": "ConceptDefinitionAnchorPN",
+      "target": "OptionSemanticConsistencyVerifierPN",
+      "prompt_as_edge": true,
+      "permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "contract": "Every option judgment must cite or reject the local definition anchor; otherwise mark evidence weak."
+    },
+    {
+      "type": "ConflictResolutionPromptEdge",
+      "source": "ContradictionDetectorPN",
+      "target": "ConsensusConflictResolverPN",
+      "prompt_as_edge": true,
+      "permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "contract": "A hard contradiction veto blocks forwarding; a soft contradiction increases the learned gate penalty."
+    },
+    {
+      "type": "MemoryBridgePromptEdge",
+      "source": "MemoryBridgePN",
+      "target": "ConsensusConflictResolverPN",
+      "prompt_as_edge": true,
+      "permissions": [
+        "read",
+        "write",
+        "forward"
+      ],
+      "contract": "Read the compressed task intent and definition bridge, but never treat it as ground truth."
+    }
+  ],
+  "training_plan": {
+    "policy": "two_stage_candidate_then_learned_forward_gate",
+    "stage_1": "Generate structured evidence from multiple nonmath PromptNodes without exposing labels.",
+    "stage_2": "Train a conservative forward gate from model-visible graph features and hard negatives.",
+    "features": [
+      "candidate_confidence",
+      "candidate_evidence_count",
+      "candidate_type",
+      "subject_family",
+      "node_agreement_count",
+      "node_disagreement_count",
+      "contradiction_count",
+      "ambiguity_flag",
+      "definition_anchor_confidence",
+      "adversarial_challenge_pass",
+      "nearest_distractor_margin",
+      "option_binding_contract_pass",
+      "memory_bridge_write_confidence",
+      "lifecycle_update_count",
+      "lifecycle_prune_count"
+    ],
+    "target": "forward candidate iff it fixes ARG or preserves an already correct ARG answer without wrong-forward.",
+    "hard_negative_wrong_forward_weight": 4.0,
+    "positive_fix_weight": 2.0,
+    "forbidden_signals": [
+      "true_answer",
+      "task_id",
+      "row_index",
+      "source_ref_hash",
+      "posthoc_correctness"
+    ],
+    "minimum_success_criteria": {
+      "fresh_split_delta_correct": ">= +1",
+      "fresh_split_harms": 0,
+      "fresh_split_wrong_forward": "<= 1",
+      "plain_requery_control_required": true
+    }
+  },
+  "failure_modes_addressed": {
+    "wrong_forward_definition_misbinding": [
+      "ConceptDefinitionAnchorPN",
+      "ContradictionDetectorPN",
+      "AdversarialVerifierPN"
+    ],
+    "candidate_quality_failure": [
+      "OptionSemanticConsistencyVerifierPN",
+      "AdversarialVerifierPN"
+    ],
+    "gate_over_pruning_for_option_candidate": [
+      "ConsensusConflictResolverPN",
+      "node_agreement_count",
+      "nearest_distractor_margin"
+    ],
+    "abstention_or_schema_failure": [
+      "InstructionAmbiguityVerifierPN",
+      "MemoryBridgePN"
+    ]
+  },
+  "api_execution_authorized_next": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R408_nonmath_curriculum_fresh_preflight",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r407_nonmath_promptnode_curriculum_design_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r407_nonmath_promptnode_curriculum_design_report.md"
+}

@@ -1,0 +1,135 @@
+{
+  "main_results": [
+    {
+      "key": "arg",
+      "display": "ARG baseline",
+      "overall": "165/200",
+      "overall_rate": 82.5,
+      "clean": "152/167",
+      "clean_rate": 91.01796407185628,
+      "noisy_or_ambiguous": "13/33",
+      "noisy_or_ambiguous_rate": 39.39393939393939,
+      "delta_vs_baseline": 0,
+      "fix_harm": "0/0",
+      "clean_fix_harm": "0/0",
+      "switches": 0,
+      "claim_role": "primary baseline"
+    },
+    {
+      "key": "ensemble",
+      "display": "PN result ensemble",
+      "overall": "170/200",
+      "overall_rate": 85.0,
+      "clean": "154/167",
+      "clean_rate": 92.21556886227546,
+      "noisy_or_ambiguous": "16/33",
+      "noisy_or_ambiguous_rate": 48.484848484848484,
+      "delta_vs_baseline": 5,
+      "fix_harm": "9/4",
+      "clean_fix_harm": "3/1",
+      "switches": 22,
+      "claim_role": "complementarity; harms exist"
+    },
+    {
+      "key": "r034",
+      "display": "R034 single-router contract",
+      "overall": "167/200",
+      "overall_rate": 83.5,
+      "clean": "154/167",
+      "clean_rate": 92.21556886227546,
+      "noisy_or_ambiguous": "13/33",
+      "noisy_or_ambiguous_rate": 39.39393939393939,
+      "delta_vs_baseline": 2,
+      "fix_harm": "2/0",
+      "clean_fix_harm": "2/0",
+      "switches": 2,
+      "claim_role": "single-view PN signal"
+    },
+    {
+      "key": "r035_pure",
+      "display": "R035 multi-contract only",
+      "overall": "168/200",
+      "overall_rate": 84.0,
+      "clean": "155/167",
+      "clean_rate": 92.81437125748504,
+      "noisy_or_ambiguous": "13/33",
+      "noisy_or_ambiguous_rate": 39.39393939393939,
+      "delta_vs_baseline": 3,
+      "fix_harm": "3/0",
+      "clean_fix_harm": "3/0",
+      "switches": 3,
+      "claim_role": "main mechanism candidate"
+    },
+    {
+      "key": "r035_full",
+      "display": "R035 multi-contract + invalid fallback",
+      "overall": "174/200",
+      "overall_rate": 87.0,
+      "clean": "156/167",
+      "clean_rate": 93.41317365269461,
+      "noisy_or_ambiguous": "18/33",
+      "noisy_or_ambiguous_rate": 54.54545454545454,
+      "delta_vs_baseline": 9,
+      "fix_harm": "9/0",
+      "clean_fix_harm": "4/0",
+      "switches": 14,
+      "claim_role": "full system; fallback separated"
+    },
+    {
+      "key": "r039",
+      "display": "R039 objective-guided selector",
+      "overall": "172/200",
+      "overall_rate": 86.0,
+      "clean": "155/167",
+      "clean_rate": 92.81437125748504,
+      "noisy_or_ambiguous": "17/33",
+      "noisy_or_ambiguous_rate": 51.515151515151516,
+      "delta_vs_baseline": 7,
+      "fix_harm": "9/2",
+      "clean_fix_harm": "4/1",
+      "switches": 16,
+      "claim_role": "rejected as main due clean harm"
+    },
+    {
+      "key": "r040",
+      "display": "R040 margin-gated objective",
+      "overall": "170/200",
+      "overall_rate": 85.0,
+      "clean": "154/167",
+      "clean_rate": 92.21556886227546,
+      "noisy_or_ambiguous": "16/33",
+      "noisy_or_ambiguous_rate": 48.484848484848484,
+      "delta_vs_baseline": 5,
+      "fix_harm": "5/0",
+      "clean_fix_harm": "2/0",
+      "switches": 7,
+      "claim_role": "safe system candidate"
+    }
+  ],
+  "contract_coverage": [
+    {
+      "label": "Positive top-score",
+      "value": "196/200",
+      "rate": 98.0,
+      "note": "objective excludes: true_answer, clean_label, gold_rationale, task_id-specific rules"
+    },
+    {
+      "label": "Top-score ties",
+      "value": "99/200",
+      "rate": 49.5,
+      "note": "objective excludes: true_answer, clean_label, gold_rationale, task_id-specific rules"
+    },
+    {
+      "label": "R035 top-option agreement",
+      "value": "3/3",
+      "rate": 100.0,
+      "note": "objective excludes: true_answer, clean_label, gold_rationale, task_id-specific rules"
+    },
+    {
+      "label": "R035 unique-top agreement",
+      "value": "1/3",
+      "rate": 33.33333333333333,
+      "note": "objective excludes: true_answer, clean_label, gold_rationale, task_id-specific rules"
+    }
+  ]
+}

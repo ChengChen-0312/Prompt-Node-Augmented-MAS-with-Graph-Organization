@@ -1,0 +1,132 @@
+{
+  "rule": "r084_forced_template_smoke_report",
+  "timestamp": "2026-07-08T17:22:46.203638",
+  "num_smoke_runs": 4,
+  "solved_runs": 1,
+  "promptnode_graph_runs": 4,
+  "router_status_counts": {
+    "EXACT_MATCH": 2,
+    "NO_EXACT_OPTION": 2
+  },
+  "router_supported_option_counts": {
+    "C": 2,
+    "NONE": 2
+  },
+  "task_outcomes": {
+    "task_114": {
+      "best_result": "0/3",
+      "num_runs": 3
+    },
+    "task_56": {
+      "best_result": "1/1",
+      "num_runs": 1
+    }
+  },
+  "total_cost": 0.20492500000000002,
+  "total_prompt_tokens": 17030,
+  "total_completion_tokens": 7985,
+  "rows": [
+    {
+      "run_name": "rank1_task114_initial",
+      "task_id": "task_114",
+      "true_answer": "D",
+      "predicted_answer": "C",
+      "is_solved": false,
+      "selected_rank": 1,
+      "roles": [
+        "Math Solver",
+        "Programming Expert",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 5,
+      "num_edges": 5,
+      "has_promptnode_graph": true,
+      "router_supported_option": "C",
+      "router_binding_status": "EXACT_MATCH",
+      "cost": 0.05169000000000001,
+      "prompt_tokens": 4326,
+      "completion_tokens": 2004,
+      "result_path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_smoke1_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r084_forced_template_rank1_smoke1_summary.jsonl"
+    },
+    {
+      "run_name": "rank5_task114_initial",
+      "task_id": "task_114",
+      "true_answer": "D",
+      "predicted_answer": "C",
+      "is_solved": false,
+      "selected_rank": 5,
+      "roles": [
+        "Programming Expert",
+        "Programming Expert",
+        "Math Solver",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 6,
+      "num_edges": 7,
+      "has_promptnode_graph": true,
+      "router_supported_option": "C",
+      "router_binding_status": "EXACT_MATCH",
+      "cost": 0.05908000000000001,
+      "prompt_tokens": 4709,
+      "completion_tokens": 2369,
+      "result_path": "experiment/aqua/aqua_tail34_r084_forced_template_rank5_smoke1_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r084_forced_template_rank5_smoke1_summary.jsonl"
+    },
+    {
+      "run_name": "rank1_task56_initial",
+      "task_id": "task_56",
+      "true_answer": "A",
+      "predicted_answer": "A",
+      "is_solved": true,
+      "selected_rank": 1,
+      "roles": [
+        "Math Solver",
+        "Programming Expert",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 5,
+      "num_edges": 5,
+      "has_promptnode_graph": true,
+      "router_supported_option": "NONE",
+      "router_binding_status": "NO_EXACT_OPTION",
+      "cost": 0.042030000000000005,
+      "prompt_tokens": 3630,
+      "completion_tokens": 1592,
+      "result_path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_task56_smoke_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r084_forced_template_rank1_task56_smoke_summary.jsonl"
+    },
+    {
+      "run_name": "rank1_task114_router_hardened",
+      "task_id": "task_114",
+      "true_answer": "D",
+      "predicted_answer": "E",
+      "is_solved": false,
+      "selected_rank": 1,
+      "roles": [
+        "Math Solver",
+        "Programming Expert",
+        "PN_Memory",
+        "PN_Verifier",
+        "PN_Router"
+      ],
+      "num_nodes": 5,
+      "num_edges": 5,
+      "has_promptnode_graph": true,
+      "router_supported_option": "NONE",
+      "router_binding_status": "NO_EXACT_OPTION",
+      "cost": 0.052125,
+      "prompt_tokens": 4365,
+      "completion_tokens": 2020,
+      "result_path": "experiment/aqua/aqua_tail34_r084_forced_template_rank1_router_hardened_smoke1_results.jsonl",
+      "summary_path": "experiment/aqua/res_logs/aqua_tail34_r084_forced_template_rank1_router_hardened_smoke1_summary.jsonl"
+    }
+  ],
+  "claim_boundary": "R084 is smoke-only evidence for forced-template execution plumbing and qualitative failure analysis. It is not a tail34 accuracy result and does not justify full-run claims."
+}

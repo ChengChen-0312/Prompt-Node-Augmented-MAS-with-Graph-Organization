@@ -1,0 +1,852 @@
+{
+  "rule": "r096_objective_safety_policy_targets",
+  "timestamp": "2026-07-08T18:26:41.368408",
+  "num_rows": 34,
+  "target_action_counts": {
+    "fallback_to_arg": 32,
+    "switch_to_objective": 2
+  },
+  "switch_target_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "clean_switch_target_tasks": [
+    "task_250"
+  ],
+  "noisy_switch_target_tasks": [
+    "task_108"
+  ],
+  "policy_input_field_violations": 0,
+  "forbidden_policy_input_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "gold_binding_status",
+    "is_solved",
+    "objective_selector_is_solved",
+    "rationale_issue",
+    "safety_composed_is_solved",
+    "task_id",
+    "true_answer"
+  ],
+  "target_jsonl": "experiment/aqua/aqua_tail34_r096_objective_safety_policy_targets.jsonl",
+  "rows": [
+    {
+      "task_id": "task_114",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "insufficient_safety_evidence",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "unsupported",
+        "rationale_issue": "arithmetic_error"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_56",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_107",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_240",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_179",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_166",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_183",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_50",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_143",
+      "policy_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_251",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_154",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_129",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 3,
+        "baseline_direct_valid_vote_count": 3,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_59",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "insufficient_safety_evidence",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_55",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_23",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_7",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_8",
+      "policy_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_108",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": true
+      },
+      "target_action": "switch_to_objective",
+      "target_reason": "baseline_direct_split_allows_switch",
+      "target_prediction_source": "objective",
+      "requires_explicit_promptnode_graph_metadata": true,
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_151",
+      "policy_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 3,
+        "baseline_direct_valid_vote_count": 3,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_22",
+      "policy_input": {
+        "baseline_prediction": "E",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "E",
+        "baseline_direct_majority_count": 3,
+        "baseline_direct_valid_vote_count": 3,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_139",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_228",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "invalid_logic"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_250",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "E",
+        "objective_prediction_differs_from_baseline": true,
+        "objective_selected_source": "objective_top",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "switch_to_objective",
+      "target_reason": "objective_top_score_ge3",
+      "target_prediction_source": "objective",
+      "requires_explicit_promptnode_graph_metadata": true,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_173",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_26",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_188",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 1,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_35",
+      "policy_input": {
+        "baseline_prediction": "A",
+        "objective_prediction": "A",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "A",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_57",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_62",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_70",
+      "policy_input": {
+        "baseline_prediction": "C",
+        "objective_prediction": "C",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 3,
+        "baseline_direct_majority": "C",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 1,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_189",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_6",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 1,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": true
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "noisy",
+        "gold_binding_status": "contradictory",
+        "rationale_issue": "arithmetic_error"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_28",
+      "policy_input": {
+        "baseline_prediction": "B",
+        "objective_prediction": "B",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "B",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    },
+    {
+      "task_id": "task_163",
+      "policy_input": {
+        "baseline_prediction": "D",
+        "objective_prediction": "D",
+        "objective_prediction_differs_from_baseline": false,
+        "objective_selected_source": "baseline",
+        "objective_top_score": 2,
+        "baseline_direct_majority": "D",
+        "baseline_direct_majority_count": 2,
+        "baseline_direct_valid_vote_count": 2,
+        "baseline_direct_votes_split": false
+      },
+      "target_action": "fallback_to_arg",
+      "target_reason": "same_prediction_as_arg",
+      "target_prediction_source": "arg_baseline",
+      "requires_explicit_promptnode_graph_metadata": false,
+      "analysis": {
+        "clean_label": "clean",
+        "gold_binding_status": "exact",
+        "rationale_issue": "none"
+      },
+      "source_run": "R095"
+    }
+  ],
+  "claim_boundary": "policy-target export from R095 replay; no new accuracy result"
+}

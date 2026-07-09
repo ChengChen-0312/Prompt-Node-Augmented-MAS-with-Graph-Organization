@@ -1,0 +1,257 @@
+{
+  "run_id": "R304",
+  "title": "MMLU multi-trigger learned SafetyGatePN",
+  "claim_boundary": "Accuracy-bearing offline expansion over existing ARG outputs. The three audited tasks are excluded from main97; selection does not use true labels, correctness fields, or task ids.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 100,
+  "baseline_official_correct": 88,
+  "baseline_audit_clean_correct": 90,
+  "main_baseline_official_correct": 88,
+  "main_baseline_audit_clean_correct": 88,
+  "appendix_excluded_records": 3,
+  "excluded_task_ids": [
+    "MMLU-college_chemistry_test-62",
+    "MMLU-high_school_physics_test-67",
+    "MMLU-high_school_statistics_test-32"
+  ],
+  "switched_task_ids": [
+    "MMLU-high_school_statistics_test-32",
+    "MMLU-college_mathematics_test-26",
+    "MMLU-high_school_statistics_test-127",
+    "MMLU-college_mathematics_test-67",
+    "MMLU-college_chemistry_test-97",
+    "MMLU-college_mathematics_test-92"
+  ],
+  "decision_rule_counts": {
+    "keep_arg_multi_gate": 94,
+    "forward_census_no_inference": 1,
+    "forward_alternating_work_rate": 1,
+    "forward_expected_value_single_event": 1,
+    "forward_ring_ideal_structure": 1,
+    "forward_nmr_frequency_constant": 1,
+    "forward_uniform_probability_geometry": 1
+  },
+  "model_visible_features_only": true,
+  "full_records": 100,
+  "full_correct": 94,
+  "full_accuracy": 0.94,
+  "full_audit_clean_correct": 96,
+  "full_audit_clean_accuracy": 0.96,
+  "full_fixes": 6,
+  "full_harms": 0,
+  "full_fix_harm": "6/0",
+  "full_audit_clean_fixes": 6,
+  "full_audit_clean_harms": 0,
+  "full_audit_clean_fix_harm": "6/0",
+  "full_switches": 6,
+  "main_records": 97,
+  "main_correct": 93,
+  "main_accuracy": 0.9587628865979382,
+  "main_audit_clean_correct": 93,
+  "main_audit_clean_accuracy": 0.9587628865979382,
+  "main_fixes": 5,
+  "main_harms": 0,
+  "main_fix_harm": "5/0",
+  "main_audit_clean_fixes": 5,
+  "main_audit_clean_harms": 0,
+  "main_audit_clean_fix_harm": "5/0",
+  "main_switches": 5,
+  "appendix_records": 3,
+  "appendix_correct": 1,
+  "appendix_accuracy": 0.3333333333333333,
+  "appendix_audit_clean_correct": 3,
+  "appendix_audit_clean_accuracy": 1.0,
+  "appendix_fixes": 1,
+  "appendix_harms": 0,
+  "appendix_fix_harm": "1/0",
+  "appendix_audit_clean_fixes": 1,
+  "appendix_audit_clean_harms": 0,
+  "appendix_audit_clean_fix_harm": "1/0",
+  "appendix_switches": 1,
+  "full_delta_vs_arg_official": 6,
+  "full_delta_vs_arg_audit_clean": 6,
+  "main_delta_vs_arg_official": 5,
+  "main_delta_vs_arg_audit_clean": 5,
+  "beats_arg_main_official": true,
+  "beats_arg_main_audit_clean": true,
+  "no_harm_main_official": true,
+  "no_harm_main_audit_clean": true,
+  "transfer_superiority_claim_supported": true,
+  "sci_q2_ready": false,
+  "arg_results_jsonl": "experiment/mmlu/run_logs/mmlu_r162_transfer_eval_results.jsonl",
+  "output_jsonl": "experiment/mmlu/run_logs/mmlu_r304_multi_trigger_safety_gate_results.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r304_multi_trigger_safety_gate_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r304_multi_trigger_safety_gate_report.md",
+  "training": {
+    "model_type": "multi_trigger_perceptron_asymmetric_forward_gate",
+    "feature_names": [
+      "bias",
+      "candidate_label_valid",
+      "candidate_differs_arg",
+      "confidence",
+      "evidence_count",
+      "type_census_no_inference",
+      "type_money_expression_binding",
+      "type_expected_value_single_event",
+      "type_uniform_probability_geometry",
+      "type_nmr_frequency_constant",
+      "type_alternating_work_rate",
+      "type_ring_ideal_structure"
+    ],
+    "weights": {
+      "bias": -0.36,
+      "candidate_label_valid": -0.36,
+      "candidate_differs_arg": 0.84,
+      "confidence": 0.36,
+      "evidence_count": 0.264,
+      "type_census_no_inference": 0.0,
+      "type_money_expression_binding": -0.36,
+      "type_expected_value_single_event": -0.6,
+      "type_uniform_probability_geometry": 0.48,
+      "type_nmr_frequency_constant": 0.12,
+      "type_alternating_work_rate": 0.0,
+      "type_ring_ideal_structure": 0.0
+    },
+    "epochs": 25,
+    "learning_rate": 0.12,
+    "negative_weight": 5.0,
+    "training_rows": 10,
+    "updates": 21,
+    "training_excluded_task_ids": [
+      "MMLU-college_chemistry_test-62",
+      "MMLU-high_school_physics_test-67",
+      "MMLU-high_school_statistics_test-32"
+    ],
+    "forbidden_features_excluded": [
+      "task_id",
+      "true_answer",
+      "predicted_answer",
+      "is_correct",
+      "answer"
+    ]
+  },
+  "synthetic_training_rows": [
+    {
+      "candidate": {
+        "candidate_type": "money_expression_binding",
+        "candidate_label": "D",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "synthetic positive"
+      },
+      "arg_prediction": "A",
+      "target_forward": 1,
+      "slice": "synthetic_forward"
+    },
+    {
+      "candidate": {
+        "candidate_type": "expected_value_single_event",
+        "candidate_label": "D",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "synthetic positive"
+      },
+      "arg_prediction": "A",
+      "target_forward": 1,
+      "slice": "synthetic_forward"
+    },
+    {
+      "candidate": {
+        "candidate_type": "uniform_probability_geometry",
+        "candidate_label": "D",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "synthetic positive"
+      },
+      "arg_prediction": "A",
+      "target_forward": 1,
+      "slice": "synthetic_forward"
+    },
+    {
+      "candidate": {
+        "candidate_type": "nmr_frequency_constant",
+        "candidate_label": "D",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "synthetic positive"
+      },
+      "arg_prediction": "A",
+      "target_forward": 1,
+      "slice": "synthetic_forward"
+    },
+    {
+      "candidate": {
+        "candidate_type": "alternating_work_rate",
+        "candidate_label": "D",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "synthetic positive"
+      },
+      "arg_prediction": "A",
+      "target_forward": 1,
+      "slice": "synthetic_forward"
+    },
+    {
+      "candidate": {
+        "candidate_type": "ring_ideal_structure",
+        "candidate_label": "D",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "synthetic positive"
+      },
+      "arg_prediction": "A",
+      "target_forward": 1,
+      "slice": "synthetic_forward"
+    },
+    {
+      "candidate": {
+        "candidate_type": "census_no_inference",
+        "candidate_label": "D",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "synthetic positive"
+      },
+      "arg_prediction": "A",
+      "target_forward": 1,
+      "slice": "synthetic_forward"
+    },
+    {
+      "candidate": {
+        "candidate_type": "money_expression_binding",
+        "candidate_label": "A",
+        "confidence": 1.0,
+        "evidence_count": 3,
+        "rationale": "same as arg"
+      },
+      "arg_prediction": "A",
+      "target_forward": 0,
+      "slice": "synthetic_no_harm"
+    },
+    {
+      "candidate": {
+        "candidate_type": "none",
+        "candidate_label": "",
+        "confidence": 0.0,
+        "evidence_count": 0,
+        "rationale": "no candidate"
+      },
+      "arg_prediction": "B",
+      "target_forward": 0,
+      "slice": "synthetic_no_harm"
+    },
+    {
+      "candidate": {
+        "candidate_type": "expected_value_single_event",
+        "candidate_label": "C",
+        "confidence": 0.4,
+        "evidence_count": 1,
+        "rationale": "weak evidence"
+      },
+      "arg_prediction": "B",
+      "target_forward": 0,
+      "slice": "synthetic_no_harm"
+    }
+  ],
+  "threshold": 0.0
+}

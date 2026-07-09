@@ -1,0 +1,228 @@
+{
+  "rule": "r113_objective_safety_proxy_rule_learner",
+  "train_source": "experiment/aqua/aqua_first200_r112_objective_safety_feature_targets.jsonl",
+  "frozen_eval_source": "experiment/aqua/res_logs/aqua_tail34_r109_objective_safety_rule_distillation_summary.json",
+  "eval_jsonl": "experiment/aqua/aqua_tail34_r113_objective_safety_proxy_rule_eval.jsonl",
+  "train_rows": 200,
+  "frozen_eval_rows": 34,
+  "candidate_rule_count": 16,
+  "learned_rule": "diff_and_top_score_ge_3_or_split",
+  "learned_rule_complexity": 3,
+  "train_target_agreement": "200/200",
+  "train_target_agreement_rate": 1.0,
+  "frozen_tail34_target_agreement": "34/34",
+  "frozen_tail34_target_agreement_rate": 1.0,
+  "frozen_tail34_switch_tasks": [
+    "task_108",
+    "task_250"
+  ],
+  "uses_tail34_training_source": false,
+  "proxy_input_field_violations": 0,
+  "eval_predictions": [
+    {
+      "task_id": "task_114",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_56",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_107",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_240",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_179",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_166",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_183",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_50",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_143",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_251",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_154",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_129",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_59",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_55",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_23",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_7",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_8",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_108",
+      "target_action": "switch_to_objective",
+      "proxy_action": "switch_to_objective",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_151",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_22",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_139",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_228",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_250",
+      "target_action": "switch_to_objective",
+      "proxy_action": "switch_to_objective",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_173",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_26",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_188",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_35",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_57",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_62",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_70",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_189",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_6",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_28",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    },
+    {
+      "task_id": "task_163",
+      "target_action": "fallback_to_arg",
+      "proxy_action": "fallback_to_arg",
+      "matches_target": true
+    }
+  ],
+  "claim_boundary": "rule-proxy target agreement only; no answer accuracy or prospective API claim"
+}

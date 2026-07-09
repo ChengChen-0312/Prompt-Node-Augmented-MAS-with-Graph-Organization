@@ -1,0 +1,9 @@
+{
+  "rule": "r081_tail34_promptnode_metadata_audit",
+  "timestamp": "2026-07-08T17:01:19.750184",
+  "sources": 8,
+  "positive_accuracy_sources": 5,
+  "positive_accuracy_sources_with_promptnode_roles": 0,
+  "dense_metadata_negative_sources": 1,
+  "claim_boundary": "positive tail34 sources lack explicit PromptNode graph metadata, while the dense metadata-compatible R058 source is negative. This audit shows the next candidate pool must combine positive clean-fix behavior with first-class PromptNode graph metadata."
+}

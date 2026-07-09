@@ -1,0 +1,53 @@
+{
+  "run_id": "R322",
+  "title": "Selector training preflight manifest",
+  "claim_boundary": "R322 freezes an offline graph-policy selector manifest. It authorizes only the next no-API dry run, not API execution or paper claims.",
+  "no_api": true,
+  "broad_api": false,
+  "manifest_records": 234,
+  "positive_forward_targets": 7,
+  "negative_forward_targets": 227,
+  "split_counts": {
+    "test": 46,
+    "train": 164,
+    "dev": 24
+  },
+  "positive_split_counts": {
+    "train": 5,
+    "dev": 1,
+    "test": 1
+  },
+  "promptnode_family_counts": {
+    "none": 201,
+    "symbolic_verifier": 5,
+    "warning_only": 26,
+    "nonmath_semantic": 2
+  },
+  "excluded_audit_items_count": 3,
+  "excluded_audit_items": [
+    "MMLU-college_chemistry_test-62",
+    "MMLU-high_school_physics_test-67",
+    "MMLU-high_school_statistics_test-32"
+  ],
+  "forbidden_feature_keys": [
+    "answer",
+    "arg_prediction",
+    "fix",
+    "harm",
+    "is_correct",
+    "label",
+    "predicted_answer",
+    "question",
+    "task_id",
+    "true_answer"
+  ],
+  "feature_leakage_pass": true,
+  "feature_leakage_violations": [],
+  "offline_selector_training_authorized_next": true,
+  "api_execution_authorized_next": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R323_selector_model_dry_run",
+  "manifest_jsonl": "experiment/mmlu/run_logs/test_r322_selector_manifest.jsonl",
+  "summary_json": "experiment/mmlu/res_logs/test_r322_summary.json",
+  "report_md": "experiment/mmlu/run_logs/test_r322_report.md"
+}

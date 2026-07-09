@@ -1,0 +1,84 @@
+{
+  "run_id": "R343",
+  "title": "Answer-bearing candidate probe failure analysis",
+  "claim_boundary": "R343 analyzes the executed R342 four-task mechanism probe only. It blocks same-design prompt-only answer-bearing verifier expansion because every candidate followed the wrong ARG baseline.",
+  "no_api": true,
+  "broad_api": false,
+  "records": 4,
+  "api_executed": 4,
+  "api_errors": 0,
+  "candidate_label_count": 4,
+  "candidate_correct_count": 0,
+  "candidate_repairs_baseline_count": 0,
+  "candidate_harms_baseline_count": 0,
+  "candidate_follows_wrong_baseline_count": 4,
+  "verifier_family_counts": {
+    "algebraic_structure_verifier": 2,
+    "chemistry_balancer_verifier": 1,
+    "coordinate_geometry_verifier": 1
+  },
+  "root_causes": [
+    "answer_bearing_candidates_not_reliable",
+    "verifier_candidates_follow_wrong_baseline",
+    "weak_or_non_executable_evidence",
+    "prompt_only_answer_verifiers_not_sufficient"
+  ],
+  "course_correction": [
+    "stop_same_prompt_only_verifier_api_expansion",
+    "requires_executable_or_symbolic_verification",
+    "keep_r342_as_mechanism_debug_not_paper_claim",
+    "run_five_iteration_goal_audit_before_next_design"
+  ],
+  "task_rows": [
+    {
+      "task_id": "MMLU-high_school_mathematics_test-0",
+      "verifier_family": "coordinate_geometry_verifier",
+      "baseline_prediction": "A",
+      "candidate_label": "A",
+      "true_answer": "D",
+      "candidate_is_correct": false,
+      "candidate_repairs_baseline": false,
+      "evidence_count": 1
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-1",
+      "verifier_family": "algebraic_structure_verifier",
+      "baseline_prediction": "B",
+      "candidate_label": "B",
+      "true_answer": "D",
+      "candidate_is_correct": false,
+      "candidate_repairs_baseline": false,
+      "evidence_count": 0
+    },
+    {
+      "task_id": "MMLU-college_mathematics_test-2",
+      "verifier_family": "algebraic_structure_verifier",
+      "baseline_prediction": "B",
+      "candidate_label": "B",
+      "true_answer": "D",
+      "candidate_is_correct": false,
+      "candidate_repairs_baseline": false,
+      "evidence_count": 1
+    },
+    {
+      "task_id": "MMLU-college_chemistry_test-3",
+      "verifier_family": "chemistry_balancer_verifier",
+      "baseline_prediction": "A",
+      "candidate_label": "A",
+      "true_answer": "B",
+      "candidate_is_correct": false,
+      "candidate_repairs_baseline": false,
+      "evidence_count": 1
+    }
+  ],
+  "claim_permissions": {
+    "answer_bearing_generator_improvement_claim_allowed": false,
+    "more_api_same_design_allowed": false,
+    "tool_verifier_design_required": true,
+    "paper_claim_authorized": false,
+    "sci_q2_ready": false
+  },
+  "next_required_run": "R344_goal_audit_after_candidate_generator_probe",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r343_answer_bearing_candidate_probe_analysis_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r343_answer_bearing_candidate_probe_analysis_report.md"
+}

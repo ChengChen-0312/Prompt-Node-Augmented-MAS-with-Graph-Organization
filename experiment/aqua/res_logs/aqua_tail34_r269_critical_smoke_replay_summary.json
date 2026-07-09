@@ -1,0 +1,105 @@
+{
+  "run_id": "R269",
+  "title": "Critical case replay for R267",
+  "claim_boundary": "no_api_critical_case_replay",
+  "critical_tasks": [
+    "task_114",
+    "task_59",
+    "task_108",
+    "task_250",
+    "task_8",
+    "task_188"
+  ],
+  "task_outcomes": {
+    "task_114": {
+      "task_id": "task_114",
+      "gold_official": "D",
+      "gold_corrected_for_sensitivity": "C",
+      "baseline_prediction": "C",
+      "r267_prediction": "C",
+      "selected_source": "baseline",
+      "baseline_official_correct": false,
+      "r267_official_correct": false,
+      "correct_if_task114_label_corrected_to_c": true,
+      "interpretation": "R267 suppresses the weak R065/R068 switch and keeps ARG's C, which is official-wrong but audit-correct under strict-bound math."
+    },
+    "task_59": {
+      "task_id": "task_59",
+      "gold_official": "C",
+      "gold_corrected_for_sensitivity": "C",
+      "baseline_prediction": "B",
+      "r267_prediction": "B",
+      "selected_source": "baseline",
+      "baseline_official_correct": false,
+      "r267_official_correct": false,
+      "correct_if_task114_label_corrected_to_c": false,
+      "interpretation": "R267 suppresses a weak switch on a disputed question-rationale row."
+    },
+    "task_108": {
+      "task_id": "task_108",
+      "gold_official": "D",
+      "gold_corrected_for_sensitivity": "D",
+      "baseline_prediction": "B",
+      "r267_prediction": "D",
+      "selected_source": "safety_accept_objective",
+      "baseline_official_correct": false,
+      "r267_official_correct": true,
+      "correct_if_task114_label_corrected_to_c": true,
+      "interpretation": "R267 keeps a noisy-boundary fix because baseline direct votes split."
+    },
+    "task_250": {
+      "task_id": "task_250",
+      "gold_official": "E",
+      "gold_corrected_for_sensitivity": "E",
+      "baseline_prediction": "A",
+      "r267_prediction": "E",
+      "selected_source": "safety_accept_objective",
+      "baseline_official_correct": false,
+      "r267_official_correct": true,
+      "correct_if_task114_label_corrected_to_c": true,
+      "interpretation": "R267 keeps the clean fix because objective evidence is strong."
+    },
+    "task_8": {
+      "task_id": "task_8",
+      "gold_official": "E",
+      "gold_corrected_for_sensitivity": "E",
+      "baseline_prediction": "E",
+      "r267_prediction": "E",
+      "selected_source": "baseline",
+      "baseline_official_correct": true,
+      "r267_official_correct": true,
+      "correct_if_task114_label_corrected_to_c": true,
+      "interpretation": "R267 leaves the baseline prediction E as E; this is a clean-harm guard case."
+    },
+    "task_188": {
+      "task_id": "task_188",
+      "gold_official": "D",
+      "gold_corrected_for_sensitivity": "D",
+      "baseline_prediction": "D",
+      "r267_prediction": "D",
+      "selected_source": "baseline",
+      "baseline_official_correct": true,
+      "r267_official_correct": true,
+      "correct_if_task114_label_corrected_to_c": true,
+      "interpretation": "R267 leaves the baseline prediction D as D; this is a clean-harm guard case."
+    }
+  },
+  "critical_official": {
+    "fixes": [
+      "task_108",
+      "task_250"
+    ],
+    "harms": [],
+    "fix_harm": "2/0"
+  },
+  "critical_task114_corrected": {
+    "fixes": [
+      "task_114",
+      "task_108",
+      "task_250"
+    ],
+    "harms": [],
+    "fix_harm": "3/0"
+  },
+  "next_action": "Use this as preflight evidence only; fresh API is still required before a deployable student selector claim."
+}

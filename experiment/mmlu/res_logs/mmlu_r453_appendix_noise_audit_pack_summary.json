@@ -1,0 +1,69 @@
+{
+  "run_id": "R453",
+  "title": "Appendix noise audit pack",
+  "claim_boundary": "R453 writes an appendix that documents existing label-audit and audit-clean policies. It does not edit benchmark data, add new exclusions, or authorize paper claims.",
+  "no_api": true,
+  "broad_api": false,
+  "appendix_tex": "paper/appendices/label_audit.tex",
+  "aqua_audit_items": [
+    {
+      "task_id": "task_59",
+      "status": "excluded_from_audit_clean",
+      "reason": "dataset-disagreement/bad-option boundary identified during tail34 audit; kept out of clean claims.",
+      "paper_use": "appendix_only"
+    },
+    {
+      "task_id": "task_139",
+      "status": "excluded_from_audit_clean",
+      "reason": "dataset-disagreement flag from R264/R266; kept out of clean claims.",
+      "paper_use": "appendix_only"
+    },
+    {
+      "task_id": "task_228",
+      "status": "excluded_from_audit_clean",
+      "reason": "dataset-disagreement flag from R264/R266; kept out of clean claims.",
+      "paper_use": "appendix_only"
+    },
+    {
+      "task_id": "task_114",
+      "status": "sensitivity_boundary",
+      "reason": "official label D is not strictly supported under the deterministic interval check; R266 deterministic label is C.",
+      "paper_use": "sensitivity_only"
+    }
+  ],
+  "mmlu_audit_items": [
+    {
+      "task_id": "MMLU-college_chemistry_test-62",
+      "status": "dataset_label_wrong_groundtruth",
+      "reason": "MMLU-Redux 2.0 marks wrong_groundtruth; keep in appendix sensitivity analysis only.",
+      "paper_use": "excluded_from_training_distillation_and_main97",
+      "audit_clean_answer": "A",
+      "source": "mmlu_redux_2_0"
+    },
+    {
+      "task_id": "MMLU-high_school_physics_test-67",
+      "status": "dataset_label_wrong_groundtruth",
+      "reason": "MMLU-Redux 2.0 marks wrong_groundtruth; keep in appendix sensitivity analysis only.",
+      "paper_use": "excluded_from_training_distillation_and_main97",
+      "audit_clean_answer": "C",
+      "source": "mmlu_redux_2_0_and_external_answer_explanation"
+    },
+    {
+      "task_id": "MMLU-high_school_statistics_test-32",
+      "status": "label_correct_after_option_compression",
+      "reason": "Known ARG failure already used for R301/R302 gate discovery; exclude from further training/distillation to avoid tuning to a single audited item.",
+      "paper_use": "excluded_from_training_distillation_and_main97",
+      "audit_clean_answer": "D",
+      "source": "external_answer_explanation"
+    }
+  ],
+  "silent_benchmark_rewrite": false,
+  "training_on_corrected_test_labels": false,
+  "main_text_policy": "report_official_and_audit_clean_side_by_side",
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R454_reproducibility_artifact_index",
+  "main_tex_updated": false,
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r453_appendix_noise_audit_pack_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r453_appendix_noise_audit_pack_report.md"
+}

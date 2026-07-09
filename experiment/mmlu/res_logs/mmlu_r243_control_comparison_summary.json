@@ -1,0 +1,77 @@
+{
+  "run_id": "R243",
+  "title": "R238 control comparison",
+  "claim_boundary": "Offline control comparison only; no API, no superiority claim, and no SCI-Q2 readiness claim.",
+  "no_api": true,
+  "manifest_glob": "experiment/mmlu/promptedge_targets/r238_conservative/mmlu_r238_*.jsonl",
+  "source_paths": [
+    "experiment/aqua/aqua_first200_objective_guided_selector_results.jsonl",
+    "experiment/aqua/aqua_tail34_objective_guided_selector_results.jsonl",
+    "experiment/aqua/aqua_100_pn_result_ensemble_results.jsonl",
+    "experiment/aqua/aqua_tail34_arg_baseline_results.jsonl"
+  ],
+  "variant_results": {
+    "abstain_only_router": {
+      "records": 67,
+      "evaluated_records": 67,
+      "switches": 0,
+      "accuracy_count": 51,
+      "accuracy": 0.7611940298507462,
+      "baseline_accuracy_count": 51,
+      "fixes": 0,
+      "harms": 0
+    },
+    "always_switch_to_objective": {
+      "records": 67,
+      "evaluated_records": 67,
+      "switches": 67,
+      "accuracy_count": 57,
+      "accuracy": 0.8507462686567164,
+      "baseline_accuracy_count": 51,
+      "fixes": 8,
+      "harms": 2
+    },
+    "node_only_no_promptedge_text": {
+      "records": 67,
+      "evaluated_records": 67,
+      "switches": 10,
+      "accuracy_count": 57,
+      "accuracy": 0.8507462686567164,
+      "baseline_accuracy_count": 51,
+      "fixes": 6,
+      "harms": 0
+    },
+    "proposed_conservative_router": {
+      "records": 67,
+      "evaluated_records": 67,
+      "switches": 10,
+      "accuracy_count": 57,
+      "accuracy": 0.8507462686567164,
+      "baseline_accuracy_count": 51,
+      "fixes": 6,
+      "harms": 0
+    },
+    "random_switch_labels_same_rate": {
+      "records": 67,
+      "evaluated_records": 67,
+      "switches": 10,
+      "accuracy_count": 47,
+      "accuracy": 0.7014925373134329,
+      "baseline_accuracy_count": 51,
+      "fixes": 0,
+      "harms": 4
+    }
+  },
+  "claim_flags": {
+    "beats_abstain_accuracy": true,
+    "beats_random_accuracy": true,
+    "beats_always_accuracy": false,
+    "lower_harm_than_always": true,
+    "beats_node_only_accuracy": false,
+    "edge_text_effect_supported": false
+  },
+  "tests": {
+    "tests.test_r243_control_comparison": "1/1 passed",
+    "tests.test_r242_fit_abstention_policy": "3/3 passed"
+  }
+}

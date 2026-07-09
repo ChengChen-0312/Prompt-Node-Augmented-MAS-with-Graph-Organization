@@ -1,0 +1,100 @@
+{
+  "run_id": "R433",
+  "title": "Front matter and related work preflight",
+  "claim_boundary": "R433 identifies missing front-matter sections and related-work candidate sources. It does not generate final BibTeX or authorize manuscript claims.",
+  "no_api": true,
+  "broad_api": false,
+  "missing_front_matter_sections": [],
+  "local_pdf_sources": [
+    {
+      "file": "/Users/chencheng/Downloads/论文/AAAI'26 ARG-Designer.pdf",
+      "title_hint": "AAAI'26 ARG-Designer",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    },
+    {
+      "file": "/Users/chencheng/Downloads/论文/ACL'25 AgentDropout.pdf",
+      "title_hint": "ACL'25 AgentDropout",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    },
+    {
+      "file": "/Users/chencheng/Downloads/论文/EMNLP'25 EIB-Learner.pdf",
+      "title_hint": "EMNLP'25 EIB-Learner",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    },
+    {
+      "file": "/Users/chencheng/Downloads/论文/ICLR'25 AgentPrune.pdf",
+      "title_hint": "ICLR'25 AgentPrune",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    },
+    {
+      "file": "/Users/chencheng/Downloads/论文/ICLR'26 GoA.pdf",
+      "title_hint": "ICLR'26 GoA",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    },
+    {
+      "file": "/Users/chencheng/Downloads/论文/ICLR'26 MAS2.pdf",
+      "title_hint": "ICLR'26 MAS2",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    },
+    {
+      "file": "/Users/chencheng/Downloads/论文/NeurIPS-2024-prog-a-graph-prompt-learning-benchmark-Paper-Datasets_and_Benchmarks_Track(1).pdf",
+      "title_hint": "NeurIPS-2024-prog-a-graph-prompt-learning-benchmark-Paper-Datasets_and_Benchmarks_Track(1)",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    },
+    {
+      "file": "/Users/chencheng/Downloads/论文/arXiv'26 GoAgent.pdf",
+      "title_hint": "arXiv'26 GoAgent",
+      "status": "local_pdf_candidate_needs_metadata_audit"
+    }
+  ],
+  "web_seed_sources": [
+    {
+      "title": "ARG-Designer",
+      "url": "https://github.com/Shiy-Li/ARG-Designer",
+      "role": "main baseline; autoregressive graph generation for MAS design",
+      "status": "candidate_needs_bibtex_audit"
+    },
+    {
+      "title": "AgentDropout",
+      "url": "https://aclanthology.org/2025.acl-long.1170/",
+      "role": "dynamic agent/edge elimination and token-efficient MAS topology optimization",
+      "status": "candidate_needs_bibtex_audit"
+    },
+    {
+      "title": "EIB-Learner",
+      "url": "https://aclanthology.org/2025.emnlp-main.623/",
+      "role": "information-propagation topology design for error suppression and insight preservation",
+      "status": "candidate_needs_bibtex_audit"
+    },
+    {
+      "title": "AgentPrune",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/bbc461518c59a2a8d64e70e2c38c4a0e-Paper-Conference.pdf",
+      "role": "communication pruning and cost/robustness baseline",
+      "status": "candidate_needs_bibtex_audit"
+    },
+    {
+      "title": "Graph-of-Agents",
+      "url": "https://arxiv.org/abs/2604.17148",
+      "role": "graph-based agent selection, directed message passing, and pooling for LLM collaboration",
+      "status": "candidate_needs_bibtex_audit"
+    },
+    {
+      "title": "ProG",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/ad3e803a977f4279330c6ab7245937c6-Abstract-Datasets_and_Benchmarks_Track.html",
+      "role": "graph prompt learning benchmark; useful for positioning prompts-as-graphs versus PromptEdges",
+      "status": "candidate_needs_bibtex_audit"
+    }
+  ],
+  "research_lit_sources_contributed": [
+    "local",
+    "web"
+  ],
+  "citation_audit_required_before_final_bib": true,
+  "front_matter_draft_authorized_next": true,
+  "main_tex_update_required_after_front_matter": true,
+  "paper_claim_authorized": false,
+  "sci_q2_ready": false,
+  "next_required_run": "R434_front_matter_initial_draft",
+  "summary_json": "experiment/mmlu/res_logs/mmlu_r433_front_matter_and_related_work_preflight_summary.json",
+  "report_md": "experiment/mmlu/run_logs/mmlu_r433_front_matter_and_related_work_preflight_report.md"
+}

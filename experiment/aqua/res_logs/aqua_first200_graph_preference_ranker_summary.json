@@ -1,0 +1,82 @@
+{
+  "train_slice": "aqua_100",
+  "eval_slice": "aqua_next100",
+  "source_pairs": 228,
+  "train_pairs": 123,
+  "eval_pairs": 105,
+  "feature_names": [
+    "strong_contract",
+    "direct_agreement",
+    "direct_vote_support",
+    "prompt_node_graph",
+    "conflict_penalty",
+    "weak_contract_penalty",
+    "strong_router_contract_count",
+    "router_matches_direct_majority",
+    "has_prompt_node_graph"
+  ],
+  "model": {
+    "feature_names": [
+      "strong_contract",
+      "direct_agreement",
+      "direct_vote_support",
+      "prompt_node_graph",
+      "conflict_penalty",
+      "weak_contract_penalty",
+      "strong_router_contract_count",
+      "router_matches_direct_majority",
+      "has_prompt_node_graph"
+    ],
+    "weights": {
+      "strong_contract": 0.4,
+      "direct_agreement": 0.30000000000000004,
+      "direct_vote_support": 0.0,
+      "prompt_node_graph": 0.0,
+      "conflict_penalty": 0.0,
+      "weak_contract_penalty": 0.2,
+      "strong_router_contract_count": 0.1,
+      "router_matches_direct_majority": 0.1,
+      "has_prompt_node_graph": 0.0
+    },
+    "epochs": 20,
+    "learning_rate": 0.1,
+    "updates": 1,
+    "claim_boundary": "Pairwise graph-ranker trained on label-free graph-objective preferences. The model does not use gold answers, audit labels, correctness fields, predicted options, or objective_score."
+  },
+  "train_accuracy": 1.0,
+  "eval_accuracy": 0.9904761904761905,
+  "train_metrics": {
+    "total_pairs": 123,
+    "correct_pairs": 123,
+    "accuracy": 1.0,
+    "mean_margin": 2.507317073170732,
+    "min_margin": 1.0000000000000002
+  },
+  "eval_metrics": {
+    "total_pairs": 105,
+    "correct_pairs": 104,
+    "accuracy": 0.9904761904761905,
+    "mean_margin": 2.3600000000000003,
+    "min_margin": 0.0
+  },
+  "outcome_field_violations": 0,
+  "excluded_outcome_fields": [
+    "audit_label",
+    "baseline_is_solved",
+    "clean_label",
+    "is_solved",
+    "r035_selected_prediction",
+    "r035_selected_source",
+    "true_answer"
+  ],
+  "excluded_feature_fields": [
+    "objective_score",
+    "predicted_answer",
+    "router_option",
+    "true_answer",
+    "audit_label",
+    "is_solved"
+  ],
+  "claim_boundary": "Offline graph-ranker fit to label-free PromptNode graph-objective pairwise preferences. Accuracy here is preference agreement with the objective, not task-answer accuracy.",
+  "input_jsonl": "experiment/aqua/aqua_first200_graph_objective_pairwise_preferences.jsonl"
+}

@@ -1,0 +1,42 @@
+{
+  "rule": "r121_guarded_two_view_or_graph_policy_probe_protocol",
+  "protocol_only": true,
+  "no_api_run": true,
+  "regression_tasks": [
+    "task_8",
+    "task_108",
+    "task_188",
+    "task_250"
+  ],
+  "candidate_protocols": [
+    "guarded_router_calibrated_two_view",
+    "guarded_candidate_calibrated_two_view",
+    "train_time_graph_policy_probe"
+  ],
+  "max_promptnode_views_per_task": 2,
+  "broad_api_allowed_before_smoke": false,
+  "explicit_promptnode_evidence_required": true,
+  "strong_contract_or_two_view_agreement_required": true,
+  "blocks_direct_vote_only_switches": true,
+  "r119_clean_harm_blocked_by_protocol": true,
+  "r119_promptnode_graph_hits": "0/4",
+  "r119_strong_router_contract_rows": "0/4",
+  "r119_clean_harm_tasks": [
+    "task_250"
+  ],
+  "r119_drift_type": "cost_driven_single_view_shortcut_without_promptnode_graph_evidence",
+  "required_gate_checks": [
+    "no_switch_without_explicit_promptnode_graph_or_strong_contract",
+    "no_switch_without_two_view_nonbaseline_agreement_unless_graph_policy_confident",
+    "no_broad_api_before_same_four_task_smoke_passes",
+    "same_model_gpt_4o_2024_08_06",
+    "tail34_artifacts_not_training_data"
+  ],
+  "pass_conditions": {
+    "selected_accuracy_at_least_internal_arg": true,
+    "clean_harm_count": 0,
+    "policy_input_violations": 0,
+    "promptnode_evidence_on_switches": true
+  },
+  "claim_boundary": "protocol only; no new API, accuracy, or cost result"
+}

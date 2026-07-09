@@ -1,0 +1,28 @@
+{
+  "rule": "r079_r078_selector_tail34_replay",
+  "timestamp": "2026-07-08T16:54:04.149819",
+  "objective_summary_json": "experiment/aqua/res_logs/aqua_tail34_contract_graph_objective_summary.json",
+  "model_summary_json": "experiment/aqua/res_logs/aqua_first200_r078_clean_fix_selector_summary.json",
+  "total_tasks": 34,
+  "overall": {
+    "total_tasks": 34,
+    "solved_tasks": 28,
+    "baseline_solved_tasks": 28,
+    "overall": "28/34",
+    "baseline": "28/34",
+    "delta_vs_baseline": 0,
+    "fixes": 0,
+    "harms": 0,
+    "fix_harm": "0/0",
+    "switches": 0,
+    "selected_source_counts": {
+      "baseline": 34
+    }
+  },
+  "selector_feature_violations": 0,
+  "total_variants": 136,
+  "variants_with_generated_graph": 0,
+  "variants_with_explicit_promptnode_graph": 0,
+  "variants_with_promptnode_specs": 0,
+  "claim_boundary": "R079 is a replay applying the R078 selector to existing tail34 graph-objective traces. It exposes the missing explicit PromptNode graph metadata boundary: current tail34 traces contain no generated graph specs, so the selector falls back to baseline and does not create a new answer-accuracy gain."
+}

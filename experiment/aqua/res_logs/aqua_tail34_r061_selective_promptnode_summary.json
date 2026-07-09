@@ -1,0 +1,32 @@
+{
+  "rule": "r061_selective_promptnode_activation",
+  "total_tasks": 34,
+  "solved_tasks": 29,
+  "accuracy": 0.8529411764705882,
+  "pass_at_1": 85.29411764705883,
+  "baseline_solved_tasks": 28,
+  "baseline_accuracy": 0.8235294117647058,
+  "baseline_pass_at_1": 82.35294117647058,
+  "promptnode_solved_tasks": 25,
+  "promptnode_accuracy": 0.7352941176470589,
+  "promptnode_pass_at_1": 73.52941176470588,
+  "delta_vs_baseline": 1,
+  "delta_vs_promptnode": 4,
+  "selected_promptnode_count": 1,
+  "switch_tasks": [
+    "task_108"
+  ],
+  "fixes_vs_baseline": 1,
+  "harms_vs_baseline": 0,
+  "fix_tasks": [
+    "task_108"
+  ],
+  "harm_tasks": [],
+  "split_name": "tail34",
+  "baseline_file": "experiment/aqua/aqua_tail34_arg_baseline_results.jsonl",
+  "promptnode_file": "experiment/aqua/aqua_tail34_r058_router_contract_terminal_results.jsonl",
+  "output_file": "experiment/aqua/aqua_tail34_r061_selective_promptnode_results.jsonl",
+  "summary_json": "experiment/aqua/res_logs/aqua_tail34_r061_selective_promptnode_summary.json",
+  "report_md": "experiment/aqua/run_logs/aqua_tail34_r061_selective_promptnode_report.md",
+  "boundary": "replay_over_existing_traces_not_fresh_integrated_api_run"
+}
