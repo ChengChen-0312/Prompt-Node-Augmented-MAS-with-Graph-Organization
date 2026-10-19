@@ -1,0 +1,170 @@
+{
+  "sources": {
+    "paired_results": {
+      "path": "archive://explore30/private/flat-pn-ablnopn1c/NOT_PAPER_EVIDENCE-pnablnopn1c-report.json",
+      "sha256": "172644567b22e94c0a9c8391b972ec9310188d6b74d946b31013c091e99701b9"
+    },
+    "paired_protocol": {
+      "path": "archive://explore30/private/flat-pn-ablnopn1c/NOT_PAPER_EVIDENCE-pnablnopn1c-prereg.json",
+      "sha256": "f99d812ee357fe88b32a883b297fd3c28c7fe699d7e5aaa6d4604ef962043e72"
+    },
+    "cost_protocol": {
+      "path": "archive://explore30/private/flat-pn-divhard1/NOT_PAPER_EVIDENCE-pndivhard1-prereg.json",
+      "sha256": "ded8dd290b31052ec0fd99e7e03d7b631faa120f6b7fed3024f3ce4641ebe544"
+    },
+    "cost_receipt": {
+      "path": "archive://explore30/private/flat-pn-divhard1/NOT_PAPER_EVIDENCE-pndivhard1-final-receipt.json",
+      "sha256": "a0ffbf3e0b59b45086c8e47e39d6485b25b74cde2a26d7050a322dad3064dfb2"
+    },
+    "cost_metric_implementation": {
+      "path": "archive://explore30/private/flat-pn-divhard1/report.py",
+      "sha256": "9b5d0367f0111464642c1d0f5b1096a00cc3bd5c4f2ecaeabcb135b57c7d9d8d"
+    },
+    "cost_correction": {
+      "path": "archive://explore30/private/flat-pn-divhard1/NOT_PAPER_EVIDENCE-pndivhard1-CORRECTIONS.json",
+      "sha256": "e84eb88eeed89582419203be8f4345a9f27542cfc616c1188a927b2c10c71ab9"
+    },
+    "cost_groups": {
+      "path": "archive://explore30/private/flat-pn-divhard1/run/NOT_PAPER_EVIDENCE-pndivhard1-generation-ledger.json",
+      "sha256": "530b4714fb3144a9b28a2dcd4b8169ce4d33ce1dce80b7f2e480a463b3af2bb7"
+    },
+    "prior_inventory": {
+      "path": "archive://PN-历史实验盘点与缺口核对-20261010/实验覆盖与缺口表.csv",
+      "sha256": "47825d5da89c0bac386a881c80c36e87c89787af0244377ad44088578ceeaa85"
+    }
+  },
+  "paired": {
+    "archived_reference": {
+      "A1_on_96": 6,
+      "A2_on_96": 14,
+      "A1_on_231": 106,
+      "A2_on_231": 114
+    },
+    "rescued_on_96": {
+      "A1": 9,
+      "A2": 13,
+      "B1": 3,
+      "B2r1": 8,
+      "B2r2": 5,
+      "B3r1": 10,
+      "B3r2": 12
+    },
+    "run_to_run": {
+      "B2": {
+        "r1": 8,
+        "r2": 5,
+        "count_difference": 3,
+        "per_problem_flips": 5
+      },
+      "B3": {
+        "r1": 10,
+        "r2": 12,
+        "count_difference": -2,
+        "per_problem_flips": 8
+      },
+      "A2": {
+        "archived": 14,
+        "same_batch": 13,
+        "per_problem_flips": 7
+      },
+      "A1": {
+        "archived": 6,
+        "same_batch": 9,
+        "per_problem_flips": 3
+      },
+      "single_observation_arms": [
+        "B1 (one run)",
+        "A1 same-batch (plus the archived run)"
+      ]
+    },
+    "replication_same_batch_A2_minus_A1": {
+      "left_only": 8,
+      "right_only": 4,
+      "discordant": 12,
+      "paired_difference": 4,
+      "p_exact_two_sided": 0.3876953125
+    }
+  },
+  "cost_control": {
+    "metric": "task-level candidate coverage, NOT selected-program delivery",
+    "previous_hidden_labels_used_in_task_selection": true,
+    "decision": {
+      "manipulation_gate": {
+        "S1_problems": 10,
+        "S1_widened": 5
+      },
+      "primary_equal_calls": {
+        "diversity": {
+          "problems_rescued": 2,
+          "candidates": 93,
+          "novel_non_error": 39,
+          "rescued_qids_archive_only": [
+            "abc354_e",
+            "abc378_e"
+          ]
+        },
+        "control_first_3": {
+          "problems_rescued": 1,
+          "candidates": 93,
+          "novel_non_error": 12,
+          "rescued_qids_archive_only": [
+            "abc378_e"
+          ]
+        }
+      },
+      "secondary_equal_dollars": {
+        "diversity": {
+          "problems_rescued": 2,
+          "candidates": 93,
+          "novel_non_error": 39,
+          "rescued_qids_archive_only": [
+            "abc354_e",
+            "abc378_e"
+          ]
+        },
+        "control_all_4": {
+          "problems_rescued": 1,
+          "candidates": 124,
+          "novel_non_error": 17,
+          "rescued_qids_archive_only": [
+            "abc378_e"
+          ]
+        }
+      },
+      "pooled_with_pilot_equal_calls": {
+        "diversity_problems_rescued": 4,
+        "diversity_candidates": 153,
+        "control_problems_rescued": 1,
+        "control_candidates": 153
+      },
+      "archived_additional_iid_novelty": [
+        48,
+        275
+      ],
+      "frozen_p": {
+        "hard_alone": "NOT_IN_FROZEN_TABLE",
+        "pooled_with_pilot": 0.061,
+        "equal_dollars": "NOT_IN_FROZEN_TABLE",
+        "policy": "p-values come only from the frozen tables below, by looking up observed counts. No new test, no alternative tail, no subgroup p-values. Hard alone cannot reach 0.05 (2 of 93 is p = 0.249); this batch answers whether the effect holds on hard and brings the pooled sample to where 4 of 153 is p = 0.061 and 5 of 153 is p = 0.030. The hard-alone p is not a conclusion."
+      },
+      "reading": "MIXED_BOTH_ARMS_RESCUE"
+    },
+    "accounting": {
+      "CONTROL": {
+        "calls": 124,
+        "input_tokens": 89844,
+        "output_tokens": 100521,
+        "usd": "1.22070000"
+      },
+      "DIVERSITY": {
+        "calls": 93,
+        "input_tokens": 211278,
+        "output_tokens": 79061,
+        "usd": "1.17752500"
+      }
+    },
+    "receipt_cost": "2.39822500",
+    "correction": "Pooled p=0.061 retracted in source correction; not used in manuscript"
+  },
+  "scope": "Read existing reports and reporting function; aggregate existing cost fields only. No generation, candidate execution, hidden-test access, rescoring or full ledger audit."
+}

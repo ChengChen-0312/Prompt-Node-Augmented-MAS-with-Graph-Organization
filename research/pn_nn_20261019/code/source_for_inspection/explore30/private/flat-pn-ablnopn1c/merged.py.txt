@@ -1,0 +1,37 @@
+"""The merged candidate set of all three packs, with the per-pack id rule enforced. Keyless."""
+import json, sys
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+STAGE = Path(__file__).resolve().parent
+sys.path.insert(0, str(STAGE))
+import prepare as m
+
+b = m.base
+
+
+def pack_qids():
+    c1 = json.loads(m.PACK1_CLOSURE.read_text()); c2 = json.loads(m.CLOSURE.read_text())
+    order = [p['qid'] for p in json.loads((m.PACK1 / 'materialization.json').read_text())['problems']]
+    qids1 = order[:c1['cut']['pack1_problems']]
+    qids2 = [q for q in c1['pack2_qids_archive_only'] if q not in set(c2['pack3_qids_archive_only'])]
+    return {m.PACK1_PREFIX: qids1, m.PACK2_PREFIX: qids2, m.CANDIDATE_PREFIX: c2['pack3_qids_archive_only']}
+
+
+def parse_id(cid, owners):
+    parts = cid.split('/')
+    if len(parts) != 3 or parts[0] not in owners: return None
+    stream, _, k = parts[2].rpartition('-')
+    if stream not in b.STREAMS or k not in ('1', '2', '3') or parts[1] not in owners[parts[0]]: return None
+    return parts[1], stream, int(k), parts[0]
+
+
+def load_candidates():
+    c1 = json.loads(m.PACK1_CLOSURE.read_text()); c2 = json.loads(m.CLOSURE.read_text())
+    f1 = m.PACK2 / (m.p2.P + 'pack1-candidates.jsonl'); f2 = STAGE / (m.P + 'pack2-candidates.jsonl'); f3 = STAGE / (m.P + 'candidates.jsonl')
+    if b.digest(f1) != c1['pack1']['candidates_sha256']: raise RuntimeError('PACK1_CANDIDATES_CHANGED')
+    if b.digest(f2) != c2['pack2']['kept_candidates_sha256']: raise RuntimeError('PACK2_CANDIDATES_CHANGED')
+    marker = json.loads((STAGE / (m.P + 'GENERATION_DONE.json')).read_text())
+    if b.digest(f3) != marker['candidates_sha256']: raise RuntimeError('PACK3_CANDIDATES_CHANGED')
+    rows = [json.loads(l) for l in f1.open()] + [json.loads(l) for l in f2.open()] + [dict(json.loads(l), pack=3) for l in f3.open()]
+    return rows, marker

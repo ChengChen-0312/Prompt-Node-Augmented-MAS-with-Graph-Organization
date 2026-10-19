@@ -1,0 +1,64 @@
+{
+  "accounting": "Every output token (analysis, plan and code) counts toward usage; truncation and no-code rates are reported separately.",
+  "applies_to": "the three shared initial drafts, the three A1 extras and the three Plan extras of this dataset alike",
+  "authorization": "Direction given by the user in the Claude Code session on 2026-10-11. Not mentor approval.",
+  "campaign_id": "QWEN38_PLAN_A1_LOCAL_V1",
+  "comparison_note": "Historical GPT-4o LCB runs used a 2000-token output limit. Any comparison with them must state the different limit; it is not a model-only change. 16384 does not rule out truncation either.",
+  "dataset": "lcb",
+  "max_tokens": {
+    "lcb": 16384
+  },
+  "original_freeze_rewritten": false,
+  "original_freeze_sha256": "490e29ea39cad9d17867ce26208317e93ddd056d25fc63b318f25d65e8172b79",
+  "other_datasets": {
+    "ojbench": 16384,
+    "taco": 16384,
+    "usaco": 16384
+  },
+  "previous_max_tokens": {
+    "lcb": 2000
+  },
+  "progress_at_revision": {
+    "lcb": {
+      "complete": 0,
+      "requests_completed": 0,
+      "started": 0,
+      "total": 231
+    },
+    "ojbench": {
+      "complete": 0,
+      "requests_completed": 0,
+      "started": 0,
+      "total": 28
+    },
+    "taco": {
+      "complete": 0,
+      "requests_completed": 0,
+      "started": 0,
+      "total": 231
+    },
+    "usaco": {
+      "complete": 3,
+      "requests_completed": 27,
+      "started": 4,
+      "total": 110
+    }
+  },
+  "reason": "User direction of 2026-10-11 (two pasted instructions, the second superseding item 3 of the first): (1) Schedule: run the complete original LCB231 first, then resume USACO from its saved position, then TACO and OJBench. Order of whole datasets only; no task removed, no judging changed; USACO paused safely after 27 completed requests with all replies, public results and usage rows kept and nothing resent. (2) Budget: LCB shared initials, A1 extras and Plan extras all use a 16384-token output limit instead of the historical 2000, because with thinking disabled this model writes long analysis before its code (USACO replies: one hit 16384 with no code, one reached 10295 tokens) and a 2000 limit would let truncation dominate the A1-vs-Plan comparison. Frozen before the first LCB request as a separate budget revision; freeze.json and protocol.py are byte-identical to the original; thinking stays disabled; temperature, prompts, extraction, public tests and selection unchanged. (3) Engineering: strict scorer can pause between programs via the STOP file; usage rows of a dataset with no usage file yet read as empty.",
+  "requests_of_this_dataset_before_revision": 0,
+  "revised_at": "2026-10-11T05:17:34+1100",
+  "schema": "QWEN38_BUDGET_REVISION_V1",
+  "scientific_conditions_changed": true,
+  "unchanged": [
+    "model and quantization",
+    "thinking disabled",
+    "temperature / top_p / top_k / min_p",
+    "system prompt and differ instruction",
+    "plan and code extraction",
+    "public tests and limits",
+    "selection rule",
+    "task list and order within the dataset",
+    "request seeds",
+    "strict scoring"
+  ]
+}

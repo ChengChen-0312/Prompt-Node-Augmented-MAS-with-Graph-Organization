@@ -1,0 +1,193 @@
+"""pn-ablation-nopn-1: same-architecture ablations of the record-conditioned layer on the 96 covered gate-open problems.
+
+Five arms, seven streams, all interleaved per problem in one batch:
+  A1   i.i.d. resampling (frozen E16 A1 call, byte-identical to the archived i.i.d. samples)       -- same-batch rerun
+  A2   record-conditioned (tiny27 DIVERSITY_INSTRUCTION + approach texts, sequential)                -- same-batch rerun
+  B1   plain 3-agent MAS round 2: each agent sees its own first-round reply and the other two FULL replies (with code)
+  B2   record without instruction: A2 with the "produce ... differs from all of them" instruction removed, x2 replicates
+  B3   failure signal only: "your previous three attempts all failed the public tests", no approach text, x2 replicates
+
+python prepare.py            -> materialize (no provider, no credential, no execution, no hidden read)
+python prepare.py --freeze   -> write prereg + sha256 after checks.py passed
+"""
+from datetime import datetime, timezone
+from decimal import Decimal
+import argparse, csv, glob, hashlib, importlib.util, json, sys
+from collections import defaultdict
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+STAGE = Path(__file__).resolve().parent
+PRIV = STAGE.parent
+EXPLORE = PRIV.parent
+if str(EXPLORE) not in sys.path: sys.path.insert(0, str(EXPLORE))
+from arg_probe.e16_lcb_contracts import SYSTEM_PROMPT, MODEL, TEMPERATURE, MAX_TOKENS, render_user_prompt
+from arg_probe.e16_lcb_sandbox import extract_python_code
+
+P = 'NOT_PAPER_EVIDENCE-pnablnopn1-'
+SCOPE = 'PN_ABLATION_NOPN_1'
+CANDIDATE_PREFIX = 'pnablnopn1'
+AUTH_SENTENCE_EXPECTED = '授权付费：pn-ablation-nopn-1，上限 2300 次 / 28 美元'
+CALL_CAP = 2300
+COST_CAP = Decimal('28')
+E21 = PRIV / 'flat-e21p2'
+RUN = E21 / 'NOT_PAPER_EVIDENCE-e21p2-run-20260904T082712Z'
+POOL = PRIV / 'flat-e26a' / 'NOT_PAPER_EVIDENCE-e26a-pool-state.csv'
+TINY = PRIV / 'flat-pn-divtiny27'
+POPULATIONS = ('divgen1', 'divhard1', 'divharm18', 'divtiny27', 'divctl1')
+
+# A2 wording and helpers are imported from the tiny27 stage, not retyped, so A2 is byte-identical to the archived D arm.
+_spec = importlib.util.spec_from_file_location('tiny27_prepare_for_ablnopn1', TINY / 'prepare.py')
+tiny = importlib.util.module_from_spec(_spec); sys.modules[_spec.name] = tiny; _spec.loader.exec_module(tiny)
+DIVERSITY_INSTRUCTION = tiny.DIVERSITY_INSTRUCTION
+plan_text = tiny.plan_text
+solver_messages = tiny.solver_messages
+control_payload = tiny.control_payload            # A1
+diversity_payload = tiny.diversity_payload        # A2
+EMPTY_PLAN = '(This attempt gave no approach description.)'
+
+# B2: A2 with the differ-instruction removed. The header sentence and the output-format sentence are kept;
+# "and state how your approach differs" goes with the instruction it refers to.
+B2_INSTRUCTION = ('Earlier attempts at this problem took the approaches listed below. '
+                  'Briefly plan, then output the final solution in a single ```python code block.')
+# B3: failure signal only, cumulative count aligned with A2's sequential steps (author decision 2026-09-19):
+# step k states N = 3 + (k - 1) failed attempts. States more than A2 ever does (A2 never says the attempts failed).
+B3_COUNT_WORDS = {1: 'three', 2: 'four', 3: 'five'}
+
+
+def b3_instruction(k):
+    return (f'Your previous {B3_COUNT_WORDS[k]} attempts at this problem all failed the public tests. '
+            'Briefly plan, then output the final solution in a single ```python code block.')
+
+
+B3_INSTRUCTION = b3_instruction(1)          # step 1 text, byte-identical to the version the author reviewed
+# B1: plain 3-agent MAS, second round. Own first-round reply as the assistant turn, the other two full replies (code included).
+B1_HEADER = 'Other agents answered this problem as follows.'
+B1_FOOTER = 'Give your final solution in a single ```python code block.'
+
+STREAMS = ('A1', 'A2', 'B1', 'B2r1', 'B2r2', 'B3r1', 'B3r2')
+ARM_OF = {'A1': 'A1', 'A2': 'A2', 'B1': 'B1', 'B2r1': 'B2', 'B2r2': 'B2', 'B3r1': 'B3', 'B3r2': 'B3'}
+STEPS = 3
+
+
+def digest(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def dump(path, value): Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
+def sha_payload(payload): return hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
+def b2_payload(task, plans):
+    body = B2_INSTRUCTION + ''.join(f'\n\nPrevious approach {i}:\n{p}' for i, p in enumerate(plans, 1))
+    return {'model': MODEL, 'temperature': TEMPERATURE, 'max_tokens': MAX_TOKENS,
+            'messages': solver_messages(task) + [{'role': 'user', 'content': body}]}
+
+
+def b3_payload(task, k=1):
+    return {'model': MODEL, 'temperature': TEMPERATURE, 'max_tokens': MAX_TOKENS,
+            'messages': solver_messages(task) + [{'role': 'user', 'content': b3_instruction(k)}]}
+
+
+def b1_payload(task, replies, agent):
+    """agent in 1..3. Own first-round reply verbatim as the assistant turn; the other two verbatim, in index order."""
+    others = [replies[j] for j in range(3) if j != agent - 1]
+    body = B1_HEADER + ''.join(f'\n\nAgent {k}:\n{o}' for k, o in enumerate(others, 1)) + '\n\n' + B1_FOOTER
+    return {'model': MODEL, 'temperature': TEMPERATURE, 'max_tokens': MAX_TOKENS,
+            'messages': solver_messages(task) + [{'role': 'assistant', 'content': replies[agent - 1]}, {'role': 'user', 'content': body}]}
+
+
+def stream_order(index):
+    """Round-robin start rotates with the problem index so no stream is always first."""
+    k = index % len(STREAMS)
+    return list(STREAMS[k:] + STREAMS[:k])
+
+
+def population_arms():
+    """qid -> which archived population supplied the archived C (A1) and D (A2) second-round candidates."""
+    src = defaultdict(set)
+    for d in POPULATIONS:
+        for line in (PRIV / f'flat-pn-{d}' / f'NOT_PAPER_EVIDENCE-pn{d}-candidates.jsonl').open():
+            if line.strip():
+                c = json.loads(line); src[c['question_id']].add((d, c['candidate_id'].split('/')[-1][0]))
+    return src
+
+
+def select():
+    pool = defaultdict(list)
+    for r in csv.DictReader(POOL.open()): pool[r['qid']].append(r)
+    initial = {q: sorted((r for r in v if r['source'] == 'INITIAL'), key=lambda r: int(r['sample_idx'])) for q, v in pool.items()}
+    gate = sorted(q for q in pool if not any(r['public_pass'] == 'True' for r in initial[q]))
+    src = population_arms()
+    covered = sorted(q for q in gate if any(a == 'c' for _, a in src[q]) and any(a == 'd' for _, a in src[q]))
+    uncovered = sorted(set(gate) - set(covered))
+    return pool, initial, gate, covered, uncovered, src
+
+
+def materialize():
+    if (STAGE / 'materialization.json').exists(): raise RuntimeError('ALREADY_MATERIALIZED')
+    pool, initial, gate, covered, uncovered, src = select()
+    assert len(pool) == 231 and len(gate) == 97 and len(covered) == 96 and len(uncovered) == 1
+    tasks = {json.loads(l)['question_id']: json.loads(l) for l in (E21 / 'NOT_PAPER_EVIDENCE-e21p2-public-tasks.jsonl').open()}
+    codes = {json.loads(l)['candidate_id']: json.loads(l)['code'] for l in (RUN / 'NOT_PAPER_EVIDENCE-e21p2-scoring-candidates.jsonl').open()}
+    raw_by_ordinal = {int(Path(f).name.split('-')[0]): Path(f) for f in glob.glob(str(RUN / 'NOT_PAPER_EVIDENCE-e21p2-raw-responses' / '*.json'))}
+    import tiktoken
+    enc = tiktoken.encoding_for_model('gpt-4o')
+    ntok = lambda msgs: sum(len(enc.encode(x['content'])) + 4 for x in msgs) + 3
+    problems, estimate, est_by_arm, calls_by_arm = [], Decimal(0), defaultdict(Decimal), defaultdict(int)
+    for index, q in enumerate(covered):
+        task = tasks[q]; ini = initial[q]
+        assert [int(r['sample_idx']) for r in ini] == [0, 1, 2] and all(r['public_pass'] == 'False' for r in ini)
+        refs, plans, replies = [], [], []
+        for r in ini:
+            path = raw_by_ordinal[int(r['ledger_ordinal'])]
+            raw = json.loads(path.read_text()); content = raw['response']['choices'][0]['message']['content']
+            if raw['qid'] != q or raw['response'].get('model') != MODEL or extract_python_code(content) != codes[r['candidate_id']]:
+                raise RuntimeError('INITIAL_RAW_RESPONSE_DOES_NOT_REPRODUCE_POOL_CODE')
+            pt = plan_text(content); assert pt['text']
+            plans.append(pt['text']); replies.append(content)
+            refs.append({'candidate_id': r['candidate_id'], 'sample_idx': int(r['sample_idx']), 'ledger_ordinal': int(r['ledger_ordinal']),
+                         'raw_response_path': str(path), 'raw_response_sha256': digest(path),
+                         'reply_sha256': hashlib.sha256(content.encode()).hexdigest(),
+                         'code_sha256': hashlib.sha256(codes[r['candidate_id']].encode()).hexdigest() if isinstance(codes[r['candidate_id']], str) else None,
+                         'plan_sha256': hashlib.sha256(pt['text'].encode()).hexdigest(), 'plan_chars': len(pt['text']), 'plan_truncated': pt['truncated'],
+                         'archived_response_had_program': pt['had_program'], 'archived_public_pass': r['public_pass'] == 'True'})
+        a1 = control_payload(task); a2 = diversity_payload(task, plans); b2 = b2_payload(task, plans); b3 = b3_payload(task, 1)
+        b1 = [b1_payload(task, replies, i) for i in (1, 2, 3)]
+        assert a2['messages'][:2] == a1['messages'] == b2['messages'][:2] == b3['messages'][:2] == b1[0]['messages'][:2]
+        completion = sorted(int(r['completion_tokens']) for r in pool[q])[len(pool[q]) // 2]
+        mean_plan = sum(len(enc.encode(x)) for x in plans) / 3
+        cost = lambda prompt: Decimal(prompt) * Decimal('0.0000025') + Decimal(completion) * Decimal('0.00001')
+        per = {'A1': [ntok(a1['messages'])] * 3,
+               'A2': [ntok(a2['messages']) + k * (mean_plan + 8) for k in range(3)],
+               'B1': [ntok(p['messages']) for p in b1],
+               'B2r1': [ntok(b2['messages']) + k * (mean_plan + 8) for k in range(3)],
+               'B3r1': [ntok(b3_payload(task, k)['messages']) for k in (1, 2, 3)]}
+        per['B2r2'] = per['B2r1']; per['B3r2'] = per['B3r1']
+        for s, toks in per.items():
+            c = sum(cost(t) for t in toks); estimate += c; est_by_arm[s] += c; calls_by_arm[s] += len(toks)
+        problems.append({'qid': q, 'index': index, 'difficulty': task['difficulty'], 'task_type': task['task_type'],
+            'archived_second_round_source': sorted(f'{d}:{a}' for d, a in src[q]),
+            'initial': refs, 'stream_order': stream_order(index),
+            'payload_sha256': {'A1': sha_payload(a1), 'A2_step1': sha_payload(a2), 'B2_step1': sha_payload(b2), 'B3_step1': sha_payload(b3), 'B3_step2': sha_payload(b3_payload(task, 2)), 'B3_step3': sha_payload(b3_payload(task, 3)),
+                               'B1_agent1': sha_payload(b1[0]), 'B1_agent2': sha_payload(b1[1]), 'B1_agent3': sha_payload(b1[2])},
+            'archived_median_completion_tokens': completion})
+    calls = len(STREAMS) * STEPS * len(problems)
+    dump(STAGE / 'materialization.json', {'scope': SCOPE, 'status': 'MATERIALIZED_OFFLINE_UNAUTHORIZED', 'created_at_utc': datetime.now(timezone.utc).isoformat(),
+        'problems': problems, 'gate_open': len(gate), 'covered': len(covered), 'uncovered_gate_qids_archive_only': uncovered,
+        'calls_planned': calls, 'calls_by_stream': dict(calls_by_arm),
+        'estimated_cost_usd': str(estimate.quantize(Decimal('0.01'))), 'estimated_cost_by_stream_usd': {k: str(v.quantize(Decimal('0.01'))) for k, v in est_by_arm.items()},
+        'call_cap': CALL_CAP, 'cost_cap_usd': str(COST_CAP),
+        'initial_plans_truncated': sum(ref['plan_truncated'] for p in problems for ref in p['initial']),
+        'initial_responses_without_program': sum(not ref['archived_response_had_program'] for p in problems for ref in p['initial']),
+        'provider_calls': 0, 'credential_reads': 0, 'hidden_reads': 0, 'candidate_executions': 0})
+    dump(STAGE / (P + 'authorization.json'), {'authorized': False, 'user_authorization_confirmed': False, 'scope': SCOPE,
+        'hard_cap_calls': CALL_CAP, 'hard_cap_usd': str(COST_CAP), 'current_user_execution_request': None,
+        'budget_source': 'standalone authorization for this stage; not drawn from the PN_KEEPFIX campaign balance'})
+    print(json.dumps({'problems': len(problems), 'calls_planned': calls, 'estimated_cost_usd': str(estimate.quantize(Decimal('0.01'))),
+                      'by_stream': {k: str(v.quantize(Decimal('0.01'))) for k, v in est_by_arm.items()}}, ensure_ascii=False))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(); parser.add_argument('--freeze', action='store_true'); args = parser.parse_args()
+    if args.freeze:
+        import freeze; freeze.freeze()
+    else:
+        materialize()

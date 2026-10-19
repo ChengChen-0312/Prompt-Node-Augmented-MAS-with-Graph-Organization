@@ -1,0 +1,235 @@
+"""Controller-side local gateway: one resident worker process, atomic request states, watchdog.
+
+Request lifecycle on disk: PREPARED -> DISPATCHED -> COMPLETED, or an explicit failure
+state. A COMPLETED request is only ever read from its cache. A DISPATCHED request whose
+complete, hash-bound result is absent is a technical interruption: it is never resent.
+Only the process group this gateway created and recorded is ever signalled.
+"""
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+import queue
+import signal
+import subprocess
+import threading
+import time
+
+import psutil
+
+from common import Stop, append_jsonl, h, need, now, read, sha, write, write_text
+
+FAILED_STATES = ('FAILED_TIMEOUT', 'FAILED_WORKER_EXIT', 'FAILED_WORKER_ERROR', 'INTERRUPTED_UNKNOWN')
+
+
+def watchdog_seconds(max_tokens, generation_tps):
+    """Frozen rule: max(1800 s, 2 * max_tokens / max(rate, 1) + 300 s), rounded up."""
+    return int(max(1800, -(-2 * max_tokens // max(generation_tps, 1)) + 300))
+
+
+def process_alive(pid, marker=None):
+    """True only for a live process; with marker, only if its command line still names our worker."""
+    try:
+        process = psutil.Process(pid)
+        if process.status() == psutil.STATUS_ZOMBIE:
+            return False
+        return marker is None or marker in ' '.join(process.cmdline())
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
+        return False
+
+
+class LocalGateway:
+    def __init__(self, command, state_dir, usage_path, budget_for, load_timeout=1800, log=print):
+        self.command = [str(c) for c in command]
+        self.state_dir = Path(state_dir)
+        self.usage_path = Path(usage_path)
+        self.budget_for = budget_for
+        self.load_timeout = load_timeout
+        self.log = log
+        self.proc = None
+        self.events = None
+        self.ready = None
+        self.pid_file = self.state_dir / 'worker.pid.json'
+        self.marker = self.command[1]
+
+    # ---- process ----------------------------------------------------------
+    def start(self):
+        if self.proc is not None and self.proc.poll() is None:
+            return self.ready
+        if self.pid_file.exists():
+            old = read(self.pid_file)
+            # An orphaned worker exits by itself after its current request (stdin EOF); rerun --resume then.
+            need(not process_alive(old['pid'], self.marker), 'ANOTHER_OWN_WORKER_STILL_ALIVE:%s' % old['pid'])
+            self.pid_file.unlink()
+        self.state_dir.mkdir(parents=True, exist_ok=True)
+        stderr = (self.state_dir / 'worker_stderr.log').open('ab')
+        self.proc = subprocess.Popen(self.command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                     stderr=stderr, start_new_session=True, close_fds=True)
+        stderr.close()
+        write(self.pid_file, {'pid': self.proc.pid, 'pgid': self.proc.pid, 'command': self.command,
+                              'started_at': now(), 'controller_pid': os.getpid()})
+        self.events = queue.Queue()
+        threading.Thread(target=self._pump, args=(self.proc, self.events), daemon=True).start()
+        event = self._next(self.load_timeout)
+        if event is None or event.get('event') != 'ready':
+            self.kill()
+            raise Stop('WORKER_DID_NOT_BECOME_READY:' + json.dumps(event, ensure_ascii=False)[:500])
+        self.ready = event
+        write(self.state_dir / 'worker_ready.json', event)
+        self.log('worker ready pid=%s load=%.1fs' % (event['pid'], event['load_seconds']))
+        return event
+
+    @staticmethod
+    def _pump(proc, events):
+        for raw in proc.stdout:
+            try:
+                events.put(json.loads(raw.decode('utf-8')))
+            except (ValueError, UnicodeDecodeError):
+                events.put({'event': 'noise', 'raw': raw[:500].decode('utf-8', 'replace')})
+        events.put({'event': 'eof'})
+
+    def _next(self, timeout):
+        try:
+            return self.events.get(timeout=max(timeout, 0.001))
+        except queue.Empty:
+            return None
+
+    def kill(self):
+        """Terminate only our own recorded process group and verify that it is gone."""
+        if self.proc is None:
+            return
+        pid = self.proc.pid
+        for sig in (signal.SIGTERM, signal.SIGKILL):
+            if self.proc.poll() is not None:
+                break
+            try:
+                os.killpg(pid, sig)
+            except ProcessLookupError:
+                break
+            try:
+                self.proc.wait(timeout=20)
+            except subprocess.TimeoutExpired:
+                continue
+        need(self.proc.poll() is not None and not process_alive(pid), 'OWN_WORKER_STILL_ALIVE_AFTER_KILL')
+        for pipe in (self.proc.stdin, self.proc.stdout):
+            try:
+                pipe.close()
+            except OSError:
+                pass
+        self.proc = None
+        if self.pid_file.exists():
+            self.pid_file.unlink()
+
+    def stop(self):
+        if self.proc is None:
+            return
+        try:
+            self.proc.stdin.close()
+            self.proc.wait(timeout=60)
+        except (subprocess.TimeoutExpired, OSError):
+            pass
+        self.kill()
+
+    # ---- requests ---------------------------------------------------------
+    def _usage(self, logical_id, state, record=None, **extra):
+        row = {'logical_id': logical_id, 'state': state, 'recorded_at': now(), 'remote_api_calls': 0,
+               'api_cost_usd': 0, **extra}
+        if record:
+            row.update(finish_reason=record['finish_reason'], usage=record['usage'], timing=record['timing'],
+                       peak_memory_gb=record['peak_memory_gb'], request_sha256=record['request_sha256'])
+        append_jsonl(self.usage_path, row)
+
+    @staticmethod
+    def _verified_result(out, request_sha256, logical_id):
+        path = out / 'result.json'
+        if not path.exists():
+            return None
+        try:
+            record = read(path)
+        except ValueError:
+            return None
+        ok = (record.get('logical_id') == logical_id and record.get('request_sha256') == request_sha256
+              and isinstance(record.get('text'), str) and sha(record['text']) == record.get('text_sha256')
+              and record.get('finish_reason') in ('stop', 'length'))
+        return record if ok else None
+
+    def _complete(self, out, logical_id, record, recovered):
+        write_text(out / 'raw_response.txt', record['text'])
+        state = read(out / 'state.json')
+        state.update(state='COMPLETED', completed_at=now(), recovered_from_dispatched=recovered,
+                     result_sha256=sha((out / 'result.json').read_bytes()))
+        write(out / 'state.json', state)
+        self._usage(logical_id, 'COMPLETED', record, recovered=recovered)
+        return record
+
+    def request(self, logical_id, body, out_dir):
+        out = Path(out_dir)
+        request_sha256 = h(body)
+        state_path = out / 'state.json'
+        if state_path.exists():
+            state = read(state_path)
+            need(read(out / 'request.json')['request_sha256'] == request_sha256 and
+                 state['request_sha256'] == request_sha256 and state['logical_id'] == logical_id,
+                 'SAME_LOGICAL_ID_DIFFERENT_REQUEST:' + logical_id)
+            if state['state'] == 'COMPLETED':
+                record = self._verified_result(out, request_sha256, logical_id)
+                need(record is not None, 'COMPLETED_RESULT_MISSING_OR_CHANGED:' + logical_id)
+                return record
+            if state['state'] == 'DISPATCHED':
+                old_pid = state.get('worker_pid')
+                need(not (old_pid and process_alive(old_pid, self.marker)), 'DISPATCHED_WORKER_STILL_RUNNING:' + logical_id)
+                record = self._verified_result(out, request_sha256, logical_id)
+                if record is not None:
+                    return self._complete(out, logical_id, record, recovered=True)
+                state.update(state='INTERRUPTED_UNKNOWN', interrupted_at=now())
+                write(state_path, state)
+                self._usage(logical_id, 'INTERRUPTED_UNKNOWN', request_sha256=request_sha256)
+                raise Stop('DISPATCHED_WITHOUT_VERIFIABLE_RESULT_NOT_RESENT:' + logical_id)
+            need(state['state'] == 'PREPARED', 'REQUEST_SLOT_ALREADY_FAILED_NOT_RESENT:%s:%s' % (logical_id, state['state']))
+        else:
+            out.mkdir(parents=True, exist_ok=True)
+            write(out / 'request.json', {'logical_id': logical_id, 'request_sha256': request_sha256, 'body': body})
+            write(out / 'messages.json', body['messages'])
+            write(state_path, {'logical_id': logical_id, 'request_sha256': request_sha256,
+                               'state': 'PREPARED', 'prepared_at': now()})
+        self.start()
+        budget = int(self.budget_for(body))
+        state = read(state_path)
+        state.update(state='DISPATCHED', dispatched_at=now(), worker_pid=self.proc.pid, watchdog_seconds=budget)
+        write(state_path, state)
+        deadline = time.monotonic() + budget
+        self.proc.stdin.write((json.dumps({'logical_id': logical_id, 'request_path': str(out / 'request.json'),
+                                           'out_dir': str(out)}, ensure_ascii=False) + '\n').encode('utf-8'))
+        self.proc.stdin.flush()
+        failure, detail = None, {}
+        while True:
+            event = self._next(deadline - time.monotonic())
+            if event is None:
+                failure = 'FAILED_TIMEOUT'
+                break
+            if event.get('logical_id') not in (None, logical_id):
+                failure, detail = 'FAILED_WORKER_ERROR', {'reason': 'EVENT_FOR_OTHER_REQUEST', 'event': event}
+                break
+            kind = event.get('event')
+            if kind == 'done':
+                break
+            if kind == 'error':
+                failure, detail = 'FAILED_WORKER_ERROR', event
+                break
+            if kind == 'eof':
+                failure = 'FAILED_WORKER_EXIT'
+                break
+        if failure is None:
+            record = self._verified_result(out, request_sha256, logical_id)
+            if record is not None:
+                return self._complete(out, logical_id, record, recovered=False)
+            failure, detail = 'FAILED_WORKER_ERROR', {'reason': 'DONE_WITHOUT_VERIFIABLE_RESULT'}
+        self.kill()
+        partial = (out / 'stream.txt').read_text(encoding='utf-8', errors='replace') if (out / 'stream.txt').exists() else ''
+        state = read(state_path)
+        state.update(state=failure, failed_at=now(), failure_detail=detail, partial_stream_chars=len(partial),
+                     partial_stream_sha256=sha(partial), executed=False, resent=False)
+        write(state_path, state)
+        self._usage(logical_id, failure, request_sha256=request_sha256, partial_stream_chars=len(partial))
+        raise Stop('%s:%s' % (failure, logical_id))

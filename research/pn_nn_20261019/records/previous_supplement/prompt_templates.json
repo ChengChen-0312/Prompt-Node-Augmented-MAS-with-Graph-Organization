@@ -1,0 +1,73 @@
+{
+  "scope": "Exact LCB continuation prompts from the archived flat-pn-ablnopn1 run; parameter claims do not automatically apply to every dataset.",
+  "historical_to_manuscript_names": {
+    "A2": "Prompt Node (PN), formerly A2-Plan",
+    "A1": "Independent continuation",
+    "B2": "Historical plan list with the difference requirement removed"
+  },
+  "model": "gpt-4o-2024-08-06",
+  "temperature": 0.2,
+  "max_output_tokens": 2000,
+  "shared_system": "You are an expert competitive programmer. Read the problem carefully, identify constraints and edge cases, briefly plan, then write a complete, efficient solution. Output the final solution in a single ```python code block.",
+  "pn_history_header": "Earlier attempts at this problem took the approaches listed below. Produce a solution whose approach differs from all of them — not only in implementation, but in the algorithm it uses or in how it reads the problem statement. Briefly plan and state how your approach differs, then output the final solution in a single ```python code block.",
+  "b2_history_header": "Earlier attempts at this problem took the approaches listed below. Briefly plan, then output the final solution in a single ```python code block.",
+  "message_roles": {
+    "A1": [
+      "system",
+      "user"
+    ],
+    "A2": [
+      "system",
+      "user",
+      "user"
+    ],
+    "B2": [
+      "system",
+      "user",
+      "user"
+    ]
+  },
+  "task_user_message": {
+    "without_starter": "question_content",
+    "with_starter_template": "{question_content}\n\n```python\n{starter_code}\n```",
+    "normalization": "none"
+  },
+  "history_message_assembly": "header + numbered plan entries in generation order",
+  "numbered_plan_entry_template": "\n\nPrevious approach {i}:\n{plan}",
+  "plan_extraction": {
+    "maximum_characters": 2500,
+    "rule": "Take text before the first nonempty Python fenced code block, strip surrounding whitespace, then retain the first 2500 characters. Without such a code block, use the stripped full reply prefix.",
+    "archived_function_verbatim": "def plan_text(content):\n    \"\"\"Text before the first non-empty python fence (the program extract_python_code returns), capped.\"\"\"\n    start = next((m.start() for m in _PYTHON_FENCE.finditer(content) if m.group('code').strip()), None)\n    text = (content if start is None else content[:start]).strip()\n    return {'text': text[:PLAN_CHAR_LIMIT], 'truncated': len(text) > PLAN_CHAR_LIMIT, 'had_program': start is not None}",
+    "empty_added_plan_placeholder": "(This attempt gave no approach description.)"
+  },
+  "initial_plans": 3,
+  "additional_generations": 3,
+  "plan_counts_before_each_pn_or_b2_request": [
+    3,
+    4,
+    5
+  ],
+  "history_growth": "Each continuation stream appends only its own new extracted plan. Streams share the three initial plans and do not exchange later plans.",
+  "generator_receives_added_execution_feedback": false,
+  "assistant_turns": 0,
+  "a1_behavior": "The shared system and task messages are repeated unchanged across the three additional requests.",
+  "format_difference": "PN and B2 repeat the code-block requirement in the last user message. A1 has that requirement in the shared system only. These are complete prompt-strategy comparisons.",
+  "provenance": [
+    {
+      "source_path": "explore30/arg_probe/e16_lcb_contracts.py",
+      "sha256": "d3c4488cd6121a02c6c36ce2e1e31a435cfcbef5de7b1258013185bcd79169e2"
+    },
+    {
+      "source_path": "explore30/private/flat-pn-divtiny27/prepare.py",
+      "sha256": "e2e2df00134ccdd3968b2ae6c3a37da30af2233209da8178a0f5fe062180f867"
+    },
+    {
+      "source_path": "explore30/private/flat-pn-ablnopn1/prepare.py",
+      "sha256": "15f53dc733c75f38dd87840ae5506a4f358be0eb912d435c1fa2e54447012559"
+    },
+    {
+      "source_path": "explore30/private/flat-pn-ablnopn1/generate.py",
+      "sha256": "b08ecb6259c7a45d4c6374d020aeefa6a85e8b716c3138418091a85e806ba567"
+    }
+  ]
+}

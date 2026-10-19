@@ -1,0 +1,6 @@
+phase,questions,conditional_questions,public_pass,strict_pass,conditional_public_gain,strict_gain_over_c0,strict_loss_vs_c0,technical_stops,phase_calls,standalone_calls_including_shared,prompt_tokens,cached_prompt_tokens_subset,output_tokens,phase_total_tokens,actual_phase_cost_usd,standalone_attributed_cost_usd,one_third_shared_allocated_cost_usd
+Shared-C0,6,3,3,1,0,0,0,0,6,6,4467,0,1971,6438,0.0308775,,
+Reflexion-PublicIO-v1,6,3,5,2,2,1,0,0,8,14,21462,1920,2560,24022,0.076855,0.1077325,0.0871475
+Current-Cal2,6,3,4,1,1,0,0,1,7,13,30325,0,2013,32338,0.0959425,0.12682,0.106235
+A1-Cal4,6,3,4,1,1,0,0,0,9,15,7971,4096,4566,12537,0.0604675,0.091345,0.07076
+Batch-total-actual,,,,,,,,,30,,64225,6016,11110,75335,0.2641425,,

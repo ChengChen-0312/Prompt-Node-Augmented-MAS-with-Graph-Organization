@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "source_files_unchanged": 16,
+  "source_label_and_usage_assertions": "PASS",
+  "full_retained_pairs": 600,
+  "earlier_lcb_rows_reported_separately": 231,
+  "snapshot_reproduction_bit_identical": true,
+  "output_sha256": {
+    "paired_task_labels.csv": "a7719532eb7cc31cdcf99d3a6ca93d7255a3cdd5de16506fe648a89098221b63",
+    "paired_summary.csv": "6443ebd71b3c7874c8ffe7334a3d294d6dd80e2c56360fb453654b2bf37b3578",
+    "resource_summary.csv": "7e0c3dab321aa54050d1c46688c6909f8d906564f7ec5f193ea8fc4f8e1184d1",
+    "lcb_repeat_changes.csv": "d2ac50e4ea64c6b3f2dd2d52c3fcde134bd427963278518261029af7c2457c3a",
+    "paired_stats.json": "67c2ade1b6b753cc6f3319103d28049f510bcfc55ba3476405331bf720945a6d",
+    "sources_manifest.json": "ab38241f6a18128d03c74997a0855a509cadee4b5a11542be304700f85304900",
+    "中文结果说明.txt": "7c19575dc78861854896807bf320f60b6e5b44cbebe29764d6791ca7705d8755",
+    "manuscript_paragraphs_en.txt": "c697c7d45f8c63fd49da459540eb563ef0bc9590c12dfc94ad7561227ca0b311"
+  },
+  "new_model_calls": 0,
+  "candidate_executions": 0,
+  "rescoring": 0,
+  "qwen_access": false,
+  "missing_values_preserved": [
+    "Earlier stitched LCB source-specific selected IDs and retained-stream resource allocation are not reconstructed.",
+    "Length/absent-code counts for LCB resource rows were not reconstructed from the aggregate usage source.",
+    "No complete-run SD is estimated from single retained streams."
+  ]
+}

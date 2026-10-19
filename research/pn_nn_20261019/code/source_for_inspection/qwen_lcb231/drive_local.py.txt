@@ -1,0 +1,114 @@
+"""Unattended staging for QWEN38_PLAN_A1_LOCAL_V1 (orchestration only, no scientific logic).
+
+Loop: formal generation up to the next dataset boundary -> seal that dataset -> strict-score
+it -> interim report -> next dataset. After the fourth dataset: whole-batch seal, final
+strict pass (reads the cached verdicts), final report and evidence bundle. The dataset order
+is the frozen one as changed by recorded amendments (run_local.effective_order).
+
+Generation is never running while a dataset is being scored. A BLOCKED or user-paused
+generation stops this driver; rerun it to continue the same frozen cohort. A strict-scoring
+problem (for example no network for LCB) is recorded and does not stop later generation.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from common import DATASETS, ROOT, RUN_NAME  # noqa: E402
+
+RUN = ROOT / 'runs' / RUN_NAME
+PYTHON = 'LOCAL_HOME/miniconda3/bin/python3'
+LOG = RUN / 'logs/driver.log'
+
+
+def log(message):
+    line = '%s %s' % (time.strftime('%Y-%m-%dT%H:%M:%S%z'), message)
+    print(line, flush=True)
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    with LOG.open('a', encoding='utf-8') as stream:
+        stream.write(line + '\n')
+
+
+def call(name, *arguments):
+    """Run one project command; its full output goes to its own log file."""
+    target = RUN / 'logs' / ('%s_%s.log' % (time.strftime('%Y%m%dT%H%M%S'), name))
+    command = [PYTHON, '-B', *[str(a) for a in arguments]]
+    with target.open('w', encoding='utf-8') as stream:
+        stream.write('$ ' + ' '.join(command) + '\n')
+        stream.flush()
+        code = subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT).returncode
+    log('%s exit=%d log=%s' % (name, code, target.name))
+    return code
+
+
+def status():
+    path = RUN / 'run_status.json'
+    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+
+
+def stage(dataset):
+    """Seal and strict-score one complete dataset, then refresh the interim report."""
+    seal = RUN / 'seals' / (dataset + '.json')
+    if not seal.exists() and call('seal_' + dataset, 'code/run_local.py', '--mode', 'seal', '--root', ROOT, '--dataset', dataset) != 0:
+        return False
+    scores = RUN / 'strict' / ('final_scores_%s.json' % dataset)
+    done = scores.exists() and json.loads(scores.read_text(encoding='utf-8')).get('status') == 'COMPLETE'
+    if not done:
+        code = call('score_' + dataset, 'code/score_local.py', '--root', ROOT, '--seal', seal)
+        done = code == 0
+    call('report_after_' + dataset, 'code/report_local.py', '--root', ROOT, '--no-bundle')
+    if done:
+        summary = json.loads(scores.read_text(encoding='utf-8'))['summary'][dataset]
+        log('STRICT %s %s' % (dataset, json.dumps(summary, ensure_ascii=False)))
+    else:
+        log('STRICT %s NOT COMPLETE (see its score log); generation continues' % dataset)
+    return done
+
+
+def paused():
+    return (RUN / 'STOP').exists()
+
+
+def main():
+    log('driver start')
+    retried = set()
+    while True:
+        # A dataset that is sealed but not fully strict-scored (pause, network) is finished first.
+        for dataset in DATASETS:
+            scores = RUN / 'strict' / ('final_scores_%s.json' % dataset)
+            scored = scores.exists() and json.loads(scores.read_text(encoding='utf-8')).get('status') == 'COMPLETE'
+            if (RUN / 'seals' / (dataset + '.json')).exists() and not scored and dataset not in retried and not paused():
+                retried.add(dataset)
+                stage(dataset)
+        if paused():
+            log('driver end: PAUSED by the STOP file (double-click 开始或继续.command to continue)')
+            return 3
+        code = call('formal', 'code/run_local.py', '--mode', 'formal', '--root', ROOT, '--resume', '--stop-after-dataset')
+        state = status()
+        reason = str(state.get('reason') or '')
+        if code == 3 and reason.startswith('DATASET_COMPLETE:'):
+            dataset = reason.split(':', 1)[1]
+            retried.add(dataset)
+            stage(dataset)
+            if not (RUN / 'seals' / (dataset + '.json')).exists():
+                log('driver end: %s is complete but could not be sealed; see the seal log' % dataset)
+                return 2
+            continue
+        if code == 0 and state.get('status') == 'ALL_TASKS_COMPLETE':
+            staged = all([stage(d) for d in DATASETS])
+            if call('seal_all', 'code/run_local.py', '--mode', 'seal', '--root', ROOT) == 0:
+                call('score_all', 'code/score_local.py', '--root', ROOT, '--seal', RUN / 'generation_seal.json')
+            call('report_final', 'code/report_local.py', '--root', ROOT)
+            log('driver end: ALL DATASETS GENERATED; per-dataset strict complete=%s' % staged)
+            return 0
+        log('driver end: generation %s reason=%s (fix or remove the cause, then rerun this driver)' % (state.get('status'), reason))
+        return code or 2
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

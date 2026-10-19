@@ -1,0 +1,67 @@
+"""Frozen seven-method contracts for the cross-dataset campaign."""
+from __future__ import annotations
+import ast
+import re
+from pathlib import Path
+
+WORKSPACE = Path(__file__).resolve().parent.parent
+MODEL = 'gpt-4o-2024-08-06'
+METHODS = ('single', 'a1', 'a2', 'argdesigner', 'gdesigner', 'agentprune', 'agentdropout')
+GRAPH_METHODS = METHODS[3:]
+DATASETS = ('taco', 'ojbench')
+REPEATS = 1
+SCORE_VARIANTS = METHODS + ('a2_h1',)
+A2_STAGE_POLICY = 'same_run_history_prefix_h1_h3_no_independent_repeats'
+QUOTAS = {'EASY':60, 'MEDIUM':56, 'MEDIUM_HARD':55, 'HARD':30, 'VERY_HARD':30}
+EXCLUDED_METHODS = {}
+
+def method_repeats(method, phase='formal'):
+    if method not in SCORE_VARIANTS or phase not in ('smoke','formal'):
+        raise ValueError('UNKNOWN_METHOD_OR_PHASE')
+    return (1,)
+
+def expected_grid(tasks, phase='formal'):
+    if phase not in ('smoke','formal'):raise ValueError('UNKNOWN_PHASE')
+    return {(t['question_id'],m,1) for t in tasks for m in SCORE_VARIANTS}
+
+def validate_method_scope(config):
+    if tuple(config.get('methods', ())) != METHODS or config.get('excluded_methods', {}):
+        raise ValueError('SEVEN_METHOD_SCOPE_REQUIRED_NO_SILENT_EXCLUSIONS')
+    return {}
+
+def validate_campaign_config(config):
+    validate_method_scope(config)
+    if config.get('formal_repeats') != REPEATS:
+        raise ValueError('FORMAL_REPEAT_COUNT_CHANGED')
+    if config.get('a2_stage_policy')!=A2_STAGE_POLICY:
+        raise ValueError('A2_SAME_RUN_PREFIX_POLICY_REQUIRED')
+    if config.get('model') != MODEL or config.get('solver_output_limit') != 16384:
+        raise ValueError('FROZEN_MODEL_CONTRACT_CHANGED')
+    return config
+
+def render_prompt(task):
+    value = task.get('statement')
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError('PUBLIC_STATEMENT_MISSING')
+    if task.get('dataset') not in DATASETS or task.get('io_mode') != 'stdin':
+        raise ValueError('UNSUPPORTED_TASK_INTERFACE')
+    return value
+
+def extract_code(raw):
+    if not isinstance(raw, str) or not raw.strip():
+        return None
+    source = WORKSPACE / 'explore30/arg_probe/e16_lcb_sandbox.py'
+    tree = ast.parse(source.read_text())
+    tree.body = [node for node in tree.body if
+        (isinstance(node, ast.FunctionDef) and node.name == 'extract_python_code') or
+        (isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == '_PYTHON_FENCE' for t in node.targets))]
+    scope = {'re':re}
+    exec(compile(tree, str(source), 'exec'), scope)
+    code = scope['extract_python_code'](raw)
+    if code is not None:
+        return code
+    try:
+        ast.parse(raw)
+    except SyntaxError:
+        return None
+    return raw.strip()

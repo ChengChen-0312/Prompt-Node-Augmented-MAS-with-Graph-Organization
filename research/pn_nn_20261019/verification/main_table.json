@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "byte_identical_to_manuscript": true,
+  "rows": [
+    {
+      "dataset": "USACO110",
+      "n": 110,
+      "initial": 17,
+      "A1": 22,
+      "PN": 19
+    },
+    {
+      "dataset": "TACO231",
+      "n": 231,
+      "initial": 67,
+      "A1": 69,
+      "PN": 71
+    },
+    {
+      "dataset": "OJBench28",
+      "n": 28,
+      "initial": 6,
+      "A1": 7,
+      "PN": 6
+    },
+    {
+      "dataset": "LCB231",
+      "n": 231,
+      "initial": 101,
+      "A1": 109,
+      "PN": 113
+    }
+  ],
+  "sha256": "c08c908d4120f073277fd67e99ebdb947f54e2ffd69ba6bdda9daebe97cbfa68",
+  "new_model_calls": 0,
+  "candidate_executions": 0,
+  "rescoring": 0,
+  "scope": "Primary shared-start table only. Other tables are retained source snapshots, not claimed rebuilt here."
+}

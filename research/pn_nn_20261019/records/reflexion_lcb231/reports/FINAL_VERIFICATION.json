@@ -1,0 +1,14 @@
+{
+  "all_fees_settled": true,
+  "final_scores_sha256": "d0bb2defdb6df1473cf3567734e6bcd0badb4a5553a4cfd29f3a6847348a2d78",
+  "generation_seal_sha256": "fbb9945711ea5632219518b5b1914d78ddfbe87ed308e59b9a704774bb8850be",
+  "manifest_sha256": "b59cf9b39db09e35e6325bc41803868a462c70efcad4565a78e18b1395fcfad8",
+  "old_PN_regraded": false,
+  "paired_csv_sha256": "e4a3334af87584cd2cd3b003f6bfdc68c5fa642ded721235142ec70dfad5a8f3",
+  "question_count": 231,
+  "report_sha256": "66efade787c06108fcb3b8ef03a23620e59a346e9364de357ae29e8701c09600",
+  "report_text_sha256": "798c7d8a6fa777aa343877144fc8637e8abb14ddb0562cf8f48ae268d0aec5bb",
+  "status": "COMPLETE_VERIFIED",
+  "strict_feedback_returned": false,
+  "strict_rows": 462
+}

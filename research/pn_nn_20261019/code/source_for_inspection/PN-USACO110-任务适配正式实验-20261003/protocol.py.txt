@@ -1,0 +1,73 @@
+from __future__ import annotations
+import ast
+import re
+from pathlib import Path
+WORKSPACE=Path(__file__).resolve().parent.parent
+"""Shared task projection. Sampling parameters live in the frozen run config."""
+MODEL = 'gpt-4o-2024-08-06'
+METHODS = ('single', 'a1', 'a2', 'gdesigner', 'agentprune', 'agentdropout')
+GRAPH_METHODS = ('gdesigner', 'agentprune', 'agentdropout')
+EXCLUDED_METHODS = {'argdesigner': {'status': 'excluded', 'reason': 'Cold start produced 10 successful graphs from 80, below the unchanged minimum of 18; user authorized completing the remaining six methods.'}}
+QUOTAS = {'bronze':30, 'silver':50, 'gold':20, 'platinum':10}
+REPEATS = 3
+
+
+def validate_method_scope(config):
+    """A six-method revision is explicit; an incomplete seven-method run is not."""
+    if tuple(config.get('methods', ())) != METHODS:
+        raise ValueError('SIX_METHOD_SCOPE_REQUIRED')
+    excluded = config.get('excluded_methods')
+    if not isinstance(excluded, dict) or set(excluded) != {'argdesigner'}:
+        raise ValueError('ARG_EXCLUSION_DECLARATION_REQUIRED')
+    arg = excluded['argdesigner']
+    if (not isinstance(arg, dict) or arg.get('status') != 'excluded'
+            or not isinstance(arg.get('reason'), str) or not arg['reason'].strip()):
+        raise ValueError('ARG_EXCLUSION_REASON_REQUIRED')
+    return excluded
+
+
+def validate_campaign_config(config):
+    validate_method_scope(config)
+    expected = {(method, phase, repeat) for method in GRAPH_METHODS
+                for phase, repeats in (('smoke', (1,)), ('formal', (1, 2, 3))) for repeat in repeats}
+    entries = config.get('runs', [])
+    actual = [(entry.get('method'), entry.get('phase'), entry.get('repeat')) for entry in entries]
+    if len(actual) != len(expected) or set(actual) != expected or any(type(e.get('repeat')) is not int for e in entries):
+        raise ValueError('SIX_METHOD_GRAPH_RUN_GRID_INVALID')
+    if config.get('formal_repeats') != REPEATS:
+        raise ValueError('FORMAL_REPEAT_COUNT_CHANGED')
+    return config
+
+
+def render_prompt(task):
+    # Canonical public description already includes public samples and restored
+    # original file I/O. Do not duplicate samples only for some methods.
+    if not isinstance(task.get('statement'),str) or not task['statement'].strip():
+        raise ValueError('PUBLIC_STATEMENT_MISSING')
+    return task['statement']
+
+
+def extract_code(raw):
+    """Common Python-fence extraction, then the native raw-code contract.
+
+    Import just the common pure extractor to avoid importing psutil into old
+    baseline environments. No code is repaired or selected by its score.
+    """
+    if not isinstance(raw, str) or not raw.strip():
+        return None
+    source = WORKSPACE / "explore30/arg_probe/e16_lcb_sandbox.py"
+    tree = ast.parse(source.read_text())
+    tree.body = [node for node in tree.body if
+        (isinstance(node, ast.FunctionDef) and node.name == "extract_python_code") or
+        (isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "_PYTHON_FENCE" for t in node.targets))]
+    namespace = {"re": re}
+    exec(compile(tree, str(source), "exec"), namespace)
+    code = namespace["extract_python_code"](raw)
+    if code is not None:
+        return code
+    try:
+        ast.parse(raw)
+    except SyntaxError:
+        return None
+    return raw.strip()
+

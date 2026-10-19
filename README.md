@@ -1,5 +1,14 @@
 # Prompt-Node-Augmented MAS with Graph Organization
 
+## Current code-generation study (October 2026)
+
+The newer **Prompt Node: Guiding Code Generation with Shared Plans** artifacts are
+in [research/pn_nn_20261019](research/pn_nn_20261019). They include fixed task IDs,
+saved outcomes/resource tables, selected source files, and offline numerical
+checks. The release is not a complete portable generation-to-scoring runner.
+The earlier graph-organization study and its results below are retained as a
+separate research line.
+
 This repository contains the local research code, experiment ledgers, and manuscript artifacts for a PromptNode-Augmented multi-agent system study built on top of ARG-Designer.
 
 The current paper direction is:

@@ -1,0 +1,26 @@
+"""Trusted generic native-call harness, executed separately from raw main.py.
+
+No typing imports, entrypoint patch, algorithm, expected answer, or candidate
+rewrites. Return serialization mirrors E16 and never consumes candidate stdout.
+"""
+import io
+import json
+from pathlib import Path
+import sys
+
+config = json.loads(Path('probe_config.json').read_text())
+source = Path('main.py').read_text()
+sys.stdin = io.StringIO(Path('function_input.jsonl').read_text())
+namespace = {'__name__': '__main__'}
+try:
+    exec(compile(source, 'main.py', 'exec'), namespace, namespace)
+    owner = namespace[config['class_name']]()
+    target = getattr(owner, config['method_name'])
+    result = target(*config['arguments'])
+    encoded = json.dumps(result, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    Path('function_return.json').write_text(encoded)
+except BaseException:
+    # SystemExit(0) before the declared invocation is not a successful return.
+    import traceback
+    traceback.print_exc()
+    raise SystemExit(1)

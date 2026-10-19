@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "checks": {
+    "231_unique_tasks": true,
+    "693_labels_known": true,
+    "strict_totals": true,
+    "paired_cells": true,
+    "exact_mcnemar": true,
+    "saved_interval": true,
+    "same_231_ids": true,
+    "1101_unique_lcb_requests": true,
+    "usage_initial": true,
+    "usage_a1_extra": true,
+    "usage_plan_extra": true,
+    "usage_actual": true,
+    "usage_a1_attributed": true,
+    "usage_plan_attributed": true,
+    "no_development_rows": true,
+    "shared_prefix_counted_once": true
+  },
+  "strict_counts": {
+    "shared_initial_strict": 141,
+    "a1_strict": 149,
+    "plan_strict": 169
+  },
+  "pair": {
+    "pn_only": 21,
+    "independent_only": 1,
+    "both": 148,
+    "neither": 61
+  },
+  "mcnemar_p": 1.0967254638671875e-05,
+  "bootstrap95_pp": [
+    5.194805194805195,
+    12.554112554112553
+  ],
+  "usage": {
+    "initial": {
+      "requests": 693,
+      "prompt_tokens": 402981,
+      "completion_tokens": 2586250,
+      "seconds": 160908.4
+    },
+    "a1_extra": {
+      "requests": 204,
+      "prompt_tokens": 116997,
+      "completion_tokens": 1020127,
+      "seconds": 62905.7
+    },
+    "plan_extra": {
+      "requests": 204,
+      "prompt_tokens": 672969,
+      "completion_tokens": 602881,
+      "seconds": 40966.6
+    },
+    "actual": {
+      "requests": 1101,
+      "prompt_tokens": 1192947,
+      "completion_tokens": 4209258,
+      "seconds": 264780.7
+    },
+    "a1_attributed": {
+      "requests": 897,
+      "prompt_tokens": 519978,
+      "completion_tokens": 3606377,
+      "seconds": 223814.1
+    },
+    "plan_attributed": {
+      "requests": 897,
+      "prompt_tokens": 1075950,
+      "completion_tokens": 3189131,
+      "seconds": 201875.0
+    }
+  },
+  "input_sha256": {
+    "completed_summary.json": "098c3b11d90f33429c79e6196f28efabd30c9410c982843bf9d5ca4078a7d115",
+    "paired_results.csv": "9ce922454ba5145e3b753e91758598effda44d8ce1b014fcb4c262875cde7148",
+    "request_resources.csv": "ce5b282493c0dee8e310886165fbacfbd1ea320745d5dde5dfb136c4ddf720f8"
+  },
+  "new_model_calls": 0,
+  "candidate_executions": 0,
+  "rescoring": 0,
+  "scope": "Saved labels, completed-request usage and accounting arithmetic only; final-test labels are not independently regenerated."
+}

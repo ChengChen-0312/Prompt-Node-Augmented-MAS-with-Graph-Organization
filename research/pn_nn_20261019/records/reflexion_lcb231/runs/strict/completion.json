@@ -1,0 +1,16 @@
+{
+  "all_declared_targets_accounted": true,
+  "final_scores_sha256": "d0bb2defdb6df1473cf3567734e6bcd0badb4a5553a4cfd29f3a6847348a2d78",
+  "finished_at_utc": "2026-10-12T15:19:52.513023+00:00",
+  "identity": {
+    "generation_seal_sha256": "fbb9945711ea5632219518b5b1914d78ddfbe87ed308e59b9a704774bb8850be",
+    "manifest_sha256": "b59cf9b39db09e35e6325bc41803868a462c70efcad4565a78e18b1395fcfad8",
+    "scorer_sha256": "f9b0fb85efdc2157fdfd66032e098152213703f01bcc195cde5918c16a56314c",
+    "settlement_sha256": "49e5318f8bdcec8a112c9f80c6730e3c5e49236bc6b102f9db093c7a0fc15026",
+    "version": "reflexion-lcb231-independent-score-v1"
+  },
+  "status": "COMPLETE_VERIFIED",
+  "strict_feedback_returned": false,
+  "target_count": 462,
+  "unknown": 0
+}

@@ -1,0 +1,35 @@
+{
+  "status": "COMPLETE_VERIFIED_WITH_DISCLOSED_TECHNICAL_RECOVERY",
+  "questions": 6,
+  "shared_initial_programs_per_task": 1,
+  "additional_call_cap_per_arm_per_task": 4,
+  "model": "gpt-4o-2024-08-06",
+  "temperature": 0.2,
+  "max_output_tokens": 4096,
+  "executor": "pn-input-integrity-macos-v1",
+  "public_passes": {
+    "Shared-C0": 3,
+    "Reflexion-PublicIO-v1": 5,
+    "Current-Cal2": 4,
+    "A1-Cal4": 4
+  },
+  "strict_passes": {
+    "Shared-C0": 1,
+    "Reflexion-PublicIO-v1": 2,
+    "Current-Cal2": 1,
+    "A1-Cal4": 1
+  },
+  "technical_failures": [
+    {
+      "arm": "Current-Cal2",
+      "model_calls_retried": 0,
+      "reason": "PROBE_DISPLAY_BOUND",
+      "task": "usaco/646_gold_closing_the_farm",
+      "tool_executions_retried": 0
+    }
+  ],
+  "actual_calls": 30,
+  "actual_cost_usd": "0.2641425",
+  "shared_initial_physically_billed_once": true,
+  "scope": "Six known development tasks, three entered continuation. No PN arm. Current stopped on the task rescued by Reflexion, so that result is not a normal completed Current loss. This calibration does not estimate PN versus Reflexion."
+}

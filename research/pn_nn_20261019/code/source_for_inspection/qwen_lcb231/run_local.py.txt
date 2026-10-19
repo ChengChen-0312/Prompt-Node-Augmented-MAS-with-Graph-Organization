@@ -1,0 +1,859 @@
+"""QWEN38_PLAN_A1_LOCAL_V1 controller: smoke / freeze / formal / seal / status.
+
+Per task (ported from the original a2_runner.run, shared prefix kept):
+  three Qwen initial drafts -> public tests of the three -> gate
+  gate open (public tests exist and no initial passes): each arm generates three extras,
+  then public-tests them as a batch; A1 sees only the base messages, Plan sees 3 -> 4 -> 5
+  earlier approach texts (shared initials plus its own extras). Each arm delivers the
+  earliest public PASS among initial1..3 + its own extras, otherwise initial1.
+This file never reads strict/private data and never imports score_local.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import os
+from pathlib import Path
+import platform
+import signal
+import subprocess
+import sys
+import time
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import psutil
+
+from common import (CAMPAIGN_ID, CODE, DATASETS, EXEC_PYTHON, EXECUTOR, EXPECTED_COUNTS, GEN_PYTHON,
+                    MASTER_SEED, MODEL_BASE, MODEL_DIR, MODEL_NAME, OJ_IMAGE, PUBLIC_SHA256, PUBLIC_SOURCES,
+                    REPEAT, ROOT, RUN_NAME, Stop, append_jsonl, difficulty, digest, dump, h, load_tasks, need,
+                    now, qdir, read, read_exact, sha, verify_pins, write, write_text)
+import protocol
+from protocol import ARMS, STEPS
+
+FROZEN_CODE = ('common.py', 'protocol.py', 'qwen_worker.py', 'local_gateway.py', 'execution_adapter.py',
+               'function_harness.py', 'run_local.py', 'score_local.py')
+MODEL_SMALL_FILES = ('README.md', 'config.json', 'generation_config.json', 'chat_template.jinja',
+                     'tokenizer.json', 'tokenizer_config.json', 'vocab.json', 'processor_config.json',
+                     'preprocessor_config.json', 'video_preprocessor_config.json', 'model.safetensors.index.json')
+MODEL_WEIGHTS = ('model-00001-of-00003.safetensors', 'model-00002-of-00003.safetensors',
+                 'model-00003-of-00003.safetensors')
+TECHNICAL_POLICY = {
+    'finish_stop_invalid_format': 'Frozen extraction rule applies; NO_CODE is a delivery failure of that candidate. No format repair request, no resample.',
+    'finish_length': 'Reply and usage are kept and the slot is never resent. The same extraction rule applies: a closed non-empty python fence is executed and flagged length; a fragment or missing code is a non-executable candidate failure. Identical for both arms; no task or request is excluded.',
+    'timeout_crash_or_unknown_completion': 'Partial stream kept, not executed, not resent. The batch pauses as an infrastructure blocker and is reported; it is never written up as a complete 600-task run.',
+    'normal_wa_re_tle_or_public_fail': 'Fixed protocol continues without asking.',
+    'public_judge_unknown': 'Infrastructure UNKNOWN is never a model FAIL. The batch pauses; the judge (not the model) may be rerun for that candidate after the infrastructure is repaired, every UNKNOWN attempt is recorded.',
+    'no_retry': 'Every request slot is dispatched at most once. No seed search, no make-up samples, no replacement tasks.',
+    'lcb_empty_public': 'abc350_c: three initials generated, public status NOT_TESTED, no extras, both arms deliver initial1, strict-scored after seal.',
+}
+
+
+class Pause(Exception):
+    """Voluntary stop at a request boundary; state is saved and the same cohort resumes later."""
+
+
+# ---------------------------------------------------------------------------
+# Per-task flow
+# ---------------------------------------------------------------------------
+class Env:
+    def __init__(self, root, gateway, grade, log=print, checkpoint=lambda: None, max_tokens=None, revision_sha=None):
+        self.root = Path(root)
+        self.run = self.root / 'runs' / RUN_NAME
+        self.gateway, self.grade, self.log, self.checkpoint = gateway, grade, log, checkpoint
+        # Output limits: the frozen ones unless a separately frozen budget revision overrides a dataset.
+        self.max_tokens = dict(max_tokens or protocol.MAX_TOKENS)
+        self.revision_sha = revision_sha
+
+
+def task_paths(env, dataset, index, question_id):
+    name = qdir(index, question_id)
+    return env.run / 'tasks' / dataset / name / 'task.json', env.run / 'requests' / dataset / name
+
+
+def receipt(candidates, chosen, tested):
+    passed = chosen['public']['status'] == 'PASS'
+    return {'rule': 'earliest_all_public_PASS_else_initial1',
+            'ordered_candidates': [{'candidate_id': c['candidate_id'], 'public_status': c['public']['status'],
+                                    'public_counts': c['public']['counts'], 'code_sha256': c['code_sha256']}
+                                   for c in candidates],
+            'selected_candidate_id': chosen['candidate_id'], 'selected_code_sha256': chosen['code_sha256'],
+            'fallback_reason': None if passed else ('NOT_TESTED_EMPTY_PUBLIC' if not tested else 'NO_PUBLIC_PASS')}
+
+
+def run_task(env, dataset, index, task):
+    qid = task['question_id']
+    path, request_root = task_paths(env, dataset, index, qid)
+    identity = {'campaign_id': CAMPAIGN_ID, 'dataset': dataset, 'question_id': qid, 'index': index,
+                'phase': 'formal', 'repeat': REPEAT, 'record_sha256': h(task),
+                'prompt_sha256': sha(protocol.render_prompt(dataset, task)),
+                'prompt_identity_sha256': h(protocol.prompt_identity())}
+    limit = env.max_tokens[dataset]
+    if limit != protocol.MAX_TOKENS[dataset]:
+        # Only a revised dataset carries the binding; unrevised datasets keep their original identity.
+        need(env.revision_sha, 'OUTPUT_LIMIT_DIFFERS_WITHOUT_A_FROZEN_BUDGET_REVISION:' + dataset)
+        identity.update(max_tokens=limit, budget_revision_sha256=env.revision_sha)
+    state = read(path) if path.exists() else {'identity': identity, 'status': 'RUNNING',
+                                              'difficulty': difficulty(dataset, task),
+                                              'candidates': {}, 'delivery': None, 'public_unknown_attempts': []}
+    need(state['identity'] == identity, 'TASK_IDENTITY_OR_PROTOCOL_CHANGED:%s/%s' % (dataset, qid))
+    if state['status'] == 'COMPLETE':
+        return state
+
+    def save():
+        write(path, state)
+
+    def generate(arm, step, plans=None):
+        cid = protocol.candidate_id(dataset, qid, arm, step)
+        body = {**protocol.request_body(dataset, task, arm, step, plans), 'max_tokens': limit}
+        if cid in state['candidates']:
+            row = state['candidates'][cid]
+            need(row['request_sha256'] == h(body), 'CANDIDATE_REQUEST_CHANGED:' + cid)
+            return row
+        env.checkpoint()
+        out = request_root / ('%s_%d' % (arm, step))
+        record = env.gateway.request(cid, body, out)
+        parsed = protocol.interpret(record['text'])
+        write_text(out / 'plan.txt', parsed['plan'])
+        if parsed['code'] is not None:
+            write_text(out / 'code.py', parsed['code'])
+        extraction = {'extraction': parsed['extraction'], 'code_sha256': parsed['code_sha256'],
+                      'plan_chars': len(parsed['plan']), 'plan_truncated': parsed['plan_extraction']['truncated'],
+                      'had_program': parsed['plan_extraction']['had_program'],
+                      'plan_is_empty_placeholder': parsed['plan'] == protocol.EMPTY_PLAN,
+                      'finish_reason': record['finish_reason'], 'repaired': False}
+        write(out / 'extraction.json', extraction)
+        row = {'candidate_id': cid, 'dataset': dataset, 'question_id': qid, 'arm': arm, 'step': step,
+               'seed': body['seed'], 'max_tokens': body['max_tokens'], 'request_sha256': h(body),
+               'request_dir': str(out.relative_to(env.root)),
+               'history_plan_count': len(plans) if plans is not None else 0,
+               'message_count': len(body['messages']), 'response_sha256': record['text_sha256'],
+               'finish_reason': record['finish_reason'], 'usage': record['usage'],
+               'timing': record.get('timing'), 'peak_memory_gb': record.get('peak_memory_gb'),
+               'plan': parsed['plan'], **extraction, 'public': None}
+        state['candidates'][cid] = row
+        save()
+        env.log('%s #%d %s %s/%d finish=%s in=%s out=%s code=%s' % (
+            dataset, index, qid, arm, step, row['finish_reason'], row['usage'].get('prompt_tokens'),
+            row['usage'].get('completion_tokens'), row['extraction']))
+        return row
+
+    def evaluate(rows):
+        """Batch public testing: called only after all three requests of the batch exist."""
+        for row in rows:
+            if row['public'] is None:
+                out = env.root / row['request_dir']
+                code = read_exact(out / 'code.py') if row['code_sha256'] else None
+                need(code is None or sha(code) == row['code_sha256'], 'CANDIDATE_CODE_CHANGED:' + row['candidate_id'])
+                result = env.grade(dataset, task, code, out / 'public')
+                if result['status'] == 'UNKNOWN':
+                    state['public_unknown_attempts'].append({'candidate_id': row['candidate_id'], 'at': now(),
+                                                             'reason': result.get('reason')})
+                    save()
+                    raise Stop('PUBLIC_JUDGE_UNKNOWN:' + row['candidate_id'])
+                row['public'] = result
+                save()
+
+    initial = [generate('initial', step) for step in STEPS]
+    evaluate(initial)
+    tested = initial[0]['public']['status'] != 'NOT_TESTED'
+    gate_open = tested and not any(r['public']['status'] == 'PASS' for r in initial)
+    order = protocol.arm_order(index)
+    shared = protocol.select(initial)
+    selected = {'single': initial[0]['candidate_id'], 'shared_initial': shared['candidate_id']}
+    receipts = {'shared_initial': receipt(initial, shared, tested)}
+    if gate_open:
+        for arm in order:
+            own = []
+            for step in STEPS:
+                plans = [r['plan'] for r in initial + own] if arm == 'plan' else None
+                own.append(generate(arm, step, plans))
+            evaluate(own)  # no intermediate test feedback between the three extras
+            chosen = protocol.select(initial + own)
+            selected[arm] = chosen['candidate_id']
+            receipts[arm] = receipt(initial + own, chosen, tested)
+    else:
+        for arm in ARMS:
+            selected[arm] = shared['candidate_id']
+            receipts[arm] = receipt(initial, shared, tested)
+    state['delivery'] = {'dataset': dataset, 'question_id': qid, 'index': index, 'gate_open': gate_open,
+                         'public_tested': tested, 'arm_order': list(order) if gate_open else None,
+                         'initial_public': [r['public']['status'] for r in initial],
+                         'selected': selected, 'receipts': receipts,
+                         'selected_code_sha256': {k: state['candidates'][v]['code_sha256'] for k, v in selected.items()}}
+    state['status'] = 'COMPLETE'
+    state['completed_at'] = now()
+    save()
+    return state
+
+
+def progress(root):
+    run = Path(root) / 'runs' / RUN_NAME
+    result = {}
+    for dataset in DATASETS:
+        tasks = load_tasks(dataset, root)
+        states = []
+        for index, task in enumerate(tasks):
+            path = run / 'tasks' / dataset / qdir(index, task['question_id']) / 'task.json'
+            states.append(read(path) if path.exists() else None)
+        complete = [s for s in states if s and s['status'] == 'COMPLETE']
+        started = [s for s in states if s]
+        result[dataset] = {
+            'total': len(tasks), 'complete': len(complete), 'started': len(started),
+            'gate_open': sum(s['delivery']['gate_open'] for s in complete),
+            'requests_completed': sum(len(s['candidates']) for s in started),
+            'status': 'COMPLETE' if len(complete) == len(tasks) else 'NOT_STARTED' if not started else 'PARTIAL'}
+    return result
+
+
+def dataset_seal_path(root, dataset):
+    return Path(root) / 'runs' / RUN_NAME / 'seals' / (dataset + '.json')
+
+
+def run_formal(env, datasets=DATASETS, oj_preflight=None, stop_after_dataset=False):
+    for dataset in datasets:
+        tasks = load_tasks(dataset, env.root)
+        pending = [(index, task) for index, task in enumerate(tasks)
+                   if not (lambda p: p.exists() and read(p)['status'] == 'COMPLETE')(
+                       task_paths(env, dataset, index, task['question_id'])[0])]
+        if dataset_seal_path(env.root, dataset).exists():
+            need(not pending, 'SEALED_DATASET_HAS_PENDING_TASKS:' + dataset)
+            continue
+        if pending and dataset == 'ojbench' and oj_preflight is not None:
+            env.log('ojbench preflight: ' + dump(oj_preflight()))
+        for index, task in pending:
+            state = run_task(env, dataset, index, task)
+            d = state['delivery']
+            env.log('TASK DONE %s %d/%d %s gate_open=%s initial=%s selected=%s' % (
+                dataset, index + 1, len(tasks), task['question_id'], d['gate_open'], d['initial_public'],
+                {k: v.split('/', 4)[-1] for k, v in d['selected'].items()}))
+        if stop_after_dataset:
+            # Dataset boundary: generation pauses so this dataset can be sealed and strict-scored
+            # with no generation process running. The next dataset starts on the next --resume.
+            raise Pause('DATASET_COMPLETE:' + dataset)
+
+
+# ---------------------------------------------------------------------------
+# Environment, identity and freeze
+# ---------------------------------------------------------------------------
+def model_identity(hash_weights):
+    files = {}
+    for name in MODEL_SMALL_FILES:
+        path = MODEL_DIR / name
+        need(path.is_file(), 'MODEL_FILE_MISSING:' + name)
+        files[name] = {'bytes': path.stat().st_size, 'sha256': digest(path)}
+    weights = {}
+    for name in MODEL_WEIGHTS:
+        path = MODEL_DIR / name
+        need(path.is_file(), 'MODEL_WEIGHT_MISSING:' + name)
+        info = path.stat()
+        weights[name] = {'bytes': info.st_size, 'mtime_ns': info.st_mtime_ns}
+        if hash_weights:
+            weights[name]['sha256'] = digest(path)
+    config = read(MODEL_DIR / 'config.json')
+    return {'model_dir': str(MODEL_DIR), 'name': MODEL_NAME, 'base_model': MODEL_BASE,
+            'architecture_string': config.get('architectures'), 'model_type': config.get('model_type'),
+            'architecture_note': 'config architecture/model_type qwen3_5 is a loader class name; the weights are Qwen3.8-27B 4bit per README base_model.',
+            'quantization': config.get('quantization'),
+            'declared_max_position_embeddings': config['text_config']['max_position_embeddings'],
+            'weights_total_bytes': sum(w['bytes'] for w in weights.values()), 'files': files, 'weights': weights}
+
+
+def environment():
+    def run(command):
+        try:
+            done = subprocess.run(command, capture_output=True, text=True, timeout=120)
+            return (done.stdout + done.stderr).strip()
+        except (OSError, subprocess.TimeoutExpired) as error:
+            return 'UNAVAILABLE:' + type(error).__name__
+    packages = run([str(GEN_PYTHON), '-I', '-c',
+                    'import importlib.metadata as m,sys,json;print(json.dumps({"python":sys.version.split()[0],'
+                    '**{p:m.version(p) for p in ("mlx","mlx-lm","mlx-vlm","transformers")}}))'])
+    return {'platform': platform.platform(), 'machine': platform.machine(),
+            'chip': run(['sysctl', '-n', 'machdep.cpu.brand_string']),
+            'memory_bytes': psutil.virtual_memory().total,
+            'controller_python': sys.version.split()[0], 'controller_executable': sys.executable,
+            'psutil': psutil.__version__, 'generation_python': str(GEN_PYTHON), 'generation_packages': packages,
+            'candidate_python': str(EXEC_PYTHON), 'candidate_python_version': run([str(EXEC_PYTHON), '-I', '--version']),
+            'docker_server': run(['docker', 'version', '--format', '{{.Server.Version}}']),
+            'oj_image': OJ_IMAGE, 'oj_image_inspect': run(['docker', 'image', 'inspect', OJ_IMAGE, '--format', '{{.Id}}'])}
+
+
+def identity_receipts(root, cohort_index):
+    """Same-task acceptance: counts, order, record / prompt / public-test hashes against the handoff index."""
+    rows = list(csv.DictReader(Path(cohort_index).open(encoding='utf-8', newline='')))
+    need(len(rows) == 600, 'COHORT_INDEX_ROWS')
+    receipts, position = [], 0
+    summary = {}
+    for dataset in DATASETS:
+        need(digest(PUBLIC_SOURCES[dataset]) == PUBLIC_SHA256[dataset], 'ORIGINAL_SOURCE_CHANGED:' + dataset)
+        tasks = load_tasks(dataset, root)
+        for index, task in enumerate(tasks):
+            row = rows[position]
+            position += 1
+            tests = task['public_test_cases'] if dataset == 'lcb' else task['public_tests']
+            prompt = protocol.render_prompt(dataset, task)
+            actual = {'order': str(position), 'dataset': dataset, 'source_index': str(index),
+                      'question_id': task['question_id'], 'difficulty': difficulty(dataset, task),
+                      'source_path': str(PUBLIC_SOURCES[dataset]), 'source_record_sha256': h(task),
+                      'prompt_sha256': sha(prompt), 'public_tests_sha256': h(tests)}
+            need(actual == row, 'COHORT_IDENTITY_MISMATCH:%s/%s' % (dataset, task['question_id']))
+            if dataset == 'lcb':
+                need(task['prompt'] == prompt, 'LCB_RECORDED_PROMPT_DIFFERS:' + task['question_id'])
+                kinds = {c['testtype'] for c in tests}
+                need(kinds <= {'functional' if task['task_type'] == 'function' else 'stdin'}, 'LCB_TESTTYPE:' + task['question_id'])
+                if task['task_type'] == 'function':
+                    for case in tests:
+                        [json.loads(line) for line in case['input'].split('\n')]
+            receipts.append({**actual, 'public_test_count': len(tests), 'matches_handoff_index': True})
+        summary[dataset] = {'count': len(tasks), 'file_sha256': PUBLIC_SHA256[dataset],
+                            'byte_identical_to_original_source': True, 'source_order_preserved': True,
+                            'ordered_ids_sha256': h([t['question_id'] for t in tasks])}
+    need(position == 600 and len({(r['dataset'], r['question_id']) for r in receipts}) == 600, 'COHORT_GRID')
+    return {'schema': 'QWEN38_IDENTITY_RECEIPTS_V1', 'total': 600, 'datasets': summary,
+            'covered_by_record_hash': 'statement, public tests and order, starter code / callable, I/O contract, checker, resource metadata',
+            'lcb_disclosure': 'Task records and rendered prompt equal the original public file; historical GPT archives of the same IDs were sent under other protocol versions and are not claimed identical message-for-message.',
+            'tasks': receipts}
+
+
+def frozen_files(root):
+    root = Path(root)
+    files = {'code/' + name: digest(root / 'code' / name) for name in FROZEN_CODE}
+    for dataset in DATASETS:
+        files['data_public/%s/public_tasks.json' % dataset] = digest(root / 'data_public' / dataset / 'public_tasks.json')
+    return files
+
+
+def mode_freeze(root, cohort_index):
+    root = Path(root)
+    run = root / 'runs' / RUN_NAME
+    freeze_path = run / 'freeze.json'
+    need(not freeze_path.exists(), 'FREEZE_ALREADY_EXISTS')
+    need(not (run / 'requests').exists() and not (run / 'tasks').exists(), 'FORMAL_STATE_EXISTS_BEFORE_FREEZE')
+    cohort_index = (root / cohort_index) if not Path(cohort_index).is_absolute() else Path(cohort_index)
+    manifest = read(root / 'PACKAGE_MANIFEST.json')
+    for name, expected in manifest.items():
+        need(digest(root / name) == expected, 'HANDOFF_FILE_CHANGED:' + name)
+    need(digest(cohort_index) == manifest['handoff/01_原实验完整题单600.csv'], 'COHORT_INDEX_HASH')
+    pins = verify_pins()
+    receipts = identity_receipts(root, cohort_index)
+    write(root / 'preparation/identity_receipts.json', receipts)
+
+    tests = root / 'preparation/offline_tests'
+    need((tests / 'exit_code.txt').read_text().strip() == '0', 'OFFLINE_TESTS_NOT_PASSED')
+    smoke = read(root / 'preparation/smoke/smoke_report.json')
+    need(smoke['status'] == 'ENGINEERING_SMOKE_OK' and smoke['physical_attempts'] <= 3, 'ENGINEERING_SMOKE_NOT_OK')
+    scoring = read(root / 'preparation/scoring_preflight.json')
+    need(scoring['status'] in ('READY', 'READY_LCB_NETWORK_DEFERRED'), 'STRICT_SCORING_NOT_CONNECTABLE')
+
+    import execution_adapter
+    from local_gateway import watchdog_seconds
+    rate = float(smoke['measured']['generation_tps_min'])
+    freeze = {
+        'schema': 'QWEN38_PLAN_A1_FREEZE_V1', 'campaign_id': CAMPAIGN_ID, 'frozen_at': now(),
+        'question': 'Same local Qwen, identical original tasks and three shared Qwen initials: A1 (three independent extras) vs original A2-Plan (reads earlier approaches + differ instruction, three extras).',
+        'arms': ['A1', 'A2-Plan'], 'outer_runs': 1, 'master_seed': MASTER_SEED, 'repeat': REPEAT,
+        'dataset_order': list(DATASETS), 'counts': EXPECTED_COUNTS, 'formal_call_upper_bound': 5394,
+        'arm_order_rule': '(index+repeat)%2==0 -> A1 then Plan, else Plan then A1; index is the 0-based position in each original list',
+        'model': model_identity(hash_weights=True), 'worker_ready': smoke['worker_ready'],
+        'prompt': {**protocol.prompt_identity(), 'system': protocol.SYSTEM, 'diversity': protocol.DIVERSITY},
+        'thinking': 'enable_thinking=False and preserve_thinking=False through the model chat template; Qwen3.8-27B 4bit non-thinking configuration',
+        'seed': {'algorithm': protocol.SEED_ALGORITHM, 'applied_as': 'mx.random.seed(seed) in the worker before each request; seed kwarg not passed',
+                 'same_seed_reproduced_in_smoke': smoke['checks']['same_seed_same_text'],
+                 'limit': 'Not guaranteed across hardware or library versions.'},
+        'context': 'Each request starts from its own messages with a fresh KV cache; no prompt cache, APC or continuation.',
+        'watchdog_seconds': {str(m): watchdog_seconds(m, rate) for m in sorted(set(protocol.MAX_TOKENS.values()))},
+        'watchdog_rule': 'max(1800, ceil(2*max_tokens/max(measured_rate,1))+300) with the slowest smoke rate %.3f tok/s' % rate,
+        'selection_rule': 'earliest all-public-PASS among initial1..3 + own extra1..3, else initial1',
+        'plan_rule': 'text before first non-empty python/py fence, stripped, first 2500 chars; empty -> placeholder',
+        'code_rule': 'first non-empty python/py fence, else whole reply if ast.parse succeeds; never repaired',
+        'execution': {'executor': str(EXECUTOR), 'executor_version': execution_adapter.VERSION,
+                      'adapter_version': execution_adapter.ADAPTER_VERSION, 'candidate_python': str(EXEC_PYTHON),
+                      'usaco_taco': 'run_raw; wall=task; memory whole MiB floor; 16 MiB output; 16 children; token_exact/token_casefold',
+                      'ojbench': 'original public_judge.grade_cases; ' + OJ_IMAGE + '; DMOJ standard/floats',
+                      'lcb_public': {**execution_adapter.LCB_PUBLIC_LIMITS, 'nofile_limit': 128,
+                                     'function': 'Solution.method via byte-identical function_harness.py',
+                                     'disclosure': 'descriptor limit 128 vs historical E16 64; one sampled child allowed vs none'},
+                      'lcb_strict': 'pinned official release_v6 backend: 10 s, 1 GiB, 64 KiB output, 16 processes (differs from public limits; kept as historical)'},
+        'technical_failure_policy': TECHNICAL_POLICY,
+        'environment': environment(), 'oj_preflight': execution_adapter.oj_preflight(),
+        'files': frozen_files(root), 'source_pins': pins,
+        'handoff': {name: manifest[name] for name in manifest},
+        'cohort_index': {'path': str(cohort_index), 'sha256': digest(cohort_index), 'rows': 600},
+        'identity_receipts_sha256': digest(root / 'preparation/identity_receipts.json'),
+        'offline_tests': {name: digest(tests / name) for name in ('stdout.txt', 'stderr.txt', 'exit_code.txt')},
+        'smoke_report_sha256': digest(root / 'preparation/smoke/smoke_report.json'),
+        'scoring_preflight_sha256': digest(root / 'preparation/scoring_preflight.json'),
+        'scoring_sources': scoring['sources'],
+        'remote_api': {'calls_allowed': 0, 'fallback': 'none'},
+        'not_claimed': ['unseen-task confirmation', 'stable advantage', 'equal token or dollar budget',
+                        'single-factor causal effect of history text', 'mentor approval'],
+    }
+    write(freeze_path, freeze)
+    print(json.dumps({'status': 'FROZEN', 'freeze': str(freeze_path), 'sha256': digest(freeze_path),
+                      'watchdog_seconds': freeze['watchdog_seconds']}, ensure_ascii=False))
+
+
+def effective_files(root, freeze):
+    """Frozen file hashes after the recorded engineering amendments (code files only, never tasks)."""
+    files = dict(freeze['files'])
+    path = Path(root) / 'runs' / RUN_NAME / 'freeze_amendments.jsonl'
+    amendments = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines() if line] if path.exists() else []
+    for amendment in amendments:
+        for name, change in amendment['files'].items():
+            need(name.startswith('code/') and files.get(name) == change['old'], 'AMENDMENT_CHAIN_BROKEN:' + name)
+            files[name] = change['new']
+    return files, amendments
+
+
+def effective_watchdog(freeze, amendments):
+    """Watchdog budgets: the frozen ones unless a recorded amendment recomputed them with the same rule."""
+    budgets = dict(freeze['watchdog_seconds'])
+    for amendment in amendments:
+        budgets.update(amendment.get('watchdog_seconds') or {})
+    return {int(k): int(v) for k, v in budgets.items()}
+
+
+def budget_revision_path(root):
+    return Path(root) / 'runs' / RUN_NAME / 'budget_revision.json'
+
+
+def effective_max_tokens(root):
+    """Frozen output limits plus the separately frozen budget revision, if one exists."""
+    limits = dict(protocol.MAX_TOKENS)
+    path = budget_revision_path(root)
+    if path.exists():
+        limits.update(read(path)['max_tokens'])
+    return limits
+
+
+def effective_order(freeze, amendments):
+    """Dataset execution order: the frozen one unless a recorded amendment reordered it.
+
+    An order amendment is a schedule change only. Every dataset keeps all of its tasks, their
+    original within-dataset order (which fixes each task's arm order), prompts, limits and judging.
+    """
+    order = list(freeze['dataset_order'])
+    for amendment in amendments:
+        if amendment.get('dataset_order'):
+            order = list(amendment['dataset_order'])
+    need(sorted(order) == sorted(DATASETS) and len(order) == len(DATASETS), 'DATASET_ORDER_MUST_BE_A_PERMUTATION')
+    return tuple(order)
+
+
+def mode_amend(root, reason, watchdog_rate=None, dataset_order=None, budget=None):
+    """Record an engineering fix or a schedule change made after the freeze. freeze.json is never rewritten.
+
+    watchdog_rate (tok/s measured on full-length formal replies) recomputes the per-request
+    watchdog with the frozen rule; the watchdog only decides when a hung worker is killed.
+    dataset_order reorders whole datasets; no task, prompt, limit or judging rule changes.
+    budget = (dataset, max_tokens) is the one scientific change this mode accepts: a separate,
+    explicitly frozen output-limit revision for a dataset that has not issued any request yet.
+    """
+    from local_gateway import process_alive, watchdog_seconds
+    root = Path(root)
+    run = root / 'runs' / RUN_NAME
+    freeze = read(run / 'freeze.json')
+    need(not (run / 'generation_seal.json').exists(), 'GENERATION_ALREADY_SEALED')
+    need(isinstance(reason, str) and len(reason.strip()) >= 20, 'AMENDMENT_NEEDS_A_SPECIFIC_REASON')
+    files, amendments = effective_files(root, freeze)
+    current = frozen_files(root)
+    changed = {name: {'old': files[name], 'new': current[name]} for name in files if files[name] != current[name]}
+    need(changed or watchdog_rate or dataset_order or budget, 'NOTHING_TO_AMEND')
+    need(all(name.startswith('code/') for name in changed), 'TASK_FILES_CAN_NEVER_BE_AMENDED')
+    need(freeze['prompt'] == {**protocol.prompt_identity(), 'system': protocol.SYSTEM, 'diversity': protocol.DIVERSITY},
+         'PROMPT_SAMPLING_OR_OUTPUT_LIMIT_CHANGED_NOT_AN_ENGINEERING_FIX')
+    need(freeze['source_pins'] == verify_pins(), 'SOURCE_PINS_CHANGED')
+    pid_file = run / 'worker.pid.json'
+    need(not pid_file.exists() or not process_alive(read(pid_file)['pid'], str(CODE / 'qwen_worker.py')), 'WORKER_STILL_ACTIVE')
+    completed = sum(read(p)['state'] == 'COMPLETED' for p in (run / 'requests').rglob('state.json')) if (run / 'requests').exists() else 0
+    record = {'index': len(amendments) + 1, 'at': now(), 'reason': reason.strip(), 'files': changed,
+              'scientific_conditions_changed': False, 'completed_requests_at_amendment': completed,
+              'completed_requests_regenerated': 0}
+    if budget:
+        dataset, limit = budget[0], int(budget[1])
+        path = budget_revision_path(root)
+        need(dataset in DATASETS and limit > 0 and limit != protocol.MAX_TOKENS[dataset], 'BUDGET_REVISION_INVALID')
+        need(not path.exists(), 'A_BUDGET_REVISION_ALREADY_EXISTS')
+        need(not (run / 'requests' / dataset).exists() and not (run / 'tasks' / dataset).exists()
+             and not dataset_seal_path(root, dataset).exists(), 'BUDGET_REVISION_ONLY_BEFORE_THE_FIRST_REQUEST_OF_THE_DATASET')
+        revision = {
+            'schema': 'QWEN38_BUDGET_REVISION_V1', 'campaign_id': CAMPAIGN_ID, 'revised_at': now(),
+            'original_freeze_sha256': digest(run / 'freeze.json'), 'original_freeze_rewritten': False,
+            'dataset': dataset, 'max_tokens': {dataset: limit}, 'previous_max_tokens': {dataset: protocol.MAX_TOKENS[dataset]},
+            'applies_to': 'the three shared initial drafts, the three A1 extras and the three Plan extras of this dataset alike',
+            'other_datasets': {d: protocol.MAX_TOKENS[d] for d in DATASETS if d != dataset},
+            'unchanged': ['model and quantization', 'thinking disabled', 'temperature / top_p / top_k / min_p', 'system prompt and '
+                          'differ instruction', 'plan and code extraction', 'public tests and limits', 'selection rule',
+                          'task list and order within the dataset', 'request seeds', 'strict scoring'],
+            'requests_of_this_dataset_before_revision': 0, 'scientific_conditions_changed': True,
+            'reason': reason.strip(),
+            'authorization': 'Direction given by the user in the Claude Code session on 2026-10-11. Not mentor approval.',
+            'accounting': 'Every output token (analysis, plan and code) counts toward usage; truncation and no-code rates are reported separately.',
+            'comparison_note': 'Historical GPT-4o LCB runs used a 2000-token output limit. Any comparison with them must state '
+                               'the different limit; it is not a model-only change. 16384 does not rule out truncation either.',
+            'progress_at_revision': {d: {k: v for k, v in info.items() if k in ('complete', 'started', 'requests_completed', 'total')}
+                                     for d, info in progress(root).items()}}
+        write(path, revision)
+        record.update(budget_revision_sha256=digest(path), budget_revision=revision['max_tokens'],
+                      scientific_conditions_changed=True,
+                      scientific_change_scope='output limit of %s only, before its first request' % dataset)
+    if dataset_order:
+        order = [name.strip() for name in dataset_order.split(',')] if isinstance(dataset_order, str) else list(dataset_order)
+        need(sorted(order) == sorted(DATASETS) and len(order) == len(DATASETS), 'DATASET_ORDER_MUST_BE_A_PERMUTATION')
+        record.update(dataset_order=order, previous_dataset_order=list(effective_order(freeze, amendments)),
+                      dataset_order_scope='execution order of whole datasets only; all 600 tasks, each '
+                                          "dataset's internal order, prompts, limits, judging and selection unchanged",
+                      progress_at_amendment={d: {k: v for k, v in info.items() if k in ('complete', 'started', 'requests_completed', 'total')}
+                                             for d, info in progress(root).items()})
+    if watchdog_rate:
+        need(0 < float(watchdog_rate) < 1000, 'WATCHDOG_RATE_INVALID')
+        record['watchdog_rate_tps'] = float(watchdog_rate)
+        record['watchdog_seconds'] = {str(m): max(watchdog_seconds(m, float(watchdog_rate)), int(v))
+                                      for m, v in effective_watchdog(freeze, amendments).items()}
+        record['watchdog_rule'] = 'same frozen rule, measured full-length rate; a budget is never lowered'
+    append_jsonl(run / 'freeze_amendments.jsonl', record)
+    print(json.dumps({'status': 'AMENDMENT_RECORDED', **record}, ensure_ascii=False))
+    return 0
+
+
+def verify_freeze(root):
+    root = Path(root)
+    freeze_path = root / 'runs' / RUN_NAME / 'freeze.json'
+    need(freeze_path.exists(), 'FREEZE_REQUIRED_BEFORE_FORMAL_RUN')
+    freeze = read(freeze_path)
+    files, amendments = effective_files(root, freeze)
+    need(files == frozen_files(root), 'FROZEN_CODE_OR_TASKS_CHANGED: an engineering fix must be recorded with --mode amend')
+    revision = budget_revision_path(root)
+    need(not revision.exists() or any(a.get('budget_revision_sha256') == digest(revision) for a in amendments),
+         'BUDGET_REVISION_NOT_RECORDED_OR_CHANGED')
+    need(freeze['source_pins'] == verify_pins(), 'SOURCE_PINS_CHANGED')
+    need(freeze['prompt'] == {**protocol.prompt_identity(), 'system': protocol.SYSTEM, 'diversity': protocol.DIVERSITY},
+         'PROMPT_OR_SAMPLING_CHANGED')
+    current = model_identity(hash_weights=False)
+    need(current['files'] == freeze['model']['files'], 'MODEL_CONFIG_OR_TOKENIZER_CHANGED')
+    for name, info in current['weights'].items():
+        frozen = freeze['model']['weights'][name]
+        need((info['bytes'], info['mtime_ns']) == (frozen['bytes'], frozen['mtime_ns']), 'MODEL_WEIGHTS_CHANGED:' + name)
+    return freeze, digest(freeze_path)
+
+
+# ---------------------------------------------------------------------------
+# Modes
+# ---------------------------------------------------------------------------
+def worker_command():
+    return [GEN_PYTHON, CODE / 'qwen_worker.py', MODEL_DIR]
+
+
+def mode_smoke(root):
+    """At most three physical local generations, 256 output tokens each, self-authored inputs only."""
+    from local_gateway import LocalGateway
+    import execution_adapter
+    root = Path(root)
+    prep = root / 'preparation/smoke'
+    add_task = ('Read two integers a and b from standard input (they are on one line, separated by a space) '
+                'and print their sum.\n\nExample\nInput:\n3 4\nOutput:\n7')
+    base = {'model': MODEL_NAME, **protocol.SAMPLING, 'max_tokens': 256}
+    code_messages = [{'role': 'system', 'content': protocol.SYSTEM}, {'role': 'user', 'content': add_task}]
+    slots = [('smoke/1_sum_program', {**base, 'seed': 101, 'messages': code_messages}),
+             ('smoke/2_fixed_text', {**base, 'seed': 202, 'messages': [
+                 {'role': 'user', 'content': 'Reply with exactly this text and nothing else: PN_SMOKE_OK'}]}),
+             ('smoke/3_sum_program_same_seed', {**base, 'seed': 101, 'messages': code_messages})]
+    gateway = LocalGateway(worker_command(), prep, prep / 'usage_smoke.jsonl', lambda body: 1800)
+    records = []
+    try:
+        for logical_id, body in slots:
+            records.append(gateway.request(logical_id, body, prep / 'requests' / logical_id.split('/')[1]))
+        ready = gateway.ready or read(prep / 'worker_ready.json')
+    finally:
+        gateway.stop()
+    states = [read(prep / 'requests' / lid.split('/')[1] / 'state.json') for lid, _ in slots]
+    parsed = protocol.interpret(records[0]['text'])
+    fixture = {'question_id': 'authored_sum_fixture', 'io_mode': 'stdin', 'input_filename': None,
+               'output_filename': None, 'wall_seconds': 5.0, 'memory_bytes': 268435456,
+               'semantic_checker': 'token_exact',
+               'public_tests': [{'input': '3 4\n', 'output': '7\n'}, {'input': '-5 12\n', 'output': '7\n'}]}
+    public = execution_adapter.grade_public('usaco', fixture, parsed['code'], prep / 'requests/1_sum_program/public')
+    checks = {
+        'all_finished': all(r['finish_reason'] in ('stop', 'length') for r in records),
+        'stream_equals_result': all(read_exact(prep / 'requests' / lid.split('/')[1] / 'stream.txt') == r['text']
+                                    for (lid, _), r in zip(slots, records)),
+        'prompt_tokens_equal_recorded_ids': all(r['usage']['prompt_tokens'] == r['input_ids_count'] for r in records),
+        'no_cached_tokens': all(r['usage']['cached_tokens'] == 0 for r in records),
+        'no_think_markup_in_reply': all('<think>' not in r['text'] and '</think>' not in r['text'] for r in records),
+        'rendered_prompt_closes_thinking': all(
+            read_exact(prep / 'requests' / lid.split('/')[1] / 'rendered_prompt.txt').endswith('<think>\n\n</think>\n\n')
+            for lid, _ in slots),
+        'same_seed_same_text': records[0]['text'] == records[2]['text'],
+        'chat_template_is_model_file': ready['chat_template_sha256'] == digest(MODEL_DIR / 'chat_template.jinja'),
+        'fixed_text_reply': records[1]['text'].strip(),
+        'sum_program_extraction': parsed['extraction'], 'sum_program_public': public['status'],
+    }
+    rates = [r['timing']['generation_tps'] for r in records if r['usage']['completion_tokens'] >= 8]
+    hard = ('all_finished', 'stream_equals_result', 'prompt_tokens_equal_recorded_ids', 'no_cached_tokens',
+            'no_think_markup_in_reply', 'rendered_prompt_closes_thinking', 'chat_template_is_model_file')
+    report = {
+        'schema': 'QWEN38_ENGINEERING_SMOKE_V1',
+        'status': 'ENGINEERING_SMOKE_OK' if all(checks[k] for k in hard) and rates else 'ENGINEERING_SMOKE_FAILED',
+        'scope': 'Engineering only: self-authored inputs, no benchmark task, not a method result.',
+        'physical_attempts': sum(s['state'] != 'PREPARED' for s in states), 'max_attempts': 3, 'max_tokens': 256,
+        'worker_ready': ready, 'checks': checks,
+        'requests': [{'logical_id': lid, 'seed': body['seed'], 'finish_reason': r['finish_reason'],
+                      'usage': r['usage'], 'timing': r['timing'], 'peak_memory_gb': r['peak_memory_gb'],
+                      'text_sha256': r['text_sha256']} for (lid, body), r in zip(slots, records)],
+        'measured': {'generation_tps': rates, 'generation_tps_min': min(rates) if rates else None,
+                     'prompt_tps': [r['timing']['prompt_tps'] for r in records],
+                     'load_seconds': ready['load_seconds'],
+                     'peak_memory_gb_max': max(r['peak_memory_gb'] for r in records)},
+        'note': 'same_seed_same_text and the sum program result are recorded observations, not gates.'}
+    write(prep / 'smoke_report.json', report)
+    print(json.dumps({k: report[k] for k in ('status', 'physical_attempts', 'checks', 'measured')}, ensure_ascii=False, indent=1))
+    return 0 if report['status'] == 'ENGINEERING_SMOKE_OK' else 2
+
+
+def mode_formal(root, max_hours, stop_after_dataset=False):
+    from local_gateway import LocalGateway
+    import execution_adapter
+    root = Path(root)
+    run = root / 'runs' / RUN_NAME
+    freeze, freeze_sha = verify_freeze(root)
+    need(not (run / 'generation_seal.json').exists(), 'GENERATION_ALREADY_SEALED')
+    (run / 'logs').mkdir(parents=True, exist_ok=True)
+    log_path = run / 'logs/controller.log'
+
+    def log(message):
+        line = '%s %s' % (now(), message)
+        print(line, flush=True)
+        with log_path.open('a', encoding='utf-8') as stream:
+            stream.write(line + '\n')
+
+    started, flag = time.monotonic(), {'signal': None}
+
+    def on_signal(number, _frame):
+        if flag['signal'] is not None:
+            raise KeyboardInterrupt
+        flag['signal'] = number
+        log('signal %s received: pausing at the next request boundary' % number)
+
+    signal.signal(signal.SIGTERM, on_signal)
+    signal.signal(signal.SIGINT, on_signal)
+
+    def checkpoint():
+        if flag['signal'] is not None:
+            raise Pause('SIGNAL')
+        if (run / 'STOP').exists():
+            raise Pause('STOP_FILE')
+        if max_hours and time.monotonic() - started > max_hours * 3600:
+            raise Pause('MAX_HOURS')
+
+    amendments = effective_files(root, freeze)[1]
+    budgets = effective_watchdog(freeze, amendments)
+    order = effective_order(freeze, amendments)
+    limits = effective_max_tokens(root)
+    revision_sha = digest(budget_revision_path(root)) if budget_revision_path(root).exists() else None
+    gateway = LocalGateway(worker_command(), run, run / 'usage_local.jsonl', lambda body: budgets[body['max_tokens']], log=log)
+    env = Env(root, gateway, execution_adapter.grade_public, log, checkpoint, limits, revision_sha)
+    memory = psutil.virtual_memory()
+    session = {'started_at': now(), 'controller_pid': os.getpid(), 'freeze_sha256': freeze_sha, 'dataset_order': list(order),
+               'max_tokens': limits, 'budget_revision_sha256': revision_sha,
+               'memory_available_bytes': memory.available, 'memory_total_bytes': memory.total,
+               'progress_at_start': progress(root)}
+    status, reason, code = 'RUNNING', None, 0
+    write(run / 'run_status.json', {'status': status, **session})
+    log('formal session start pid=%s freeze=%s available_memory=%.1fGiB watchdog=%s dataset_order=%s max_tokens=%s' % (
+        os.getpid(), freeze_sha[:12], memory.available / 2**30, dump(budgets), '>'.join(order), dump(limits)))
+    try:
+        run_formal(env, datasets=order, oj_preflight=execution_adapter.oj_preflight, stop_after_dataset=stop_after_dataset)
+        status = 'ALL_TASKS_COMPLETE'
+    except Pause as pause:
+        status, reason, code = 'PAUSED', str(pause), 3
+    except Stop as stop:
+        status, reason, code = 'BLOCKED', str(stop), 2
+    except KeyboardInterrupt:
+        status, reason, code = 'INTERRUPTED', 'SECOND_SIGNAL', 130
+    except BaseException as error:
+        status, reason, code = 'BLOCKED', 'UNEXPECTED:%s:%s' % (type(error).__name__, str(error)[:500]), 2
+        import traceback
+        log(traceback.format_exc())
+    finally:
+        gateway.stop()
+        final = {'status': status, 'reason': reason, **session, 'ended_at': now(), 'progress': progress(root),
+                 'worker_stopped': gateway.proc is None}
+        write(run / 'run_status.json', final)
+        append_jsonl(run / 'logs/sessions.jsonl', final)
+        log('formal session end status=%s reason=%s progress=%s' % (status, reason, dump(final['progress'])))
+    return code
+
+
+def no_active_generation(run):
+    """Seal and strict scoring only start while no generation process of this project is alive."""
+    from local_gateway import process_alive
+    pid_file = run / 'worker.pid.json'
+    need(not pid_file.exists() or not process_alive(read(pid_file)['pid'], str(CODE / 'qwen_worker.py')),
+         'GENERATION_WORKER_STILL_ACTIVE')
+    status = read(run / 'run_status.json')
+    need(status['status'] != 'RUNNING' or not process_alive(status['controller_pid']), 'CONTROLLER_STILL_ACTIVE')
+
+
+def request_states(run, dataset=None):
+    base = run / 'requests' / dataset if dataset else run / 'requests'
+    return {str(path.parent.relative_to(run)): read(path)['state'] for path in sorted(base.rglob('state.json'))} if base.exists() else {}
+
+
+def dataset_usage(run, dataset):
+    """Usage rows of one dataset; they can no longer change once that dataset is complete."""
+    prefix = 'formal/r%d/%s/' % (REPEAT, dataset)
+    path = run / 'usage_local.jsonl'
+    rows = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines() if line] if path.exists() else []
+    rows = [row for row in rows if str(row.get('logical_id', '')).startswith(prefix)]
+    return {'rows': len(rows), 'sha256': h(rows)}
+
+
+def seal_dataset(root, dataset, freeze, freeze_sha):
+    """Close one complete dataset: fixed selections, every request COMPLETED, all files hashed."""
+    root = Path(root)
+    run = root / 'runs' / RUN_NAME
+    info = progress(root)[dataset]
+    need(info['status'] == 'COMPLETE', 'DATASET_NOT_COMPLETE:' + dataset)
+    states = request_states(run, dataset)
+    need(all(v == 'COMPLETED' for v in states.values()), 'DATASET_HAS_OPEN_OR_FAILED_REQUESTS:' + dataset)
+    selected, files = [], {}
+    for index, task in enumerate(load_tasks(dataset, root)):
+        path, request_root = task_paths(Env(root, None, None), dataset, index, task['question_id'])
+        state = read(path)
+        need(state['identity']['record_sha256'] == h(task), 'SEAL_TASK_IDENTITY:' + task['question_id'])
+        for cid, row in state['candidates'].items():
+            out = root / row['request_dir']
+            need(read(out / 'state.json')['state'] == 'COMPLETED' and
+                 sha(read_exact(out / 'raw_response.txt')) == row['response_sha256'], 'SEAL_RESPONSE:' + cid)
+            need(row['public'] is not None, 'SEAL_PUBLIC_MISSING:' + cid)
+            if row['code_sha256']:
+                need(sha(read_exact(out / 'code.py')) == row['code_sha256'], 'SEAL_CODE:' + cid)
+        delivery = state['delivery']
+        for label in ('shared_initial', 'a1', 'plan'):
+            row = state['candidates'][delivery['selected'][label]]
+            recomputed = protocol.select([state['candidates'][c['candidate_id']] for c in
+                                          delivery['receipts'][label]['ordered_candidates']])
+            need(recomputed['candidate_id'] == row['candidate_id'], 'SEAL_SELECTION_NOT_RECOMPUTABLE')
+            selected.append({'dataset': dataset, 'question_id': task['question_id'], 'index': index,
+                             'difficulty': state['difficulty'], 'label': label,
+                             'candidate_id': row['candidate_id'], 'code_sha256': row['code_sha256'],
+                             'code_path': (row['request_dir'] + '/code.py') if row['code_sha256'] else None,
+                             'public_status': row['public']['status'], 'gate_open': delivery['gate_open']})
+        for item in [path] + sorted(p for p in request_root.rglob('*') if p.is_file()):
+            files[str(item.relative_to(root))] = digest(item)
+    seal = {'schema': 'QWEN38_DATASET_SEAL_V1', 'scope': 'DATASET', 'campaign_id': CAMPAIGN_ID, 'dataset': dataset,
+            'sealed_at': now(), 'status': 'SEALED_COMPLETE', 'freeze_sha256': freeze_sha,
+            'generation_closed': True, 'active_generation_processes': [],
+            'datasets': {dataset: info}, 'sealed_datasets': [dataset], 'open_or_failed_requests': {},
+            'formal_requests_completed': len(states), 'usage_dataset': dataset_usage(run, dataset),
+            'max_tokens': effective_max_tokens(root)[dataset],
+            'budget_revision_sha256': digest(budget_revision_path(root)) if budget_revision_path(root).exists() else None,
+            'freeze_amendments': effective_files(root, freeze)[1] if freeze else [],
+            'remote_api_calls': 0, 'api_cost_usd': 0,
+            'selected_labels': len(selected), 'selected': selected, 'files': files,
+            'strict_evaluation_may_start': True,
+            'note': 'This dataset is closed: no further request, public test or selection for it. Its strict '
+                    'results are never read by any generation code path of the remaining datasets.'}
+    write(dataset_seal_path(root, dataset), seal)
+    return seal
+
+
+def mode_seal(root, allow_partial, dataset=None):
+    """--dataset D closes one complete dataset; without it, the whole batch is closed for good."""
+    root = Path(root)
+    run = root / 'runs' / RUN_NAME
+    freeze, freeze_sha = verify_freeze(root)
+    seal_path = run / 'generation_seal.json'
+    need(not seal_path.exists(), 'SEAL_ALREADY_EXISTS')
+    no_active_generation(run)
+    if dataset is not None:
+        need(dataset in DATASETS and not dataset_seal_path(root, dataset).exists(), 'DATASET_SEAL_ALREADY_EXISTS_OR_UNKNOWN')
+        part = seal_dataset(root, dataset, freeze, freeze_sha)
+        print(json.dumps({'status': part['status'], 'scope': 'DATASET', 'dataset': dataset,
+                          'seal': str(dataset_seal_path(root, dataset)), 'sha256': digest(dataset_seal_path(root, dataset)),
+                          'selected_labels': part['selected_labels'], 'files': len(part['files'])}, ensure_ascii=False))
+        return 0
+    datasets, selected, files, dataset_seals = progress(root), [], {}, {}
+    for name in DATASETS:
+        path = dataset_seal_path(root, name)
+        if not path.exists():
+            if datasets[name]['status'] != 'COMPLETE':
+                continue
+            seal_dataset(root, name, freeze, freeze_sha)
+        part = read(path)
+        need(part['freeze_sha256'] == freeze_sha and part['sealed_datasets'] == [name] and
+             all(digest(root / p) == expected for p, expected in part['files'].items()), 'DATASET_SEAL_OR_FILES_CHANGED:' + name)
+        selected += part['selected']
+        files.update(part['files'])
+        dataset_seals[name] = digest(path)
+    states = request_states(run)
+    open_requests = {k: v for k, v in states.items() if v != 'COMPLETED'}
+    complete = len(dataset_seals) == len(DATASETS) and not open_requests
+    need(complete or allow_partial, 'NOT_ALL_600_COMPLETE: pass --allow-partial to seal an explicitly PARTIAL batch; '
+         + dump({d: datasets[d]['status'] for d in DATASETS}) + ' open_requests=%d' % len(open_requests))
+    usage = [json.loads(line) for line in (run / 'usage_local.jsonl').read_text(encoding='utf-8').splitlines() if line]
+    seal = {'schema': 'QWEN38_GENERATION_SEAL_V1', 'scope': 'GLOBAL', 'campaign_id': CAMPAIGN_ID, 'sealed_at': now(),
+            'status': 'SEALED_COMPLETE' if complete else 'SEALED_PARTIAL', 'freeze_sha256': freeze_sha,
+            'generation_closed': True, 'active_generation_processes': [],
+            'datasets': datasets, 'sealed_datasets': list(dataset_seals), 'dataset_seals': dataset_seals,
+            'open_or_failed_requests': open_requests,
+            'request_states': {s: sum(v == s for v in states.values()) for s in sorted(set(states.values()))},
+            'formal_requests_completed': sum(v == 'COMPLETED' for v in states.values()),
+            'usage_rows': len(usage), 'usage_local_sha256': digest(run / 'usage_local.jsonl'),
+            'freeze_amendments': effective_files(root, freeze)[1] if freeze else [],
+            'remote_api_calls': 0, 'api_cost_usd': 0,
+            'selected_labels': len(selected), 'selected': selected, 'files': files,
+            'strict_evaluation_may_start': True,
+            'note': 'After this seal no formal generation may run. Strict results never flow back into generation.'}
+    write(seal_path, seal)
+    print(json.dumps({'status': seal['status'], 'scope': 'GLOBAL', 'seal': str(seal_path), 'sha256': digest(seal_path),
+                      'datasets': {d: datasets[d]['status'] for d in DATASETS},
+                      'selected_labels': len(selected), 'files': len(files)}, ensure_ascii=False))
+    return 0
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument('--mode', required=True, choices=('smoke', 'freeze', 'formal', 'seal', 'status', 'amend'))
+    parser.add_argument('--reason', help='amend: what engineering fault was fixed and why it changes no scientific condition')
+    parser.add_argument('--watchdog-rate', type=float, help='amend: measured tok/s of full-length formal replies, to recompute the watchdog')
+    parser.add_argument('--dataset-order', help='amend: comma-separated execution order of the four datasets (schedule only)')
+    parser.add_argument('--budget-dataset', choices=DATASETS, help='amend: dataset whose output limit is revised before its first request')
+    parser.add_argument('--budget-max-tokens', type=int, help='amend: the revised output limit for --budget-dataset')
+    parser.add_argument('--root', default=str(ROOT))
+    parser.add_argument('--cohort-index', default='handoff/01_原实验完整题单600.csv')
+    parser.add_argument('--resume', action='store_true', help='formal: continue the same frozen cohort from saved state')
+    parser.add_argument('--max-hours', type=float, default=0, help='formal: pause at a request boundary after this many hours')
+    parser.add_argument('--allow-partial', action='store_true', help='seal: close an explicitly PARTIAL batch')
+    parser.add_argument('--dataset', choices=DATASETS, help='seal: close only this complete dataset')
+    parser.add_argument('--stop-after-dataset', action='store_true',
+                        help='formal: pause at each dataset boundary so that dataset can be sealed and strict-scored')
+    args = parser.parse_args()
+    need(Path(args.root).resolve() == ROOT, 'ROOT_MUST_BE_THIS_PROJECT')
+    try:
+        if args.mode == 'smoke':
+            return mode_smoke(ROOT)
+        if args.mode == 'freeze':
+            return mode_freeze(ROOT, args.cohort_index) or 0
+        if args.mode == 'formal':
+            started = (ROOT / 'runs' / RUN_NAME / 'tasks').exists()
+            need(args.resume or not started, 'FORMAL_STATE_EXISTS_USE_RESUME')
+            return mode_formal(ROOT, args.max_hours, args.stop_after_dataset)
+        if args.mode == 'seal':
+            return mode_seal(ROOT, args.allow_partial, args.dataset)
+        if args.mode == 'amend':
+            need(bool(args.budget_dataset) == bool(args.budget_max_tokens), 'BUDGET_DATASET_AND_MAX_TOKENS_GO_TOGETHER')
+            budget = (args.budget_dataset, args.budget_max_tokens) if args.budget_dataset else None
+            return mode_amend(ROOT, args.reason, args.watchdog_rate, args.dataset_order, budget)
+        print(json.dumps(progress(ROOT), ensure_ascii=False, indent=1))
+        return 0
+    except Stop as stop:
+        print(json.dumps({'status': 'BLOCKED', 'reason': str(stop)}, ensure_ascii=False))
+        return 2
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

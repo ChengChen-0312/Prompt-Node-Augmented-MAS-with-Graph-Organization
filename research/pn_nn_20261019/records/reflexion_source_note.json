@@ -1,0 +1,77 @@
+{
+  "status": "COMPLETE_VERIFIED",
+  "source_root": "archive://PN-Reflexion-LCB231-正式运行-20261013",
+  "source_files": [
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/reports/最终报告.md",
+      "supplement_relative_path": "reports/最终报告.md",
+      "sha256": "798c7d8a6fa777aa343877144fc8637e8abb14ddb0562cf8f48ae268d0aec5bb"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/reports/final_comparison.json",
+      "supplement_relative_path": "reports/final_comparison.json",
+      "sha256": "66efade787c06108fcb3b8ef03a23620e59a346e9364de357ae29e8701c09600"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/reports/paired_results.csv",
+      "supplement_relative_path": "reports/paired_results.csv",
+      "sha256": "e4a3334af87584cd2cd3b003f6bfdc68c5fa642ded721235142ec70dfad5a8f3"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/reports/FINAL_VERIFICATION.json",
+      "supplement_relative_path": "reports/FINAL_VERIFICATION.json",
+      "sha256": "3e2d9c8a1130e745389617de663788500d7e18df7c9311b9f1cca4563e24746a"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/reports/pn_reference_binding.json",
+      "supplement_relative_path": "reports/pn_reference_binding.json",
+      "sha256": "f8001343fefb7662b3e2e67d2fc3692398afd07c9e3e4d423bb26be99e1d0f80"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/reports/strict_source_binding.json",
+      "supplement_relative_path": "reports/strict_source_binding.json",
+      "sha256": "371be942ba0d07b5d2b0fe3c59f255a6a684cb1d05e568fbdae3a41cd62c2fa4"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/runs/strict/final_scores.json",
+      "supplement_relative_path": "runs/strict/final_scores.json",
+      "sha256": "d0bb2defdb6df1473cf3567734e6bcd0badb4a5553a4cfd29f3a6847348a2d78"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/runs/strict/completion.json",
+      "supplement_relative_path": "runs/strict/completion.json",
+      "sha256": "fe3640d7e1804c44b5138d6023ed75c8d16442189040cdfaa5207dfc14019627"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/runs/live/cost_report.json",
+      "supplement_relative_path": "runs/live/cost_report.json",
+      "sha256": "b902659586dab145846aade2becb1bc617e2b11812b0f1c0be37574e3cfe9f3f"
+    },
+    {
+      "source_path": "archive://PN-Reflexion-LCB231-正式运行-20261013/protocol.json",
+      "supplement_relative_path": "protocol.json",
+      "sha256": "22bcc5aa849d486255b008ae2f54c873dca9d94ffe3d9fd2a754729187f35555"
+    }
+  ],
+  "paper_destinations": [
+    "abstract",
+    "sec:reflexion-results",
+    "tab:feedback-lcb",
+    "app:reflexion-lcb",
+    "tab:reflexion-cost"
+  ],
+  "labels": "new Reflexion C0 and selected programs only; historical PN scalar labels reused without regrading",
+  "counts": {
+    "tasks": 231,
+    "strict_rows": 462,
+    "Reflexion_C0_pass": 95,
+    "Reflexion_final_pass": 101,
+    "PN_pass": 113,
+    "calls": 627,
+    "actual_cost_usd": 3.74241,
+    "PN_attributed_cost_usd": 8.4582725
+  },
+  "new_model_calls_for_paper_revision": 0,
+  "hidden_test_contents_included": false,
+  "sealed_run_modified": false
+}

@@ -1,0 +1,587 @@
+"""Reports for QWEN38_PLAN_A1_LOCAL_V1 (analysis only; not part of the frozen formal code).
+
+Reads saved task states, the generation seal and final_scores.json. It never executes a
+candidate, calls a model, reads private data or changes a frozen artefact. A missing
+dataset or a missing strict score is reported as such and never filled in as FAIL.
+REPORT_VERSION changes whenever this file's logic is corrected.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+from math import comb
+from pathlib import Path
+import sys
+import zipfile
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from common import (CAMPAIGN_ID, CODE, DATASETS, EXPECTED_COUNTS, ROOT, RUN_NAME, SOURCE_PINS, digest, load_tasks,
+                    now, qdir, read, write, write_text)
+import protocol
+
+REPORT_VERSION = 'report-v4'  # v4: p-values in scientific notation; no-code confound stated next to the paired table
+LABELS = ('shared_initial', 'a1', 'plan')
+NAMES = {'shared_initial': '共同起点', 'a1': 'A1', 'plan': 'A2-Plan'}
+DS_NAMES = {'usaco': 'USACO110', 'taco': 'TACO231', 'ojbench': 'OJBench28', 'lcb': 'LCB231'}
+
+
+def pct(a, b):
+    return '%d/%d (%.1f%%)' % (a, b, 100.0 * a / b) if b else '0/0 (—)'
+
+
+def mcnemar_exact(b, c):
+    n = b + c
+    if n == 0:
+        return 1.0
+    return min(1.0, 2 * sum(comb(n, k) for k in range(0, min(b, c) + 1)) / 2 ** n)
+
+
+def load_scores(run):
+    """The whole-batch strict result if it exists, otherwise the per-dataset staged results merged."""
+    if (run / 'final_scores.json').exists():
+        return read(run / 'final_scores.json')
+    parts = [read(run / 'strict' / ('final_scores_%s.json' % d)) for d in DATASETS
+             if (run / 'strict' / ('final_scores_%s.json' % d)).exists()]
+    if not parts:
+        return None
+    return {'scope': 'STAGED_DATASETS', 'rows': [r for part in parts for r in part['rows']],
+            'summary': {d: v for part in parts for d, v in part['summary'].items()},
+            'datasets': {d: v for part in parts for d, v in part['datasets'].items()}}
+
+
+def load_seals(run):
+    if (run / 'generation_seal.json').exists():
+        return [read(run / 'generation_seal.json')]
+    return [read(p) for p in sorted((run / 'seals').glob('*.json'))] if (run / 'seals').exists() else []
+
+
+def collect(root):
+    """Everything the tables need, per dataset, from saved public artefacts only."""
+    root = Path(root)
+    run = root / 'runs' / RUN_NAME
+    scores = load_scores(run)
+    strict = {(r['dataset'], r['question_id'], r['label']): r['strict'] for r in scores['rows']} if scores else {}
+    data = {}
+    for dataset in DATASETS:
+        tasks = load_tasks(dataset, root)
+        rows, requests = [], []
+        for index, task in enumerate(tasks):
+            path = run / 'tasks' / dataset / qdir(index, task['question_id']) / 'task.json'
+            state = read(path) if path.exists() else None
+            row = {'dataset': dataset, 'question_id': task['question_id'], 'index': index,
+                   'task_status': state['status'] if state else 'NOT_STARTED', 'state': state, 'task': task}
+            if state:
+                for cid, c in state['candidates'].items():
+                    requests.append({**c, 'index': index})
+            if state and state['status'] == 'COMPLETE':
+                d = state['delivery']
+                for label in LABELS:
+                    c = state['candidates'][d['selected'][label]]
+                    s = strict.get((dataset, task['question_id'], label))
+                    row[label] = {'candidate_id': c['candidate_id'], 'slot': '%s/%d' % (c['arm'], c['step']),
+                                  'public': c['public']['status'], 'code_sha256': c['code_sha256'],
+                                  'strict': s['status'] if s else None, 'strict_reason': s.get('reason') if s else None,
+                                  'request_dir': c['request_dir'], 'plan': c['plan']}
+            rows.append(row)
+        data[dataset] = {'rows': rows, 'requests': requests, 'n': len(tasks)}
+    return data, scores
+
+
+def dataset_stats(dataset, entry, scored):
+    rows = entry['rows']
+    complete = [r for r in rows if r['task_status'] == 'COMPLETE']
+    gate = [r for r in complete if r['state']['delivery']['gate_open']]
+    s = {'dataset': dataset, 'n': entry['n'], 'started': sum(r['task_status'] != 'NOT_STARTED' for r in rows),
+         'initials_complete': sum(1 for r in rows if r['state'] and sum(
+             1 for c in r['state']['candidates'].values() if c['arm'] == 'initial') == 3),
+         'complete': len(complete), 'd': len(gate), 'not_tested': sum(not r['state']['delivery']['public_tested'] for r in complete),
+         'generation_status': 'COMPLETE' if len(complete) == entry['n'] else 'NOT_STARTED' if not any(r['state'] for r in rows) else 'PARTIAL',
+         'strict_available': bool(scored and complete and len(complete) == entry['n'] and
+                                  all(r[l]['strict'] in ('PASS', 'FAIL') for r in complete for l in LABELS))}
+    s['public'] = {l: sum(r[l]['public'] == 'PASS' for r in complete) for l in LABELS}
+    s['initial_draft_public_pass'] = [sum(r['state']['delivery']['initial_public'][i] == 'PASS' for r in complete) for i in range(3)]
+    s['any_initial_public_pass'] = sum('PASS' in r['state']['delivery']['initial_public'] for r in complete)
+    requests = entry['requests']
+    def usage(selected):
+        return {'requests': len(selected), 'prompt_tokens': sum(c['usage']['prompt_tokens'] for c in selected),
+                'completion_tokens': sum(c['usage']['completion_tokens'] for c in selected),
+                'seconds': round(sum((c.get('timing') or {}).get('total_seconds', 0) for c in selected), 1)}
+    by_arm = {arm: [c for c in requests if c['arm'] == arm] for arm in ('initial', 'a1', 'plan')}
+    s['usage'] = {'actual': usage(requests), 'initial': usage(by_arm['initial']),
+                  'a1_extra': usage(by_arm['a1']), 'plan_extra': usage(by_arm['plan']),
+                  'a1_attributed': usage(by_arm['initial'] + by_arm['a1']),
+                  'plan_attributed': usage(by_arm['initial'] + by_arm['plan'])}
+    s['format'] = {arm: {'requests': len(cs), 'no_code': sum(c['extraction'] == 'NO_CODE' for c in cs),
+                         'length': sum(c['finish_reason'] == 'length' for c in cs),
+                         'whole_reply_code': sum(c['extraction'] == 'WHOLE_REPLY_PARSES' for c in cs),
+                         'empty_plan': sum(c['plan_is_empty_placeholder'] for c in cs),
+                         'plan_truncated': sum(c['plan_truncated'] for c in cs)} for arm, cs in by_arm.items()}
+    history = [c for c in by_arm['plan']]
+    s['plan_history'] = {'counts': sorted({c['history_plan_count'] for c in history}),
+                         'mean_prompt_tokens_plan_extra': round(sum(c['usage']['prompt_tokens'] for c in history) / len(history), 1) if history else None,
+                         'mean_prompt_tokens_a1_extra': round(sum(c['usage']['prompt_tokens'] for c in by_arm['a1']) / len(by_arm['a1']), 1) if by_arm['a1'] else None}
+    duplicates = {}
+    for arm in ('a1', 'plan'):
+        dup = total = 0
+        for r in gate:
+            cands = r['state']['candidates']
+            seen = {c['code_sha256'] for c in cands.values() if c['arm'] == 'initial' and c['code_sha256']}
+            for step in protocol.STEPS:
+                c = cands[protocol.candidate_id(dataset, r['question_id'], arm, step)]
+                if c['code_sha256']:
+                    total += 1
+                    dup += c['code_sha256'] in seen
+                    seen.add(c['code_sha256'])
+        duplicates[arm] = {'extras_with_code': total, 'identical_to_earlier_visible_candidate': dup}
+    s['duplicates'] = duplicates
+    s['selected_extra'] = {arm: sum(r[arm]['slot'].startswith(arm) for r in gate) for arm in ('a1', 'plan')}
+    if s['strict_available']:
+        ok = lambda r, l: r[l]['strict'] == 'PASS'
+        s['strict'] = {l: sum(ok(r, l) for r in complete) for l in LABELS}
+        s['strict_d'] = {l: sum(ok(r, l) for r in gate) for l in LABELS}
+        s['vs_shared'] = {arm: {'rescued': sum(ok(r, arm) and not ok(r, 'shared_initial') for r in complete),
+                                'regressed': sum(ok(r, 'shared_initial') and not ok(r, arm) for r in complete)}
+                          for arm in ('a1', 'plan')}
+        for arm in ('a1', 'plan'):
+            s['vs_shared'][arm]['net'] = s['vs_shared'][arm]['rescued'] - s['vs_shared'][arm]['regressed']
+        cells = {'both': 0, 'plan_only': 0, 'a1_only': 0, 'neither': 0}
+        for r in complete:
+            cells['both' if ok(r, 'a1') and ok(r, 'plan') else 'plan_only' if ok(r, 'plan') else 'a1_only' if ok(r, 'a1') else 'neither'] += 1
+        s['pair'] = cells
+        s['mcnemar_p'] = mcnemar_exact(cells['plan_only'], cells['a1_only'])
+        s['public_pass_strict_fail'] = {l: sum(r[l]['public'] == 'PASS' and not ok(r, l) for r in complete) for l in LABELS}
+        s['public_fail_strict_pass'] = {l: sum(r[l]['public'] != 'PASS' and ok(r, l) for r in complete) for l in LABELS}
+    return s
+
+
+def static_observation(root, dataset, entry):
+    """Cheap textual observations on delivered code; descriptive only, not a correctness judgement."""
+    out = {}
+    for label in LABELS:
+        delivered = [(r, r[label]) for r in entry['rows'] if r['task_status'] == 'COMPLETE']
+        no_code = sum(1 for _, d in delivered if not d['code_sha256'])
+        flagged = 0
+        for r, d in delivered:
+            if not d['code_sha256']:
+                continue
+            code = (Path(root) / d['request_dir'] / 'code.py').read_bytes().decode('utf-8')
+            task = r['task']
+            if dataset == 'lcb' and task['task_type'] == 'function':
+                flagged += not ('class Solution' in code and ('def ' + task['callable']['method']) in code)
+            elif dataset == 'usaco' and task['io_mode'] == 'files':
+                flagged += not (task['input_filename'] in code and task['output_filename'] in code)
+            else:
+                flagged += not any(k in code for k in ('input(', 'stdin', 'open(0'))
+        out[label] = {'delivered': len(delivered), 'no_code': no_code, 'interface_text_not_found': flagged}
+    return out
+
+
+def write_csvs(root, data):
+    reports = Path(root) / 'reports'
+    reports.mkdir(exist_ok=True)
+    order = 0
+    with (reports / '01_逐题配对结果.csv').open('w', encoding='utf-8-sig', newline='') as stream:
+        w = csv.writer(stream)
+        w.writerow(['order', 'dataset', 'question_id', 'source_index', 'difficulty', 'task_status', 'gate_open_D',
+                    'public_tested', 'arm_order', 'initial_public', 'single_initial1_candidate'] +
+                   ['%s_%s' % (l, f) for l in LABELS for f in ('slot', 'public', 'strict', 'strict_reason', 'code_sha256')] +
+                   ['pair_cell_strict', 'a1_vs_shared', 'plan_vs_shared'])
+        for dataset in DATASETS:
+            for r in data[dataset]['rows']:
+                order += 1
+                base = [order, dataset, r['question_id'], r['index'], r['state']['difficulty'] if r['state'] else '', r['task_status']]
+                if r['task_status'] != 'COMPLETE':
+                    w.writerow(base + [''] * 23)
+                    continue
+                d = r['state']['delivery']
+                cells = []
+                for l in LABELS:
+                    cells += [r[l]['slot'], r[l]['public'], r[l]['strict'] or '未评分', r[l]['strict_reason'] or '', r[l]['code_sha256'] or 'NO_CODE']
+                if all(r[l]['strict'] for l in LABELS):
+                    a, p, s0 = (r[l]['strict'] == 'PASS' for l in ('a1', 'plan', 'shared_initial'))
+                    pair = 'both' if a and p else 'plan_only' if p else 'a1_only' if a else 'neither'
+                    rel = lambda x: 'rescued' if x and not s0 else 'regressed' if s0 and not x else 'same_pass' if x else 'same_fail'
+                    tail = [pair, rel(a), rel(p)]
+                else:
+                    tail = ['未评分'] * 3
+                w.writerow(base + [d['gate_open'], d['public_tested'], '>'.join(d['arm_order'] or []),
+                                   '|'.join(d['initial_public']), d['selected']['single']] + cells + tail)
+    with (reports / '02_请求与资源归属.csv').open('w', encoding='utf-8-sig', newline='') as stream:
+        w = csv.writer(stream)
+        w.writerow(['dataset', 'question_id', 'source_index', 'candidate_id', 'arm', 'step', 'attributed_to', 'seed',
+                    'max_tokens', 'finish_reason', 'prompt_tokens', 'completion_tokens', 'prefill_seconds',
+                    'generation_seconds', 'total_seconds', 'generation_tps', 'peak_memory_gb', 'message_count',
+                    'history_plan_count', 'plan_chars', 'plan_truncated', 'plan_empty_placeholder', 'extraction',
+                    'code_sha256', 'public_status', 'public_pass', 'public_total', 'request_sha256', 'response_sha256', 'request_dir'])
+        for dataset in DATASETS:
+            for c in data[dataset]['requests']:
+                t = c.get('timing') or {}
+                pub = c['public'] or {}
+                w.writerow([dataset, c['question_id'], c['index'], c['candidate_id'], c['arm'], c['step'],
+                            'shared(A1+Plan)' if c['arm'] == 'initial' else protocol.ARM_NAMES[c['arm']], c['seed'],
+                            c['max_tokens'], c['finish_reason'], c['usage']['prompt_tokens'], c['usage']['completion_tokens'],
+                            t.get('prefill_seconds'), t.get('generation_seconds'), t.get('total_seconds'), t.get('generation_tps'),
+                            c.get('peak_memory_gb'), c['message_count'], c['history_plan_count'], c['plan_chars'],
+                            c['plan_truncated'], c['plan_is_empty_placeholder'], c['extraction'], c['code_sha256'] or '',
+                            pub.get('status', '未公测'), (pub.get('counts') or {}).get('pass', ''), pub.get('total', ''),
+                            c['request_sha256'], c['response_sha256'], c['request_dir']])
+
+
+def technical(root):
+    run = Path(root) / 'runs' / RUN_NAME
+    states = {}
+    for path in sorted((run / 'requests').rglob('state.json')) if (run / 'requests').exists() else []:
+        state = read(path)
+        if state['state'] != 'COMPLETED':
+            states[str(path.parent.relative_to(run))] = {k: state.get(k) for k in ('state', 'logical_id', 'failure_detail', 'partial_stream_chars')}
+    unknown = []
+    for path in sorted((run / 'tasks').rglob('task.json')) if (run / 'tasks').exists() else []:
+        unknown += read(path).get('public_unknown_attempts', [])
+    sessions = [json.loads(l) for l in (run / 'logs/sessions.jsonl').read_text(encoding='utf-8').splitlines()] if (run / 'logs/sessions.jsonl').exists() else []
+    return {'non_completed_requests': states, 'public_unknown_attempts': unknown,
+            'sessions': [{k: s.get(k) for k in ('status', 'reason', 'started_at', 'ended_at')} for s in sessions]}
+
+
+def build_markdown(root, data, stats, scores, tech, verification):
+    run = Path(root) / 'runs' / RUN_NAME
+    freeze = read(run / 'freeze.json') if (run / 'freeze.json').exists() else None
+    seals = load_seals(run)
+    import run_local
+    amendments = run_local.effective_files(root, freeze)[1] if freeze else []
+    order = run_local.effective_order(freeze, amendments) if freeze else DATASETS
+    limits = run_local.effective_max_tokens(root)
+    revision = read(run / 'budget_revision.json') if (run / 'budget_revision.json').exists() else None
+    smoke_path = Path(root) / 'preparation/smoke/smoke_report.json'
+    smoke = read(smoke_path) if smoke_path.exists() else {'physical_attempts': 0}
+    overall = verification['overall_status']
+    L = []
+    add = L.append
+    add('# 本地 Qwen3.8-27B 4bit：原 A2-Plan 与 A1 配对验证（%s）' % CAMPAIGN_ID)
+    add('')
+    add('生成时间：%s；报告脚本版本：%s；总体状态：**%s**' % (now(), REPORT_VERSION, overall))
+    add('')
+    if overall != 'COMPLETE':
+        add('> **PARTIAL：本报告不是完整 600 题实验结果。** 未完成的数据集或未完成的严格评分按原状列出，没有用 FAIL 或公测数字填补。恢复位置见第 9 节。')
+        add('')
+    add('## 0. 这批回答什么、不回答什么')
+    add('')
+    add('- 问题：同一个本地 Qwen 模型、论文原实验的同一批题、每题共享三份 Qwen 自己生成的初稿之下，A1（独立追加三份）与原 A2-Plan（读取历史计划并要求不同思路后追加三份）的最终交付有何差异。')
+    add('- 只有一次外层运行。每题三份初稿、三份追加不是三次外层重复。')
+    add('- 性质：第二模型上的已知题集开发验证。**不能**称为未见题确认、稳定优势、同 token/美元预算比较，也不是“历史文字本身”的单因素因果验证（原 Plan 同时包含历史计划与差异化指令，是整体策略比较）。')
+    add('- 模型：Qwen3.8-27B 的 MLX 4bit 量化，non-thinking 配置（enable_thinking=False），temperature 0.2，top_p 1.0，top_k 0。结论不覆盖整个 Qwen 家族。')
+    add('- 本批由用户直接授权在本机运行，不代表导师批准。未把任何数字写入论文。')
+    add('- 执行顺序：%s。原冻结顺序是 USACO→TACO→OJBench→LCB；按用户 2026-10-11 的指示改为先跑完整的 LCB231，这只改变数据集的先后，题目、各集内部顺序、提示、判分与选择规则都没有变，记录在 freeze_amendments.jsonl，原 freeze.json 未改写。' % ' → '.join(DS_NAMES[d] for d in order))
+    if revision:
+        d0 = revision['dataset']
+        add('- **预算修订（唯一一处科学条件变更）**：%s 的共同初稿、A1 追加、Plan 追加统一使用 %d token 输出上限（原冻结值 %d，来自历史 GPT-4o 的 Plan 预算）。修订在该数据集第一条请求之前单独冻结（runs/local_v1/budget_revision.json），thinking 仍关闭，其余条件不变。原因：关闭 thinking 后该模型把大段分析写在正文里，过小的上限会让截断主导结果。**与历史 GPT-4o 的 LCB 结果比较时必须注明输出上限不同，不能说成只换了模型。** 全部输出（分析、计划、代码）都计入 token 消耗；截断率与无代码率在第 6 节单独列出。' % (
+            DS_NAMES[d0], revision['max_tokens'][d0], revision['previous_max_tokens'][d0]))
+    add('- 评分方式：按用户 2026-10-11 的要求，每个数据集生成完成后即单独封存并做严格评分（交接说明 15.5 允许的分阶段方式，不是其推荐的“全部封存后再评分”）。评分时生成进程已停止；后续数据集的请求由冻结的程序自动生成，任何严格结果都不被生成代码读取，也没有据此调整提示、参数、题单或选择规则。当前已封存：%s。' % (
+        '、'.join(DS_NAMES[d] for seal in seals for d in seal['sealed_datasets']) or '无'))
+    add('')
+    add('## 1. 规模与完成情况')
+    add('')
+    add('| 数据集 | 预定 N | 三初稿完整题数 | 完成配对题数 | D（有公测且三初稿均未通过） | 无公测 NOT_TESTED | 生成状态 | 严格评分 |')
+    add('|---|---:|---:|---:|---:|---:|---|---|')
+    for d in order:
+        s = stats[d]
+        add('| %s | %d | %d | %d | %d | %d | %s | %s |' % (DS_NAMES[d], s['n'], s['initials_complete'], s['complete'], s['d'],
+            s['not_tested'], s['generation_status'], '完成' if s['strict_available'] else '未完成'))
+    tot = lambda key: sum(stats[d][key] for d in DATASETS)
+    add('| 合计 | %d | %d | %d | %d | %d | | |' % (tot('n'), tot('initials_complete'), tot('complete'), tot('d'), tot('not_tested')))
+    add('')
+    add('正式请求数应为 3N + 6D。实际完成的正式请求：%d（按上表为 %d）。未完成或技术失败的请求槽位：%d。' % (
+        sum(stats[d]['usage']['actual']['requests'] for d in DATASETS),
+        sum(3 * stats[d]['initials_complete'] for d in DATASETS) + sum(6 * stats[d]['d'] for d in DATASETS),
+        len(tech['non_completed_requests'])))
+    add('')
+    add('## 2. 最终交付：公测与严格结果（分母为各集全部 N）')
+    add('')
+    add('| 数据集 | 交付 | 公测全过 | 严格正确 | 公测过但严格错 | 公测未过但严格对 |')
+    add('|---|---|---:|---:|---:|---:|')
+    for d in DATASETS:
+        s = stats[d]
+        for l in LABELS:
+            if s['generation_status'] != 'COMPLETE':
+                add('| %s | %s | 未完成（已完成 %d 题中 %d） | 未完成 | | |' % (DS_NAMES[d], NAMES[l], s['complete'], s['public'][l]))
+            elif not s['strict_available']:
+                add('| %s | %s | %s | 严格评分未完成 | | |' % (DS_NAMES[d], NAMES[l], pct(s['public'][l], s['n'])))
+            else:
+                add('| %s | %s | %s | %s | %d | %d |' % (DS_NAMES[d], NAMES[l], pct(s['public'][l], s['n']), pct(s['strict'][l], s['n']),
+                    s['public_pass_strict_fail'][l], s['public_fail_strict_pass'][l]))
+    done = [d for d in DATASETS if stats[d]['strict_available'] and stats[d]['generation_status'] == 'COMPLETE']
+    if len(done) == len(DATASETS):
+        n = tot('n')
+        for l in LABELS:
+            add('| 600 题合计 | %s | %s | %s | | |' % (NAMES[l], pct(sum(stats[d]['public'][l] for d in DATASETS), n),
+                                                      pct(sum(stats[d]['strict'][l] for d in DATASETS), n)))
+    add('')
+    add('“共同起点” = 三份初稿中最早公测全过者，否则第一份初稿（它不是 Single；Single 的第一份初稿身份另存于逐题表）。')
+    add('')
+    add('三份共同初稿各自的公测表现（按已完成题数统计）：')
+    add('')
+    add('| 数据集 | 已完成题数 | 初稿1 公测全过 | 初稿2 公测全过 | 初稿3 公测全过 | 至少一份全过 | 三份都未过（D）+ 无公测 |')
+    add('|---|---:|---:|---:|---:|---:|---:|')
+    for d in order:
+        s = stats[d]
+        if s['complete']:
+            add('| %s | %d | %d | %d | %d | %d | %d |' % (DS_NAMES[d], s['complete'], *s['initial_draft_public_pass'],
+                                                         s['any_initial_public_pass'], s['complete'] - s['any_initial_public_pass']))
+    add('')
+    add('## 3. 相对共同起点的变化，以及 A1 与 Plan 的配对四格（严格结果）')
+    add('')
+    add('| 数据集 | 臂 | 救回 | 退步 | 净增 | Plan 独有 | A1 独有 | 共同成功 | 共同失败 | 精确 McNemar p |')
+    add('|---|---|---:|---:|---:|---:|---:|---:|---:|---:|')
+    for d in done:
+        s = stats[d]
+        for arm in ('a1', 'plan'):
+            v, c = s['vs_shared'][arm], s['pair']
+            add('| %s | %s | %d | %d | %+d | %d | %d | %d | %d | %.2g |' % (DS_NAMES[d], NAMES[arm], v['rescued'], v['regressed'], v['net'],
+                c['plan_only'], c['a1_only'], c['both'], c['neither'], s['mcnemar_p']))
+    if done:
+        b, c = sum(stats[d]['pair']['plan_only'] for d in done), sum(stats[d]['pair']['a1_only'] for d in done)
+        add('')
+        add('已完成数据集合并：Plan 独有 %d，A1 独有 %d，精确 McNemar p = %.2g。p 值只描述这一次运行里配对差异的大小，样本小且只有一次外层运行，不是因果证明，也不代表重跑波动。' % (b, c, mcnemar_exact(b, c)))
+        add('')
+        add('**解读时必须同时看的混杂因素：** 在关闭 thinking 的这个模型上，只有系统提示和题面的请求（共同初稿与 A1 追加）经常写完分析就结束、不输出代码；Plan 追加的请求末尾多一条用户消息，其中重复了“output the final solution in a single python code block”。各集无代码率：%s。因此 Plan 相对 A1 的收益至少有一部分、可能大部分来自这条紧挨生成位置的输出格式要求，而不是历史计划或“换思路”本身；原 Plan 本来就是“历史计划 + 差异化指令”的整体策略，本批不能把收益归因到其中任何单一成分。' % '；'.join(
+            '%s 共同初稿 %s、A1 追加 %s、Plan 追加 %s' % (DS_NAMES[d], pct(stats[d]['format']['initial']['no_code'], stats[d]['format']['initial']['requests']),
+                                                     pct(stats[d]['format']['a1']['no_code'], stats[d]['format']['a1']['requests']),
+                                                     pct(stats[d]['format']['plan']['no_code'], stats[d]['format']['plan']['requests'])) for d in done))
+    else:
+        add('')
+        add('严格评分未完成，本节无数字。')
+    add('')
+    add('只有在门打开（D）的题上两臂才可能不同；门关闭的题两臂交付同一份初稿。追加改变选择既可能救回，也可能把严格正确的初稿换成公测通过但严格错误的程序，所以救回与退步分开列。')
+    add('')
+    add('## 4. D 子集上的条件结果（不是整体准确率）')
+    add('')
+    add('| 数据集 | D | 共同起点严格正确 | A1 严格正确 | Plan 严格正确 | A1 选中追加稿 | Plan 选中追加稿 |')
+    add('|---|---:|---:|---:|---:|---:|---:|')
+    for d in done:
+        s = stats[d]
+        add('| %s | %d | %s | %s | %s | %d | %d |' % (DS_NAMES[d], s['d'], pct(s['strict_d']['shared_initial'], s['d']),
+            pct(s['strict_d']['a1'], s['d']), pct(s['strict_d']['plan'], s['d']), s['selected_extra']['a1'], s['selected_extra']['plan']))
+    add('')
+    add('D 由 Qwen 自己三份初稿的公测决定，没有补题。D 子集的比率是条件收益，不能当作整体准确率引用。')
+    add('')
+    add('## 5. 实际消耗与每臂归属')
+    add('')
+    add('| 数据集 | 口径 | 请求数 | 输入 token | 输出 token | 生成墙钟（秒） |')
+    add('|---|---|---:|---:|---:|---:|')
+    keys = (('actual', '实际总消耗（共享初稿只算一次）'), ('initial', '其中：共享初稿'), ('a1_extra', '其中：A1 追加'),
+            ('plan_extra', '其中：Plan 追加'), ('a1_attributed', 'A1 方法归属（初稿+A1 追加）'), ('plan_attributed', 'Plan 方法归属（初稿+Plan 追加）'))
+    for d in DATASETS:
+        for key, name in keys:
+            u = stats[d]['usage'][key]
+            add('| %s | %s | %d | %d | %d | %.0f |' % (DS_NAMES[d], name, u['requests'], u['prompt_tokens'], u['completion_tokens'], u['seconds']))
+    add('')
+    add('- 两个“方法归属”行都包含同一批共享初稿，**不能相加**当作总消耗；总消耗看“实际总消耗”行。')
+    add('- 两臂调用数相同不等于 token 相同：Plan 追加请求的输入更长（见第 6 节），输出长度也可能不同。')
+    add('- 远程 API 调用 0 次、API 费用 $0。本地推理仍有 token、GPU/CPU 时间、电力与人工成本，没有折算成云端美元。')
+    add('- 另有工程冒烟 %d 次本地生成（每次上限 256 token，自编输入），不计入上表和科学分母。' % smoke['physical_attempts'])
+    for d in done:
+        for arm, key in (('a1', 'a1_extra'), ('plan', 'plan_extra')):
+            net, u = stats[d]['vs_shared'][arm]['net'], stats[d]['usage'][key]
+            if net > 0:
+                add('- %s %s：净增 %d 题，追加输出 %d token、%.0f 秒，即每净增一题约 %.0f 输出 token、%.0f 秒。' % (
+                    DS_NAMES[d], NAMES[arm], net, u['completion_tokens'], u['seconds'], u['completion_tokens'] / net, u['seconds'] / net))
+            else:
+                add('- %s %s：净增 %d 题，无可定义的净增效率。' % (DS_NAMES[d], NAMES[arm], net))
+    add('')
+    add('## 6. Plan 的历史输入、格式与重复情况')
+    add('')
+    add('| 数据集 | 历史计划份数 | Plan 追加平均输入 token | A1 追加平均输入 token | 臂 | 请求数 | 无可执行代码 | finish=length | 空计划占位 | 计划被 2500 字符截断 | 与此前可见候选代码完全相同 |')
+    add('|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|')
+    for d in DATASETS:
+        s = stats[d]
+        for arm in ('initial', 'a1', 'plan'):
+            f = s['format'][arm]
+            dup = s['duplicates'].get(arm, {}).get('identical_to_earlier_visible_candidate', '—') if arm != 'initial' else '—'
+            add('| %s | %s | %s | %s | %s | %d | %d | %d | %d | %d | %s |' % (DS_NAMES[d], '→'.join(map(str, s['plan_history']['counts'])) or '—',
+                s['plan_history']['mean_prompt_tokens_plan_extra'], s['plan_history']['mean_prompt_tokens_a1_extra'],
+                {'initial': '共享初稿', 'a1': 'A1 追加', 'plan': 'Plan 追加'}[arm], f['requests'], f['no_code'], f['length'],
+                f['empty_plan'], f['plan_truncated'], dup))
+    add('')
+    add('截断率与无代码率（占该类请求的比例）：')
+    add('')
+    add('| 数据集 | 输出上限 | 类别 | 请求数 | 写满上限被截断 | 无可执行代码 |')
+    add('|---|---:|---|---:|---:|---:|')
+    for d in order:
+        for arm in ('initial', 'a1', 'plan'):
+            f = stats[d]['format'][arm]
+            if f['requests']:
+                add('| %s | %d | %s | %d | %s | %s |' % (DS_NAMES[d], limits[d], {'initial': '共享初稿', 'a1': 'A1 追加', 'plan': 'Plan 追加'}[arm],
+                                                        f['requests'], pct(f['length'], f['requests']), pct(f['no_code'], f['requests'])))
+    add('')
+    add('- 2500 字符是原 Plan 既有的计划提取规则，不是本轮新增的历史压缩；没有再截短消息或删掉较早的计划。')
+    add('- 无可执行代码、finish=length 的槽位都按冻结规则计为该候选失败，没有补抽、没有修格式、没有补全。')
+    add('- 代码完全相同只按源码哈希统计；源码不同不等于有效改进，算法名称不同也不等于算法不同。')
+    add('')
+    add('交付程序的静态文本观察（只看接口字样是否出现，不是正确性判断）：')
+    add('')
+    add('| 数据集 | 交付 | 已交付题数 | 无代码 | 未见预期接口字样 |')
+    add('|---|---|---:|---:|---:|')
+    for d in DATASETS:
+        for l, o in static_observation(root, d, data[d]).items():
+            add('| %s | %s | %d | %d | %d |' % (DS_NAMES[d], NAMES[l], o['delivered'], o['no_code'], o['interface_text_not_found']))
+    add('')
+    add('## 7. 机制案例索引（真实请求—计划—源码—公测链，不作因果解读）')
+    add('')
+    for d in done:
+        for cell, title in (('plan_only', 'Plan 独有成功'), ('a1_only', 'A1 独有成功')):
+            picks = [r for r in data[d]['rows'] if r['task_status'] == 'COMPLETE' and
+                     (r['plan']['strict'] == 'PASS') != (r['a1']['strict'] == 'PASS') and
+                     r['plan' if cell == 'plan_only' else 'a1']['strict'] == 'PASS'][:5]
+            if not picks:
+                continue
+            add('**%s · %s（最多列 5 例，全部见逐题表）**' % (DS_NAMES[d], title))
+            add('')
+            for r in picks:
+                win = r['plan' if cell == 'plan_only' else 'a1']
+                lose = r['a1' if cell == 'plan_only' else 'plan']
+                add('- `%s`：成功方交付 %s（`%s`），另一臂交付 %s（公测 %s，严格 %s：%s）。' % (
+                    r['question_id'], win['slot'], win['request_dir'], lose['slot'], lose['public'], lose['strict'], lose['strict_reason']))
+            add('')
+    add('每个请求目录内有 messages.json、rendered_prompt.txt、input_ids.json、raw_response.txt、plan.txt、code.py、public/。引用了历史不等于历史带来了收益；这些案例只是可供独立分析的原始链条。')
+    add('')
+    add('## 8. 环境、冻结与评分口径')
+    add('')
+    if freeze:
+        m, e = freeze['model'], freeze['environment']
+        add('- 模型目录 `%s`，README base_model=%s；config 架构名为 %s，这只是加载类名，不据此改称其他模型。权重 3 个分片共 %.2f GB，SHA256 记录在 freeze.json。' % (
+            m['model_dir'], m['base_model'], m['architecture_string'], m['weights_total_bytes'] / 1e9))
+        add('- 环境：%s；生成依赖 %s；候选执行 %s。' % (e['platform'], e['generation_packages'], e['candidate_python_version']))
+        add('- 输出上限（每个数据集内共同初稿与两臂相同）：%s。' % '，'.join('%s %d' % (DS_NAMES[d], limits[d]) for d in order))
+        add('- 冻结后的修订共 %d 条（runs/local_v1/freeze_amendments.jsonl）：%s' % (len(amendments), '；'.join('#%d %s%s' % (a['index'], a['at'][:16], '（含科学条件变更：%s）' % a.get('scientific_change_scope') if a.get('scientific_conditions_changed') else '（工程/调度，不改科学条件）') for a in amendments) or '无'))
+        add('- 随机种子：主种子 %d，每请求种子 = SHA256(主种子|数据集|题号|臂|步) 前 32 位，在工作进程里用 mx.random.seed 设置。冒烟中相同种子重复请求文本%s。种子不保证跨硬件、跨版本复现。' % (
+            freeze['master_seed'], '一致' if freeze['seed']['same_seed_reproduced_in_smoke'] else '不一致'))
+        add('- 看门狗：%s。' % freeze['watchdog_rule'])
+    add('- 公测执行：USACO/TACO 用冻结的 pn-input-integrity-macos-v1（token_exact / token_casefold，文件题不以 stdout 代替输出文件）；OJBench 用原 PyPy3 固定镜像与 DMOJ standard/floats 检查器；LCB 用 E16 公测语义，函数题由可信 harness 调用 Solution.method 并比较返回值（harness 只做接口调用，不是模型写的入口）。')
+    add('- LCB 既有环境差异：执行器描述符上限 128（旧 E16 为 64）；公测 10 秒/256 MiB/64 KiB/1 进程，官方严格评分 10 秒/1 GiB/64 KiB/16 进程，沿用历史口径未统一。LCB 官方判分对多解输出有已知局限（如 abc350_c），未在本轮修改。')
+    add('- 同题核对：四份题单与原文件逐字节一致、顺序不变，600 题的记录/提示/公测哈希与交接索引逐项相符（preparation/identity_receipts.json）。同 ID 的历史 GPT 归档消息属于其他协议版本，不声称逐字相同。')
+    add('- 严格评分只在生成封存后由独立进程执行，结果只含 PASS/FAIL、失败类别和测试计数，未回流到任何生成请求。')
+    add('')
+    add('## 9. 技术失败、暂停与恢复位置')
+    add('')
+    add('- 未完成/技术失败的请求槽位：%d；公测基础设施 UNKNOWN 尝试：%d；运行会话数：%d。详见 03_技术失败与方法边界.txt。' % (
+        len(tech['non_completed_requests']), len(tech['public_unknown_attempts']), len(tech['sessions'])))
+    for d in DATASETS:
+        s = stats[d]
+        if s['generation_status'] != 'COMPLETE':
+            nxt = next((r for r in data[d]['rows'] if r['task_status'] != 'COMPLETE'), None)
+            add('- %s：%s，已完成 %d/%d，下一题 `%s`（源顺序第 %d 题）。' % (DS_NAMES[d], s['generation_status'], s['complete'], s['n'],
+                nxt['question_id'], nxt['index'] + 1))
+    add('')
+    add('## 10. 验收核对')
+    add('')
+    for name, ok in verification['checks'].items():
+        add('- [%s] %s' % ('x' if ok else ' ', name))
+    add('')
+    add('## 11. 本轮仍未完成的事（不会自动追加）')
+    add('')
+    add('- 固定初稿下多次完整独立续跑的波动；')
+    add('- 事先匹配 token/时间上限的独立采样预算曲线；')
+    add('- 把 Plan 的历史内容与差异化指令进一步分离的基线。')
+    add('')
+    add('无论结果正负，本批都不改提示重跑、不升级 Soft、不启动 F、不扩量。')
+    add('')
+    return '\n'.join(L)
+
+
+def verify(root, data, stats, scores, tech):
+    from local_gateway import process_alive
+    run = Path(root) / 'runs' / RUN_NAME
+    seals = load_seals(run)
+    seal = seals[0] if seals and seals[0].get('scope') == 'GLOBAL' else None
+    pid_file = run / 'worker.pid.json'
+    grid = {(r['dataset'], r['question_id'], r['label']) for r in scores['rows']} if scores else set()
+    expected = {(d, t['question_id'], l) for d in DATASETS for t in load_tasks(d, root) for l in LABELS}
+    summary_ok = bool(scores) and all(
+        scores['summary'].get(d, {}).get(l, {}).get('correct') == stats[d].get('strict', {}).get(l) for d in DATASETS for l in LABELS)
+    shared_ok = all(len({r['state']['delivery']['selected'][l] for l in ('a1', 'plan')} |
+                        {r['state']['delivery']['selected']['shared_initial']}) == 1
+                    for d in DATASETS for r in data[d]['rows'] if r['task_status'] == 'COMPLETE' and not r['state']['delivery']['gate_open'])
+    seal_ok = bool(seals) and all((Path(root) / p).is_file() and digest(Path(root) / p) == h
+                                  for part in seals for p, h in part['files'].items())
+    if seals and scores:
+        sealed = {(r['dataset'], r['question_id'], r['label']): r['code_sha256'] for part in seals for r in part['selected']}
+        seal_ok = seal_ok and all(sealed.get((r['dataset'], r['question_id'], r['label']), 0) == r['code_sha256'] for r in scores['rows'])
+    requests = sum(stats[d]['usage']['actual']['requests'] for d in DATASETS)
+    checks = {
+        '固定题单全部按协议执行（600 题全部完成，无补题/补抽）': all(stats[d]['generation_status'] == 'COMPLETE' for d in DATASETS),
+        '所有生成请求有终态，无未知在途或技术失败槽位': not tech['non_completed_requests'],
+        '实际请求数等于 3N + 6D': requests == sum(3 * stats[d]['initials_complete'] + 6 * stats[d]['d'] for d in DATASETS),
+        '门关闭的题两臂与共同起点交付同一份初稿': shared_ok,
+        '全批生成已封存且封存文件哈希全部一致': bool(seal) and seal_ok,
+        '已封存部分的文件与严格评分所用源码哈希一致': seal_ok or not seals,
+        '严格结果覆盖 1800 个交付标签': grid == expected and len(expected) == 1800,
+        '严格结果无 UNKNOWN': bool(scores) and all(r['strict']['status'] in ('PASS', 'FAIL') for r in scores['rows']),
+        '严格汇总与逐题一致': summary_ok,
+        '模型进程已停止': not pid_file.exists() or not process_alive(read(pid_file)['pid'], str(CODE / 'qwen_worker.py')),
+        '远程 API 调用为 0': not seal or seal.get('remote_api_calls') == 0,
+    }
+    overall = 'COMPLETE' if all(checks.values()) else 'PARTIAL'
+    return {'schema': 'QWEN38_FINAL_VERIFICATION_V1', 'campaign_id': CAMPAIGN_ID, 'verified_at': now(),
+            'report_version': REPORT_VERSION, 'overall_status': overall, 'checks': checks,
+            'datasets': {d: {k: stats[d][k] for k in ('n', 'complete', 'd', 'generation_status', 'strict_available')} for d in DATASETS},
+            'formal_requests_completed': requests,
+            'generation_seal_sha256': digest(run / 'generation_seal.json') if seal else None,
+            'dataset_seals_sha256': {p.stem: digest(p) for p in sorted((run / 'seals').glob('*.json'))} if (run / 'seals').exists() else {},
+            'final_scores_sha256': digest(run / 'final_scores.json') if (run / 'final_scores.json').exists() else None}
+
+
+def bundle(root):
+    """Public evidence for independent review. No weights, virtualenv, private tests or credentials exist in this tree."""
+    root = Path(root)
+    target = root / 'reports' / ('%s_公开证据包.zip' % CAMPAIGN_ID)
+    skip_parts = {'__pycache__', 'withdrawn_60task_draft_not_run', '.DS_Store'}
+    with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+        for top in ('README_先读.txt', 'PACKAGE_MANIFEST.json', 'handoff', 'data_public', 'code', 'tests', 'preparation', 'runs', 'reports'):
+            base = root / top
+            for path in ([base] if base.is_file() else sorted(base.rglob('*'))):
+                if path.is_file() and not (set(path.parts) & skip_parts) and path != target and path.suffix != '.zip':
+                    archive.write(path, str(path.relative_to(root)))
+    return target
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument('--root', default=str(ROOT))
+    parser.add_argument('--no-bundle', action='store_true')
+    args = parser.parse_args()
+    root = Path(args.root).resolve()
+    data, scores = collect(root)
+    stats = {d: dataset_stats(d, data[d], bool(scores)) for d in DATASETS}
+    tech = technical(root)
+    verification = verify(root, data, stats, scores, tech)
+    write(root / 'runs' / RUN_NAME / 'FINAL_VERIFICATION.json', verification)
+    write_csvs(root, data)
+    reports = root / 'reports'
+    write_text(reports / '00_本轮统一报告.md', build_markdown(root, data, stats, scores, tech, verification))
+    write(reports / 'report_stats.json', {'report_version': REPORT_VERSION, 'generated_at': now(), 'stats': stats})
+    boundary = ['技术失败与方法边界（%s，%s）' % (CAMPAIGN_ID, now()), '',
+                '一、技术失败与暂停', json.dumps(tech, ensure_ascii=False, indent=1), '',
+                '二、冻结的技术失败处理口径（首次正式请求前写入 freeze.json）']
+    freeze_path = root / 'runs' / RUN_NAME / 'freeze.json'
+    if freeze_path.exists():
+        boundary += ['- %s：%s' % (k, v) for k, v in read(freeze_path)['technical_failure_policy'].items()]
+    boundary += ['', '三、方法边界',
+                 '- 只比较原 A2-Plan 与 A1；没有 Soft、F、ReAct、A2-Evidence、PN-Update、reviewer 或第三臂。',
+                 '- 初稿由本地 Qwen 新生成且两臂共享；没有复用任何 GPT-4o 旧代码、旧失败池或旧修复名单。',
+                 '- 提示逐字沿用原 system 与原差异化指令；没有强化入口/I-O 指令，没有把公测或严格结果写进任何请求。',
+                 '- 没有入口补丁、截断补全、重复候选拒绝、格式补抽或另一个模型代提取代码。',
+                 '- 一次外层运行；同调用数不等于同 token；本地 API 费用 0 不等于推理成本为 0。',
+                 '- 已知题集上的第二模型开发验证，不是未见题确认，不支持“稳定优势”或“所有模型有效”的表述。',
+                 '', '四、源码来源（只读、已固定哈希）'] + ['- %s  %s' % (h, p) for p, h in SOURCE_PINS.items()]
+    write_text(reports / '03_技术失败与方法边界.txt', '\n'.join(boundary) + '\n')
+    result = {'overall_status': verification['overall_status'], 'checks': verification['checks']}
+    if not args.no_bundle:
+        result['bundle'] = str(bundle(root))
+    print(json.dumps(result, ensure_ascii=False, indent=1))
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

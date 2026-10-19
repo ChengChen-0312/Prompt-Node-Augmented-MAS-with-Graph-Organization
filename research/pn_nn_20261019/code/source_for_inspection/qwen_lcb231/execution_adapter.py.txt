@@ -1,0 +1,264 @@
+"""Per-dataset raw execution and public grading. No test acquisition, no code repair.
+
+USACO / TACO  frozen pn-input-integrity-macos-v1 executor (run_raw); token_exact or
+              token_casefold; stdin or the task's named input/output files; a missing
+              output file is never replaced by stdout.
+OJBench       the original public_judge.grade_cases, i.e. the pinned PyPy3 Docker image
+              and the DMOJ standard / floats checker port, loaded unchanged.
+LCB           the PN-F-LCB231 native bridge re-used: stdin with E16 line semantics, or
+              Solution.method called by the byte-identical trusted function_harness and
+              compared on its JSON return value. Descriptor limit is the executor's 128
+              (historical E16: 64); max_children=1 allows one sampled child, E16 allowed none.
+
+An infrastructure failure is reported as status UNKNOWN and is never a model FAIL.
+This module cannot reach any private/hidden test source.
+"""
+from __future__ import annotations
+
+import ast
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+from common import (CODE, EXECUTOR, EXECUTOR_VERSION, LCB_HARNESS_SOURCE, OJ_CHECKER, OJ_IMAGE,
+                    OJ_PUBLIC_JUDGE, OJ_SANDBOX, SOURCE_PINS, Stop, digest, load_module, need, sha, write)
+
+executor = load_module('_qwen38_integrity_v1', EXECUTOR)
+need(executor.VERSION == EXECUTOR_VERSION, 'EXECUTOR_VERSION_CHANGED')
+VERSION = executor.VERSION
+ADAPTER_VERSION = 'qwen38-plan-a1-local-adapter-v1'
+HARNESS = CODE / 'function_harness.py'
+INFRA = {'SANDBOX_INFRASTRUCTURE_ERROR', 'INPUT_OR_RUNNER_INTEGRITY_FAILURE'}
+LCB_PUBLIC_LIMITS = {'wall_seconds': 10.0, 'memory_bytes': 256 * 1024 * 1024,
+                     'output_bytes': 64 * 1024, 'max_children': 1}
+
+
+STORED_TEXT_LIMIT = 200_000  # characters kept per stored stream; verdicts always use the full text
+
+
+class InfrastructureUnknown(RuntimeError):
+    pass
+
+
+def clip(text):
+    """Bound what is written to disk for one output stream; length and hash of the full text are kept."""
+    if not isinstance(text, str) or len(text) <= STORED_TEXT_LIMIT:
+        return text
+    return text[:STORED_TEXT_LIMIT] + '\n[STORED TEXT CLIPPED: %d chars, sha256 %s]' % (len(text), sha(text))
+
+
+def clip_raw(raw):
+    for key in ('stdout', 'stderr', 'declared_output_file', 'trace'):
+        if isinstance(raw.get(key), dict) and isinstance(raw[key].get('text'), str):
+            raw[key] = {**raw[key], 'text': clip(raw[key]['text'])}
+    raw['answer_text'] = clip(raw.get('answer_text'))
+    return raw
+
+
+# ---- USACO / TACO ---------------------------------------------------------
+def native_limits(task):
+    need(isinstance(task.get('wall_seconds'), (int, float)) and task['wall_seconds'] > 0, 'TASK_WALL_LIMIT_REQUIRED')
+    need(type(task.get('memory_bytes')) is int and task['memory_bytes'] > 0, 'TASK_MEMORY_LIMIT_REQUIRED')
+    mib = max(1, int(task['memory_bytes']) // 1048576)  # whole MiB, rounded down; 256000000 stays 244 MiB
+    return executor.Limits(float(task['wall_seconds']), mib * 1048576, 16 * 1048576, 16)
+
+
+def checker_name(task):
+    checker = task.get('checker', task.get('semantic_checker'))
+    name = checker.get('name') if isinstance(checker, dict) else checker
+    need(name in ('token_exact', 'token_casefold'), 'UNSUPPORTED_CHECKER')
+    need(task.get('semantic_checker', name) == name, 'CHECKER_FIELDS_DISAGREE')
+    return name
+
+
+def native_compare(task, actual, expected):
+    if checker_name(task) == 'token_casefold':
+        return actual.casefold().split() == expected.casefold().split()
+    return actual.split() == expected.split()
+
+
+def _native_raw(task, code, input_text):
+    need(task.get('io_mode') in ('stdin', 'files'), 'UNSUPPORTED_IO')
+    files = task['io_mode'] == 'files'
+    return executor.run_raw(code, input_text=input_text,
+                            input_file=task['input_filename'] if files else None,
+                            output_file=task['output_filename'] if files else None,
+                            limits=native_limits(task))
+
+
+# ---- LCB ------------------------------------------------------------------
+def lcb_view(record):
+    """Evaluator-side projection of one original public LCB record; the prompt never sees it."""
+    need(record.get('split') == 'formal' and record.get('test') == '', 'PUBLIC_FORMAL_RECORD_ONLY')
+    need(record.get('task_type') in ('stdin', 'function'), 'LCB_NATIVE_INTERFACE')
+    call = record.get('callable')
+    if record['task_type'] == 'function':
+        need(isinstance(call, dict) and call.get('kind') == 'solution_method' and call.get('name') == 'Solution'
+             and isinstance(call.get('method'), str), 'LCB_SOLUTION_CONTRACT')
+    return {'question_id': record['question_id'], 'io_mode': record['task_type'], 'callable': call,
+            'public_tests': record['public_test_cases']}
+
+
+def lcb_limits():
+    return executor.Limits(**LCB_PUBLIC_LIMITS)
+
+
+def lcb_compare(view, actual, expected):
+    need(isinstance(actual, str) and isinstance(expected, str), 'TEXT_COMPARISON_REQUIRED')
+    if view['io_mode'] == 'function':
+        try:
+            value = json.loads(expected)
+        except json.JSONDecodeError:
+            value = ast.literal_eval(expected)
+        return actual == json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    def norm(value):
+        return '\n'.join(line.rstrip() for line in value.strip().splitlines())
+    return norm(actual) == norm(expected)
+
+
+def _lcb_raw(view, code, input_text):
+    if view['io_mode'] != 'function':
+        return executor.run_raw(code, input_text=input_text, limits=lcb_limits())
+    need(digest(HARNESS) == SOURCE_PINS[str(LCB_HARNESS_SOURCE)], 'FUNCTION_HARNESS_NOT_BYTE_IDENTICAL')
+    target = view['callable']
+    # JSON-lines argument parsing is identical to the frozen E16 builder.
+    arguments = [json.loads(line) for line in input_text.split('\n')]
+    config = json.dumps({'class_name': target['name'], 'method_name': target['method'],
+                         'arguments': arguments}, ensure_ascii=False, sort_keys=True)
+    raw = executor._run(code, stdin='', input_text=input_text, input_file='function_input.jsonl',
+                        output_file='function_return.json', limits=lcb_limits(), python=executor.PYTHON,
+                        bootstrap=HARNESS.read_text(), config_text=config)
+    raw['answer_channel'] = 'function_return_value'
+    raw['function_invocation'] = {'class_name': target['name'], 'method_name': target['method'],
+                                  'argument_count': len(arguments), 'harness_sha256': digest(HARNESS),
+                                  'candidate_file': 'main.py', 'candidate_source_rewritten': False,
+                                  'stdout_is_incidental': True}
+    return raw
+
+
+# ---- shared raw case for USACO / TACO / LCB -------------------------------
+def run_case(dataset, task, code, case):
+    need(isinstance(code, str) and isinstance(case.get('input'), str) and isinstance(case.get('output'), str),
+         'INVALID_CASE_CONTRACT')
+    if dataset == 'lcb':
+        view = task if 'io_mode' in task else lcb_view(task)
+        raw = _lcb_raw(view, code, case['input'])
+        compare = lambda actual: lcb_compare(view, actual, case['output'])
+    else:
+        need(dataset in ('usaco', 'taco'), 'RUN_CASE_DATASET')
+        raw = _native_raw(task, code, case['input'])
+        compare = lambda actual: native_compare(task, actual, case['output'])
+    if (raw.get('executor_version') != VERSION or raw.get('candidate_code_sha256_before') != sha(code)
+            or raw.get('candidate_code_sha256_after') != sha(code) or raw.get('source_modified_by_executor')
+            or raw.get('input_integrity', {}).get('protected_objects_unchanged') is not True
+            or raw['status'] in INFRA):
+        raise InfrastructureUnknown('EXECUTION_BINDING_OR_INFRASTRUCTURE:' + str(raw.get('status')))
+    available = raw['answer_status'] == 'AVAILABLE' and isinstance(raw.get('answer_text'), str)
+    passed = raw['status'] == 'OK' and available and bool(compare(raw['answer_text']))
+    reason = ('MATCH' if passed else raw['status'] if raw['status'] != 'OK'
+              else raw['answer_status'] if not available else 'WRONG_ANSWER')
+    return {'status': 'PASS' if passed else 'FAIL', 'reason': reason, 'actual': raw.get('answer_text'),
+            'returncode': raw['returncode'], 'stdout': (raw.get('stdout') or {}).get('text'),
+            'stderr': (raw.get('stderr') or {}).get('text'), 'seconds': raw.get('seconds'),
+            'answer_channel': raw.get('answer_channel'), 'raw': raw}
+
+
+# ---- OJBench --------------------------------------------------------------
+def oj_judge():
+    """The original public judge with its Docker runner and checker, loaded unchanged."""
+    load_module('execution_sandbox', OJ_SANDBOX)
+    need(digest(OJ_CHECKER) == SOURCE_PINS[str(OJ_CHECKER)], 'OJ_CHECKER_CHANGED')
+    judge = load_module('_qwen38_oj_public_judge', OJ_PUBLIC_JUDGE)
+    need(judge.OJ_IMAGE == OJ_IMAGE and Path(judge.OJ_CHECKER).resolve() == OJ_CHECKER.resolve(), 'OJ_JUDGE_BINDING')
+    return judge
+
+
+def oj_preflight():
+    """Docker daemon reachable and the pinned PyPy3 image already present. Nothing is pulled."""
+    try:
+        version = subprocess.run(['docker', 'version', '--format', '{{.Server.Version}}'],
+                                 capture_output=True, text=True, timeout=30)
+        image = subprocess.run(['docker', 'image', 'inspect', OJ_IMAGE, '--format', '{{.Id}} {{json .RepoDigests}}'],
+                               capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.TimeoutExpired) as error:
+        raise Stop('OJ_DOCKER_UNAVAILABLE:' + type(error).__name__)
+    need(version.returncode == 0 and image.returncode == 0,
+         'OJ_DOCKER_OR_PINNED_IMAGE_UNAVAILABLE:' + (version.stderr + image.stderr).strip()[:300])
+    return {'docker_server_version': version.stdout.strip(), 'image': OJ_IMAGE, 'image_inspect': image.stdout.strip()}
+
+
+# ---- grading --------------------------------------------------------------
+def effective_contract(dataset, task):
+    if dataset == 'ojbench':
+        return {'runner': 'docker_run pinned PyPy3', 'image': OJ_IMAGE, 'checker': task['checker'],
+                'wall_seconds': task['wall_seconds'], 'docker_timeout_seconds': task['wall_seconds'] + 5,
+                'memory_mb': int(task['memory_bytes']) // 1048576, 'cpus': 1, 'pids_limit': 64}
+    if dataset == 'lcb':
+        return {'runner': VERSION, 'checker': 'lcb_e16_public_v1', **LCB_PUBLIC_LIMITS, 'nofile_limit': 128,
+                'interface': task.get('task_type')}
+    return {'runner': VERSION, 'checker': checker_name(task), **vars(native_limits(task)),
+            'io_mode': task['io_mode'], 'input_filename': task.get('input_filename'),
+            'output_filename': task.get('output_filename')}
+
+
+def evaluate_cases(dataset, task, code, cases, stop_on_failure=False, raw_dir=None):
+    """Run one program on a list of {input, output} cases under the dataset's own contract."""
+    counts, rows = {'pass': 0, 'fail': 0, 'unknown': 0}, []
+    if dataset == 'ojbench':
+        result = oj_judge().grade_cases(task, code, cases, stop_on_failure=stop_on_failure)
+        for row in result['cases']:
+            execution = row.get('execution', {})
+            rows.append({'index': row['index'], 'status': row['status'],
+                         'reason': row.get('reason') or ('MATCH' if row['status'] == 'PASS' else
+                                                         execution.get('status') if execution.get('status') != 'OK' else 'WRONG_ANSWER'),
+                         'actual': execution.get('stdout'), 'returncode': execution.get('returncode'),
+                         'stdout': execution.get('stdout'), 'stderr': execution.get('stderr'),
+                         'seconds': execution.get('seconds'), 'answer_channel': 'stdout'})
+            counts[row['status'].lower()] += 1
+        return counts, rows
+    view = lcb_view(task) if dataset == 'lcb' else task
+    for index, case in enumerate(cases):
+        try:
+            row = run_case(dataset, view, code, case)
+        except InfrastructureUnknown as error:
+            row = {'status': 'UNKNOWN', 'reason': str(error)}
+        raw = row.pop('raw', None)
+        if raw_dir is not None and raw is not None:
+            write(Path(raw_dir) / ('case_%d_raw.json' % index), clip_raw(raw))
+        row['index'] = index
+        rows.append(row)
+        counts[row['status'].lower()] += 1
+        if stop_on_failure and row['status'] != 'PASS':
+            break
+    return counts, rows
+
+
+def grade_public(dataset, task, code, out):
+    """All native public examples of one candidate. Returns the summary kept in task state."""
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    cases = task['public_test_cases'] if dataset == 'lcb' else task['public_tests']
+    result = {'source': 'public_only', 'dataset': dataset, 'question_id': task['question_id'],
+              'status': 'UNKNOWN', 'reason': None, 'total': len(cases), 'executed': 0,
+              'counts': {'pass': 0, 'fail': 0, 'unknown': 0}, 'cases': [],
+              'evaluated_code_sha256': sha(code) if isinstance(code, str) else None,
+              'normalization': 'DISABLED_RAW_PRIMARY', 'adapter_version': ADAPTER_VERSION,
+              'effective_contract': effective_contract(dataset, task)}
+    if not cases:
+        result.update(status='NOT_TESTED', reason='empty_public_examples')
+    elif not isinstance(code, str) or not code.strip():
+        result.update(status='FAIL', reason='NO_CODE')
+    else:
+        counts, rows = evaluate_cases(dataset, task, code, cases, raw_dir=out)
+        result.update(counts=counts, executed=len(rows),
+                      status='UNKNOWN' if counts['unknown'] else 'FAIL' if counts['fail'] else 'PASS')
+        if result['status'] != 'PASS':
+            result['reason'] = next(r['reason'] for r in rows if r['status'] != 'PASS')
+        for row, case in zip(rows, cases):
+            row.update({k: clip(row.get(k)) for k in ('actual', 'stdout', 'stderr')},
+                       input=case['input'], expected=case['output'])
+        result['cases'] = rows
+    write(out / 'public.json', result)
+    return {k: result[k] for k in ('status', 'reason', 'total', 'executed', 'counts', 'evaluated_code_sha256')} | {
+        'case_status': [r['status'] for r in result['cases']], 'public_path': str(out / 'public.json')}

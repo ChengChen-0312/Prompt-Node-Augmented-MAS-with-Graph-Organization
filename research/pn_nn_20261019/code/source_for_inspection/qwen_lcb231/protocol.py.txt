@@ -1,0 +1,130 @@
+"""Original A2-Plan / A1 pure protocol logic, ported without the old API gateway.
+
+Ported from (read-only, pinned in common.SOURCE_PINS):
+  PN-USACO110-任务适配正式实验-20261003/a2_runner.py   approach / payload / select / arm order
+  PN-USACO110-任务适配正式实验-20261003/protocol.py    render_prompt / extract_code
+  PN-LCB231-接口适配重跑-20261002/protocol.py          LCB render_prompt
+  explore30/arg_probe/e16_lcb_contracts.py              SYSTEM_PROMPT
+  explore30/arg_probe/e16_lcb_sandbox.py                _PYTHON_FENCE / extract_python_code
+  explore30/private/flat-pn-divtiny27/prepare.py        DIVERSITY_INSTRUCTION / PLAN_CHAR_LIMIT
+tests/test_protocol.py checks every constant here against those files.
+
+Nothing here repairs code, adds entrypoints, strengthens I/O instructions, reads public
+or strict results, or calls a model.
+"""
+from __future__ import annotations
+
+import ast
+import hashlib
+import re
+
+from common import MASTER_SEED, MODEL_NAME, REPEAT, dump, need, sha
+
+SYSTEM = ('You are an expert competitive programmer. Read the problem carefully, '
+          'identify constraints and edge cases, briefly plan, then write a complete, '
+          'efficient solution. Output the final solution in a single ```python code block.')
+DIVERSITY = ('Earlier attempts at this problem took the approaches listed below. '
+             'Produce a solution whose approach differs from all of them — not only in implementation, but in the algorithm it uses or in how it reads the problem statement. '
+             'Briefly plan and state how your approach differs, then output the final solution in a single ```python code block.')
+PLAN_LIMIT = 2500
+EMPTY_PLAN = '(This attempt gave no approach description.)'
+PYTHON_FENCE = re.compile(r'```(?:python|py)[ \t]*\r?\n(?P<code>.*?)```', flags=re.IGNORECASE | re.DOTALL)
+
+ARMS = ('a1', 'plan')
+ARM_NAMES = {'a1': 'A1', 'plan': 'A2-Plan'}
+STEPS = (1, 2, 3)
+
+# Frozen local scientific configuration (handoff section 3). Identical for both arms
+# within a dataset. LCB keeps the historical Plan output budget of 2000.
+MAX_TOKENS = {'usaco': 16384, 'taco': 16384, 'ojbench': 16384, 'lcb': 2000}
+SAMPLING = {'temperature': 0.2, 'top_p': 1.0, 'top_k': 0, 'min_p': 0.0,
+            'enable_thinking': False, 'preserve_thinking': False}
+SEED_ALGORITHM = ('int.from_bytes(sha256(f"{master_seed}|{dataset}|{question_id}|{arm}|{step}"'
+                  '.encode("utf-8")).digest()[:4], "big")')
+
+
+def render_prompt(dataset, task):
+    """The original user text of each benchmark; public samples stay where the statement has them."""
+    if dataset == 'lcb':
+        question, starter = task['question_content'], task['starter_code']
+        need(isinstance(question, str) and isinstance(starter, str), 'LCB_STATEMENT_AND_STARTER_MUST_BE_TEXT')
+        if starter == '':
+            return question
+        return question + '\n\n```python\n' + starter + '\n```'
+    need(dataset in ('usaco', 'taco', 'ojbench'), 'UNKNOWN_DATASET')
+    need(isinstance(task.get('statement'), str) and task['statement'].strip(), 'PUBLIC_STATEMENT_MISSING')
+    return task['statement']
+
+
+def messages(dataset, task, plans=None):
+    """Initial drafts and A1 use the two base messages; Plan appends exactly one history message."""
+    result = [{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': render_prompt(dataset, task)}]
+    if plans is not None:
+        result.append({'role': 'user', 'content': DIVERSITY + ''.join(
+            f'\n\nPrevious approach {i}:\n{p}' for i, p in enumerate(plans, 1))})
+    return result
+
+
+def request_seed(dataset, question_id, arm, step, master_seed=MASTER_SEED):
+    text = f'{master_seed}|{dataset}|{question_id}|{arm}|{step}'
+    return int.from_bytes(hashlib.sha256(text.encode('utf-8')).digest()[:4], 'big')
+
+
+def request_body(dataset, task, arm, step, plans=None):
+    need(arm in ('initial',) + ARMS and step in STEPS, 'UNKNOWN_REQUEST_SLOT')
+    need((plans is not None) == (arm == 'plan'), 'ONLY_PLAN_ARM_READS_HISTORY')
+    return {'model': MODEL_NAME, **SAMPLING, 'max_tokens': MAX_TOKENS[dataset],
+            'seed': request_seed(dataset, task['question_id'], arm, step),
+            'messages': messages(dataset, task, plans)}
+
+
+def candidate_id(dataset, question_id, arm, step, phase='formal', repeat=REPEAT):
+    return f'{phase}/r{repeat}/{dataset}/{question_id}/{arm}/{step}'
+
+
+def approach(response):
+    """Natural language before the first non-empty Python fence, at most PLAN_LIMIT characters."""
+    start = next((m.start() for m in PYTHON_FENCE.finditer(response) if m.group('code').strip()), None)
+    text = (response if start is None else response[:start]).strip()
+    return {'text': text[:PLAN_LIMIT], 'truncated': len(text) > PLAN_LIMIT, 'had_program': start is not None}
+
+
+def extract_code(raw):
+    """First non-empty python/py fence; otherwise the whole reply only if it parses as Python."""
+    if not isinstance(raw, str) or not raw.strip():
+        return None
+    for match in PYTHON_FENCE.finditer(raw):
+        code = match.group('code')
+        if code.strip():
+            return code
+    try:
+        ast.parse(raw)
+    except (SyntaxError, ValueError, RecursionError, MemoryError):
+        return None
+    return raw.strip()
+
+
+def interpret(response):
+    """Plan and code of one reply under the frozen rules. Nothing is repaired or re-asked."""
+    plan = approach(response)
+    code = extract_code(response)
+    return {'plan': plan['text'] or EMPTY_PLAN, 'plan_extraction': plan, 'code': code,
+            'code_sha256': sha(code) if code is not None else None,
+            'extraction': 'NO_CODE' if code is None else 'FENCE' if plan['had_program'] else 'WHOLE_REPLY_PARSES'}
+
+
+def select(candidates):
+    """Earliest candidate whose public status is PASS, otherwise the first one. No partial scores."""
+    return next((c for c in candidates if c['public']['status'] == 'PASS'), candidates[0])
+
+
+def arm_order(index, repeat=REPEAT):
+    return ('a1', 'plan') if (index + repeat) % 2 == 0 else ('plan', 'a1')
+
+
+def prompt_identity():
+    return {'system_sha256': sha(SYSTEM), 'diversity_sha256': sha(DIVERSITY), 'plan_char_limit': PLAN_LIMIT,
+            'empty_plan': EMPTY_PLAN, 'python_fence_pattern': PYTHON_FENCE.pattern,
+            'python_fence_flags': 'IGNORECASE|DOTALL', 'max_tokens': MAX_TOKENS, 'sampling': SAMPLING,
+            'seed_algorithm': SEED_ALGORITHM, 'master_seed': MASTER_SEED,
+            'request_identity': 'sha256(' + 'canonical JSON of body)', 'canonical_json': dump.__doc__}

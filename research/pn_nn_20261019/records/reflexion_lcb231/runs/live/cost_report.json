@@ -1,0 +1,23 @@
+{
+  "status": "CLOSED_COMPLETE",
+  "api_usd": 3.74241,
+  "ledger_summary": {
+    "mode": "live",
+    "calls_reserved": 627,
+    "states": {
+      "done": 627
+    },
+    "known_cost_nano": 3742410000,
+    "unresolved_reserved_nano": 0,
+    "liability_nano": 3742410000,
+    "known_undiscounted_cost_nano": 3767690000,
+    "cache_discount_nano": 25280000,
+    "usd_cap": "45",
+    "call_cap": 1151,
+    "actual_fee_complete": true,
+    "halt_reason": "GENERATION_SEALED"
+  },
+  "shared_initial_cost_counted_once": true,
+  "historical_PN_initials_reused": false,
+  "saved_at": "2026-10-12T14:48:02.824097+00:00"
+}

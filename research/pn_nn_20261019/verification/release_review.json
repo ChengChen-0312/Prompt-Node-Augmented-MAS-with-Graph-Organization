@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "scope": "Only new release directory, not a new audit of the existing repository or old history. Pattern screening plus file-selection review is not a universal security proof.",
+  "files_scanned_before_this_receipt": 73,
+  "secret_path_placeholder_hits": [],
+  "symlinks": [],
+  "embedded_task_or_test_payload_keys": [],
+  "parsed_python_files": 24,
+  "inspection_sources": 19,
+  "copy_manifest_entries": 63,
+  "copy_changes": [
+    "cohorts/README.txt",
+    "records/qwen_lcb231/README.txt"
+  ],
+  "licence": "Existing repository MIT for original contributions; external dependencies and datasets retain their own terms. No third-party source distribution was added.",
+  "excluded": [
+    "manuscript PDFs and full manuscript sources",
+    "private submission forms",
+    "raw task statements",
+    "public and final test payloads",
+    "raw model reply archives",
+    "generated candidate programs",
+    "model weights",
+    "credentials and billing databases",
+    "private source-path map"
+  ],
+  "environment": {
+    "python": "3.13.2",
+    "numpy": "2.2.6"
+  },
+  "model_calls": 0,
+  "candidate_executions": 0,
+  "rescoring": 0
+}

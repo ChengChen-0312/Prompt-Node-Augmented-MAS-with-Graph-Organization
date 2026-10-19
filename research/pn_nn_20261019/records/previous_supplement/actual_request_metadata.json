@@ -1,0 +1,140 @@
+{
+  "scope": "Six archived requests for abc342_b; raw problem text, response bodies and credentials are not included.",
+  "checks": {
+    "a1_three_payloads_identical": true,
+    "pn_base_two_messages_equal_a1": true,
+    "pn_plan_counts": [
+      3,
+      4,
+      5
+    ]
+  },
+  "requests": [
+    {
+      "logical_id": "A2:abc342_b:1",
+      "file_sha256": "75bbd1196da07b7781966383977a460eb3cb14c7697d451a932af8662e3aee69",
+      "model": "gpt-4o-2024-08-06",
+      "temperature": 0.2,
+      "max_tokens": 2000,
+      "roles": [
+        "system",
+        "user",
+        "user"
+      ],
+      "plan_count": 3,
+      "source_path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0316-A2_abc342_b_1-283edb1b6e64.json",
+      "question_id": "abc342_b",
+      "request_canonical_sha256": "31ae7579457212309a1815c1b77ba10a3c14aaaf162ab34fd75004e28f62ccc6",
+      "request_hash_encoding": "UTF-8 json.dumps(request, sort_keys=True, ensure_ascii=False), Python default separators",
+      "message_content_sha256": [
+        "ebfd824ab29e41ba5f8d101343e7198172bff1b2fcf4bf0574aa3e71c3ca8f0b",
+        "50e83e955bbb9ebd739d4d49d4eb6c5861a23685c42bf39b2f6b7df27426c425",
+        "7c4ccd5018ef0dfe5a6abcf92adf5791d6d613064857303fc5411328512afc1b"
+      ]
+    },
+    {
+      "logical_id": "A1:abc342_b:1",
+      "file_sha256": "6cdaadcc0a1670ab5e23a9bc3b7e010d76b27ef678723998b670721dd4388cd9",
+      "model": "gpt-4o-2024-08-06",
+      "temperature": 0.2,
+      "max_tokens": 2000,
+      "roles": [
+        "system",
+        "user"
+      ],
+      "plan_count": 0,
+      "source_path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0322-A1_abc342_b_1-356f6520ea03.json",
+      "question_id": "abc342_b",
+      "request_canonical_sha256": "3dec7b69316a37abfbdffa876dd321d319f4b039f97565c107893c9e2c09f61b",
+      "request_hash_encoding": "UTF-8 json.dumps(request, sort_keys=True, ensure_ascii=False), Python default separators",
+      "message_content_sha256": [
+        "ebfd824ab29e41ba5f8d101343e7198172bff1b2fcf4bf0574aa3e71c3ca8f0b",
+        "50e83e955bbb9ebd739d4d49d4eb6c5861a23685c42bf39b2f6b7df27426c425"
+      ]
+    },
+    {
+      "logical_id": "A2:abc342_b:2",
+      "file_sha256": "63996496bd542f5d07c16ed2408fa91072d9f8d19a7303f36d8013bf8f00fcb6",
+      "model": "gpt-4o-2024-08-06",
+      "temperature": 0.2,
+      "max_tokens": 2000,
+      "roles": [
+        "system",
+        "user",
+        "user"
+      ],
+      "plan_count": 4,
+      "source_path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0323-A2_abc342_b_2-e0fd1fdf176a.json",
+      "question_id": "abc342_b",
+      "request_canonical_sha256": "9d54a987996407ce1d0c26b528f3005c7fcd290b1e645d6a5e6ec345b0e67b01",
+      "request_hash_encoding": "UTF-8 json.dumps(request, sort_keys=True, ensure_ascii=False), Python default separators",
+      "message_content_sha256": [
+        "ebfd824ab29e41ba5f8d101343e7198172bff1b2fcf4bf0574aa3e71c3ca8f0b",
+        "50e83e955bbb9ebd739d4d49d4eb6c5861a23685c42bf39b2f6b7df27426c425",
+        "55df18025b1a51efd8f107a8b80120172556c86cce9ceddb1101d4990c7aac0e"
+      ]
+    },
+    {
+      "logical_id": "A1:abc342_b:2",
+      "file_sha256": "b701dc18f5698290b0f334281e9edf60e0d0f62a49f00a20ecc723838810eddc",
+      "model": "gpt-4o-2024-08-06",
+      "temperature": 0.2,
+      "max_tokens": 2000,
+      "roles": [
+        "system",
+        "user"
+      ],
+      "plan_count": 0,
+      "source_path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0329-A1_abc342_b_2-e62fa727d312.json",
+      "question_id": "abc342_b",
+      "request_canonical_sha256": "3dec7b69316a37abfbdffa876dd321d319f4b039f97565c107893c9e2c09f61b",
+      "request_hash_encoding": "UTF-8 json.dumps(request, sort_keys=True, ensure_ascii=False), Python default separators",
+      "message_content_sha256": [
+        "ebfd824ab29e41ba5f8d101343e7198172bff1b2fcf4bf0574aa3e71c3ca8f0b",
+        "50e83e955bbb9ebd739d4d49d4eb6c5861a23685c42bf39b2f6b7df27426c425"
+      ]
+    },
+    {
+      "logical_id": "A2:abc342_b:3",
+      "file_sha256": "293a252888357b84a16153a3203fe959f9a4ec2c2224fa9e95da9942801a81a3",
+      "model": "gpt-4o-2024-08-06",
+      "temperature": 0.2,
+      "max_tokens": 2000,
+      "roles": [
+        "system",
+        "user",
+        "user"
+      ],
+      "plan_count": 5,
+      "source_path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0330-A2_abc342_b_3-ca4438bc0785.json",
+      "question_id": "abc342_b",
+      "request_canonical_sha256": "f5bda6624cdffe10062240dc22fdd14c3ac174bfd403aa7b2c9988b648548fd9",
+      "request_hash_encoding": "UTF-8 json.dumps(request, sort_keys=True, ensure_ascii=False), Python default separators",
+      "message_content_sha256": [
+        "ebfd824ab29e41ba5f8d101343e7198172bff1b2fcf4bf0574aa3e71c3ca8f0b",
+        "50e83e955bbb9ebd739d4d49d4eb6c5861a23685c42bf39b2f6b7df27426c425",
+        "d96c169e1267a94b4271583899d646f76c57126fdcae79ed08c256dec17f9e4e"
+      ]
+    },
+    {
+      "logical_id": "A1:abc342_b:3",
+      "file_sha256": "6eaa2b2499de85acf958c6ec247a5f6d2a880f0959865656d89e2730e98e9935",
+      "model": "gpt-4o-2024-08-06",
+      "temperature": 0.2,
+      "max_tokens": 2000,
+      "roles": [
+        "system",
+        "user"
+      ],
+      "plan_count": 0,
+      "source_path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0336-A1_abc342_b_3-063afb01d01a.json",
+      "question_id": "abc342_b",
+      "request_canonical_sha256": "3dec7b69316a37abfbdffa876dd321d319f4b039f97565c107893c9e2c09f61b",
+      "request_hash_encoding": "UTF-8 json.dumps(request, sort_keys=True, ensure_ascii=False), Python default separators",
+      "message_content_sha256": [
+        "ebfd824ab29e41ba5f8d101343e7198172bff1b2fcf4bf0574aa3e71c3ca8f0b",
+        "50e83e955bbb9ebd739d4d49d4eb6c5861a23685c42bf39b2f6b7df27426c425"
+      ]
+    }
+  ]
+}

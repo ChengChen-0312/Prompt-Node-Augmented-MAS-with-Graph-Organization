@@ -1,0 +1,191 @@
+"""Shared paths, pins, hashing and atomic IO for QWEN38_PLAN_A1_LOCAL_V1.
+
+No model client, executor, scorer or private-data path is imported or opened here.
+"""
+from __future__ import annotations
+
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import re
+import sys
+import tempfile
+import time
+
+sys.dont_write_bytecode = True
+
+ROOT = Path(__file__).resolve().parent.parent
+WORKSPACE = ROOT.parent
+CODE = ROOT / 'code'
+CAMPAIGN_ID = 'QWEN38_PLAN_A1_LOCAL_V1'
+RUN_NAME = 'local_v1'
+MASTER_SEED = 20261011
+REPEAT = 1
+DATASETS = ('usaco', 'taco', 'ojbench', 'lcb')
+EXPECTED_COUNTS = {'usaco': 110, 'taco': 231, 'ojbench': 28, 'lcb': 231}
+
+MODEL_DIR = Path('LOCAL_HOME/llm/qwen3.8-27b-4bit')
+MODEL_NAME = 'mlx-community/Qwen3.8-27B-4bit'
+MODEL_BASE = 'Qwen/Qwen3.8-27B'
+GEN_PYTHON = Path('LOCAL_HOME/Documents/5210/LocalCareerImpactAgent-github/environments/qwen/.venv/bin/python')
+EXEC_PYTHON = Path('LOCAL_HOME/miniconda3/bin/python3')
+
+EXECUTOR = WORKSPACE / 'PN-输入完整性离线回归-20261007/input_integrity_executor_v1.py'
+EXECUTOR_VERSION = 'pn-input-integrity-macos-v1'
+TACO_OJ_ROOT = WORKSPACE / 'PN-TACO231-OJBench-七方法单次-A2-H1-H3-20261003'
+OJ_PUBLIC_JUDGE = TACO_OJ_ROOT / 'public_judge.py'
+OJ_SANDBOX = TACO_OJ_ROOT / 'execution_sandbox.py'
+OJ_CHECKER = TACO_OJ_ROOT / 'data/ojbench/checker.py'
+OJ_IMAGE = 'pypy@sha256:5d18aa0232059c991ff8d52f1b528a6ff8f55c86154ba248a270a6eb90975f3a'
+LCB_F_ROOT = WORKSPACE / 'PN-F-LCB231-全量运行-20261009'
+LCB_HARNESS_SOURCE = LCB_F_ROOT / 'function_harness.py'
+
+# Read-only historical sources. Hashes were recomputed on 2026-10-11 and agree with
+# handoff/02, 03 and 04. A changed pin blocks freeze, formal generation and scoring.
+SOURCE_PINS = {
+    str(EXECUTOR): '134eb1ac06d5ff19bfe3a5e1275d5f24176f542fd0f6ef708f6e8cf1d8f65a90',
+    str(WORKSPACE / 'PN-USACO110-任务适配正式实验-20261003/a2_runner.py'): '7c9e271845770351c4102d9b45abe6f17d0db6f3f040d2fe01223588a8b4f4bc',
+    str(WORKSPACE / 'PN-USACO110-任务适配正式实验-20261003/protocol.py'): '555db1d6ad79b07656523af5d0a3c38dcd8cb4f86aafbad9554aa6ad2c7268a8',
+    str(WORKSPACE / 'explore30/arg_probe/e16_lcb_sandbox.py'): '8e1c0f698eb537322fd722358251dec0283ce6397ba18fe848924abdfdbe766e',
+    str(WORKSPACE / 'explore30/arg_probe/e16_lcb_contracts.py'): 'd3c4488cd6121a02c6c36ce2e1e31a435cfcbef5de7b1258013185bcd79169e2',
+    str(WORKSPACE / 'explore30/private/flat-pn-divtiny27/prepare.py'): 'e2e2df00134ccdd3968b2ae6c3a37da30af2233209da8178a0f5fe062180f867',
+    str(WORKSPACE / 'PN-A2Plan-Soft-v0.1-20261010/experiment_config.py'): '754138325890fe5a5fe9a71b4b54e5e01f6a47418ace5862a60349023e70797e',
+    str(WORKSPACE / 'PN-Reflexion三臂校准-20261007/execution_adapter.py'): 'b19ef1accb5821bc97d63d0c61836a1368a128caf28977e88bec7c4ad5f38504',
+    str(OJ_PUBLIC_JUDGE): '1cdda08fe487e76dc87898506746731243db45b38561b4b12f5814dd8226e70b',
+    str(OJ_SANDBOX): '1759ef6ff2cd00b4fc2a28cb9299ee5586d893b26815d6cd0ab8d759fe3a14d0',
+    str(OJ_CHECKER): 'f03b956eca27ac05cf3c6505384c5baadc960c4cb0ad841fc4fb2bc483f126dc',
+    str(WORKSPACE / 'PN-LCB231-接口适配重跑-20261002/protocol.py'): 'e7addb7053789371d31ee7782a56a36f60dcd9a5a8d52b56db26473b5a1f1703',
+    str(LCB_F_ROOT / 'execution_adapter.py'): 'bcec6d8dddf318f07b16bd500aba0763f3b3b5cb3d6903ab643ae0ffdb7743e3',
+    str(LCB_HARNESS_SOURCE): '8e025b11da2d9f26966acff7575b799cbecea2c1417b4274c9369b5e607c468e',
+    str(LCB_F_ROOT / 'task_adapter.py'): '0d494947cebd1cabedb53ae1fbb37c6e0f5fba239bafed655dd8581f0e5d4d0d',
+}
+
+PUBLIC_SOURCES = {
+    'usaco': WORKSPACE / 'PN-USACO110-任务适配正式实验-20261003/data/public_tasks.json',
+    'taco': TACO_OJ_ROOT / 'data/taco/public_tasks.json',
+    'ojbench': TACO_OJ_ROOT / 'data/ojbench/public_tasks.json',
+    'lcb': WORKSPACE / 'PN-LCB231-接口适配重跑-20261002/data/public_tasks.json',
+}
+PUBLIC_SHA256 = {
+    'usaco': 'c611639a05d0ff5b23a056f9953c536e273c15cc789cdaaa61565c3a2c14a20f',
+    'taco': '88faf133a6da78ca6af9e0ca6d9cb9f38855ecf152902ee680eca81e337c580b',
+    'ojbench': 'c71f6c3057d6779e51d96e6269d0f829e065347c1aee9f2a821a657e2ebd163c',
+    'lcb': '81065395a0ac7b0afa10166e7992e4ec00975f1053f21e15ef7bf01059d113e3',
+}
+
+
+class Stop(RuntimeError):
+    """A real blocker: the fixed batch pauses with its state saved. Never retried silently."""
+
+
+def need(condition, message):
+    if not condition:
+        raise Stop(message)
+
+
+def sha(value):
+    return hashlib.sha256(value if isinstance(value, bytes) else value.encode('utf-8')).hexdigest()
+
+
+def digest(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as stream:
+        for block in iter(lambda: stream.read(1 << 20), b''):
+            h.update(block)
+    return h.hexdigest()
+
+
+def dump(value):
+    """Canonical JSON used for record, request and public-test identities."""
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
+
+
+def h(value):
+    return sha(dump(value))
+
+
+def read(path):
+    return json.loads(Path(path).read_text(encoding='utf-8'))
+
+
+def _atomic(path, data: bytes):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temporary = tempfile.mkstemp(prefix='.' + path.name[:40], dir=path.parent)
+    try:
+        with os.fdopen(fd, 'wb') as stream:
+            stream.write(data)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
+def write(path, value):
+    _atomic(path, (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + '\n').encode('utf-8'))
+
+
+def write_text(path, text):
+    _atomic(path, text.encode('utf-8'))
+
+
+def read_exact(path):
+    """Text exactly as stored: no newline translation, so hashes of code and replies stay valid."""
+    return Path(path).read_bytes().decode('utf-8')
+
+
+def append_jsonl(path, value):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open('a', encoding='utf-8') as stream:
+        stream.write(dump(value) + '\n')
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def now():
+    return time.strftime('%Y-%m-%dT%H:%M:%S%z')
+
+
+def load_module(name, path, expected_sha256=None):
+    """Load one read-only historical module by path after its pin is checked."""
+    path = Path(path).resolve()
+    pinned = expected_sha256 or SOURCE_PINS.get(str(path))
+    need(pinned is not None and digest(path) == pinned, 'PINNED_SOURCE_CHANGED:' + path.name)
+    if name in sys.modules:
+        need(Path(sys.modules[name].__file__).resolve() == path, 'MODULE_COLLISION:' + name)
+        return sys.modules[name]
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def verify_pins():
+    changed = [p for p, expected in SOURCE_PINS.items() if not Path(p).is_file() or digest(p) != expected]
+    need(not changed, 'PINNED_SOURCE_CHANGED:' + ';'.join(Path(p).name for p in changed))
+    return dict(SOURCE_PINS)
+
+
+def qdir(index, question_id):
+    """Filesystem-safe, order-preserving and unique directory name for one task."""
+    return '%03d_%s' % (index, re.sub(r'[^A-Za-z0-9_.-]', '_', question_id))
+
+
+def load_tasks(dataset, root=ROOT):
+    path = Path(root) / 'data_public' / dataset / 'public_tasks.json'
+    need(digest(path) == PUBLIC_SHA256[dataset], 'PUBLIC_TASK_FILE_CHANGED:' + dataset)
+    tasks = read(path)
+    need(isinstance(tasks, list) and len(tasks) == EXPECTED_COUNTS[dataset], 'PUBLIC_TASK_COUNT:' + dataset)
+    ids = [t['question_id'] for t in tasks]
+    need(len(set(ids)) == len(ids), 'DUPLICATE_QUESTION_ID:' + dataset)
+    return tasks
+
+
+def difficulty(dataset, task):
+    return task['difficulty'] if dataset in ('taco', 'lcb') else task['division']

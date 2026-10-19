@@ -1,0 +1,151 @@
+"""Resident local Qwen worker (runs under the Qwen venv interpreter, never imported by the controller).
+
+Protocol: one JSON object per stdin line {"logical_id", "request_path", "out_dir"};
+JSON events on stdout (ready / started / progress / done / error). Model weights stay
+resident; every request starts from its own messages with a fresh KV cache. No prompt
+cache, APC, continuation, JSON repair, retry, business wrapper or remote fallback.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+import tempfile
+import time
+import traceback
+
+THINK_OFF_SUFFIX = '<|im_start|>assistant\n<think>\n\n</think>\n\n'
+
+
+def emit(event):
+    sys.stdout.write(json.dumps(event, ensure_ascii=False) + '\n')
+    sys.stdout.flush()
+
+
+def sha(data):
+    return hashlib.sha256(data if isinstance(data, bytes) else data.encode('utf-8')).hexdigest()
+
+
+def atomic(path, text):
+    path = Path(path)
+    fd, temporary = tempfile.mkstemp(prefix='.' + path.name, dir=path.parent)
+    with os.fdopen(fd, 'w', encoding='utf-8') as stream:
+        stream.write(text)
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(temporary, path)
+
+
+def main():
+    model_dir = Path(sys.argv[1]).resolve()
+    import importlib.metadata as metadata
+    import mlx.core as mx
+    from mlx_vlm import load
+    from mlx_vlm.generate import dispatch
+    from mlx_vlm.utils import prepare_inputs, should_add_special_tokens
+
+    started = time.monotonic()
+    model, processor = load(str(model_dir))
+    tokenizer = processor.tokenizer if hasattr(processor, 'tokenizer') else processor
+    template = (model_dir / 'chat_template.jinja').read_text(encoding='utf-8')
+    config = json.loads((model_dir / 'config.json').read_text())
+    context_limit = int(config['text_config']['max_position_embeddings'])
+    add_special = bool(should_add_special_tokens(model.config.model_type, processor))
+    emit({'event': 'ready', 'pid': os.getpid(), 'load_seconds': round(time.monotonic() - started, 3),
+          'model_dir': str(model_dir), 'model_type': model.config.model_type,
+          'architectures': config.get('architectures'), 'quantization': config.get('quantization'),
+          'context_limit_declared': context_limit, 'add_special_tokens': add_special,
+          'chat_template_sha256': sha(template),
+          'tokenizer_chat_template_equal': getattr(tokenizer, 'chat_template', None) == template,
+          'versions': {name: metadata.version(name) for name in ('mlx', 'mlx-lm', 'mlx-vlm', 'transformers')},
+          'python': sys.version.split()[0], 'active_memory_bytes': int(mx.get_active_memory()),
+          'device': {k: (int(v) if isinstance(v, (int, float)) else str(v)) for k, v in mx.device_info().items()},
+          'sampler_path': 'mx.random.seed(seed) + mlx_vlm make_sampler (seed kwarg not passed)'})
+
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        job = json.loads(line)
+        out = Path(job['out_dir'])
+        logical_id = job['logical_id']
+        try:
+            request = json.loads(Path(job['request_path']).read_text(encoding='utf-8'))
+            assert request['logical_id'] == logical_id
+            body = request['body']
+            rendered = tokenizer.apply_chat_template(
+                body['messages'], chat_template=template, tokenize=False, add_generation_prompt=True,
+                enable_thinking=body['enable_thinking'], preserve_thinking=body['preserve_thinking'])
+            if body['enable_thinking'] is False and not rendered.endswith(THINK_OFF_SUFFIX):
+                raise RuntimeError('THINKING_NOT_DISABLED_IN_RENDERED_PROMPT')
+            inputs = prepare_inputs(processor, images=None, audio=None, videos=None, prompts=rendered,
+                                    image_token_index=getattr(model.config, 'image_token_index', None),
+                                    resize_shape=None, add_special_tokens=add_special)
+            input_ids, mask = inputs['input_ids'], inputs['attention_mask']
+            ids = [int(x) for x in input_ids.flatten().tolist()]
+            atomic(out / 'rendered_prompt.txt', rendered)
+            atomic(out / 'input_ids.json', json.dumps({'input_ids': ids, 'count': len(ids),
+                                                       'add_special_tokens': add_special,
+                                                       'rendered_prompt_sha256': sha(rendered)}))
+            if len(ids) + int(body['max_tokens']) > context_limit:
+                raise RuntimeError('CONTEXT_LIMIT_EXCEEDED:%d+%d>%d' % (len(ids), body['max_tokens'], context_limit))
+            emit({'event': 'started', 'logical_id': logical_id, 'prompt_tokens': len(ids)})
+
+            mx.random.seed(int(body['seed']))
+            mx.reset_peak_memory()
+            pieces, last, first_token_at = [], None, None
+            begin = time.monotonic()
+            with (out / 'stream.txt').open('w', encoding='utf-8') as stream:
+                for result in dispatch.stream_generate(
+                        model, processor, prompt=rendered, input_ids=input_ids, mask=mask,
+                        max_tokens=int(body['max_tokens']), temperature=float(body['temperature']),
+                        top_p=float(body['top_p']), top_k=int(body['top_k']), min_p=float(body['min_p']),
+                        enable_thinking=bool(body['enable_thinking'])):
+                    if first_token_at is None:
+                        first_token_at = time.monotonic()
+                    if result.text:
+                        pieces.append(result.text)
+                        stream.write(result.text)
+                        stream.flush()
+                    last = result
+                    if result.generation_tokens % 512 == 0:
+                        emit({'event': 'progress', 'logical_id': logical_id,
+                              'generation_tokens': result.generation_tokens,
+                              'generation_tps': round(result.generation_tps, 3)})
+            end = time.monotonic()
+            if last is None:
+                raise RuntimeError('NO_GENERATION_RESULT')
+            text = ''.join(pieces)
+            record = {
+                'logical_id': logical_id, 'request_sha256': request['request_sha256'],
+                'text': text, 'text_sha256': sha(text), 'finish_reason': last.finish_reason,
+                'usage': {'prompt_tokens': int(last.prompt_tokens), 'completion_tokens': int(last.generation_tokens),
+                          'total_tokens': int(last.total_tokens), 'cached_tokens': int(last.cached_tokens)},
+                'input_ids_count': len(ids), 'input_ids_sha256': sha(json.dumps(ids)),
+                'rendered_prompt_sha256': sha(rendered),
+                'timing': {'prefill_seconds': round((first_token_at or end) - begin, 4),
+                           'generation_seconds': round(end - (first_token_at or end), 4),
+                           'total_seconds': round(end - begin, 4),
+                           'prompt_tps': round(float(last.prompt_tps), 3),
+                           'generation_tps': round(float(last.generation_tps), 3)},
+                'peak_memory_gb': round(float(last.peak_memory), 4),
+                'seed': int(body['seed']), 'worker_pid': os.getpid(),
+                'finished_at': time.strftime('%Y-%m-%dT%H:%M:%S%z')}
+            atomic(out / 'result.json', json.dumps(record, ensure_ascii=False, sort_keys=True, indent=2) + '\n')
+            emit({'event': 'done', 'logical_id': logical_id, 'finish_reason': last.finish_reason,
+                  'usage': record['usage'], 'timing': record['timing'], 'text_sha256': record['text_sha256']})
+        except BaseException as error:  # reported once; the controller never resends this slot
+            detail = {'event': 'error', 'logical_id': logical_id, 'error_type': type(error).__name__,
+                      'message': str(error)[:2000], 'traceback': traceback.format_exc()[-6000:]}
+            try:
+                atomic(out / 'error.json', json.dumps(detail, ensure_ascii=False, indent=2) + '\n')
+            finally:
+                emit(detail)
+            if isinstance(error, (KeyboardInterrupt, SystemExit)):
+                raise
+
+
+if __name__ == '__main__':
+    main()

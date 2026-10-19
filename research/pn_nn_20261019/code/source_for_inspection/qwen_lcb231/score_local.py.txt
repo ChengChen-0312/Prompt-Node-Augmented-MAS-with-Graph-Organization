@@ -1,0 +1,416 @@
+"""Independent strict scorer for QWEN38_PLAN_A1_LOCAL_V1. Never imported by generation.
+
+It scores only the frozen deliveries of this cycle (shared_initial, A1, A2-Plan) and only
+after runs/local_v1/generation_seal.json exists and verifies. It never selects a different
+candidate, never triggers generation, and persists no private input, expected answer,
+candidate output or traceback: only PASS / FAIL / UNKNOWN, a failure category and counts.
+
+  --preflight   before the first formal request: source paths, hashes, id mappings and
+                checker bindings only. No private payload is printed or copied.
+  --seal PATH   strict scoring behind the seal gate. PATH is the whole-batch seal
+                (runs/local_v1/generation_seal.json) or one dataset seal
+                (runs/local_v1/seals/<dataset>.json); verdicts are cached per program.
+
+Sources (read-only, pinned):
+  USACO   sealed hidden_tests.zip + final_artifact_manifest.json pairs, frozen executor
+  TACO    private_tasks.json official_tests, frozen executor
+  OJBench private_tasks.json archive/member locators, original PyPy3 Docker judge
+  LCB     official release_v6 backend at the pinned revision (PN-LCB231 score_selected helpers)
+"""
+from __future__ import annotations
+
+import argparse
+import ast
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import zipfile
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from common import (CAMPAIGN_ID, CODE, DATASETS, EXEC_PYTHON, ROOT, RUN_NAME, TACO_OJ_ROOT, WORKSPACE, Stop,
+                    digest, dump, load_module, load_tasks, need, now, read, read_exact, sha, write)
+
+USACO_ROOT = WORKSPACE / 'PN-USACO110-任务适配正式实验-20261003'
+LCB_SOURCE = WORKSPACE / 'PN-LCB231-接口适配重跑-20261002'
+E21_SCORE = WORKSPACE / 'explore30/private/flat-e21p2/NOT_PAPER_EVIDENCE-e21p2-score.py'
+LCB_VENDOR = WORKSPACE / 'explore30/vendor/livecodebench-e16'
+LCB_VENDOR_COMMIT = '28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24'
+LCB_REVISION = '48d36ed304dca42cf8ab20e941262ccd096518a3'
+SAFE_FAILURES = {'none', 'compile', 'runtime', 'timeout', 'wrong', 'output_limit', 'memory_limit'}
+LABELS = ('shared_initial', 'a1', 'plan')
+LCB_LIMITATION = ('Pinned release_v6 evaluator outcomes, not a full specification-based checker; alternative '
+                  'valid outputs may be rejected (e.g. abc350_c). Official limits (10 s, 1 GiB, 64 KiB, 16 '
+                  'processes) differ from the public limits (10 s, 256 MiB, 64 KiB, 1 process).')
+
+SOURCES = {
+    'usaco': {'archive': USACO_ROOT / 'runs/formal_repeat1_derived/final_scoring/private_store/data/sealed/hidden_tests.zip',
+              'archive_sha256': 'd668fdb592b76e1e1da135dcaf1c52876e49e3cd2cc99e963e170972bc01eab9',
+              'manifest': USACO_ROOT / 'data/final_artifact_manifest.json',
+              'manifest_sha256': 'b0025e2d450100fcf7a82b68a4e98866d51990573a2b80a0660fbb85ee3f759d'},
+    'taco': {'private': TACO_OJ_ROOT / 'data/taco/private_tasks.json',
+             'private_sha256': '122ec3be98858789dc5b6bb29a6da45eeef81c73a5afe3f44f4fe159b3599d6a'},
+    'ojbench': {'private': TACO_OJ_ROOT / 'data/ojbench/private_tasks.json',
+                'private_sha256': 'b0b3d9e88547fb68ce329341393f078ac3d389c851ad32717705de7d95f36e73',
+                'archive_root': TACO_OJ_ROOT / 'data/ojbench'},
+    'lcb': {'dataset_id': 'livecodebench/code_generation_lite', 'config': 'release_v6', 'revision': LCB_REVISION,
+            'vendor': LCB_VENDOR, 'vendor_commit': LCB_VENDOR_COMMIT,
+            'pins': {str(LCB_SOURCE / 'score_selected.py'): '82d92b9d38d4b6e6269231e0fdcb6b051ecaac76b16c675e8cf07a557869468c',
+                     str(LCB_SOURCE / 'protocol.py'): 'e7addb7053789371d31ee7782a56a36f60dcd9a5a8d52b56db26473b5a1f1703',
+                     str(E21_SCORE): '35a4027eb9a4344812861e5e32cd9bb0c9270ec6b96db410c5ac849768ecfa16',
+                     str(WORKSPACE / 'explore30/arg_probe/e16_lcb_scorer.py'): 'cd959b31100394b65bf3f64f16e82bdeeb81e6960a2b01465976be09a5984e7d',
+                     str(WORKSPACE / 'explore30/arg_probe/e16_lcb_hidden.py'): 'f13737102613f43d474264678fd4e84debe1367d6023dda64d0a7e8ffced51de',
+                     str(WORKSPACE / 'explore30/arg_probe/e16_lcb_source.py'): 'feb453466c62603dfd97d762b138a3689ae5a99b02dc273144918a72229d6ded'}},
+}
+SENSITIVE = {'OPENAI_API_KEY', 'API_KEY', 'ANTHROPIC_API_KEY', 'AZURE_OPENAI_API_KEY', 'OPENAI_BASE_URL',
+             'OPENAI_API_BASE', 'BASE_URL', 'HF_TOKEN', 'HUGGING_FACE_HUB_TOKEN'}
+
+
+def keyless():
+    """Re-exec once with a minimal environment so that no credential can reach the scorer."""
+    dirty = (SENSITIVE & set(os.environ)) or any(k.endswith(('_API_KEY', '_TOKEN')) for k in os.environ)
+    if dirty:
+        need(os.environ.get('QWEN38_SCORER_CLEAN') != '1', 'SCORER_ENVIRONMENT_STILL_HAS_CREDENTIAL_NAMES')
+        clean = {k: os.environ[k] for k in ('PATH', 'HOME', 'LANG', 'TMPDIR', 'USER') if k in os.environ}
+        clean.update(QWEN38_SCORER_CLEAN='1', PYTHONDONTWRITEBYTECODE='1')
+        os.execve(sys.executable, [sys.executable] + sys.argv, clean)
+
+
+def source_identity():
+    lcb = SOURCES['lcb']
+    return {'usaco': {k: str(v) for k, v in SOURCES['usaco'].items()},
+            'taco': {k: str(v) for k, v in SOURCES['taco'].items()},
+            'ojbench': {k: str(v) for k, v in SOURCES['ojbench'].items()},
+            'lcb': {**{k: str(lcb[k]) for k in ('dataset_id', 'config', 'revision', 'vendor', 'vendor_commit')},
+                    'pins': lcb['pins'], 'limitation': LCB_LIMITATION}}
+
+
+# ---- private loaders: reachable only from preflight (metadata) or after the gate ----
+def _usaco_pairs():
+    source = SOURCES['usaco']
+    need(digest(source['manifest']) == source['manifest_sha256'], 'USACO_MANIFEST_CHANGED')
+    need(digest(source['archive']) == source['archive_sha256'], 'USACO_PRIVATE_ARCHIVE_CHANGED')
+    return read(source['manifest'])['pairs']
+
+
+def _taco_private():
+    source = SOURCES['taco']
+    need(digest(source['private']) == source['private_sha256'], 'TACO_PRIVATE_SOURCE_CHANGED')
+    return {row['question_id']: row for row in read(source['private'])}
+
+
+def _oj_private():
+    source = SOURCES['ojbench']
+    need(digest(source['private']) == source['private_sha256'], 'OJ_PRIVATE_SOURCE_CHANGED')
+    return {row['question_id']: row for row in read(source['private'])}
+
+
+def _oj_archive(private):
+    archive = Path(private['archive_path'])
+    if not archive.is_absolute():
+        archive = SOURCES['ojbench']['archive_root'] / archive
+    expected = private.get('archive_sha256', private.get('archive_hash'))
+    need(archive.is_file() and (not expected or digest(archive) == expected), 'OJ_PRIVATE_ARCHIVE_CHANGED')
+    return archive
+
+
+def _lcb_static():
+    lcb = SOURCES['lcb']
+    for path, expected in lcb['pins'].items():
+        need(digest(path) == expected, 'LCB_SCORING_SOURCE_CHANGED:' + Path(path).name)
+    head = subprocess.run(['git', '-C', str(LCB_VENDOR), '--no-optional-locks', 'rev-parse', 'HEAD'],
+                          capture_output=True, text=True, timeout=30).stdout.strip()
+    need(head == LCB_VENDOR_COMMIT, 'LCB_VENDOR_COMMIT_CHANGED')
+    need(Path(sys.executable).resolve() == EXEC_PYTHON.resolve(), 'MINICONDA_SCORING_INTERPRETER_REQUIRED')
+    import pyarrow  # noqa: F401  required by the pinned Parquet range reader
+
+
+def preflight(root):
+    """Metadata only. Counts and booleans are written; no private payload leaves this function."""
+    report = {'schema': 'QWEN38_SCORING_PREFLIGHT_V1', 'checked_at': now(), 'sources': source_identity(),
+              'private_payload_printed_or_copied': False, 'datasets': {}}
+    ids = {d: [t['question_id'] for t in load_tasks(d, root)] for d in DATASETS}
+    pairs = _usaco_pairs()
+    with zipfile.ZipFile(SOURCES['usaco']['archive']) as archive:
+        names = set(archive.namelist())
+    missing = [q for q in ids['usaco'] if not pairs.get(q) or
+               any(p['input_member'] not in names or p['output_member'] not in names for p in pairs[q])]
+    report['datasets']['usaco'] = {'tasks_mapped': len(ids['usaco']) - len(missing), 'tasks': len(ids['usaco']),
+                                   'tests_total': sum(len(pairs[q]) for q in ids['usaco'] if q in pairs),
+                                   'ready': not missing}
+    taco = _taco_private()
+    bad = [q for q in ids['taco'] if not isinstance(taco.get(q, {}).get('official_tests'), list) or not taco[q]['official_tests']]
+    report['datasets']['taco'] = {'tasks_mapped': len(ids['taco']) - len(bad), 'tasks': len(ids['taco']),
+                                  'tests_total': sum(len(taco[q]['official_tests']) for q in ids['taco'] if q in taco),
+                                  'ready': not bad}
+    oj, bad, tests = _oj_private(), [], 0
+    for q in ids['ojbench']:
+        try:
+            with zipfile.ZipFile(_oj_archive(oj[q])) as archive:
+                names = set(archive.namelist())
+            ok = bool(oj[q]['hidden_tests']) and all(c['input_member'] in names and c['output_member'] in names
+                                                    for c in oj[q]['hidden_tests'])
+            tests += len(oj[q]['hidden_tests'])
+        except (KeyError, Stop, OSError, zipfile.BadZipFile):
+            ok = False
+        if not ok:
+            bad.append(q)
+    import execution_adapter
+    report['datasets']['ojbench'] = {'tasks_mapped': len(ids['ojbench']) - len(bad), 'tasks': len(ids['ojbench']),
+                                     'tests_total': tests, 'ready': not bad, 'docker': execution_adapter.oj_preflight()}
+    lcb = {'tasks': len(ids['lcb']), 'static_ready': False, 'network_metadata_ready': False}
+    try:
+        _lcb_static()
+        load_module('_qwen38_e21_score_preflight', E21_SCORE, SOURCES['lcb']['pins'][str(E21_SCORE)])
+        from arg_probe import e16_lcb_scorer, e16_lcb_source
+        e16_lcb_scorer.validate_pinned_vendor(LCB_VENDOR)
+        lcb['static_ready'] = True
+        try:  # public repository tree metadata only: shard names, sizes and LFS hashes
+            manifest = e16_lcb_source.acquire_verified_source_manifest()
+            lcb.update(network_metadata_ready=True, shards=len(manifest['shards']))
+        except Exception as error:
+            lcb['network_error_type'] = type(error).__name__
+    except Exception as error:
+        lcb['static_error'] = '%s:%s' % (type(error).__name__, str(error)[:200])
+    lcb['ready'] = lcb['static_ready'] and lcb['network_metadata_ready']
+    lcb['acquisition'] = 'Post-seal only: pinned-revision Parquet column ranges, held in memory by the keyless scorer.'
+    report['datasets']['lcb'] = lcb
+    local_ready = all(report['datasets'][d]['ready'] for d in ('usaco', 'taco', 'ojbench')) and lcb['static_ready']
+    report['status'] = ('READY' if local_ready and lcb['ready'] else
+                        'READY_LCB_NETWORK_DEFERRED' if local_ready else 'BLOCKED')
+    write(Path(root) / 'preparation/scoring_preflight.json', report)
+    print(json.dumps({'status': report['status'], 'datasets': report['datasets']}, ensure_ascii=False, indent=1))
+    return 0 if report['status'] != 'BLOCKED' else 2
+
+
+# ---- gate -----------------------------------------------------------------
+def gate(root, seal_path):
+    """Public files only. No private loader is reachable until this returns.
+
+    Accepts the whole-batch seal (runs/local_v1/generation_seal.json) or one dataset seal
+    (runs/local_v1/seals/<dataset>.json). Either way no generation process may be alive.
+    """
+    import run_local
+    root, seal_path = Path(root).resolve(), Path(seal_path).resolve()
+    run = root / 'runs' / RUN_NAME
+    allowed = [(run / 'generation_seal.json').resolve()] + [run_local.dataset_seal_path(root, d).resolve() for d in DATASETS]
+    need(seal_path in allowed and seal_path.is_file(), 'GENERATION_SEAL_REQUIRED')
+    freeze, freeze_sha = run_local.verify_freeze(root)
+    seal = read(seal_path)
+    scope = seal.get('scope')
+    need(seal.get('campaign_id') == CAMPAIGN_ID and seal.get('generation_closed') is True and
+         seal.get('strict_evaluation_may_start') is True and seal.get('freeze_sha256') == freeze_sha and
+         seal.get('active_generation_processes') == [] and scope in ('GLOBAL', 'DATASET'), 'GENERATION_SEAL_INVALID')
+    if scope == 'DATASET':
+        dataset = seal.get('dataset')
+        need(seal.get('status') == 'SEALED_COMPLETE' and seal.get('sealed_datasets') == [dataset] and
+             seal_path == run_local.dataset_seal_path(root, dataset).resolve(), 'DATASET_SEAL_INVALID')
+        need(all(v == 'COMPLETED' for v in run_local.request_states(run, dataset).values()), 'UNSEALED_INFLIGHT_REQUEST')
+        need(run_local.dataset_usage(run, dataset) == seal['usage_dataset'], 'USAGE_ROWS_CHANGED_AFTER_SEAL')
+    else:
+        need(seal.get('status') in ('SEALED_COMPLETE', 'SEALED_PARTIAL') and seal_path == allowed[0], 'GENERATION_SEAL_INVALID')
+        for name, state in run_local.request_states(run).items():
+            need(state == 'COMPLETED' or name in seal['open_or_failed_requests'], 'UNSEALED_INFLIGHT_REQUEST')
+        need(digest(run / 'usage_local.jsonl') == seal['usage_local_sha256'], 'USAGE_LOG_CHANGED_AFTER_SEAL')
+        for name, expected in seal['dataset_seals'].items():
+            need(digest(run_local.dataset_seal_path(root, name)) == expected, 'DATASET_SEAL_CHANGED:' + name)
+    run_local.no_active_generation(run)
+    for relative, expected in seal['files'].items():
+        need(digest(root / relative) == expected, 'SEALED_FILE_CHANGED:' + relative)
+    tasks = {d: {t['question_id']: t for t in load_tasks(d, root)} for d in seal['sealed_datasets']}
+    expected = {(d, q, label) for d in tasks for q in tasks[d] for label in LABELS}
+    keys = [(r['dataset'], r['question_id'], r['label']) for r in seal['selected']]
+    need(len(keys) == len(set(keys)) and set(keys) == expected, 'SEALED_DELIVERY_GRID_INCOMPLETE')
+    targets = []
+    for row in seal['selected']:
+        code = None
+        if row['code_sha256']:
+            code = read_exact(root / row['code_path'])
+            need(sha(code) == row['code_sha256'] and row['code_path'] in seal['files'], 'SEALED_DELIVERY_CODE_CHANGED')
+        targets.append({**row, 'code': code})
+    return seal, digest(seal_path), freeze_sha, tasks, targets
+
+
+# ---- strict evaluation ----------------------------------------------------
+def _verdict(counts, rows, total):
+    status = 'UNKNOWN' if counts['unknown'] else 'FAIL' if counts['fail'] else 'PASS'
+    first = next((r for r in rows if r['status'] != 'PASS'), None)
+    return {'status': status, 'reason': 'ALL_TESTS_PASS' if status == 'PASS' else str(first['reason'])[:80],
+            'tests_total': total, 'tests_executed': len(rows), 'tests_passed_before_stop': counts['pass'],
+            'early_stop': len(rows) < total}
+
+
+def _local_cases(dataset):
+    if dataset == 'usaco':
+        pairs = _usaco_pairs()
+        def cases(qid):
+            with zipfile.ZipFile(SOURCES['usaco']['archive']) as archive:
+                return [{'input': archive.read(p['input_member']).decode('utf-8'),
+                         'output': archive.read(p['output_member']).decode('utf-8')} for p in pairs[qid]]
+        return cases
+    if dataset == 'taco':
+        private = _taco_private()
+        return lambda qid: private[qid]['official_tests']
+    private = _oj_private()
+    def cases(qid):
+        with zipfile.ZipFile(_oj_archive(private[qid])) as archive:
+            return [{'input': archive.read(c['input_member']).decode('utf-8'),
+                     'output': archive.read(c['output_member']).decode('utf-8')} for c in private[qid]['hidden_tests']]
+    return cases
+
+
+def _lcb_backend(qids):
+    """Exact pinned helpers of PN-LCB231 score_selected.py; must follow gate()."""
+    _lcb_static()
+    protocol = load_module('_qwen38_lcb_protocol_score_only', LCB_SOURCE / 'protocol.py',
+                           SOURCES['lcb']['pins'][str(LCB_SOURCE / 'protocol.py')])
+    source = LCB_SOURCE / 'score_selected.py'
+    tree = ast.parse(source.read_text())
+    wanted = {'ScoreStop', 'require', '_official_backend', '_grade'}
+    nodes = [n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef)) and n.name in wanted]
+    need({n.name for n in nodes} == wanted, 'LCB_SCORING_HELPER_LAYOUT_CHANGED')
+    scope = {'Path': Path, 'sys': sys, 'PYTHON': EXEC_PYTHON, 'E21_SCORE': E21_SCORE,
+             'load_module': protocol.load_module, 'SAFE_FAILURES': SAFE_FAILURES}
+    exec(compile(ast.Module(body=nodes, type_ignores=[]), str(source), 'exec'), scope)
+    samples, grader = scope['_official_backend'](qids)
+    return samples, lambda code, sample: scope['_grade'](code, sample, grader)
+
+
+def score_dataset(dataset, tasks, targets, cache_dir, identity, stop_file=None):
+    import execution_adapter
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    unique = {}
+    for target in targets:
+        if target['code'] is not None:
+            unique.setdefault(sha(dataset + '\n' + target['question_id'] + '\n' + target['code_sha256']), target)
+    verdicts, pending = {}, {}
+    for key, target in unique.items():
+        path = cache_dir / (key + '.json')
+        binding = {'identity': identity, 'dataset': dataset, 'question_id': target['question_id'],
+                   'code_sha256': target['code_sha256']}
+        cached = read(path) if path.exists() else None
+        if cached and cached['binding'] == binding and cached['verdict']['status'] in ('PASS', 'FAIL'):
+            verdicts[key] = cached['verdict']
+        else:
+            need(cached is None or cached['binding'] == binding, 'STRICT_CACHE_BINDING')
+            pending[key] = (target, binding, path)
+    if pending:
+        if dataset == 'lcb':
+            try:
+                samples, grader = _lcb_backend(sorted({t['question_id'] for t, _, _ in pending.values()}))
+            except Exception as error:
+                for key in pending:
+                    verdicts[key] = {'status': 'UNKNOWN', 'reason': 'BACKEND_ACQUISITION_FAILED:' + type(error).__name__}
+                pending = {}
+        else:
+            cases_for = _local_cases(dataset)
+    done = 0
+    for key, (target, binding, path) in pending.items():
+        # Pause switch: finished verdicts stay cached; the next run continues from here.
+        need(stop_file is None or not Path(stop_file).exists(), 'PAUSED_BY_STOP_FILE:%s after %d of %d programs' % (dataset, done, len(pending)))
+        qid = target['question_id']
+        marker = cache_dir / (key + '.started.json')
+        interrupted_before = marker.exists()
+        write(marker, {**binding, 'started_at': now()})
+        try:
+            if dataset == 'lcb':
+                grade = grader(target['code'], samples[qid])
+                valid = (isinstance(grade, dict) and (
+                    (grade.get('status') == 'PASS' and grade.get('official_pass') is True and grade.get('fail_mode') == 'none') or
+                    (grade.get('status') == 'FAIL' and grade.get('official_pass') is False and grade.get('fail_mode') in SAFE_FAILURES - {'none'})))
+                verdict = ({'status': grade['status'], 'reason': 'ALL_TESTS_PASS' if grade['status'] == 'PASS' else grade['fail_mode']}
+                           if valid else {'status': 'UNKNOWN', 'reason': 'INFRASTRUCTURE_OR_INVALID_SCORER_VERDICT'})
+            else:
+                cases = cases_for(qid)
+                need(bool(cases), 'EMPTY_FINAL_SUITE:' + qid)
+                counts, rows = execution_adapter.evaluate_cases(dataset, tasks[qid], target['code'], cases, stop_on_failure=True)
+                verdict = _verdict(counts, rows, len(cases))
+                del cases, rows
+        except Exception as error:
+            verdict = {'status': 'UNKNOWN', 'reason': 'SCORER_EXCEPTION:' + type(error).__name__}
+        verdict['re_executed_after_interruption'] = interrupted_before
+        write(path, {'binding': binding, 'verdict': verdict, 'finished_at': now(), 'scorer_sha256': digest(Path(__file__))})
+        marker.unlink()
+        verdicts[key] = verdict
+        done += 1
+        if done % 10 == 0 or done == len(pending):
+            print('strict %s %d/%d unique programs' % (dataset, done, len(pending)), flush=True)
+    rows = []
+    for target in targets:
+        base = {k: target[k] for k in ('dataset', 'question_id', 'index', 'difficulty', 'label', 'candidate_id',
+                                       'code_sha256', 'public_status', 'gate_open')}
+        if target['code'] is None:
+            base['strict'] = {'status': 'FAIL', 'reason': 'NO_LEGAL_DELIVERY', 'tests_executed': 0}
+        else:
+            base['strict'] = verdicts[sha(dataset + '\n' + target['question_id'] + '\n' + target['code_sha256'])]
+        rows.append(base)
+    return rows, len(unique)
+
+
+def score(root, seal_path):
+    root = Path(root).resolve()
+    seal, seal_sha, freeze_sha, tasks, targets = gate(root, seal_path)
+    out = root / 'runs' / RUN_NAME
+    scope = seal['scope']
+    # A verdict belongs to (dataset, task, source hash) under fixed sources; the whole-batch
+    # pass therefore re-reads the verdicts written by the per-dataset passes.
+    cache_identity = {'campaign_id': CAMPAIGN_ID, 'freeze_sha256': freeze_sha, 'sources': source_identity()}
+    identity = {**cache_identity, 'scope': scope, 'seal_sha256': seal_sha, 'scorer_sha256': digest(Path(__file__))}
+    wanted = DATASETS if scope == 'GLOBAL' else (seal['dataset'],)
+    all_rows, summary, unique_total, datasets = [], {}, 0, {}
+    for dataset in wanted:
+        if dataset not in seal['sealed_datasets']:
+            datasets[dataset] = {'status': 'NOT_SEALED_NOT_SCORED', 'generation_status': seal['datasets'][dataset]['status']}
+            continue
+        rows, unique = score_dataset(dataset, tasks[dataset], [t for t in targets if t['dataset'] == dataset],
+                                     out / 'strict/unique' / dataset, cache_identity, out / 'STOP')
+        unknown = sum(r['strict']['status'] == 'UNKNOWN' for r in rows)
+        datasets[dataset] = {'status': 'INCOMPLETE_UNKNOWN' if unknown else 'COMPLETE', 'labels': len(rows),
+                             'unique_program_executions': unique, 'unknown': unknown}
+        summary[dataset] = {label: {'correct': sum(r['label'] == label and r['strict']['status'] == 'PASS' for r in rows),
+                                    'total': len(tasks[dataset])} for label in LABELS}
+        all_rows += rows
+        unique_total += unique
+    complete = all(datasets[d]['status'] == 'COMPLETE' for d in wanted)
+    unknown = any(datasets[d]['status'] == 'INCOMPLETE_UNKNOWN' for d in wanted)
+    result = {'schema': 'QWEN38_FINAL_SCORES_V1', 'campaign_id': CAMPAIGN_ID, 'scored_at': now(), 'scope': scope,
+              'status': 'COMPLETE' if complete else 'INCOMPLETE_UNKNOWN' if unknown else 'PARTIAL',
+              'identity': identity, 'strict_raw_io': True,
+              'labels_expected_if_complete': 1800 if scope == 'GLOBAL' else 3 * len(tasks[seal['dataset']]),
+              'labels_scored': len(all_rows), 'unique_program_executions': unique_total,
+              'datasets': datasets, 'summary': summary, 'rows': all_rows,
+              'lcb_limitation': LCB_LIMITATION, 'private_payload_saved': False,
+              'strict_feedback_returned_to_generation': False, 'candidates_reselected_by_scorer': False}
+    target = out / 'final_scores.json' if scope == 'GLOBAL' else out / 'strict' / ('final_scores_%s.json' % seal['dataset'])
+    write(target, result)
+    _, seal_sha_after, _, _, targets_after = gate(root, seal_path)
+    need(seal_sha_after == seal_sha and [t['code_sha256'] for t in targets_after] == [t['code_sha256'] for t in targets],
+         'SEALED_SOURCES_CHANGED_DURING_SCORING')
+    print(json.dumps({'status': result['status'], 'scope': scope, 'labels_scored': len(all_rows), 'datasets': datasets,
+                      'summary': summary, 'written': str(target)}, ensure_ascii=False, indent=1))
+    return 0 if result['status'] == 'COMPLETE' else 2
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument('--root', default=str(ROOT))
+    parser.add_argument('--seal')
+    parser.add_argument('--preflight', action='store_true')
+    args = parser.parse_args()
+    keyless()
+    try:
+        need(Path(args.root).resolve() == ROOT, 'ROOT_MUST_BE_THIS_PROJECT')
+        if args.preflight:
+            return preflight(ROOT)
+        need(args.seal, 'SEAL_PATH_REQUIRED')
+        return score(ROOT, args.seal)
+    except Stop as stop:
+        print(json.dumps({'status': 'SCORING_BLOCKED', 'reason': str(stop)}, ensure_ascii=False))
+        return 2
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

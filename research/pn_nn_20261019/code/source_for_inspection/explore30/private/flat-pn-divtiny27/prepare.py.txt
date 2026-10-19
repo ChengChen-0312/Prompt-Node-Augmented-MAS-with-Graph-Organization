@@ -1,0 +1,238 @@
+"""pn-diversity-tiny: the tiny-output-space dead problems, both arms interleaved; the last unused dead population.
+
+python prepare.py            -> materialize (no provider, no credential, no execution, no hidden read)
+python prepare.py --freeze   -> write prereg + sha256 after checks.py passed
+"""
+from datetime import datetime, timezone
+from decimal import Decimal
+import argparse, csv, glob, hashlib, json, re, sys
+from collections import defaultdict
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+STAGE = Path(__file__).resolve().parent
+PRIV = STAGE.parent
+EXPLORE = PRIV.parent
+if str(EXPLORE) not in sys.path: sys.path.insert(0, str(EXPLORE))
+from arg_probe.e16_lcb_contracts import SYSTEM_PROMPT, MODEL, TEMPERATURE, MAX_TOKENS, render_user_prompt
+from arg_probe.e16_lcb_sandbox import extract_python_code, _PYTHON_FENCE
+
+P = 'NOT_PAPER_EVIDENCE-pndivtiny27-'
+SCOPE = 'PN_DIVERSITY_TINY27'
+CANDIDATE_PREFIX = 'pndivtiny27'
+HARD = PRIV / 'flat-pn-divhard1'
+HARM = PRIV / 'flat-pn-divharm18'
+PILOT = PRIV / 'flat-pn-divgen1'
+CONTROL = PRIV / 'flat-pn-divctl1'
+E21 = PRIV / 'flat-e21p2'
+RUN = E21 / 'NOT_PAPER_EVIDENCE-e21p2-run-20260904T082712Z'
+POOL = PRIV / 'flat-e26a' / 'NOT_PAPER_EVIDENCE-e26a-pool-state.csv'
+AGREE = PRIV / 'flat-pn-divagree0'
+AGREE_REPORT = AGREE / 'NOT_PAPER_EVIDENCE-pndivagree0-report.json'
+AGREE_RUNS = AGREE / 'NOT_PAPER_EVIDENCE-pndivagree0-runs.jsonl'
+CAMPAIGN_PRIOR = PRIV / 'flat-pn-keepfix-api9' / 'campaign-budget.json'
+SAMPLES = 3            # diversity samples per problem
+CONTROL_SAMPLES = 3    # equal calls per arm: the question here is whether diversity loses rescues, not cost alignment
+CALL_CAP = 180
+COST_CAP = Decimal('1.90')
+PLAN_CHAR_LIMIT = 2500
+DIVERSITY_INSTRUCTION = (
+    'Earlier attempts at this problem took the approaches listed below. '
+    'Produce a solution whose approach differs from all of them — not only in implementation, but in the algorithm it uses or in how it reads the problem statement. '
+    'Briefly plan and state how your approach differs, then output the final solution in a single ```python code block.')
+
+
+def digest(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def dump(path, value): Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
+
+
+def plan_text(content):
+    """Text before the first non-empty python fence (the program extract_python_code returns), capped."""
+    start = next((m.start() for m in _PYTHON_FENCE.finditer(content) if m.group('code').strip()), None)
+    text = (content if start is None else content[:start]).strip()
+    return {'text': text[:PLAN_CHAR_LIMIT], 'truncated': len(text) > PLAN_CHAR_LIMIT, 'had_program': start is not None}
+
+
+def solver_messages(task):
+    return [{'role': 'system', 'content': SYSTEM_PROMPT},
+            {'role': 'user', 'content': render_user_prompt(str(task['question_content']), str(task['starter_code']))}]
+
+
+def control_payload(task):
+    """The frozen E16 A1 solver call, byte-identical to the archived i.i.d. samples; reads nothing."""
+    return {'model': MODEL, 'temperature': TEMPERATURE, 'max_tokens': MAX_TOKENS, 'messages': solver_messages(task)}
+
+
+def arm_order(index):
+    """Which arm sends first for this problem; alternating removes a systematic within-problem order effect."""
+    return ('control', 'diversity') if index % 2 == 0 else ('diversity', 'control')
+
+
+def diversity_payload(task, plans):
+    body = DIVERSITY_INSTRUCTION + ''.join(f'\n\nPrevious approach {i}:\n{p}' for i, p in enumerate(plans, 1))
+    return {'model': MODEL, 'temperature': TEMPERATURE, 'max_tokens': MAX_TOKENS,
+            'messages': solver_messages(task) + [{'role': 'user', 'content': body}]}
+
+
+def select():
+    report = json.loads(AGREE_REPORT.read_text())
+    rows = [p for p in report['per_problem_archive_only'] if p['group'] == 'dead' and p['n_fail'] >= 2 and p['small_output_space']]
+    return sorted(rows, key=lambda p: p['qid'])
+
+
+def materialize():
+    if (STAGE / 'materialization.json').exists(): raise RuntimeError('ALREADY_MATERIALIZED')
+    rows = select(); qids = [p['qid'] for p in rows]
+    assert len(qids) == 27 and sum(p['S_distinct'] == 1 for p in rows) == 7
+    tasks = {json.loads(l)['question_id']: json.loads(l) for l in (E21 / 'NOT_PAPER_EVIDENCE-e21p2-public-tasks.jsonl').open()}
+    pool = defaultdict(list)
+    for r in csv.DictReader(POOL.open()): pool[r['qid']].append(r)
+    codes = {json.loads(l)['candidate_id']: json.loads(l)['code'] for l in (RUN / 'NOT_PAPER_EVIDENCE-e21p2-scoring-candidates.jsonl').open()}
+    raw_by_ordinal = {int(Path(f).name.split('-')[0]): Path(f) for f in glob.glob(str(RUN / 'NOT_PAPER_EVIDENCE-e21p2-raw-responses' / '*.json'))}
+    import tiktoken
+    enc = tiktoken.encoding_for_model('gpt-4o')
+    problems, estimate = [], Decimal(0)
+    for index, p in enumerate(rows):
+        q = p['qid']; task = tasks[q]
+        initial = sorted((r for r in pool[q] if r['source'] == 'INITIAL'), key=lambda r: int(r['sample_idx']))
+        assert [int(r['sample_idx']) for r in initial] == [0, 1, 2] and all(r['public_pass'] == 'False' for r in initial)
+        archived_passes = sum(r['official_pass'] == 'True' for r in pool[q])
+        assert archived_passes == 0, 'DEAD_PROBLEM_MUST_HAVE_NO_ARCHIVED_OFFICIAL_PASS'
+        refs, plans = [], []
+        for r in initial:
+            path = raw_by_ordinal[int(r['ledger_ordinal'])]
+            raw = json.loads(path.read_text()); content = raw['response']['choices'][0]['message']['content']
+            # codes[...] is None when the archived response contained no fenced program (an extract failure in the archive)
+            if raw['qid'] != q or raw['response'].get('model') != MODEL or extract_python_code(content) != codes[r['candidate_id']]:
+                raise RuntimeError('INITIAL_RAW_RESPONSE_DOES_NOT_REPRODUCE_POOL_CODE')
+            pt = plan_text(content); assert pt['text']  # truncation at the declared cap is allowed and recorded
+            plans.append(pt['text'])
+            refs.append({'candidate_id': r['candidate_id'], 'sample_idx': int(r['sample_idx']), 'raw_response_path': str(path), 'raw_response_sha256': digest(path),
+                         'code_sha256': hashlib.sha256(codes[r['candidate_id']].encode()).hexdigest() if isinstance(codes[r['candidate_id']], str) else None,
+                         'plan_sha256': hashlib.sha256(pt['text'].encode()).hexdigest(), 'plan_chars': len(pt['text']),
+                         'plan_truncated': pt['truncated'], 'archived_response_had_program': pt['had_program']})
+        first = diversity_payload(task, plans)
+        control = control_payload(task)
+        assert first['messages'][:2] == control['messages']
+        tokens = sum(len(enc.encode(m['content'])) + 4 for m in first['messages']) + 3
+        control_tokens = sum(len(enc.encode(m['content'])) + 4 for m in control['messages']) + 3
+        mean_plan_tokens = sum(len(enc.encode(x)) for x in plans) / 3
+        completion = sorted(int(r['completion_tokens']) for r in pool[q])[len(pool[q]) // 2]
+        for k in range(SAMPLES):  # step k also carries k earlier diversity plans of about the mean INITIAL plan size
+            estimate += Decimal(tokens + k * (mean_plan_tokens + 8)) * Decimal('0.0000025') + Decimal(completion) * Decimal('0.00001')
+        estimate += CONTROL_SAMPLES * (Decimal(control_tokens) * Decimal('0.0000025') + Decimal(completion) * Decimal('0.00001'))
+        problems.append({'qid': q, 'difficulty': p['difficulty'], 'task_type': p['task_type'], 'archived_S_distinct': p['S_distinct'], 'archived_n_fail': p['n_fail'],
+            'public_tests': p['public_tests'], 'initial': refs, 'arm_order': list(arm_order(index)),
+            'small_output_space': p['small_output_space'], 'archived_official_passes': archived_passes, 'archived_pool': len(pool[q]),
+            'archived_rescue_rate': round(archived_passes / len(pool[q]), 4),
+            'step1_payload_sha256': hashlib.sha256(json.dumps(first, sort_keys=True, ensure_ascii=False).encode()).hexdigest(),
+            'control_payload_sha256': hashlib.sha256(json.dumps(control, sort_keys=True, ensure_ascii=False).encode()).hexdigest(),
+            'step1_prompt_tokens': tokens, 'control_prompt_tokens': control_tokens, 'archived_median_completion_tokens': completion})
+    campaign = json.loads(CAMPAIGN_PRIOR.read_text())
+    assert campaign['outstanding_requests'] == 0 and Decimal(campaign['remaining_usd']) >= COST_CAP
+    dump(STAGE / 'materialization.json', {'scope': SCOPE, 'status': 'MATERIALIZED_OFFLINE_UNAUTHORIZED', 'created_at_utc': datetime.now(timezone.utc).isoformat(),
+        'problems': problems, 'calls_planned': (SAMPLES + CONTROL_SAMPLES) * len(problems),
+        'initial_plans_truncated': sum(ref['plan_truncated'] for p in problems for ref in p['initial']),
+        'initial_responses_without_program': sum(not ref['archived_response_had_program'] for p in problems for ref in p['initial']), 'estimated_cost_usd': str(estimate.quantize(Decimal('0.0001'))),
+        'call_cap': CALL_CAP, 'cost_cap_usd': str(COST_CAP), 'prior_campaign': {k: campaign[k] for k in ('provider_calls_total', 'spent_usd', 'remaining_usd')},
+        'provider_calls': 0, 'credential_reads': 0, 'hidden_reads': 0, 'candidate_executions': 0})
+    dump(STAGE / (P + 'authorization.json'), {'authorized': False, 'user_authorization_confirmed': False, 'scope': SCOPE, 'hard_cap_calls': CALL_CAP,
+        'hard_cap_usd': str(COST_CAP), 'current_user_execution_request': None})
+    print(json.dumps({'problems': len(problems), 'calls_planned': (SAMPLES + CONTROL_SAMPLES) * len(problems), 'estimated_cost_usd': str(estimate.quantize(Decimal('0.0001')))}))
+
+
+def freeze():
+    if (STAGE / (P + 'prereg.json')).exists(): raise RuntimeError('ALREADY_FROZEN')
+    assert not list(STAGE.rglob('__pycache__')), 'BYTECODE_CACHE_PRESENT'
+    checks = json.loads((STAGE / (P + 'checks.json')).read_text())
+    assert checks['status'] == 'OFFLINE_PASS'
+    material = json.loads((STAGE / 'materialization.json').read_text())
+    frozen = {str(p): digest(p) for p in sorted(STAGE.iterdir()) if p.is_file() and not p.name.endswith('-authorization.json')}
+    for path in (AGREE_REPORT, AGREE_RUNS, AGREE / 'NOT_PAPER_EVIDENCE-pndivagree0-prereg.json', POOL, E21 / 'NOT_PAPER_EVIDENCE-e21p2-public-tasks.jsonl',
+                 RUN / 'NOT_PAPER_EVIDENCE-e21p2-scoring-candidates.jsonl', E21 / 'NOT_PAPER_EVIDENCE-e21p2-generate.py', E21 / 'NOT_PAPER_EVIDENCE-e21p2-score.py',
+                 EXPLORE / 'arg_probe/e16_lcb_contracts.py', EXPLORE / 'arg_probe/e16_lcb_sandbox.py', EXPLORE / 'arg_probe/e16_lcb_scorer.py',
+                 EXPLORE / 'arg_probe/e16_lcb_hidden.py', EXPLORE / 'arg_probe/e16_lcb_source.py', EXPLORE / 'arg_probe/run_e16_lcb.py',
+                 PRIV / 'flat-pn-richfeedback-offline1/rich_scorer.py', PRIV / 'flat-pn-richfeedback-offline1/rich_worker.py', CAMPAIGN_PRIOR,
+                 PILOT / 'NOT_PAPER_EVIDENCE-pndivgen1-prereg.json', PILOT / 'NOT_PAPER_EVIDENCE-pndivgen1-signatures.json', PILOT / 'NOT_PAPER_EVIDENCE-pndivgen1-official.jsonl',
+                 PILOT / 'NOT_PAPER_EVIDENCE-pndivgen1-final-receipt.json', CONTROL / 'NOT_PAPER_EVIDENCE-pndivctl1-prereg.json',
+                 CONTROL / 'NOT_PAPER_EVIDENCE-pndivctl1-official.jsonl', CONTROL / 'NOT_PAPER_EVIDENCE-pndivctl1-final-receipt.json',
+                 CONTROL / 'NOT_PAPER_EVIDENCE-pndivctl1-campaign-budget-corrected.json',
+                 HARD / 'NOT_PAPER_EVIDENCE-pndivhard1-prereg.json', HARD / 'NOT_PAPER_EVIDENCE-pndivhard1-official.jsonl',
+                 HARD / 'NOT_PAPER_EVIDENCE-pndivhard1-final-receipt.json', HARD / 'NOT_PAPER_EVIDENCE-pndivhard1-CORRECTIONS.json',
+                 HARD / 'NOT_PAPER_EVIDENCE-pndivhard1-campaign-budget-corrected.json',
+                 HARM / 'NOT_PAPER_EVIDENCE-pndivharm18-prereg.json', HARM / 'NOT_PAPER_EVIDENCE-pndivharm18-official.jsonl',
+                 HARM / 'NOT_PAPER_EVIDENCE-pndivharm18-CORRECTIONS.json', HARM / 'NOT_PAPER_EVIDENCE-pndivharm18-campaign-budget-corrected.json'):
+        frozen[str(path)] = digest(path)
+    for problem in material['problems']:
+        for ref in problem['initial']: frozen[ref['raw_response_path']] = ref['raw_response_sha256']
+    prereg = {'scope': SCOPE, 'created_at_utc': datetime.now(timezone.utc).isoformat(), 'paper_evidence_authorized': False, 'quarantine': 'EXPLORE_ONLY',
+        'candidate_prefix': CANDIDATE_PREFIX,
+        'question': 'Does the diversity arm rescue tiny-output-space dead problems that ordinary resampling does not? This is the last unused dead population: 27 problems excluded from the earlier batches because short outputs (Yes/No, 0/-1) make identical behavior signatures easy by coincidence. That weakness is confined to the novelty metric; the rescue count is unaffected, so the rescue comparison is the load-bearing result and the novelty gate is descriptive only. Original question text follows: Does the diversity instruction cost rescues where ordinary sampling already works? These 18 problems are the ones the archive rescued by i.i.d. resampling. Telling the model to depart from every earlier approach may push it away from the approach that solves the problem. A harm result bounds where the mechanism may be applied; no harm bounds its downside.',
+        'why_now': 'Rescue evidence so far: pilot diversity 2 of 20 vs control 0; hard diversity 2 of 31 vs control 1. The upside is small and uncertain, so the downside on solvable problems is the cheaper decision-relevant quantity.',
+        'expected_baseline': 'If a new arm matched the archived per-problem rescue rates, 3 samples would rescue about 9.1 of these 18 problems. This is an expectation computed from archived counts, not a test, and not a decision threshold.',
+        'upstream': {'premise': 'PN_DIVERSITY_AGREEMENT0', 'hard': {'scope': 'PN_DIVERSITY_HARD1', 'result': 'diversity 2 of 31, control 1 of 31 at equal calls; novelty 42 vs 13 percent', 'prereg_sha256': digest(HARD / 'NOT_PAPER_EVIDENCE-pndivhard1-prereg.json'), 'corrections_sha256': digest(HARD / 'NOT_PAPER_EVIDENCE-pndivhard1-CORRECTIONS.json')},
+            'pilot': {'scope': 'PN_DIVERSITY_GEN1_PILOT', 'result': '2 of 20 problems rescued in 60 diversity calls; 25 of 60 candidates novel', 'prereg_sha256': digest(PILOT / 'NOT_PAPER_EVIDENCE-pndivgen1-prereg.json')},
+            'control': {'scope': 'PN_DIVERSITY_CTL1_CONCURRENT_CONTROL', 'result': '0 of 20 problems rescued in 60 i.i.d. calls on the same problems; 9 of 60 candidates novel', 'prereg_sha256': digest(CONTROL / 'NOT_PAPER_EVIDENCE-pndivctl1-prereg.json')}},
+        'premise_measurement': {'scope': 'PN_DIVERSITY_AGREEMENT0', 'report_sha256': digest(AGREE_REPORT), 'reading': 'SUPPORTED (median modal share 0.846 on 51 dead non-small-output problems)',
+            'caveats': ['rescued problems agree just as much (0.75), so agreement does not explain why these problems are dead',
+                        '78 dead problems already produced 235 distinct failing behaviors (157 beyond the first); none official-correct by construction of the dead set']},
+        'population': {'rule': 'divagree0 per-problem rows: group rescued, i.e. the 18 of the 97 first-three-public-fail problems whose archived pool contains at least one official pass. The pilot eligibility filter is deliberately not applied: the question is harm on solvable problems, not behavioral diversity.',
+            'composition': '10 medium, 4 easy, 4 hard; 5 have a tiny output space and 1 has fewer than 2 failing archived candidates, which weakens the novelty metric there but not the rescue count; archived official passes per problem range 1 to 9 out of pools of 8 or 13',
+            'disjoint_from': 'the dead-problem batches (pilot 20, hard 31); no problem appears twice', 'qids_archive_only': [p['qid'] for p in material['problems']],
+            'problems': len(material['problems']), 'subgroup_S1': 'archived S_distinct == 1 among failing candidates', 'subgroup_S1_count': sum(p['archived_S_distinct'] == 1 for p in material['problems']),
+            'archived_rescue_rates': {p['qid']: p['archived_rescue_rate'] for p in material['problems']},
+            'selection_uses_archived_official_labels': True},
+        'arms': {'diversity': {'name': 'DIVERSITY_SEQUENTIAL', 'samples_per_problem': SAMPLES},
+            'control': {'name': 'IID_CONTROL', 'samples_per_problem': CONTROL_SAMPLES,
+                'messages': 'exactly the frozen E16 A1 solver call, byte-identical to the archived i.i.d. samples; reads nothing',
+                'equal_calls_reason': 'both arms get 3 samples. The question is whether diversity loses rescues at the same call budget; a control call is cheaper, so equal calls is the conservative direction for a harm claim.'},
+            'interleaving': 'both arms of a problem are sent adjacently before the next problem, so provider drift is shared; the arm that sends first alternates by problem index to remove a systematic within-problem order effect',
+            'independence': 'control samples are independent draws of the identical request; diversity step k reads only earlier approach texts of the same problem and never any control output'},
+        'arm': {'name': 'DIVERSITY_SEQUENTIAL', 'samples_per_problem': SAMPLES,
+            'messages': 'message 1 = E16 A1 system prompt (byte-identical); message 2 = E16 A1 user prompt (byte-identical); message 3 = DIVERSITY_INSTRUCTION followed by the approach texts of all earlier candidates in order',
+            'diversity_instruction': DIVERSITY_INSTRUCTION,
+            'earlier_candidates': 'step k reads the 3 archived INITIAL plans plus the plans of diversity steps 1..k-1 of the same problem',
+            'approach_text': f'the response text before the first non-empty python fence, stripped, capped at {PLAN_CHAR_LIMIT} characters; no code, no public or official outcome, no failure evidence',
+            'archived_plan_edge_cases': f"of the 93 archived INITIAL responses read here, {material['initial_plans_truncated']} hit the {PLAN_CHAR_LIMIT}-character cap and {material['initial_responses_without_program']} contained no fenced program at all (an extract failure in the archive, whose whole text is then the approach text). Both are recorded per reference in materialization.json. The pilot had neither case.",
+            'empty_approach_text': 'if a diversity response has no text before its program, later steps read the fixed placeholder "(This attempt gave no approach description.)"; if it has no program, its whole text (capped) is the approach text and its code is recorded as none (extract failure)',
+            'model': MODEL, 'temperature': TEMPERATURE, 'max_tokens': MAX_TOKENS, 'seed': None,
+            'transport_retry': 'as E21-P2 Provider: at most one retry after an ambiguous transport failure, counted as a physical call; no content retry'},
+        'caps': {'provider_calls': CALL_CAP, 'usd': str(COST_CAP), 'planned_calls': material['calls_planned'], 'estimated_cost_usd': material['estimated_cost_usd'],
+            'reservation_rule': 'E21-P2 maximum_request_cost reservation must fit under the cap before every call'},
+        'signature': 'identical to PN_DIVERSITY_AGREEMENT0 token(): PASS; W:<captured output, trailing whitespace stripped per line>; otherwise fail_mode:<exception class>; tuple over original public tests',
+        'decision_rule': {
+            'novel_non_error': 'a candidate whose signature is not among the archived signatures of its problem and contains at least one W: or PASS token',
+            'primary_rescue': 'D = problems rescued by diversity (3 samples), C = problems rescued by control (3 samples), same 27 problems, same call budget. D >= 1 and C == 0 -> EFFECT_PRESENT_ON_TINY_OUTPUT. D == 0 and C == 0 -> NO_RESCUE_IN_EITHER_ARM. C >= D -> CONTROL_MATCHES_OR_BEATS. D > C >= 1 -> MIXED_BOTH_ARMS_RESCUE. All four branches are enumerated so no outcome falls outside the rule, as one did in the hard batch.',
+            'novelty_caveat': 'On a tiny output space two wrong programs often print the same short string by coincidence, so both the novelty rate and the S_distinct=1 gate are unreliable here. They are reported as description and never decide the reading.',
+            'id_integrity': 'the reading is void (STOP_UNMATCHED_OFFICIAL_PASSES) if any official pass carries a candidate id outside this stage prefix, which is how the harm-check report silently scored zero.',
+            'expected_baseline': 'zero: every problem here has 8 or 13 archived samples and no official pass among them.',
+            'false_positive_rate_of_the_harm_threshold_not_used_here': {'headline': 0.203, 'model': 'both arms identical, every problem with the same rescue probability (the mean, about 0.506); P(C - D >= 3) computed exactly over 18 independent problem pairs',
+                'heterogeneous_model': 0.172, 'heterogeneous_note': 'using each problem\'s own archived rescue rate instead of the common mean; lower because problems whose rate is near 0 or 1 cannot produce a discordant pair. 0.203 is reported as the conservative headline.',
+                'neighbouring_thresholds_homogeneous': {'C - D >= 2': 0.309, 'C - D >= 3': 0.203, 'C - D >= 4': 0.109},
+                'meaning': 'about one run in five would show a 3-problem loss even if the instruction did nothing. HARM_DETECTED at this size is a flag to investigate, not an established harm; NO_HARM_DETECTED is correspondingly weak evidence of safety.'},
+            'paired_view': 'also report the paired split: rescued by diversity only, by control only, by both, by neither',
+            'novelty_rates': 'report both arms (dead-problem reference: diversity 42 percent, control 13-15 percent). The novelty metric is weaker on this population: 5 tiny-output problems and 1 with fewer than 2 failing archived candidates.',
+            'no_significance_test': 'counts only. No p-value is computed or looked up: n = 18, and the frozen tables of the dead-problem batches assumed a control of 0 and do not apply here.',
+            'pooling': 'these are dead problems like the pilot and hard batches, but they were excluded from those by the eligibility rule, so their counts are reported separately and are not added to the frozen p-tables, which assumed a control of 0 and a fixed sample size.',
+            'reporting': 'aggregate only in reports to the author; per-problem rows in the archive'},
+        'boundaries': ['The problem set is defined by hidden official labels (the archive rescued these), so this is a mechanism probe, not a deployable strategy.',
+            'A no-harm result at n = 18 does not show the instruction is safe; it bounds the loss at the resolution of 18 problems and 3 samples.',
+            'Both arms run in the same interleaved pass, which shares provider drift but does not make the comparison randomized across problems.',
+            'The diversity arm reads the 3 archived INITIAL approach texts of the same problem, as in the dead-problem batches; no archived success is ever shown to it.',
+            'Wording limitation: the result is about this exact instruction, not about diversity in general. It asks for an approach that differs from every earlier one in algorithm or in reading of the problem statement, so on a problem the ordinary prompt already solves it can push the model off the approach that works; that is precisely the harm being measured, and a softer wording would likely measure a different harm rate.',
+            'Implied-incorrectness leak, as in the pilot pre-registration: asking for an approach that differs from all earlier ones lets the model infer those approaches were wrong, even though no outcome is shown. On this population that inference is false for the archive as a whole, since a later archived sample did solve each of these problems.',
+            'Implied-incorrectness leak: asking for an approach that differs from all earlier ones lets the model infer those approaches may be wrong. No outcome is shown, but this is a weak form of failure information. A neutralizing sentence ("do not assume the approaches above are correct or incorrect") was considered and not used, because it would weaken the manipulation this pilot tests and make a null result harder to interpret.',
+            'The instruction targets both the algorithm and the reading of the problem statement, because the premise measurement shows wrong answers (921 of 967 failures) and identical wrong outputs rather than inefficiency.',
+            'Agreement on public inputs is necessary, not sufficient, for algorithmic identity; a new signature can come from a different bug rather than a different algorithm.',
+            'Population was selected with archived official labels and is not deployable as a trigger.',
+            'Not merged into the 231-problem table, E21-P2 pools, Hard6 or the paper main table.'],
+        'order': ['authorize.py records the author sentence', 'generate.py (keyed): calls only, no execution', 'signatures.py (keyless, public tests only)', 'score.py (keyless, after generation exit; hidden columns via the E21-P2 acquisition path)', 'report.py'],
+        'offline_checks': {'status': checks['status'], 'checks_count': checks['checks_count'], 'sha256': digest(STAGE / (P + 'checks.json'))},
+        'frozen_files': frozen}
+    path = STAGE / (P + 'prereg.json'); dump(path, prereg); (STAGE / (P + 'prereg.sha256')).write_text(digest(path) + '\n')
+    print(json.dumps({'status': 'FROZEN_UNAUTHORIZED', 'frozen_files': len(frozen), 'prereg_sha256': digest(path)}))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(); parser.add_argument('--freeze', action='store_true'); args = parser.parse_args()
+    freeze() if args.freeze else materialize()

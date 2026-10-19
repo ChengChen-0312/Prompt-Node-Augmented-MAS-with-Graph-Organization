@@ -1,0 +1,2 @@
+# Preserve archived file bytes, including CSV line endings, for SHA-256 checks.
+* -text

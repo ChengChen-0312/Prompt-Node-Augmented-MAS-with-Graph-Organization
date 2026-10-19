@@ -1,0 +1,224 @@
+{
+  "as_of": "2026-10-12",
+  "path_base": "Research archive root (machine location omitted)",
+  "new_model_requests_in_package_preparation": 0,
+  "new_candidate_executions": 0,
+  "new_scoring": 0,
+  "statuses": [
+    {
+      "id": "four_dataset_shared_initial_comparison",
+      "status": "COMPLETED_ARCHIVED",
+      "details": "600 retained task pairs in the main four-dataset comparison. Fixed-output paired intervals; not repeated generation uncertainty.",
+      "included_file": "paired_summary.csv"
+    },
+    {
+      "id": "lcb_paired_continuation_rerun",
+      "status": "COMPLETED_ARCHIVED",
+      "details": "96 shared-start continuation tasks, three additional requests per arm. Earlier stitched archive and later paired run are separate CSV rows. One of 97 gate-open tasks is not in the 96-task paired continuation."
+    },
+    {
+      "id": "usaco_pn_only_repeat",
+      "status": "COMPLETE_VERIFIED",
+      "details": "77 continued tasks; new PN 20/110, retained PN 19/110 and historical A1 22/110. A1 was not repeated in the new batch."
+    },
+    {
+      "id": "independent_sampling_cost_reference",
+      "status": "COMPLETED_ARCHIVED_AND_RETROSPECTIVE_SELECTION",
+      "details": "31-task Plan3/A1-four comparison: 2/31 versus 1/31 at USD 1.177525 versus 1.2207. Original endpoint was candidate coverage; final-selection comparison is a later replay."
+    },
+    {
+      "id": "fixed_gated_seq",
+      "status": "COMPLETED_ARCHIVED_REPLAY",
+      "details": "Shared ordered candidate pools compare stopping and selection. They do not isolate the plan-history component."
+    },
+    {
+      "id": "B2",
+      "status": "COMPLETED_ARCHIVED",
+      "details": "Difference requirement removed; cumulative plans retained. Two streams 8/96 and 5/96, versus PN 13/96. Not the Soft treatment or a no-history treatment."
+    },
+    {
+      "id": "H_visibility",
+      "status": "COMPLETED_ARCHIVED",
+      "details": "Three independent draws on each of 96 states. Both arms 24/288. Shared public feedback and milder wording; not the original cumulative three-step PN procedure."
+    },
+    {
+      "id": "Soft60",
+      "status": "COMPLETE_VERIFIED",
+      "details": "Only Soft newly generated: USACO30 historical Plan 1/new Soft 0; TACO30 both 0. No simultaneous new A1/Plan arms."
+    },
+    {
+      "id": "GuidedSampling_development",
+      "status": "COMPLETED_TWO_DIFFERENT_CONFIGURATIONS",
+      "details": "Two 12-task rounds, with changed common setup in round 2. Not equivalent replications or a completed full resource-matched benchmark."
+    },
+    {
+      "id": "Reflexion6",
+      "status": "COMPLETE_VERIFIED_WITH_DISCLOSED_TECHNICAL_RECOVERY",
+      "details": "Executed calibration with no PN arm. See included status and costs.",
+      "included_file": "reflexion6_summary.csv"
+    },
+    {
+      "id": "lcb_scoring_sensitivity",
+      "status": "VERIFIED_WITH_ONE_SHARED_RESOURCE_UNRESOLVED",
+      "details": "Previously executed fixed-delivery check: 17 tasks, 18 unique sources, 51 deliveries; remaining 214 labels per method retained. Confirmed Fixed3/A1/PN 104/112/116 plus one shared unresolved source. Original scores 101/109/113 preserved. PN-A1 difference remains four."
+    },
+    {
+      "id": "Qwen_PN_A1",
+      "status": "NOT_FINAL_AT_REVIEW",
+      "details": "Generation in progress when the parent review inspected it; no final sealed strict result. No current pass count is inferred from completed-generation task counters."
+    },
+    {
+      "id": "nearest_method_full_frozen_resource_comparison",
+      "status": "NOT_EXECUTED_IN_THIS_CYCLE",
+      "details": "Existing GuidedSampling pilots do not complete this comparison. No new model requests authorized or sent during manuscript revision."
+    },
+    {
+      "id": "matched_last_message_format_control",
+      "status": "OFFLINE_PREPARATION_ONLY",
+      "details": "Not an executed performance result. Needed only for claims that isolate plan content from the full prompt strategy."
+    }
+  ],
+  "source_files": [
+    {
+      "path": "PN-配对复测与成本对照补订-20261011/review/journal_cycle_20261012/lcb_actual_prompt_readback.json",
+      "sha256": "e1e5dbeff2d050cac0629ea3b1ecc26c796ee1adc027b6bbf02bd4ada38a843a",
+      "bytes": 7089
+    },
+    {
+      "path": "PN-配对复测与成本对照补订-20261011/review/journal_cycle_20261012/archive_experiment_map.md",
+      "sha256": "fb9c3448e579e211fcd5384419c31b2e46bdba215e7dbb6d2137884cc0edd5e6",
+      "bytes": 14211
+    },
+    {
+      "path": "explore30/arg_probe/e16_lcb_contracts.py",
+      "sha256": "d3c4488cd6121a02c6c36ce2e1e31a435cfcbef5de7b1258013185bcd79169e2",
+      "bytes": 9189
+    },
+    {
+      "path": "explore30/private/flat-pn-divtiny27/prepare.py",
+      "sha256": "e2e2df00134ccdd3968b2ae6c3a37da30af2233209da8178a0f5fe062180f867",
+      "bytes": 25826
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/prepare.py",
+      "sha256": "15f53dc733c75f38dd87840ae5506a4f358be0eb912d435c1fa2e54447012559",
+      "bytes": 12761
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/generate.py",
+      "sha256": "b08ecb6259c7a45d4c6374d020aeefa6a85e8b716c3138418091a85e806ba567",
+      "bytes": 9384
+    },
+    {
+      "path": "PN-非千问补强-20261012/stats/paired_summary.csv",
+      "sha256": "6443ebd71b3c7874c8ffe7334a3d294d6dd80e2c56360fb453654b2bf37b3578",
+      "bytes": 1995
+    },
+    {
+      "path": "PN-非千问补强-20261012/stats/verification.json",
+      "sha256": "37810d72e53988872ae4efbfabafdb451e8751a6f325e0ed6c987c08fe555e4f",
+      "bytes": 1460
+    },
+    {
+      "path": "PN-Reflexion三臂校准-20261007/reports/paired_summary.json",
+      "sha256": "e6dabf44276a4d491ca3b2fef6ed3f2b96edf5b3810d824ac4fd134efeb7ab47",
+      "bytes": 2136
+    },
+    {
+      "path": "PN-Reflexion三臂校准-20261007/FINAL_VERIFICATION.json",
+      "sha256": "693870c7c553e037b7a21e48cd33f90c543355a39008786a93075e2b711907d3",
+      "bytes": 1361
+    },
+    {
+      "path": "PN-Reflexion三臂校准-20261007/protocol.json",
+      "sha256": "2dea4483578723053e1b0540ae02c2cbc9a0db57a02c0275e5f3f45b19c5e8d3",
+      "bytes": 1513
+    },
+    {
+      "path": "PN-LCB评分敏感性与预算对照准备-20261012/scoring/FINAL_VERIFICATION.json",
+      "sha256": "684ed8160b52c1054a68a24c0dc0a5f4d6e8f22b341bb62f614dae0a4d6b66e0",
+      "bytes": 566
+    },
+    {
+      "path": "PN-LCB评分敏感性与预算对照准备-20261012/scoring/FINAL_SENSITIVITY.json",
+      "sha256": "66a44be6f2344a85b50cc401bda04c2b89b664ad3acd9755deb6f0791dc44e25",
+      "bytes": 271985
+    },
+    {
+      "path": "PN-LCB评分敏感性与预算对照准备-20261012/manuscript/source_map.json",
+      "sha256": "8a003b96b4ed40fbb9ce91f7dd70546df19944ee757161638ef77c1f394cb885",
+      "bytes": 2271
+    },
+    {
+      "path": "PN-配对复测与成本对照补订-20261011/sources/added_results.json",
+      "sha256": "81cff9e158050e42301d2ad23f2b11e54b46e72fbfcaa4aeb0663ef3e3c157a9",
+      "bytes": 5746
+    },
+    {
+      "path": "PN-USACO-Plan续跑复核准备-20261012/runs/FINAL_VERIFICATION.json",
+      "sha256": "c92aebd7111df3349e4b1c9c2e6c6f496a1300aa425b053e85d49bbfce66a513",
+      "bytes": 2088
+    },
+    {
+      "path": "PN-A2Plan-Soft-v0.1-历史对照-20261010/FINAL_VERIFICATION.json",
+      "sha256": "009d2d6bfb66a6781953107c3eb98f965f4aea76632ca3aefe9e41cb2eb73c37",
+      "bytes": 1190
+    },
+    {
+      "path": "PN-轻量计划节点与B2修订-20261011/sources/B2_original_completed_report.json",
+      "sha256": "172644567b22e94c0a9c8391b972ec9310188d6b74d946b31013c091e99701b9",
+      "bytes": 8244
+    },
+    {
+      "path": "PN-轻量计划节点与B2修订-20261011/sources/H_original_completed_report.md",
+      "sha256": "2c5d3ba5691eaf16d1adb6645fe31448f493241bde3d65128b649b0a76b63faf",
+      "bytes": 1297
+    },
+    {
+      "path": "PN-Supervisor12修订-20261010/english/evidence/GS-round1-report.md",
+      "sha256": "b1ec8d23a1e9827b9614e12394145790d4cb0a55422e2d590e7c8e40bdc4dd39",
+      "bytes": 3110
+    },
+    {
+      "path": "PN-Supervisor12修订-20261010/english/evidence/GS-round2-report.md",
+      "sha256": "6c4ff1a76a1cce5b68c816aa9a40e3bb448436074af4e44672e03b2be0561763",
+      "bytes": 4716
+    },
+    {
+      "path": "PN-LCB评分敏感性与预算对照准备-20261012/existing_cost_reuse/summary.json",
+      "sha256": "5b0bb71a0911dec503598bd7f494399b3b4daef9c02a0c19cf95b1663e936a20",
+      "bytes": 4727
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0316-A2_abc342_b_1-283edb1b6e64.json",
+      "sha256": "75bbd1196da07b7781966383977a460eb3cb14c7697d451a932af8662e3aee69",
+      "bytes": 9202
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0322-A1_abc342_b_1-356f6520ea03.json",
+      "sha256": "6cdaadcc0a1670ab5e23a9bc3b7e010d76b27ef678723998b670721dd4388cd9",
+      "bytes": 5092
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0323-A2_abc342_b_2-e0fd1fdf176a.json",
+      "sha256": "63996496bd542f5d07c16ed2408fa91072d9f8d19a7303f36d8013bf8f00fcb6",
+      "bytes": 10418
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0329-A1_abc342_b_2-e62fa727d312.json",
+      "sha256": "b701dc18f5698290b0f334281e9edf60e0d0f62a49f00a20ecc723838810eddc",
+      "bytes": 4937
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0330-A2_abc342_b_3-ca4438bc0785.json",
+      "sha256": "293a252888357b84a16153a3203fe959f9a4ec2c2224fa9e95da9942801a81a3",
+      "bytes": 11765
+    },
+    {
+      "path": "explore30/private/flat-pn-ablnopn1/run/NOT_PAPER_EVIDENCE-pnablnopn1-raw-responses/0336-A1_abc342_b_3-063afb01d01a.json",
+      "sha256": "6eaa2b2499de85acf958c6ec247a5f6d2a880f0959865656d89e2730e98e9935",
+      "bytes": 5281
+    }
+  ],
+  "availability": "Listed source paths locate retained local archives. Only files in manifest.json are included in this attachment; this is not a public end-to-end runner release."
+}

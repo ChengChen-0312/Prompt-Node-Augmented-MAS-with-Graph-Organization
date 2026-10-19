@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": {
+    "paired_summary.csv": true,
+    "paired_task_labels.csv": true,
+    "resource_summary.csv": true,
+    "lcb_repeat_changes.csv": true,
+    "sources_manifest.json": true,
+    "paired_stats_numeric_and_protocol_match": true
+  },
+  "new_model_calls": 0,
+  "candidate_executions": 0,
+  "rescoring": 0,
+  "scope": "Stored label and token arithmetic only; not end-to-end experiment reproduction.",
+  "stdout": "{\"paired_rows\": 831, \"comparisons\": 10, \"source_files\": 16, \"output\": \"reproduced/statistics\"}"
+}

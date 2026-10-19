@@ -1,0 +1,356 @@
+{
+  "scope": "Completed LCB231 only; no new generation, execution, or scoring. USACO/TACO/OJBench local results excluded.",
+  "model": {
+    "name": "mlx-community/Qwen3.8-27B-4bit",
+    "base_model": "Qwen/Qwen3.8-27B",
+    "architecture_string": [
+      "Qwen3_5ForConditionalGeneration"
+    ],
+    "quantization": {
+      "bits": 4,
+      "group_size": 64,
+      "mode": "affine"
+    },
+    "weights": {
+      "model-00001-of-00003.safetensors": {
+        "bytes": 5343268662,
+        "mtime_ns": 1789314858853063292,
+        "sha256": "6cc1508e96fb5d0865dfd5753a79f4ec60651bf3e2a82844a7e8ae9c60528c0d"
+      },
+      "model-00002-of-00003.safetensors": {
+        "bytes": 5354185130,
+        "mtime_ns": 1789314884939950205,
+        "sha256": "83f2a20ca8058f486a3634a27faf99587f4cd3c156a83dee34fb99e6ac178670"
+      },
+      "model-00003-of-00003.safetensors": {
+        "bytes": 5357087557,
+        "mtime_ns": 1789314900810738613,
+        "sha256": "31b8c91ef899f79efaaa69e3d2c096f6e2ebeb2ff20e29222abbd9ebc79e560a"
+      }
+    },
+    "files": {
+      "README.md": {
+        "bytes": 632,
+        "sha256": "860ff845b4746d0b3e1d1afa4f13aac691ef49c7165054cedfb199371568c4c2"
+      },
+      "chat_template.jinja": {
+        "bytes": 8952,
+        "sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041"
+      },
+      "config.json": {
+        "bytes": 4932,
+        "sha256": "14b65a0ee06517060a6bbd979bb1a8ff54e7b304b1a1f01d54344b88b8285e85"
+      },
+      "generation_config.json": {
+        "bytes": 202,
+        "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e"
+      },
+      "model.safetensors.index.json": {
+        "bytes": 218281,
+        "sha256": "13b840162b4cb35c66fef7df072f7dbb4717908204364f5e5d9f9655a2758fa8"
+      },
+      "preprocessor_config.json": {
+        "bytes": 390,
+        "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+      },
+      "processor_config.json": {
+        "bytes": 991,
+        "sha256": "45fc17c8dd2474af6b493b52483c26c0584b0082d368c480f9fa611e73070040"
+      },
+      "tokenizer.json": {
+        "bytes": 19989325,
+        "sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523"
+      },
+      "tokenizer_config.json": {
+        "bytes": 1165,
+        "sha256": "792fa3f0cb88b111e54ef3134c873531008c4df471d108da17903426e308aa7b"
+      },
+      "video_preprocessor_config.json": {
+        "bytes": 385,
+        "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+      },
+      "vocab.json": {
+        "bytes": 6722759,
+        "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+      }
+    }
+  },
+  "environment": {
+    "candidate_python": "LOCAL_HOME/miniconda3/bin/python3",
+    "candidate_python_version": "Python 3.13.5",
+    "chip": "Apple M4 Max",
+    "controller_executable": "LOCAL_HOME/miniconda3/bin/python3",
+    "controller_python": "3.13.5",
+    "docker_server": "29.6.2",
+    "generation_packages": "{\"python\": \"3.12.12\", \"mlx\": \"0.32.2\", \"mlx-lm\": \"0.31.3\", \"mlx-vlm\": \"0.7.0\", \"transformers\": \"5.17.0\"}",
+    "generation_python": "LOCAL_HOME/Documents/5210/LocalCareerImpactAgent-github/environments/qwen/.venv/bin/python",
+    "machine": "arm64",
+    "memory_bytes": 38654705664,
+    "oj_image": "pypy@sha256:5d18aa0232059c991ff8d52f1b528a6ff8f55c86154ba248a270a6eb90975f3a",
+    "oj_image_inspect": "sha256:5d18aa0232059c991ff8d52f1b528a6ff8f55c86154ba248a270a6eb90975f3a",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "psutil": "7.0.0"
+  },
+  "output_budget_revision": {
+    "accounting": "Every output token (analysis, plan and code) counts toward usage; truncation and no-code rates are reported separately.",
+    "applies_to": "the three shared initial drafts, the three A1 extras and the three Plan extras of this dataset alike",
+    "authorization": "Direction given by the user in the Claude Code session on 2026-10-11. Not mentor approval.",
+    "campaign_id": "QWEN38_PLAN_A1_LOCAL_V1",
+    "comparison_note": "Historical GPT-4o LCB runs used a 2000-token output limit. Any comparison with them must state the different limit; it is not a model-only change. 16384 does not rule out truncation either.",
+    "dataset": "lcb",
+    "max_tokens": {
+      "lcb": 16384
+    },
+    "original_freeze_rewritten": false,
+    "original_freeze_sha256": "490e29ea39cad9d17867ce26208317e93ddd056d25fc63b318f25d65e8172b79",
+    "other_datasets": {
+      "ojbench": 16384,
+      "taco": 16384,
+      "usaco": 16384
+    },
+    "previous_max_tokens": {
+      "lcb": 2000
+    },
+    "progress_at_revision": {
+      "lcb": {
+        "complete": 0,
+        "requests_completed": 0,
+        "started": 0,
+        "total": 231
+      },
+      "ojbench": {
+        "complete": 0,
+        "requests_completed": 0,
+        "started": 0,
+        "total": 28
+      },
+      "taco": {
+        "complete": 0,
+        "requests_completed": 0,
+        "started": 0,
+        "total": 231
+      },
+      "usaco": {
+        "complete": 3,
+        "requests_completed": 27,
+        "started": 4,
+        "total": 110
+      }
+    },
+    "reason": "User direction of 2026-10-11 (two pasted instructions, the second superseding item 3 of the first): (1) Schedule: run the complete original LCB231 first, then resume USACO from its saved position, then TACO and OJBench. Order of whole datasets only; no task removed, no judging changed; USACO paused safely after 27 completed requests with all replies, public results and usage rows kept and nothing resent. (2) Budget: LCB shared initials, A1 extras and Plan extras all use a 16384-token output limit instead of the historical 2000, because with thinking disabled this model writes long analysis before its code (USACO replies: one hit 16384 with no code, one reached 10295 tokens) and a 2000 limit would let truncation dominate the A1-vs-Plan comparison. Frozen before the first LCB request as a separate budget revision; freeze.json and protocol.py are byte-identical to the original; thinking stays disabled; temperature, prompts, extraction, public tests and selection unchanged. (3) Engineering: strict scorer can pause between programs via the STOP file; usage rows of a dataset with no usage file yet read as empty.",
+    "requests_of_this_dataset_before_revision": 0,
+    "revised_at": "2026-10-11T05:17:34+1100",
+    "schema": "QWEN38_BUDGET_REVISION_V1",
+    "scientific_conditions_changed": true,
+    "unchanged": [
+      "model and quantization",
+      "thinking disabled",
+      "temperature / top_p / top_k / min_p",
+      "system prompt and differ instruction",
+      "plan and code extraction",
+      "public tests and limits",
+      "selection rule",
+      "task list and order within the dataset",
+      "request seeds",
+      "strict scoring"
+    ]
+  },
+  "lcb": {
+    "any_initial_public_pass": 162,
+    "complete": 231,
+    "d": 68,
+    "dataset": "lcb",
+    "duplicates": {
+      "a1": {
+        "extras_with_code": 88,
+        "identical_to_earlier_visible_candidate": 5
+      },
+      "plan": {
+        "extras_with_code": 198,
+        "identical_to_earlier_visible_candidate": 3
+      }
+    },
+    "format": {
+      "a1": {
+        "empty_plan": 3,
+        "length": 13,
+        "no_code": 116,
+        "plan_truncated": 153,
+        "requests": 204,
+        "whole_reply_code": 0
+      },
+      "initial": {
+        "empty_plan": 21,
+        "length": 27,
+        "no_code": 205,
+        "plan_truncated": 401,
+        "requests": 693,
+        "whole_reply_code": 0
+      },
+      "plan": {
+        "empty_plan": 0,
+        "length": 2,
+        "no_code": 6,
+        "plan_truncated": 120,
+        "requests": 204,
+        "whole_reply_code": 0
+      }
+    },
+    "generation_status": "COMPLETE",
+    "initial_draft_public_pass": [
+      114,
+      127,
+      122
+    ],
+    "initials_complete": 231,
+    "mcnemar_p": 1.0967254638671875e-05,
+    "n": 231,
+    "not_tested": 1,
+    "pair": {
+      "a1_only": 1,
+      "both": 148,
+      "neither": 61,
+      "plan_only": 21
+    },
+    "plan_history": {
+      "counts": [
+        3,
+        4,
+        5
+      ],
+      "mean_prompt_tokens_a1_extra": 573.5,
+      "mean_prompt_tokens_plan_extra": 3298.9
+    },
+    "public": {
+      "a1": 178,
+      "plan": 194,
+      "shared_initial": 162
+    },
+    "public_fail_strict_pass": {
+      "a1": 5,
+      "plan": 5,
+      "shared_initial": 5
+    },
+    "public_pass_strict_fail": {
+      "a1": 34,
+      "plan": 30,
+      "shared_initial": 26
+    },
+    "selected_extra": {
+      "a1": 16,
+      "plan": 32
+    },
+    "started": 231,
+    "strict": {
+      "a1": 149,
+      "plan": 169,
+      "shared_initial": 141
+    },
+    "strict_available": true,
+    "strict_d": {
+      "a1": 13,
+      "plan": 33,
+      "shared_initial": 5
+    },
+    "usage": {
+      "a1_attributed": {
+        "completion_tokens": 3606377,
+        "prompt_tokens": 519978,
+        "requests": 897,
+        "seconds": 223814.1
+      },
+      "a1_extra": {
+        "completion_tokens": 1020127,
+        "prompt_tokens": 116997,
+        "requests": 204,
+        "seconds": 62905.7
+      },
+      "actual": {
+        "completion_tokens": 4209258,
+        "prompt_tokens": 1192947,
+        "requests": 1101,
+        "seconds": 264780.7
+      },
+      "initial": {
+        "completion_tokens": 2586250,
+        "prompt_tokens": 402981,
+        "requests": 693,
+        "seconds": 160908.4
+      },
+      "plan_attributed": {
+        "completion_tokens": 3189131,
+        "prompt_tokens": 1075950,
+        "requests": 897,
+        "seconds": 201875.0
+      },
+      "plan_extra": {
+        "completion_tokens": 602881,
+        "prompt_tokens": 672969,
+        "requests": 204,
+        "seconds": 40966.6
+      }
+    },
+    "vs_shared": {
+      "a1": {
+        "net": 8,
+        "regressed": 0,
+        "rescued": 8
+      },
+      "plan": {
+        "net": 28,
+        "regressed": 0,
+        "rescued": 28
+      }
+    }
+  },
+  "paired_recalculation": {
+    "n": 231,
+    "seed": 20261014,
+    "bootstrap_replicates": 100000,
+    "delta_pp": 8.658008658008658,
+    "percentile95_pp": [
+      5.194805194805195,
+      12.554112554112553
+    ],
+    "paired_counts": {
+      "pn_only": 21,
+      "independent_only": 1
+    },
+    "analysis": "Recalculation from frozen final labels; no candidate execution or model requests."
+  },
+  "sources": {
+    "reports/report_stats.json": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/reports/report_stats.json",
+      "sha256": "2a81edb359bcc9461a3b5343c9fa4400a52d0d77fea5a91d3f5707d60872af09"
+    },
+    "reports/01_逐题配对结果.csv": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/reports/01_逐题配对结果.csv",
+      "sha256": "f24d120a2e596876f084e0237f8f17e851b34489ac0b20dc831b9a904bb71691"
+    },
+    "reports/02_请求与资源归属.csv": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/reports/02_请求与资源归属.csv",
+      "sha256": "0d54b341633b06a3e97754e8504219c9b55839ce770385861b2d3a85220e69fa"
+    },
+    "runs/local_v1/freeze.json": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/runs/local_v1/freeze.json",
+      "sha256": "490e29ea39cad9d17867ce26208317e93ddd056d25fc63b318f25d65e8172b79"
+    },
+    "runs/local_v1/budget_revision.json": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/runs/local_v1/budget_revision.json",
+      "sha256": "34c94bc1660592d8a6a3fbfbd2369aacd563741f634c33709164a030842d6971"
+    },
+    "runs/local_v1/seals/lcb.json": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/runs/local_v1/seals/lcb.json",
+      "sha256": "6816c855f1eabc74df6ebfa51fc609cc4b6c3f0fa4e299ce12cbeadc65e82aec"
+    },
+    "runs/local_v1/strict/final_scores_lcb.json": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/runs/local_v1/strict/final_scores_lcb.json",
+      "sha256": "dea9918ae4750f08e7b9a7e2a22670c9e6d88d9906c72fc9154f8451a8d56f0f"
+    },
+    "code/protocol.py": {
+      "path": "archive://project/PN-Qwen38-Plan-A1配对验证-20261011/code/protocol.py",
+      "sha256": "f0736cb2e5ea572e432c8c5975bd8c93c3ceffe46234a250e7eedd3da8e8e2d0"
+    }
+  },
+  "interpretation": "The complete PN prompt strategy improves final delivery; current comparison does not separate plan content, exploration instruction, repeated formatting instruction, or message structure. Formatting is part of task completion."
+}

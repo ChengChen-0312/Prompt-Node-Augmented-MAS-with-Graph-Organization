@@ -1,0 +1,170 @@
+"""Public-only, shared-prefix Single/A1/A2 runner with real batch-boundary gates."""
+from __future__ import annotations
+import argparse
+import ast
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import re
+import sys
+
+from provider_gateway import Gateway, GatewayStop, MODEL, atomic_json
+import public_judge
+from protocol import render_prompt, extract_code
+
+HERE = Path(__file__).resolve().parent
+WORKSPACE = HERE.parent
+CONTRACTS = WORKSPACE / 'explore30/arg_probe/e16_lcb_contracts.py'
+TINY = WORKSPACE / 'explore30/private/flat-pn-divtiny27/prepare.py'
+SANDBOX = WORKSPACE / 'explore30/arg_probe/e16_lcb_sandbox.py'
+
+
+def literal_constant(path, name):
+    for node in ast.parse(Path(path).read_text()).body:
+        if isinstance(node, ast.Assign) and any(isinstance(t,ast.Name) and t.id==name for t in node.targets):
+            return ast.literal_eval(node.value)
+    raise ValueError('CONSTANT_NOT_FOUND:' + name)
+
+
+SYSTEM = literal_constant(CONTRACTS, 'SYSTEM_PROMPT')
+DIVERSITY = literal_constant(TINY, 'DIVERSITY_INSTRUCTION')
+PLAN_LIMIT = literal_constant(TINY, 'PLAN_CHAR_LIMIT')
+_spec = importlib.util.spec_from_file_location('usaco110_extract_sandbox', SANDBOX)
+_sandbox = importlib.util.module_from_spec(_spec)
+sys.modules[_spec.name] = _sandbox
+_spec.loader.exec_module(_sandbox)
+EMPTY_PLAN = '(This attempt gave no approach description.)'
+PREFIX_PROTOCOL = 'A2_H1_H3_SHARED_INITIAL3_POST_BATCH_V1'
+
+
+def approach(response):
+    start = next((m.start() for m in _sandbox._PYTHON_FENCE.finditer(response) if m.group('code').strip()),None)
+    text = (response if start is None else response[:start]).strip()
+    return {'text':text[:PLAN_LIMIT], 'truncated':len(text)>PLAN_LIMIT, 'had_program':start is not None}
+
+
+def payload(task, output_limit, plans=None):
+    # The actual USACO statement includes its original input/output contract.
+    messages = [{'role':'system','content':SYSTEM},{'role':'user','content':render_prompt(task)}]
+    if plans is not None:
+        messages.append({'role':'user','content':DIVERSITY + ''.join(f'\n\nPrevious approach {i}:\n{p}' for i,p in enumerate(plans,1))})
+    return {'model':MODEL, 'temperature':0.2, 'max_tokens':output_limit, 'messages':messages}
+
+
+def h(value):
+    return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+
+
+def select(candidates):
+    return next((c for c in candidates if c['public']['status']=='PASS'),candidates[0])
+
+
+def run(tasks, out_dir, gateway, output_limit, repeat=1, phase='smoke', grader=None):
+    if type(repeat) is not int or repeat != 1:
+        raise GatewayStop('H1_H3_SINGLE_FLOW_REPEAT_ONE_REQUIRED')
+    grader = grader or public_judge.grade_public
+    out = Path(out_dir)
+    out.mkdir(parents=True,exist_ok=True)
+    sp = out / 'state.json'
+    identity = {'task_hash':h(tasks),'output_limit':output_limit,'repeat':repeat,'phase':phase,
+                'system_sha256':h(SYSTEM),'diversity_sha256':h(DIVERSITY),'model':MODEL,
+                'prefix_protocol':PREFIX_PROTOCOL}
+    state = json.loads(sp.read_text()) if sp.exists() else {'identity':identity,'candidates':{},'deliveries':{},'status':'RUNNING'}
+    if state['identity'] != identity:
+        raise GatewayStop('RUN_CONFIGURATION_CHANGED')
+    if state['status']=='COMPLETE':
+        return state
+    def save():
+        atomic_json(sp,state)
+    def generate(task,arm,step,plans=None):
+        cid=f'{phase}/r{repeat}/{task["question_id"]}/{arm}/{step}'
+        req=payload(task,output_limit,plans)
+        if cid in state['candidates']:
+            row=state['candidates'][cid]
+            if row['request_sha256']!=h(req):
+                raise GatewayStop('CANDIDATE_REQUEST_CHANGED')
+            return row
+        response=gateway.request(req,logical_id=cid)
+        content=response['choices'][0]['message']['content']
+        plan=approach(content)
+        row={'candidate_id':cid,'question_id':task['question_id'],'division':task['division'],'arm':arm,'step':step,
+             'repeat':repeat,'phase':phase,'request_sha256':h(req),'response':content,
+             'code':extract_code(content),'plan':plan['text'] or EMPTY_PLAN,
+             'plan_extraction':plan,'finish_reason':response['choices'][0].get('finish_reason'),
+             'usage':response['usage'],'public':None}
+        state['candidates'][cid]=row
+        save()
+        return row
+    def evaluate(task,rows):
+        for row in rows:
+            if row['public'] is None:
+                row['public']=grader(task,row['code'])
+                save()
+            if row['public']['status']=='UNKNOWN':
+                raise GatewayStop('PUBLIC_JUDGE_UNKNOWN')
+    try:
+        for index,task in enumerate(tasks):
+            q=task['question_id']
+            if q in state['deliveries']:
+                continue
+            # All three requests complete before the initial batch is tested.
+            initial=[generate(task,'initial',i) for i in (1,2,3)]
+            evaluate(task,initial)
+            gate_open=not any(r['public']['status']=='PASS' for r in initial)
+            selected={'single':initial[0]['candidate_id']}
+            a2_prefix_selected=None
+            if gate_open:
+                arm_order=('a1','a2') if (index+repeat)%2==0 else ('a2','a1')
+                for arm in arm_order:
+                    own=[]
+                    for step in (1,2,3):
+                        plans=[r['plan'] for r in initial+own] if arm=='a2' else None
+                        own.append(generate(task,arm,step,plans))
+                    # Keep original A2 batch evaluation: no intermediate test feedback.
+                    evaluate(task,own)
+                    selected[arm]=select(initial+own)['candidate_id']
+                    if arm=='a2':
+                        # All H1/H2/H3 outputs already exist and were evaluated
+                        # after the batch. This view adds no generation or feedback.
+                        a2_prefix_selected={'h1':select(initial+own[:1])['candidate_id'],
+                                            'h3':selected['a2']}
+            else:
+                selected['a1']=selected['a2']=select(initial)['candidate_id']
+                a2_prefix_selected={'h1':selected['a2'],'h3':selected['a2']}
+            state['deliveries'][q]={'question_id':q,'division':task['division'],'repeat':repeat,'gate_open':gate_open,
+                                    'selected':selected,'a2_prefix_selected':a2_prefix_selected}
+            save()
+        state['status']='COMPLETE'
+        save()
+        return state
+    except BaseException as error:
+        state['status']='STOPPED'
+        state['stop_reason']=str(error) if isinstance(error,GatewayStop) else type(error).__name__
+        save()
+        raise
+
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument('--tasks',required=True)
+    p.add_argument('--out',required=True)
+    p.add_argument('--billing-root',required=True)
+    p.add_argument('--phase',choices=['smoke','formal'],required=True)
+    p.add_argument('--repeat',type=int,choices=[1],default=1)
+    p.add_argument('--output-limit',type=int,required=True)
+    p.add_argument('--authorization')
+    p.add_argument('--mock',action='store_true')
+    a=p.parse_args()
+    tasks=json.loads(Path(a.tasks).read_text())
+    datasets={task.get('dataset') for task in tasks}
+    if len(datasets)!=1 or not datasets <= {'taco','ojbench'}:
+        p.error('one declared dataset is required')
+    dataset=next(iter(datasets))
+    gateway=Gateway(a.billing_root,f'{a.phase}_{dataset}_single_a1_a2_r{a.repeat}',a.phase,a.authorization,a.mock,a.output_limit)
+    state=run(tasks,a.out,gateway,a.output_limit,a.repeat,a.phase)
+    print(json.dumps({'status':state['status'],'tasks':len(state['deliveries']),'retained_candidates':len(state['candidates']),'mock':a.mock}))
+
+
+if __name__=='__main__':
+    main()

@@ -1,0 +1,152 @@
+"""pn-ablation-nopn-1 generation (keyed). Seven streams interleaved round-robin per problem; no execution, no scoring, no hidden reads.
+
+Reuses the E21-P2 Provider (credential loading inside this child process only, ledger, reservation cap,
+served-model check, raw archive) by import, exactly as the tiny27 stage does.
+"""
+from datetime import datetime, timezone
+from decimal import Decimal
+import hashlib, importlib.util, json, sys
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+STAGE = Path(__file__).resolve().parent
+sys.path.insert(0, str(STAGE))
+import prepare as m
+from arg_probe.e16_lcb_sandbox import extract_python_code
+
+RUN_DIR = STAGE / 'run'
+MARKER = STAGE / (m.P + 'GENERATION_DONE.json')
+STOPPED = STAGE / (m.P + 'STOPPED.json')
+CANDIDATES = STAGE / (m.P + 'candidates.jsonl')
+
+
+def load_e21p2_generate():
+    spec = importlib.util.spec_from_file_location('e21p2_generate_for_pnablnopn1', m.E21 / 'NOT_PAPER_EVIDENCE-e21p2-generate.py')
+    gen = importlib.util.module_from_spec(spec); sys.modules[spec.name] = gen; spec.loader.exec_module(gen)
+    return gen
+
+
+def configure(gen):
+    gen.PREFIX = m.P
+    gen.CALL_CAP = m.CALL_CAP
+    gen.COST_CAP = m.COST_CAP
+    if (gen.MODEL, gen.TEMPERATURE, gen.MAX_TOKENS) != (m.MODEL, m.TEMPERATURE, m.MAX_TOKENS):
+        raise RuntimeError('E21P2_REQUEST_CONSTANTS_DIFFER')
+
+    def validate_request(payload):
+        if set(payload) != {'model', 'temperature', 'max_tokens', 'messages'}:
+            raise gen.P2Stop('REQUEST_CONTRACT', 'request fields differ')
+        if (payload['model'], payload['temperature'], payload['max_tokens']) != (m.MODEL, m.TEMPERATURE, m.MAX_TOKENS):
+            raise gen.P2Stop('REQUEST_CONTRACT', 'model/temperature/max_tokens differ')
+        msgs = payload['messages']; roles = [x.get('role') for x in msgs]
+        if msgs[0]['content'] != m.SYSTEM_PROMPT:
+            raise gen.P2Stop('REQUEST_CONTRACT', 'system prompt differs')
+        if roles == ['system', 'user']:
+            return                                                   # A1
+        if roles == ['system', 'user', 'user']:
+            c = msgs[2]['content']
+            if c.startswith(m.DIVERSITY_INSTRUCTION + '\n\nPrevious approach 1:\n'): return     # A2
+            if c.startswith(m.B2_INSTRUCTION + '\n\nPrevious approach 1:\n'): return            # B2
+            if c in {m.b3_instruction(k) for k in (1, 2, 3)}: return                            # B3 (cumulative count)
+            raise gen.P2Stop('REQUEST_CONTRACT', 'third message is none of A2/B2/B3')
+        if roles == ['system', 'user', 'assistant', 'user']:
+            c = msgs[3]['content']
+            if c.startswith(m.B1_HEADER + '\n\nAgent 1:\n') and c.endswith('\n\n' + m.B1_FOOTER) and c.count('\n\nAgent ') == 2: return  # B1
+            raise gen.P2Stop('REQUEST_CONTRACT', 'B1 layout differs')
+        raise gen.P2Stop('REQUEST_CONTRACT', 'message layout differs')
+    gen.validate_request = validate_request
+    return gen
+
+
+def check_frozen():
+    prereg_path = STAGE / (m.P + 'prereg.json')
+    if m.digest(prereg_path) != (STAGE / (m.P + 'prereg.sha256')).read_text().strip(): raise RuntimeError('PREREG_HASH_CHANGED')
+    prereg = json.loads(prereg_path.read_text())
+    if any(m.digest(p) != h for p, h in prereg['frozen_files'].items()): raise RuntimeError('FROZEN_FILE_CHANGED')
+    return prereg
+
+
+def check_authorization():
+    auth = json.loads((STAGE / (m.P + 'authorization.json')).read_text())
+    if (auth.get('authorized') is not True or auth.get('user_authorization_confirmed') is not True or auth.get('scope') != m.SCOPE
+            or auth.get('hard_cap_calls') != m.CALL_CAP or Decimal(str(auth.get('hard_cap_usd'))) != m.COST_CAP
+            or not isinstance(auth.get('current_user_execution_request'), str) or not auth['current_user_execution_request'].strip()):
+        raise RuntimeError('AUTHORIZATION_SCOPE_DIFFERS')
+
+
+def initial_context(problem):
+    """Archived first-round replies and approach texts, re-verified byte for byte against the materialization."""
+    plans, replies = [], []
+    for ref in problem['initial']:
+        raw = json.loads(Path(ref['raw_response_path']).read_text())
+        if m.digest(ref['raw_response_path']) != ref['raw_response_sha256']: raise RuntimeError('INITIAL_RAW_FILE_DIFFERS')
+        content = raw['response']['choices'][0]['message']['content']
+        if hashlib.sha256(content.encode()).hexdigest() != ref['reply_sha256']: raise RuntimeError('INITIAL_REPLY_DIFFERS')
+        text = m.plan_text(content)['text']
+        if hashlib.sha256(text.encode()).hexdigest() != ref['plan_sha256']: raise RuntimeError('INITIAL_PLAN_DIFFERS')
+        plans.append(text); replies.append(content)
+    return plans, replies
+
+
+def candidate_id(q, stream, k): return f'{m.CANDIDATE_PREFIX}/{q}/{stream}-{k}'
+
+
+def run_problems(provider, problems, tasks, rows):
+    for problem in problems:
+        q = problem['qid']; task = tasks[q]; plans0, replies = initial_context(problem)
+        if problem['stream_order'] != m.stream_order(problem['index']): raise RuntimeError('STREAM_ORDER_DIFFERS_FROM_MATERIALIZATION')
+        own_plans = {s: [] for s in m.STREAMS}                  # sequential arms read only their own stream's earlier plans
+        for k in range(1, m.STEPS + 1):
+            for stream in problem['stream_order']:
+                arm = m.ARM_OF[stream]
+                if arm == 'A1':
+                    payload = m.control_payload(task); expect = problem['payload_sha256']['A1']
+                elif arm == 'A2':
+                    payload = m.diversity_payload(task, plans0 + own_plans[stream]); expect = problem['payload_sha256']['A2_step1'] if k == 1 else None
+                elif arm == 'B2':
+                    payload = m.b2_payload(task, plans0 + own_plans[stream]); expect = problem['payload_sha256']['B2_step1'] if k == 1 else None
+                elif arm == 'B3':
+                    payload = m.b3_payload(task, k); expect = problem['payload_sha256'][f'B3_step{k}']
+                else:
+                    payload = m.b1_payload(task, replies, k); expect = problem['payload_sha256'][f'B1_agent{k}']
+                if expect is not None and m.sha_payload(payload) != expect: raise RuntimeError(f'{stream}_PAYLOAD_DIFFERS_FROM_MATERIALIZATION')
+                result = provider.call(logical_id=f'{stream}:{q}:{k}', qid=q, group=stream, payload=payload)
+                content = result['content']; code = extract_python_code(content); plan = m.plan_text(content)
+                if arm in ('A2', 'B2'): own_plans[stream].append(plan['text'] or m.EMPTY_PLAN)
+                rows.append({'candidate_id': candidate_id(q, stream, k), 'question_id': q, 'stream': stream, 'arm': arm, 'step': k, 'code': code,
+                    'code_sha256': hashlib.sha256(code.encode()).hexdigest() if code is not None else None,
+                    'plan_sha256': hashlib.sha256(plan['text'].encode()).hexdigest(), 'plan_empty': not plan['text'],
+                    'earlier_plans_read': len(plans0) + k - 1 if arm in ('A2', 'B2') else 0,
+                    'raw_archive': result['archive'], 'cached': result['cached'], 'payload_sha256': m.sha_payload(payload)})
+
+
+def main():
+    check_authorization(); prereg = check_frozen()
+    if MARKER.exists() or STOPPED.exists() or CANDIDATES.exists(): raise RuntimeError('NO_AUTOMATIC_RERUN')
+    material = json.loads((STAGE / 'materialization.json').read_text())
+    tasks = {json.loads(l)['question_id']: json.loads(l) for l in (m.E21 / 'NOT_PAPER_EVIDENCE-e21p2-public-tasks.jsonl').open()}
+    gen = configure(load_e21p2_generate())
+    provider, rows, stop = None, [], None
+    try:
+        provider = gen.Provider(RUN_DIR)
+        run_problems(provider, material['problems'], tasks, rows)
+        provider.close('API_COMPLETE')
+    except BaseException as error:
+        stop = f'{type(error).__name__}:{getattr(error, "phase", "")}:{getattr(error, "reason", str(error))[:200]}'
+        if provider is not None and provider.client is not None: provider.close('STOPPED', fatal=stop[:120])
+    CANDIDATES.write_text(''.join(json.dumps(r, ensure_ascii=False) + '\n' for r in rows))
+    ledger = provider.ledger if provider is not None else {}
+    marker = {'scope': m.SCOPE, 'status': 'STOPPED_INCOMPLETE' if stop else 'GENERATION_DONE', 'generation_complete': stop is None, 'stop_reason': stop,
+        'created_at_utc': datetime.now(timezone.utc).isoformat(), 'candidates': len(rows), 'planned': material['calls_planned'],
+        'physical_calls': ledger.get('physical_calls'), 'accounted_cost_usd': ledger.get('accounted_cost_usd'),
+        'calls_by_stream': {s: sum(r['stream'] == s for r in rows) for s in m.STREAMS},
+        'served_models': sorted(set(ledger.get('response_models', []))), 'candidates_sha256': m.digest(CANDIDATES),
+        'prereg_sha256': m.digest(STAGE / (m.P + 'prereg.json')), 'execution_count': 0, 'hidden_reads': 0, 'further_generation_forbidden': True}
+    if stop: STOPPED.write_text(json.dumps({**marker, 'no_retry': True}, ensure_ascii=False, indent=2) + '\n')
+    MARKER.write_text(json.dumps(marker, ensure_ascii=False, indent=2) + '\n')
+    print(json.dumps({k: marker[k] for k in ('status', 'candidates', 'physical_calls', 'accounted_cost_usd', 'served_models', 'stop_reason')}), flush=True)
+    if stop: raise SystemExit(2)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,5 @@
+cohort,main_run,initial,A1,PN,model,temperature,output_cap,additional_calls_per_open_task,scope
+USACO110,retained_repeat1,17,22,19,gpt-4o-2024-08-06,0.2,16384,3 per arm,Later PN-only20 separate
+TACO231,retained_single,67,69,71,gpt-4o-2024-08-06,0.2,16384,3 per arm,H1 dependent prefix of same H3
+OJBench28,retained_single,6,7,6,gpt-4o-2024-08-06,0.2,16384,3 per arm,28 eligible tasks
+LCB231,later_paired96_with135_fixed,101,109,113,gpt-4o-2024-08-06,0.2,2000,3 per arm,97 gate-open but96 continued
